@@ -10,18 +10,24 @@
 <body class="bg-green-950">
     <div class="space-y-2">    
         <h1 class="text-yellow-100 text-5xl ">Cadastro</h1>
-        <div class="space-y-2">
-            <input class="bg-yellow-100 p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="email" id="email" placeholder="Email">
-            <input class="bg-yellow-100 p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="password" id="senha" placeholder="Senha">
-        </div>
-        <div>
-            <a href="/" class="underline text-white">Login</a>
-            <a href="/recuperar" class="underline text-white">Recuperar Senha</a>
-        </div>
-        <div>
-            <button class="p-2 bg-orange-500 text-white rounded-lg" id="login">Login</button>
-        </div>
+        <form class="c-form" action="{{ url_for('cadastro.cadastra')}}" method="POST">
+            <div class="space-y-2">
+                {% for input in inputs %}
+                    <input class="bg-yellow-100 p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="{{ input.type }}" id="{{ input.id }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" name="{{input.name}}"  required>
+                {% endfor %}
+            </div>
+            <div>
+                <a href="/" class="underline text-white">Login</a>
+                <a href="/recuperar" class="underline text-white">Recuperar Senha</a>
+            </div>
+            <div>
+                <button class="p-2 bg-orange-500 text-white rounded-lg">Cadastrar</button>
+            </div>
+        </form>
     </div>
+
+    <script src="{{url_for('static', filename='js/cru.js')}}"></script>
+
 </body>
 
 </html>
