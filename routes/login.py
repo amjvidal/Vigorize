@@ -22,14 +22,6 @@ def pagina_login():
 
 @login_routes.route('/', methods=['POST'])
 def loga():
-    """ Realiza o login do usuário """
-    data = request.json
-    if request.method == 'POST':
-        email = data['email']
-        password = data['senha']
-        try: 
-            loginfb(email, password)
-        except:
-            flash("Falha no login.")
-        
+    """ Realiza o login do usuário """ 
+    data = request.json    
     pass

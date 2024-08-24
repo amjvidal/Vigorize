@@ -25,7 +25,6 @@ def cadastrofb(email, password):
 def loginfb(email, password):
     try:
         login = auth.sign_in_with_email_and_password(email, password)
-        print("login realizado")
     except:
         # PopUp dnv dizendo que o usuario não esta cadastrado (tratar dps com if pra ver se é a senha q ta errada)
         # isso aqui n funciona:
