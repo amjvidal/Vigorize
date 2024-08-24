@@ -1,5 +1,4 @@
 import pyrebase
-from flask import flash
 
 config = {
     'apiKey': "AIzaSyD4JXX-udSB_3dQrzfmqS5Bop0VEdiThUo",
@@ -21,12 +20,13 @@ def cadastrofb(email, password):
         #Deve aparecer uma popup aqui na pagina dizendo que o email ja existe
         # Tentei aqui mas n ta funcionando @everyone alguem arruma
         # isso aqui n funciona:
-        flash("Você já está cadastrado, por favor faça o login")
+        print('sla')
         
 def loginfb(email, password):
     try:
         login = auth.sign_in_with_email_and_password(email, password)
+        print("login realizado")
     except:
         # PopUp dnv dizendo que o usuario não esta cadastrado (tratar dps com if pra ver se é a senha q ta errada)
         # isso aqui n funciona:
-        flash('Usuario ja cadastrado')
+        print('sla')

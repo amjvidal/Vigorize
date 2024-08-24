@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, flash
 from firebaseAuth import loginfb
 
 login_routes = Blueprint('login', __name__)
@@ -24,6 +24,12 @@ def pagina_login():
 def loga():
     """ Realiza o login do usuário """
     data = request.json
-    
-    loginfb(data['email'], data['senha'])
-    return render_template('cadastro.html')
+    if request.method == 'POST':
+        email = data['email']
+        password = data['senha']
+        try: 
+            loginfb(email, password)
+        except:
+            flash("Falha no login.")
+        
+    pass
