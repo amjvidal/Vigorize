@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request
 from database.usuarios import USUARIOS
+from firebaseAuth import cadastrofb
 
 cadastro_routes = Blueprint('cadastro', __name__)
 
@@ -36,6 +37,7 @@ def cadastra():
         'email': data['email'],
         'senha': data['senha']
     }
+    cadastrofb(data['email'], data['senha'])
 
     # implementar o fire base AQUI !!!!!
 
