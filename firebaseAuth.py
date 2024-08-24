@@ -14,4 +14,14 @@ firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
 
 def cadastrofb(email, password):
-    user = auth.create_user_with_email_and_password(email, password)
+    try:
+        user = auth.create_user_with_email_and_password(email, password)
+    except:
+        print("esse emial já existe")
+
+def recoverPassword(email):
+    try:
+        auth.send_password_reset_email(email)
+        print("email enviado")
+    except:
+        print("Email Não Cadastrado")

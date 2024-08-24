@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
+from firebaseAuth import recoverPassword
 
 recuperar_routes = Blueprint('recuperar', __name__)
 
@@ -20,7 +21,9 @@ def pagina_recuperar():
 
 @recuperar_routes.route('/', methods=['POST'])
 def recupera():
+    data=request.jason
     """ Envia um email de recuperação de senha """
+    recoverPassword(data["email"])
     pass
 
 @recuperar_routes.route('/<int:id_usuario>/trocarSenha')
