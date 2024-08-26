@@ -37,10 +37,8 @@ def cadastra():
         'email': data['email'],
         'senha': data['senha']
     }
+    
     cadastrofb(data['email'], data['senha'])
-
-    # implementar o fire base AQUI !!!!!
-
 
     return {'message': 'Usuário cadastrado com sucesso!'}, 201
 

@@ -17,11 +17,23 @@ def cadastrofb(email, password):
     try:
         user = auth.create_user_with_email_and_password(email, password)
     except:
-        print("esse emial já existe")
-
+        #Deve aparecer uma popup aqui na pagina dizendo que o email ja existe
+        # Tentei aqui mas n ta funcionando @everyone alguem arruma
+        # isso aqui n funciona:
+        print('sla')
+        
+def loginfb(email, password):
+    try:
+        login = auth.sign_in_with_email_and_password(email, password)
+    except:
+        # PopUp dnv dizendo que o usuario não esta cadastrado (tratar dps com if pra ver se é a senha q ta errada)
+        # isso aqui n funciona:
+        print('sla')
+        
 def recoverPassword(email):
     try:
         auth.send_password_reset_email(email)
         print("email enviado")
     except:
         print("Email Não Cadastrado")
+
