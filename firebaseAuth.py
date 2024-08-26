@@ -1,4 +1,5 @@
 import pyrebase
+from flask import flash
 
 config = {
     'apiKey': "AIzaSyD4JXX-udSB_3dQrzfmqS5Bop0VEdiThUo",
@@ -13,14 +14,9 @@ config = {
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
 
-def cadastrofb(email, password):
-    try:
+def cadastrofb(nome, email, password):
         user = auth.create_user_with_email_and_password(email, password)
-    except:
-        #Deve aparecer uma popup aqui na pagina dizendo que o email ja existe
-        # Tentei aqui mas n ta funcionando @everyone alguem arruma
-        # isso aqui n funciona:
-        print('sla')
+        auth.send_email_verification(user['idToken'])
         
 def loginfb(email, password):
     try:

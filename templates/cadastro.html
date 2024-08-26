@@ -4,13 +4,20 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/static/css/main.css ">
     <title>Vigorize</title>
-    
 
+    <script>
+        function showFlashMessages(messages) {
+            messages.forEach(message => {
+                alert(message);  // Exibe um alerta com a mensagem
+            });
+        }
+    </script>
+    
 </head>
-<body class="bg-green-950">
+<body class="bg-[#234035]">
     <div class="space-y-2">    
         <h1 class="text-yellow-100 text-5xl ">Cadastro</h1>
-        <form class="c-form" action="{{ url_for('cadastro.cadastra')}}" method="POST">
+        <form action="{{ url_for('cadastro.cadastro')}}" method="POST">
             <div class="space-y-2">
                 {% for input in inputs %}
                     <input class="bg-yellow-100 p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="{{ input.type }}" id="{{ input.id }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" name="{{input.name}}"  required>
@@ -26,8 +33,16 @@
         </form>
     </div>
 
-    <script src="{{url_for('static', filename='js/cru.js')}}"></script>
-
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <script>
+                // Transforma mensagens de flash em um array para o JavaScript
+                const messages = {{ messages | tojson }};
+                showFlashMessages(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
+            </script>
+        {% endif %}
+    {% endwith %}
+    
 </body>
 
 </html>

@@ -554,10 +554,6 @@ video {
   --tw-contain-style:  ;
 }
 
-.static {
-  position: static;
-}
-
 .block {
   display: block;
 }
@@ -594,6 +590,15 @@ video {
 .bg-yellow-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 249 195 / var(--tw-bg-opacity));
+}
+
+.bg-\[\] {
+  background-color: ;
+}
+
+.bg-\[\#234035\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(35 64 53 / var(--tw-bg-opacity));
 }
 
 .p-2 {
