@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, request, redirect,url_for, flash
+from flask import Blueprint, render_template, request, redirect,url_for, flash, session
 import json
-from firebaseAuth import  atualiza_perfilfb
+from firebaseAuth import  atualiza_perfilfb, getUserData
+
 perfil_routes = Blueprint('perfil', __name__)
 
 """ Rotas de perfil
@@ -10,26 +11,20 @@ perfil_routes = Blueprint('perfil', __name__)
     - /perfil/excluir - DELETE - Exclui o perfil do usuário
 """
 
-@perfil_routes.route('/')
+@perfil_routes.route('/', methods=['GET','POST'])
 def pagina_perfil():
     """ Retorna a página de perfil """
-    
-    def inputs_perfil():
-        imputs = [
-            {'id': 'nome', 'type': 'text', 'placeholder': 'Nome', 'name': 'nome'},
-            {'id': 'email', 'type': 'email', 'placeholder': 'Email', 'name': 'email'},
-            {'id': 'senha', 'type': 'password', 'placeholder': 'Senha', 'name': 'senha'}
-        ]
-        if request.method == 'POST':
-            data = request.form
+    if 'user' in session:
+        user_id = session['user']
+        user_email = session.get('user_email')
+        
+        print(user_email)
         try:
-            atualiza_perfilfb(data['nome'], data['email'], data['senha'])  # tem que fazer essa função
-            flash('Perfil atualizado com sucesso!', 'success')
-            return redirect(url_for('perfil.perfil'))
+            user_data = getUserData(user_email)
+            return render_template('perfil.html', user_data = user_data) 
         except Exception as e:
             error_message = json.loads(e.args[1])['error']['message']
             flash(error_message, 'danger')
-            return render_template('perfil.html', inputs=inputs_perfil())
-
-    return render_template('perfil.html', inputs=inputs_perfil())
+            return render_template('perfil.html')
+    return render_template('perfil.html', user_data = user_data)
     

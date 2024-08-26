@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect,url_for, flash
 import json
-from firebaseAuth import loginfb, auth, db, emailDb
+from firebaseAuth import loginfb
 
 login_routes = Blueprint('login', __name__)
 
