@@ -21,14 +21,15 @@ def cadastro():
         {'id': 'senha', 'type': 'password', 'placeholder': 'Senha', 'name': 'senha'},
         {'id': 'confirmaSenha', 'type': 'password', 'placeholder': 'Confirme sua senha', 'name': 'confirmaSenha'}
     ]
+
     if request.method == 'POST':
         data = request.form
         if data['senha'] != data['confirmaSenha']:
             flash('Formulário enviado com sucesso!', 'danger')
             return render_template('cadastro.html', inputs=inputs)
         try:
-            cadastrofb(data['email'], data['senha'])
-            flash('Usuário cadastrado com sucesso!', 'success')
+            cadastrofb(data['nome'],data['email'], data['senha'])
+            flash('Foi enviado um email de verificação para: '+data['email']+' !', 'success')
             return redirect(url_for('login.pagina_login'))
         except Exception as e:
             # Captura a exceção e imprime a mensagem de erro

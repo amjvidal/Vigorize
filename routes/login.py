@@ -21,9 +21,13 @@ def pagina_login():
     if request.method == 'POST':
         data = request.form
         try:
-            loginfb(data['email'], data['senha'])
-            flash('Usuário logado com sucesso!', 'success')
+            email_verified = loginfb(data['email'], data['senha'])
+            if email_verified == False:
+                flash('Email não verificado, por favor verifique seu email!', 'danger')
+                return render_template('index.html', inputs=inputs)
+            
             return redirect(url_for('perfil.pagina_perfil'))
+        
         except Exception as e:
             # Captura a exceção e imprime a mensagem de erro
             error_message = json.loads(e.args[1])['error']['message']

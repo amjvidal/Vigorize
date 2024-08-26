@@ -14,8 +14,16 @@ config = {
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
 
-def cadastrofb(email, password):
+def cadastrofb(nome, email, password):
         user = auth.create_user_with_email_and_password(email, password)
-    
+        auth.send_email_verification(user['idToken'])
+        
 def loginfb(email, password):
-        login = auth.sign_in_with_email_and_password(email, password)
+        user = auth.sign_in_with_email_and_password(email, password)
+        user_info = auth.get_account_info(user['idToken'])
+
+        # Verifica se o e-mail está verificado
+        email_verified = user_info['users'][0]['emailVerified']
+        if email_verified == False:
+            auth.current_user = None
+            return email_verified
