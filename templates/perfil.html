@@ -21,14 +21,15 @@
         {% for txt in text %}
             <p class="text-white">{{ text.email }}</p>
         {% endfor %}
-        <form action="{{ url_for('perfil.pagina_perfil')}}" method="GET" >
+        <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
+            <input type="hidden" name="action" value="update_name">
             <div class="space-y-2">
-                {% if user_data %}
-                    <p>Nome: {{ user_data['nome'] }}</p>
-                    <p>Email: {{ user_data['email'] }}</p>
-                {% else %}
-                    <p>Dados do usuário não encontrados.</p>
-                {% endif %}
+                {% for input in inputs %}
+                    <div class="block">
+                        <input class="bg-[#F8DCB3] p-2 inline rounded-lg border border-black placeholder:text-black font-semibold form-control" type="{{ input.type }}" name="{{ input.name }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" required>
+                        <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Salvar</button>
+                    </div>
+                {% endfor %}
             </div>
         </form>
         <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
