@@ -19,11 +19,17 @@ def cadastrofb(nome, email, password):
         auth.send_email_verification(user['idToken'])
         
 def loginfb(email, password):
-        user = auth.sign_in_with_email_and_password(email, password)
-        user_info = auth.get_account_info(user['idToken'])
+    try:
+        login = auth.sign_in_with_email_and_password(email, password)
+    except:
+        # PopUp dnv dizendo que o usuario não esta cadastrado (tratar dps com if pra ver se é a senha q ta errada)
+        # isso aqui n funciona:
+        print('sla')
+        
+def recoverPassword(email):
+    try:
+        auth.send_password_reset_email(email)
+        print("email enviado")
+    except:
+        print("Email Não Cadastrado")
 
-        # Verifica se o e-mail está verificado
-        email_verified = user_info['users'][0]['emailVerified']
-        if email_verified == False:
-            auth.current_user = None
-            return email_verified
