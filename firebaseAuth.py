@@ -29,3 +29,11 @@ def loginfb(email, password):
         # PopUp dnv dizendo que o usuario não esta cadastrado (tratar dps com if pra ver se é a senha q ta errada)
         # isso aqui n funciona:
         print('sla')
+        
+def recoverPassword(email):
+    try:
+        auth.send_password_reset_email(email)
+        print("email enviado")
+    except:
+        print("Email Não Cadastrado")
+
