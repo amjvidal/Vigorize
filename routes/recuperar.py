@@ -15,16 +15,16 @@ def pagina_recuperar():
     """ Retorna a página de recuperação de senha """
     # Define os inputs da página de recuperação de senha
     inputs = [
-        {'id': 'nome', 'type': 'email', 'placeholder': 'Digite seu email'}
+        {'id': 'nome', 'type': 'email', 'placeholder': 'Digite seu email','name':'email'}
     ]
     return render_template('recuperar.html', inputs=inputs)
 
 @recuperar_routes.route('/', methods=['POST'])
 def recupera():
-    data=request.jason
+    data=request.json
     """ Envia um email de recuperação de senha """
     recoverPassword(data["email"])
-    pass
+    return {'mensage':'email enviado'},200
 
 @recuperar_routes.route('/<int:id_usuario>/trocarSenha')
 def pagina_trocarSenha(id_usuario):
