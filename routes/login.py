@@ -29,4 +29,4 @@ def loga():
     except:
         return {'message': 'Falha no login!'}, 400
 
-    return {'message': 'Login realizado com sucesso!'}, 200
+    return redirect(url_for('perfil.pagina_perfil')), 200
