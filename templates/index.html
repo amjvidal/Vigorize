@@ -4,31 +4,46 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/static/css/main.css ">
     <title>Vigorize</title>
+
+    <script>
+        function showFlashMessages(messages) {
+            messages.forEach(message => {
+                alert(message);  // Exibe um alerta com a mensagem
+            });
+        }
+    </script>
     
 
 </head>
-<body class="bg-[#f4d7b2] flex items-center justify-center min-h-screen">
-        <div class="flex items-center  justify-end ">
-            <div class="bg-[#f4d7b2] w-1/2 fl ">
-                <div class="text-center">
-                    <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Logo VIGORIZE" class="mx-auto mb-4 w-24">
-                    <h1 class="text-2xl text-green-700 font-mulish">VIGORIZE</h1>
-                </div>
+<body class="bg-[#234035]">
+    <div class="space-y-2">    
+        <h1 class="text-yellow-100 text-5xl ">Login</h1>
+        <form action="{{ url_for('login.pagina_login')}}" method="POST" >
+            <div class="space-y-2">
+                {% for input in inputs %}
+                    <input class="bg-yellow-100 p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="{{ input.type }}" name="{{ input.name }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" required>
+                {% endfor %}
             </div>
-            <div class="bg-green-900 w-full p-8 ">
-                <h2 class="text-3xl font-semibold text-[#f4d7b2] text-center mb-6">Login</h2>
-                <form action="/login" method="POST" class="space-y-4">
-                    <input type="email" name="email" placeholder="Email" class="w-full p-3 rounded bg-[#f4d7b2] text-green-900 focus:outline-none">
-                    <input type="password" name="password" placeholder="Senha" class="w-full p-3 rounded bg-[#f4d7b2] text-green-900 focus:outline-none">
-                    <div class="flex justify-between text-[#f4d7b2] text-sm">
-                        <a href="#" class="hover:underline">Esqueci a senha</a>
-                        <a href="#" class="hover:underline">Cadastrar-se</a>
-                    </div>
-                    <button type="submit" class="w-full bg-[#f4a300] text-white py-3 rounded mt-6 hover:bg-[#cc8500] transition">Fazer Login</button>
-                </form>
+            <div>
+                <a href="/cadastro" class="underline text-white">Cadastrar</a>
+                <a href="/recuperar" class="underline text-white">Recuperar Senha</a>
             </div>
-        </div>
+            <div>
+                <button class="p-2 bg-orange-500 text-white rounded-lg" id="btnLogin">Login</button>
+            </div>
+        </form>
     </div>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <script>
+                // Transforma mensagens de flash em um array para o JavaScript
+                const messages = {{ messages | tojson }};
+                showFlashMessages(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
+            </script>
+        {% endif %}
+    {% endwith %}
+
 </body>
 
 </html>

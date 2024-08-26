@@ -1,16 +1,14 @@
-from flask import Flask, render_template
+from flask import Flask
+from routes.login import login_routes
+from routes.recuperar import recuperar_routes
+from routes.cadastro import cadastro_routes
+from routes.perfil import perfil_routes
 app = Flask(__name__)
+app.secret_key = 'vigorizee'
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route("/recuperar")
-def recuperar():
-    return render_template('recuperar.html')
-
-@app.route("/cadastro")
-def registro():
-    return render_template('cadastro.html')
+app.register_blueprint(login_routes)
+app.register_blueprint(recuperar_routes, url_prefix='/recuperar')
+app.register_blueprint(cadastro_routes, url_prefix='/cadastro')
+app.register_blueprint(perfil_routes, url_prefix='/perfil')
 
 app.run(debug=True)
