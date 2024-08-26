@@ -34,6 +34,6 @@ def cadastro():
             # Captura a exceção e imprime a mensagem de erro
             error_message = json.loads(e.args[1])['error']['message']
             flash(error_message, 'danger')
-            return render_template('cadastro.html', inputs=inputs)
+            return render_template('cadastro.html', inputs=inputs) 
 
     return render_template('cadastro.html', inputs=inputs)
