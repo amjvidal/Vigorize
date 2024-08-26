@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect,url_for, flash
+from firebaseAuth import recoverPassword
+import json
 
 recuperar_routes = Blueprint('recuperar', __name__)
 
@@ -9,26 +11,25 @@ recuperar_routes = Blueprint('recuperar', __name__)
     - /recuperar/<id_usuario>/trocarSenha - Post - Troca a senha do usuário
 """
 
-@recuperar_routes.route('/')
+@recuperar_routes.route('/', methods=['GET','POST'])
 def pagina_recuperar():
     """ Retorna a página de recuperação de senha """
     # Define os inputs da página de recuperação de senha
     inputs = [
-        {'id': 'nome', 'type': 'email', 'placeholder': 'Digite seu email'}
+        {'id': 'nome', 'type': 'email', 'placeholder': 'Digite seu email','name':'email'}
     ]
+
+    if request.method == 'POST':
+        data = request.form
+        try:
+            recoverPassword(data["email"])
+            flash('Email de recuperação de senha enviado!', 'success')
+            return render_template('recuperar.html', inputs=inputs)
+        
+        except Exception as e:
+            # Captura a exceção e imprime a mensagem de erro
+            print(e)
+            # flash(error_message, 'danger')
+            return render_template('recuperar.html', inputs=inputs)
+        
     return render_template('recuperar.html', inputs=inputs)
-
-@recuperar_routes.route('/', methods=['POST'])
-def recupera():
-    """ Envia um email de recuperação de senha """
-    pass
-
-@recuperar_routes.route('/<int:id_usuario>/trocarSenha')
-def pagina_trocarSenha(id_usuario):
-    """ Vai para a página de trocar senha """
-    return render_template('form_trocaSenha.html')
-
-@recuperar_routes.route('/<int:id_usuario>/trocarSenha', methods=['PUT'])
-def trocaSenha(id_usuario):
-    """ Troca a senha do usuário """
-    pass

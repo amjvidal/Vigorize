@@ -4,21 +4,43 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/static/css/main.css ">
     <title>Vigorize</title>
+
+    <script>
+        function showFlashMessages(messages) {
+            messages.forEach(message => {
+                alert(message);  // Exibe um alerta com a mensagem
+            });
+        }
+    </script>
 </head>
 <body class="bg-[#234035]">
-    <div class="space-y-2">    
+    <div class="space-y-2">
         <h1 class="text-yellow-100 text-5xl ">Recuperar Senha</h1>
-        <div class="space-y-2">
-            {% for input in inputs %}
-                <input class="bg-yellow-100 p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="{{ input.type }}" name="{{ input.name }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" required>
-            {% endfor %}
-        </div>
-        <div>
-            <a href="/cadastro" class="underline text-white">Cadastrar</a>
-            <a href="/" class="underline text-white">Login</a>
-        </div>
-        <div>
-            <button class="p-2 bg-orange-500 text-white rounded-lg" id="btnRecuperar">Recuperar</button>
-        </div>
+        <form  action="{{ url_for('recuperar.pagina_recuperar')}}" method="POST">
+            <div class="space-y-2">
+                {% for input in inputs %}
+                    <input class="bg-yellow-100 p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="{{ input.type }}" name="{{ input.name }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" required>
+                {% endfor %}
+            </div>
+            <div>
+                <a href="/cadastro" class="underline text-white">Cadastrar</a>
+                <a href="/" class="underline text-white">Login</a>
+            </div> 
+            <div>
+            <button class="p-2 bg-orange-500 text-white rounded-lg"onClik=recoverPassword() id="btnRecuperar">Recuperar</button>
+        </div> 
+        </form>
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <script>
+                // Transforma mensagens de flash em um array para o JavaScript
+                const messages = {{ messages | tojson }};
+                showFlashMessages(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
+            </script>
+        {% endif %}
+    {% endwith %}
+
     </div>
+</body>
 </html>
