@@ -18,7 +18,6 @@ def pagina_perfil():
     user=auth.current_user
     user_email = emailDb(user['email'])
     name_user = db.child("usuarios").child(user_email).child("nome").get().val()
-
     text = [
         {'id': user['email']}
     ]
@@ -27,6 +26,9 @@ def pagina_perfil():
     ]
 
     if request.method == 'POST':
+        user=auth.current_user
+        user_email = emailDb(user['email'])
+        name_user = db.child("usuarios").child(user_email).child("nome").get().val()
         action = request.form.get('action')
         data = request.form
         if action == 'update_name':
@@ -53,6 +55,7 @@ def pagina_perfil():
         
         elif action == 'delete_account':
             try:
+                auth.delete_user_account(user['idToken'])  # Exclui o usuário da autenticação
                 db.child("usuarios").child(user_email).remove()  # Exclui o perfil do usuário
                 auth.delete_user(user['uid'])  # Exclui o usuário da autenticação
                 flash('Perfil excluído com sucesso!', 'success')
