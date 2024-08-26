@@ -1,13 +1,12 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, redirect,url_for
 from firebaseAuth import loginfb
 
 login_routes = Blueprint('login', __name__)
 
 """ Rotas de login
     - / - Get - Retorna a página de login
-    - / - Post - Realiza o login do usuário
-    - /recuperar - Get - Retorna a página de recuperação de senha
-    - /cadastro - Get - Retorna a página de cadastro
+    - / - Post - Verifica o login do usuário
+    - /home - Get - Retorna a página home
 """
 
 @login_routes.route('/')
@@ -22,6 +21,12 @@ def pagina_login():
 
 @login_routes.route('/', methods=['POST'])
 def loga():
-    """ Realiza o login do usuário """ 
-    data = request.json    
-    pass
+    """ Realiza o login do usuário """
+
+    data = request.json
+    try:
+        loginfb(data['email'], data['senha'])
+    except:
+        return {'message': 'Falha no login!'}, 400
+
+    return {'message': 'Login realizado com sucesso!'}, 200

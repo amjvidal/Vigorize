@@ -20,7 +20,8 @@ def cadastrofb(email, password):
         #Deve aparecer uma popup aqui na pagina dizendo que o email ja existe
         # Tentei aqui mas n ta funcionando @everyone alguem arruma
         # isso aqui n funciona:
-        print('sla')
+        print('Erro')
+        raise Exception('O email já existe!')
         
 def loginfb(email, password):
     try:
@@ -28,7 +29,7 @@ def loginfb(email, password):
     except:
         # PopUp dnv dizendo que o usuario não esta cadastrado (tratar dps com if pra ver se é a senha q ta errada)
         # isso aqui n funciona:
-        print('sla')
+        raise Exception('Falha no login')
         
 def recoverPassword(email):
     try:
@@ -37,3 +38,4 @@ def recoverPassword(email):
     except:
         print("Email Não Cadastrado")
 
+        
