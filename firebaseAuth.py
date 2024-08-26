@@ -32,6 +32,15 @@ def loginfb(email, password):
         if email_verified == False:
             auth.current_user = None
             return email_verified
+
+def atualiza_perfilfb(nome, email, senha):
+    user = auth.current_user
+    data={'nome':nome,
+          'email':email}
+    db.child('usuarios').child(remove_pontos(email)).update(data)
+    if senha:
+        auth.update_user(user['idToken'], {'password': senha})
+      
         
 def recoverPassword(email):
     auth.send_password_reset_email(email)
