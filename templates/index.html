@@ -17,11 +17,11 @@
 </head>
 <body class="bg-[#234035]">
     <div class="space-y-2">    
-        <h1 class="text-yellow-100 text-5xl ">Login</h1>
+        <h1 class="text-[#F8DCB3] text-5xl ">Login</h1>
         <form action="{{ url_for('login.pagina_login')}}" method="POST" >
             <div class="space-y-2">
                 {% for input in inputs %}
-                    <input class="bg-yellow-100 p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="{{ input.type }}" name="{{ input.name }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" required>
+                    <input class="bg-[#F8DCB3] p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="{{ input.type }}" name="{{ input.name }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" required>
                 {% endfor %}
             </div>
             <div>
@@ -29,7 +29,7 @@
                 <a href="/recuperar" class="underline text-white">Recuperar Senha</a>
             </div>
             <div>
-                <button class="p-2 bg-orange-500 text-white rounded-lg" id="btnLogin">Login</button>
+                <button class="p-2 bg-[#ED8D00] text-white rounded-lg" id="btnLogin">Login</button>
             </div>
         </form>
     </div>
