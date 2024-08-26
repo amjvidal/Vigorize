@@ -19,7 +19,7 @@
         <form  action="{{ url_for('recuperar.pagina_recuperar')}}" method="POST">
             <div class="space-y-2">
                 {% for input in inputs %}
-                    <input class="bg-yellow-100 p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="{{ input.type }}" name="{{ input.name }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" required>
+                    <input class="bg-[#F8DCB3] p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="{{ input.type }}" name="{{ input.name }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" required>
                 {% endfor %}
             </div>
             <div>
@@ -27,7 +27,7 @@
                 <a href="/" class="underline text-white">Login</a>
             </div> 
             <div>
-            <button class="p-2 bg-orange-500 text-white rounded-lg"onClik=recoverPassword() id="btnRecuperar">Recuperar</button>
+            <button class="p-2 bg-[#ED8D00] text-white rounded-lg"onClik=recoverPassword() id="btnRecuperar">Recuperar</button>
         </div> 
         </form>
 
