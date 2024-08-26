@@ -13,12 +13,11 @@ perfil_routes = Blueprint('perfil', __name__)
     - /perfil/excluir - DELETE - Exclui o perfil do usuário
 """
 
-@perfil_routes.route('/', methods=['GET','DELETE','POST'])
+@perfil_routes.route('/', methods=['GET','POST'])
 def pagina_perfil():
     user=auth.current_user
     user_email = emailDb(user['email'])
     name_user = db.child("usuarios").child(user_email).child("nome").get().val()
-
     text = [
         {'id': user['email']}
     ]
@@ -27,6 +26,9 @@ def pagina_perfil():
     ]
 
     if request.method == 'POST':
+        user=auth.current_user
+        user_email = emailDb(user['email'])
+        name_user = db.child("usuarios").child(user_email).child("nome").get().val()
         action = request.form.get('action')
         data = request.form
         if action == 'update_name':
@@ -42,7 +44,7 @@ def pagina_perfil():
                 return redirect(url_for('perfil.pagina_perfil'))
         elif action == 'recover_password':
             try:
-                # recoverPassword(user['email'])
+                recoverPassword(user['email'])
                 flash('Email de recuperação de senha enviado!', 'success')
             except Exception as e:
                 print(e)
@@ -51,15 +53,15 @@ def pagina_perfil():
                 # flash(error_message, 'danger')
                 # return render_template('perfil.html', inputs=inputs)
         
-        else:
+        elif action == 'delete_account':
             try:
+                auth.delete_user_account(user['idToken'])  # Exclui o usuário da autenticação
                 db.child("usuarios").child(user_email).remove()  # Exclui o perfil do usuário
                 flash('Perfil excluído com sucesso!', 'success')
                 return redirect(url_for('login.pagina_login'))  # Redireciona para a página de login
             except Exception as e:
-                error_message = json.loads(e.args[1])['error']['message']
+                error_message = str(e)
                 flash(error_message, 'danger')
                 return redirect(url_for('perfil.pagina_perfil'))
             
     return render_template('perfil.html', inputs=inputs, text=text)
-
