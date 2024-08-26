@@ -1,5 +1,4 @@
-from flask import Blueprint, render_template, request
-from database.usuarios import USUARIOS
+from flask import Blueprint, render_template, request, flash
 from firebaseAuth import cadastrofb
 
 cadastro_routes = Blueprint('cadastro', __name__)
@@ -30,22 +29,17 @@ def cadastra():
 
     if data['senha'] != data['confirmaSenha']:
         return {'message': 'As senhas não conferem!'}, 400
-    
-    novo_usuario = {
-        'id': len(USUARIOS) + 1,
-        'nome': data['nome'],
-        'email': data['email'],
-        'senha': data['senha']
-    }
-    
-    cadastrofb(data['email'], data['senha'])
+    try:
+        cadastrofb(data['email'], data['senha'])
+    except:
+        return {'message': 'Falha no cadastro!'}, 400
 
     return {'message': 'Usuário cadastrado com sucesso!'}, 201
 
 @cadastro_routes.route('/<int:id_usuario>/autentificacao')
 def pagina_autentificacao(id_usuario):
     """ Vai para a página de autentificação """
-    return render_template('form_autentificacao.html')
+    return render_template('autentificacao.html')
 
 @cadastro_routes.route('/<int:id_usuario>/autentificacao', methods=['POST'])
 def autentifica(id_usuario):
