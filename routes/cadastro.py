@@ -25,7 +25,7 @@ def cadastro():
     if request.method == 'POST':
         data = request.form
         if data['senha'] != data['confirmaSenha']:
-            flash('Formulário enviado com sucesso!', 'danger')
+            flash('senhas não coencidem', 'danger')
             return render_template('cadastro.html', inputs=inputs)
         try:
             cadastrofb(data['nome'],data['email'], data['senha'])
