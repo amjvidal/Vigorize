@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+import json
 from firebaseAuth import cadastrofb
 
 cadastro_routes = Blueprint('cadastro', __name__)
@@ -10,8 +11,8 @@ cadastro_routes = Blueprint('cadastro', __name__)
     - /cadastro/<id_usuario>/autentificação - Post - Realiza a autentificação do usuário
 """
 
-@cadastro_routes.route('/')
-def pagina_cadastro():
+@cadastro_routes.route('/', methods=['GET', 'POST'])
+def cadastro():
     """ Retorna a página de cadastro """
     # Define os inputs da página de cadastro
     inputs = [
@@ -20,28 +21,19 @@ def pagina_cadastro():
         {'id': 'senha', 'type': 'password', 'placeholder': 'Senha', 'name': 'senha'},
         {'id': 'confirmaSenha', 'type': 'password', 'placeholder': 'Confirme sua senha', 'name': 'confirmaSenha'}
     ]
+    if request.method == 'POST':
+        data = request.form
+        if data['senha'] != data['confirmaSenha']:
+            flash('Formulário enviado com sucesso!', 'danger')
+            return render_template('cadastro.html', inputs=inputs)
+        try:
+            cadastrofb(data['email'], data['senha'])
+            flash('Usuário cadastrado com sucesso!', 'success')
+            return redirect(url_for('login.pagina_login'))
+        except Exception as e:
+            # Captura a exceção e imprime a mensagem de erro
+            error_message = json.loads(e.args[1])['error']['message']
+            flash(error_message, 'danger')
+            return render_template('cadastro.html', inputs=inputs)
+
     return render_template('cadastro.html', inputs=inputs)
-
-@cadastro_routes.route('/', methods=['POST'])
-def cadastra():
-    """ Realiza o cadastro do usuário e envia um email de confirmação """
-    data = request.json
-
-    if data['senha'] != data['confirmaSenha']:
-        return {'message': 'As senhas não conferem!'}, 400
-    try:
-        cadastrofb(data['email'], data['senha'])
-    except:
-        return {'message': 'Falha no cadastro!'}, 400
-
-    return {'message': 'Usuário cadastrado com sucesso!'}, 201
-
-@cadastro_routes.route('/<int:id_usuario>/autentificacao')
-def pagina_autentificacao(id_usuario):
-    """ Vai para a página de autentificação """
-    return render_template('autentificacao.html')
-
-@cadastro_routes.route('/<int:id_usuario>/autentificacao', methods=['POST'])
-def autentifica(id_usuario):
-    """ Realiza a autentificação do usuário """
-    pass
