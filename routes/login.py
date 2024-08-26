@@ -16,7 +16,7 @@ def pagina_login():
     # Define os inputs da página de login
     inputs = [
         {'id': 'email', 'type': 'email', 'placeholder': 'Email', 'name': 'email'},
-        {'id': 'senha', 'type': 'password', 'placeholder': 'Senha', 'name': 'senha'}
+        {'id': 'senha', 'type': 'senha', 'placeholder': 'Senha', 'name': 'senha'}
     ]
     if request.method == 'POST':
         data = request.form

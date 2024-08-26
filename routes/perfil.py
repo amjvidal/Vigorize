@@ -18,7 +18,7 @@ def pagina_perfil():
         imputs = [
             {'id': 'nome', 'type': 'text', 'placeholder': 'Nome', 'name': 'nome'},
             {'id': 'email', 'type': 'email', 'placeholder': 'Email', 'name': 'email'},
-            {'id': 'senha', 'type': 'password', 'placeholder': 'Senha', 'name': 'senha'}
+            {'id': 'senha', 'type': 'senha', 'placeholder': 'Senha', 'name': 'senha'}
         ]
         if request.method == 'POST':
             data = request.form
