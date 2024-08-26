@@ -2,6 +2,7 @@ from flask import Flask
 from routes.login import login_routes
 from routes.recuperar import recuperar_routes
 from routes.cadastro import cadastro_routes
+from routes.perfil import perfil_routes
 app = Flask(__name__)
 app.secret_key = 'vigorizee'
 
