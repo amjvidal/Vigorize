@@ -24,14 +24,23 @@ def cadastrofb(nome, email, password):
         db.child('usuarios').child(remove_pontos(email)).set(data)
         
 def loginfb(email, password):
-    user = auth.sign_in_with_email_and_password(email, password)
-    user_info = auth.get_account_info(user['idToken'])
+        user = auth.sign_in_with_email_and_password(email, password)
+        user_info = auth.get_account_info(user['idToken'])
 
         # Verifica se o e-mail está verificado
-    email_verified = user_info['users'][0]['emailVerified']
-    if email_verified == False:
-        auth.current_user = None
-        return email_verified
+        email_verified = user_info['users'][0]['emailVerified']
+        if email_verified == False:
+            auth.current_user = None
+            return email_verified
+
+def atualiza_perfilfb(nome, email, senha):
+    user = auth.current_user
+    data={'nome':nome,
+          'email':email}
+    db.child('usuarios').child(remove_pontos(email)).update(data)
+    if senha:
+        auth.update_user(user['idToken'], {'password': senha})
+      
         
 def recoverPassword(email):
     auth.send_password_reset_email(email)
@@ -39,5 +48,3 @@ def recoverPassword(email):
 def remove_pontos(texto):
     return texto.replace(".", "@")
 
-def emailDb(email):
-    return remove_pontos(email)
