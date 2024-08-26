@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect,url_for, flash
 import json
-from firebaseAuth import loginfb
+from firebaseAuth import loginfb, auth, db, emailDb
 
 login_routes = Blueprint('login', __name__)
 
@@ -19,19 +19,23 @@ def pagina_login():
         {'id': 'senha', 'type': 'password', 'placeholder': 'Senha', 'name': 'senha'}
     ]
     if request.method == 'POST':
+
+        action = request.form.get('action')
         data = request.form
-        try:
-            email_verified = loginfb(data['email'], data['senha'])
-            if email_verified == False:
-                flash('Email não verificado, por favor verifique seu email!', 'danger')
-                return render_template('index.html', inputs=inputs)
+        if action == 'login':
+            try:
+                email_verified = loginfb(data['email'], data['senha'])
+                
+                if email_verified == False:
+                    flash('Email não verificado, por favor verifique seu email!', 'danger')
+                    return render_template('index.html', inputs=inputs)
+                
+                return redirect(url_for('perfil.pagina_perfil'))
             
-            return redirect(url_for('perfil.pagina_perfil'))
-        
-        except Exception as e:
-            # Captura a exceção e imprime a mensagem de erro
-            error_message = json.loads(e.args[1])['error']['message']
-            flash(error_message, 'danger')
-            return render_template('index.html', inputs=inputs)
+            except Exception as e:
+                # Captura a exceção e imprime a mensagem de erro
+                error_message = json.loads(e.args[1])['error']['message']
+                flash(error_message, 'danger')
+                return render_template('index.html', inputs=inputs)
         
     return render_template('index.html', inputs=inputs)

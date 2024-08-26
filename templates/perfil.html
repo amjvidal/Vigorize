@@ -18,22 +18,28 @@
 <body class="bg-[#234035]">
     <div class="space-y-2">    
         <h1 class="text-yellow-100 text-5xl ">Perfil</h1>
-        <form action="{{ url_for('perfil.pagina_perfil')}}" method="PUT" >
+        {% for txt in text %}
+            <p class="text-white">{{ text.email }}</p>
+        {% endfor %}
+        <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
+            <input type="hidden" name="action" value="update_name">
             <div class="space-y-2">
                 {% for input in inputs %}
                     <div class="block">
-                        <input class="bg-[#F8DCB3] p-2 inline rounded-lg border border-black placeholder:text-black font-semibold" type="{{ input.type }}" name="{{ input.name }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" required>
+                        <input class="bg-[#F8DCB3] p-2 inline rounded-lg border border-black placeholder:text-black font-semibold form-control" type="{{ input.type }}" name="{{ input.name }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" required>
                         <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Salvar</button>
                     </div>
                 {% endfor %}
             </div>
         </form>
         <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
+            <input type="hidden" name="action" value="recover_password">
             <div>
                 <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Alterar Senha</button>
             </div>
         </form>
-        <form action="{{ url_for('login.pagina_login')}}" method="DELETE" >
+        <form action="{{ url_for('login.pagina_login')}}" method="POST" >
+            <input type="hidden" name="action" value="delete_account">
             <div class="mt-8">
                 <button class="p-2 bg-[#ac1d04] font-bold text-white rounded-lg">EXCLUIR CONTA</button>
             </div>

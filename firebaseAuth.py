@@ -39,3 +39,5 @@ def recoverPassword(email):
 def remove_pontos(texto):
     return texto.replace(".", "@")
 
+def emailDb(email):
+    return remove_pontos(email)

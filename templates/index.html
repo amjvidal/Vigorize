@@ -19,6 +19,7 @@
     <div class="space-y-2">    
         <h1 class="text-[#F8DCB3] text-5xl ">Login</h1>
         <form action="{{ url_for('login.pagina_login')}}" method="POST" >
+            <input type="hidden" name="action" value="login">
             <div class="space-y-2">
                 {% for input in inputs %}
                     <input class="bg-[#F8DCB3] p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="{{ input.type }}" name="{{ input.name }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" required>
