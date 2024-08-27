@@ -31,7 +31,6 @@ def pagina_login():
                     flash('Email não verificado, por favor verifique seu email!', 'danger')
                     return render_template('index.html', inputs=inputs)
                 if firstLogin(data['email']):
-                    firstLogin(data['email'])==False
                     return redirect(url_for('primeiroAcesso.primeiroAcesso'))
                 return redirect(url_for('perfil.pagina_perfil'))
             
