@@ -26,15 +26,16 @@ def pagina_login():
         if action == 'login':
             try:
                 email_verified = loginfb(data['email'], data['senha'])
-                if firstLogin(data['email']):
-                    return render_template
-                
+                 
                 if email_verified == False:
                     flash('Email não verificado, por favor verifique seu email!', 'danger')
                     return render_template('index.html', inputs=inputs)
-                
+                if firstLogin(data['email']):
+                    firstLogin(data['email'])==False
+                    return redirect(url_for('primeiroAcesso.primeiroAcesso'))
                 return redirect(url_for('perfil.pagina_perfil'))
             
+                
             except Exception as e:
                 # Captura a exceção e imprime a mensagem de erro
                 error_message = json.loads(e.args[1])['error']['message']
