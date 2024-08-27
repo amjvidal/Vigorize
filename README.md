@@ -24,7 +24,7 @@ Dependências e Bibliotecas:
 
     TailWind CSS :
 
-    Para iniciar o Tailwind: npx tailwindcss -i ./static/src/input.css -o ./static/css/main.css --watch"
+    Para iniciar o Tailwind: npx tailwindcss -i ./static/src/input.css -o ./static/css/main.css --watch
 
     Pyrebase e Pyrebase4 - Python
 
