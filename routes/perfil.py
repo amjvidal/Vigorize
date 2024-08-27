@@ -57,7 +57,6 @@ def pagina_perfil():
             try:
                 auth.delete_user_account(user['idToken'])  # Exclui o usuário da autenticação
                 db.child("usuarios").child(user_email).remove()  # Exclui o perfil do usuário
-                auth.delete_user(user['uid'])  # Exclui o usuário da autenticação
                 flash('Perfil excluído com sucesso!', 'success')
                 return redirect(url_for('login.pagina_login'))  # Redireciona para a página de login
             except Exception as e:
