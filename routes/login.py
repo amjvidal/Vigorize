@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect,url_for, flash
 import json
-from firebaseAuth import loginfb, auth, db, emailDb
+from firebaseAuth import loginfb, auth, db, emailDb, firstLogin
 
 login_routes = Blueprint('login', __name__)
 
@@ -17,6 +17,7 @@ def pagina_login():
     inputs = [
         {'id': 'email', 'type': 'email', 'placeholder': 'Email', 'name': 'email'},
         {'id': 'senha', 'type': 'password', 'placeholder': 'Senha', 'name': 'senha'}
+        
     ]
     if request.method == 'POST':
 
@@ -25,6 +26,8 @@ def pagina_login():
         if action == 'login':
             try:
                 email_verified = loginfb(data['email'], data['senha'])
+                if firstLogin(data['email']):
+                    return render_template
                 
                 if email_verified == False:
                     flash('Email não verificado, por favor verifique seu email!', 'danger')
