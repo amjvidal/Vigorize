@@ -40,6 +40,15 @@
             </div>
         </form>
     </div>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <script>
+                // Transforma mensagens de flash em um array para o JavaScript
+                const messages = {{ messages | tojson }};
+                showFlashMessages(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
+            </script>
+        {% endif %}
+    {% endwith %}
    
 </body>
 

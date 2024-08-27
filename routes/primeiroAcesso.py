@@ -24,16 +24,24 @@ def primeiroAcesso():
     if request.method == 'POST':
         data = request.form
         
-        altura = data['altura']
-        peso = data['peso']
+        altura = int(data['altura'])
+        peso = int(data['peso'])
         genero = data['genero']
         fisico = data['fisico']
+        
+        if altura > 260 or altura < 50:
+            flash("A altura é invalida!", 'danger')
+            return redirect(url_for('primeiroAcesso.primeiroAcesso'))
+        if peso > 200 or peso < 0:
+            flash("O peso é invalido!", 'danger')
+            return redirect(url_for('primeiroAcesso.primeiroAcesso'))
+        
         try:
             enviarDadosDb(user_email,altura,peso,genero,fisico)
-            flash("Dados Enviados")
-            return redirect(url_for('primeiroAcesso.primeiroAcesso'))
+            flash("Dados Enviados!", 'sucess')
+            return redirect(url_for('perfil.pagina_perfil'))
         except Exception as e:
-            flash("Dados não foram enviados")
+            flash("Dados não foram enviados!", 'danger')
             return redirect(url_for('primeiroAcesso.primeiroAcesso'))
         
         
