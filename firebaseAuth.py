@@ -2,6 +2,7 @@ import pyrebase
 from flask import flash
 import requests
 
+
 config = {
     'apiKey': "AIzaSyD4JXX-udSB_3dQrzfmqS5Bop0VEdiThUo",
     'authDomain': "vigorize-3d6cf.firebaseapp.com",
@@ -35,6 +36,14 @@ def loginfb(email, password):
         if email_verified == False:
             auth.current_user = None
             return email_verified
+        
+def enviarDadosDb(user_email, altura, peso, sexo, fisico):
+    data = {
+        'altura': altura,
+        'peso': peso,
+        'sexo': sexo,
+        'fisico': fisico}
+    return db.child("usuarios").child(user_email).set(data)
         
 def recoverPassword(email):
     auth.send_password_reset_email(email)
