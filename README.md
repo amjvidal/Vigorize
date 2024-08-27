@@ -1,6 +1,6 @@
 # Vigorize
 
-Componentes: 
+Componentes:
 
     Antonio Mário Jesus Vidal Leite
 
@@ -16,10 +16,11 @@ Componentes:
 
     Nathan Santos Cunha
 
-
 Dependências e Bibliotecas:
 
-    Flask Framework Web - Python
+    Flask Framework Web 3.0.3 - Python
+
+    1) pip install flask
 
     TailWind CSS :
 
