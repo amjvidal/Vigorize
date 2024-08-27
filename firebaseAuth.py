@@ -43,7 +43,7 @@ def enviarDadosDb(user_email, altura, peso, sexo, fisico):
         'peso': peso,
         'sexo': sexo,
         'fisico': fisico,
-        'firstTime': "false"}
+        'firstTime': False}
     return db.child("usuarios").child(user_email).update(data)
         
 def recoverPassword(email):
