@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/css/main.css ">
+    <title>Vigorize</title>
+    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <style>
+        .max-w-page{
+            max-width: 1920px;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+        function showFlashMessages(messages) {
+            messages.forEach(message => {
+                alert(message);  // Exibe um alerta com a mensagem
+            });
+        }
+        
+    </script>
+    
+
+</head>
+<body class="bg-[#f8dcb3] flex justify-center max-w-page">
+    
+        <div class="bg-[#234035] p-6 fixed top-0 w-full z-50" >
+           <img src = "../static/logo.png" alt="Logo"  class=" h-12 w-12" ></img>
+        
+        </div>
+      
+      
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <script>
+                // Transforma mensagens de flash em um array para o JavaScript
+                const messages = {{ messages | tojson }};
+                showFlashMessages(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
+            </script>
+        {% endif %}
+    {% endwith %}
+
+
+    
+
+</body>
+
+</html>
