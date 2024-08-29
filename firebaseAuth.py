@@ -2,7 +2,6 @@ import pyrebase
 from flask import flash
 import requests
 
-
 config = {
     'apiKey': "AIzaSyD4JXX-udSB_3dQrzfmqS5Bop0VEdiThUo",
     'authDomain': "vigorize-3d6cf.firebaseapp.com",

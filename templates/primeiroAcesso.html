@@ -14,7 +14,7 @@
     </script>
     
 </head>
-<body class="bg-[#234035]">
+<body class="bg-[#234035] flex justify-center items-center min-h-screen">
     <div class="space-y-2">    
         <h1 class="text-[#F8DCB3] text-5xl ">Primeiros Passos</h1>
         <form action="{{ url_for('primeiroAcesso.primeiroAcesso')}}" method="POST">
@@ -40,6 +40,15 @@
             </div>
         </form>
     </div>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <script>
+                // Transforma mensagens de flash em um array para o JavaScript
+                const messages = {{ messages | tojson }};
+                showFlashMessages(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
+            </script>
+        {% endif %}
+    {% endwith %}
    
 </body>
 
