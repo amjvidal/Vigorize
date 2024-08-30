@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css ">
+    <title>Vigorize</title>
+    <meta name="viewport" content="width=user-scalable ,user-scalable=no , initial-scale=1.0">
+
+    <script>
+        function showFlashMessages(messages) {
+            messages.forEach(message => {
+                alert(message);  // Exibe um alerta com a mensagem
+            });
+        }
+        
+    </script>
+    
+
+</head>
+<body class="bg-[#f8dcb3]">
+
+    <div class="bg-[#234035]">
+        
+        <div class="container  mx-auto px-4 h-24 flex items-center justify-center">
+            <div>
+            <img src="../static/logo.png" alt="Logo" class="h-12 w-12">
+            
+            </div>
+            <p class="ml-4 text-4xl font-bold text-[#f8dcb3]">Vigorize</p>
+        </div>
+
+        
+        
+    </div>
+
+    <div class="flex flex-col items-center justify-center">
+        <div class="flex flex-col items-center justify-center">
+            <h1 class="text-7xl font-bold text-[#393227] pt-60 text-center"><span class ="text-[#234035]">Descomplicando</span> o seu</h1>
+            <h1 class="text-7xl font-bold text-[#393227] text-center">jeito de ser <span class="text-[#234035]">saudável</span>.</h1>
+        </div>
+    
+        <div class="flex items-center justify-center">
+            <h1 class="text-2xl font-bold text-[#393227] pt-20 text-center">Deixe no passado as tentativas frustradas de ser mais saudável.</h1> 
+        </div>
+    
+        <div class="flex items-center justify-center">
+            <h2 class="text-2xl font-bold text-[#393227] text-center">Confira as funcionalidades do Vigorize.</h2>
+        </div>
+
+        <div>
+            <button class="p-2 bg-[#ED8D00] text-white rounded-[14px] mt-16 px-16 font-bold text-[#393227]">Comece já</button>
+        </div>
+    </div>
+
+    <div class="w-full mt-80 h-[1600px] flex items-center justify-between relative" style="background: linear-gradient(to bottom, #234035, #f8dcb3);">
+        <!-- Imagem à esquerda -->
+        <div class="absolute left-0 top-[40px] flex-shrink-0">
+            <img src="../static/frutasLateral.png" alt="Imagem Esquerda" class="h-[1100px]">
+        </div>
+        
+        <!-- Container do texto -->
+        <div class="absolute top-[340px] flex flex-col items-center justify-center text-center w-full">
+            <h1 class="text-7xl font-extrabold text-[#CAD9BA] mb-4">Aprender sobre as suas</h1>
+            <h1 class="text-7xl font-extrabold text-[#CAD9BA] mb-4">refeições também é </h1>
+            <h1 class="text-7xl font-extrabold text-[#CAD9BA] mb-4">aprender sobre a sua saúde!</h1>
+            <h2 class="text-3xl font-normal text-[#CAD9BA] mt-[70px]">Organize suas refeições saudáveis e</h2>
+            <h2 class="text-3xl font-normal text-[#CAD9BA] ">saborosas com as nossas ferramentas</h2>
+            <h2 class="text-3xl font-normal text-[#CAD9BA] ">de planejamento de refeições.</h2>
+        </div>
+        
+        <!-- Imagem à direita -->
+        <div class="absolute right-0 top-[40px] flex-shrink-0">
+            <img src="../static/prato.png" alt="Imagem Direita" class="h-[950px]">
+        </div>
+        <!-- Clara mexe aqui: -->
+        <div class="flex w-[1600px] h-[1000px] bg-[#234035] mt-[2000px] mx-[200px] rounded-[80px]">
+
+
+        </div>
+    </div>
+
+    <div>
+        <div class="flex w-[1463px] h-[1480px] mt-[950px] ml-[400px] bg-[#234035] rounded-tl-[210px]">
+            <h1 class="mt-[170px] ml-[130px] text-7xl font-extrabold text-[#f8dcb3] mb-4">Para uma boa saúde: </h1>
+            
+        </div>
+        <div class="w-[1800px] h-[1080px] mt-[-1080px] bg-[#576A5C] rounded-r-[210px] flex">
+            <!-- Parte esquerda -->
+            <div class="w-1/2 p-12 flex flex-col justify-center text-white">
+                <h1 class="text-[#CAD9BA] mt-[-380px] text-8xl font-bold mr-[-580px]">Hidratar-se é essencial!</h1>
+                <p class="text-[#CAD9BA] text-5xl text-center tracking-wide  font-medium mt-[150px] ml-[100px] mb-[-450px]">Manter-se hidratado é fundamental 
+                    para a saúde e a nutrição, pois a água auxilia na absorção de nutrientes, 
+                    na digestão adequada dos alimentos, melhora a circulação e contribui para o bom 
+                    funcionamento de todos os órgãos, mantendo a energia e a concentração ao longo do dia.</p>
+            </div>
+        
+            <!-- Parte direita -->
+            <div class="w-1/2 flex items-center justify-center">
+                <img src="../static/mulherAgua.png" alt="Descrição da Imagem" class="max-w-full h-auto ml-[200px]">
+            </div>
+        </div>
+    </div>
+    <!-- Gabriel Faz aqui: -->
+    
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <script>
+                // Transforma mensagens de flash em um array para o JavaScript
+                const messages = {{ messages | tojson }};
+                showFlashMessages(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
+            </script>
+        {% endif %}
+    {% endwith %}
+
+
+    
+
+</body>
+
+</html>
