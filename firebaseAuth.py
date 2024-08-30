@@ -50,3 +50,8 @@ def remove_pontos(texto):
 
 def emailDb(email):
     return remove_pontos(email)
+
+def firstLogin(email):
+    user_email = emailDb(email)
+    firstLogin = db.child("usuarios").child(user_email).child("firstTime").get().val()
+    return firstLogin
