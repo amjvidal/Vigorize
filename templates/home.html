@@ -38,8 +38,8 @@
 
     <div class="flex flex-col items-center justify-center">
         <div class="flex flex-col items-center justify-center">
-            <h1 class="text-7xl font-bold text-[#393227] pt-40 text-center">Descomplicando o seu</h1>
-            <h1 class="text-7xl font-bold text-[#393227] text-center">jeito de ser saudável.</h1>
+            <h1 class="text-7xl font-bold text-[#393227] pt-60 text-center"><span class ="text-[#234035]">Descomplicando</span> o seu</h1>
+            <h1 class="text-7xl font-bold text-[#393227] text-center">jeito de ser <span class="text-[#234035]">saudável</span>.</h1>
         </div>
     
         <div class="flex items-center justify-center">
@@ -55,13 +55,27 @@
         </div>
     </div>
 
-    <div class="flex flex-col items-center justify-center">
-        <div>
+    <div class="w-full mt-80 h-[1600px] flex items-center justify-between relative" style="background: linear-gradient(to bottom, #234035, #f8dcb3);">
+        <!-- Imagem à esquerda -->
+        <div class="absolute left-0 top-[40px] flex-shrink-0">
+            <img src="../static/frutasLateral.png" alt="Imagem Esquerda" class="h-[1100px]">
+        </div>
+        
+        <!-- Container do texto -->
+        <div class="absolute top-[340px] flex flex-col items-center justify-center text-center w-full">
+            <h1 class="text-7xl font-extrabold text-[#CAD9BA] mb-4">Aprender sobre as suas</h1>
+            <h1 class="text-7xl font-extrabold text-[#CAD9BA] mb-4">refeições também é </h1>
+            <h1 class="text-7xl font-extrabold text-[#CAD9BA] mb-4">aprender sobre a sua saúde!</h1>
+            <h2 class="text-3xl font-normal text-[#CAD9BA] mt-[70px]">Organize suas refeições saudáveis e</h2>
+            <h2 class="text-3xl font-normal text-[#CAD9BA] ">saborosas com as nossas ferramentas</h2>
+            <h2 class="text-3xl font-normal text-[#CAD9BA] ">de planejamento de refeições.</h2>
+        </div>
+        
+        <!-- Imagem à direita -->
+        <div class="absolute right-0 top-[40px] flex-shrink-0">
+            <img src="../static/prato.png" alt="Imagem Direita" class="h-[950px]">
         </div>
     </div>
-
-
-
     
     {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
