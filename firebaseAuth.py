@@ -33,6 +33,15 @@ def loginfb(email, password):
             auth.current_user = None
             return email_verified
         
+def enviarDadosDb(user_email, altura, peso, sexo, fisico):
+    data = {
+        'altura': altura,
+        'peso': peso,
+        'sexo': sexo,
+        'fisico': fisico,
+        'firstTime': False}
+    return db.child("usuarios").child(user_email).update(data)
+        
 def recoverPassword(email):
     auth.send_password_reset_email(email)
 
