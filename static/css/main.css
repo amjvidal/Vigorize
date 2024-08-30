@@ -596,32 +596,8 @@ video {
   top: 0px;
 }
 
-.top-5 {
-  top: 1.25rem;
-}
-
-.top-12 {
-  top: 3rem;
-}
-
-.top-9 {
-  top: 2.25rem;
-}
-
-.top-8 {
-  top: 2rem;
-}
-
 .z-50 {
   z-index: 50;
-}
-
-.z-40 {
-  z-index: 40;
-}
-
-.z-20 {
-  z-index: 20;
 }
 
 .mx-auto {
@@ -629,20 +605,20 @@ video {
   margin-right: auto;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .mt-8 {
   margin-top: 2rem;
 }
 
-.ml-20 {
-  margin-left: 5rem;
+.mt-20 {
+  margin-top: 5rem;
 }
 
-.ml-52 {
-  margin-left: 13rem;
-}
-
-.ml-96 {
-  margin-left: 24rem;
+.mt-16 {
+  margin-top: 4rem;
 }
 
 .block {
@@ -661,28 +637,24 @@ video {
   display: none;
 }
 
-.h-10 {
-  height: 2.5rem;
-}
-
 .h-12 {
   height: 3rem;
 }
 
-.min-h-screen {
-  min-height: 100vh;
+.h-24 {
+  height: 6rem;
 }
 
-.w-10 {
-  width: 2.5rem;
+.w-12 {
+  width: 3rem;
 }
 
 .w-full {
   width: 100%;
 }
 
-.w-12 {
-  width: 3rem;
+.flex-col {
+  flex-direction: column;
 }
 
 .items-center {
@@ -693,16 +665,6 @@ video {
   justify-content: center;
 }
 
-.justify-between {
-  justify-content: space-between;
-}
-
-.space-x-6 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(1.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
 .space-y-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
@@ -711,6 +673,18 @@ video {
 
 .rounded-lg {
   border-radius: 0.5rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.rounded-\[12px\] {
+  border-radius: 12px;
+}
+
+.rounded-\[14px\] {
+  border-radius: 14px;
 }
 
 .border {
@@ -755,37 +729,91 @@ video {
   padding: 1.5rem;
 }
 
-.p-4 {
-  padding: 1rem;
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-.pl-48 {
+.px-36 {
+  padding-left: 9rem;
+  padding-right: 9rem;
+}
+
+.px-48 {
   padding-left: 12rem;
-}
-
-.pr-48 {
   padding-right: 12rem;
 }
 
-.pl-12 {
+.px-80 {
+  padding-left: 20rem;
+  padding-right: 20rem;
+}
+
+.px-12 {
   padding-left: 3rem;
+  padding-right: 3rem;
 }
 
-.pl-40 {
-  padding-left: 10rem;
+.px-16 {
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
-.pl-0 {
-  padding-left: 0px;
+.pl-8 {
+  padding-left: 2rem;
 }
 
-.pl-2 {
-  padding-left: 0.5rem;
+.pl-96 {
+  padding-left: 24rem;
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
+.pr-96 {
+  padding-right: 24rem;
+}
+
+.pt-36 {
+  padding-top: 9rem;
+}
+
+.pt-28 {
+  padding-top: 7rem;
+}
+
+.pl-80 {
+  padding-left: 20rem;
+}
+
+.pr-80 {
+  padding-right: 20rem;
+}
+
+.pt-48 {
+  padding-top: 12rem;
+}
+
+.pt-24 {
+  padding-top: 6rem;
+}
+
+.pt-20 {
+  padding-top: 5rem;
+}
+
+.pt-44 {
+  padding-top: 11rem;
+}
+
+.pt-40 {
+  padding-top: 10rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .text-5xl {
@@ -798,6 +826,31 @@ video {
   line-height: 1.25rem;
 }
 
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.text-8xl {
+  font-size: 6rem;
+  line-height: 1;
+}
+
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -806,7 +859,16 @@ video {
   font-weight: 600;
 }
 
+.font-extrabold {
+  font-weight: 800;
+}
+
 .text-\[\#F8DCB3\] {
+  --tw-text-opacity: 1;
+  color: rgb(248 220 179 / var(--tw-text-opacity));
+}
+
+.text-\[\#f8dcb3\] {
   --tw-text-opacity: 1;
   color: rgb(248 220 179 / var(--tw-text-opacity));
 }
@@ -821,6 +883,11 @@ video {
   color: rgb(254 249 195 / var(--tw-text-opacity));
 }
 
+.text-\[\#393227\] {
+  --tw-text-opacity: 1;
+  color: rgb(57 50 39 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -833,15 +900,4 @@ video {
 .placeholder\:text-black::placeholder {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
-.hover\:text-gray-300:hover {
-  --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity));
-}
-
-@media (min-width: 768px) {
-  .md\:flex {
-    display: flex;
-  }
 }

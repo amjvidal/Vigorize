@@ -2,15 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/main.css ">
     <title>Vigorize</title>
-    <meta name="viewport" content="width=1920, initial-scale=1.0">
-    <style>
-        .max-w-page{
-            max-width: 1920px;
-            margin: 0 auto;
-        }
-    </style>
+    <meta name="viewport" content="width=1600 ,user-scalable=no , initial-scale=1.0">
+
     <script>
         function showFlashMessages(messages) {
             messages.forEach(message => {
@@ -22,15 +20,49 @@
     
 
 </head>
-<body class="bg-[#f8dcb3] flex justify-center max-w-page">
-    
-        <div class="bg-[#234035] p-6 fixed top-0 w-full z-50" >
-           <img src = "../static/logo.png" alt="Logo"  class=" h-12 w-12" ></img>
-        
-        </div>
-      
-      
+<body class="bg-[#f8dcb3]">
 
+    <div class="bg-[#234035]">
+        
+        <div class="container  mx-auto px-4 h-24 flex items-center justify-center">
+            <div>
+            <img src="../static/logo.png" alt="Logo" class="h-12 w-12">
+            
+            </div>
+            <p class="ml-4 text-4xl font-bold text-[#f8dcb3]">Vigorize</p>
+        </div>
+
+        
+        
+    </div>
+
+    <div class="flex flex-col items-center justify-center">
+        <div class="flex flex-col items-center justify-center">
+            <h1 class="text-7xl font-bold text-[#393227] pt-40 text-center">Descomplicando o seu</h1>
+            <h1 class="text-7xl font-bold text-[#393227] text-center">jeito de ser saudável.</h1>
+        </div>
+    
+        <div class="flex items-center justify-center">
+            <h1 class="text-2xl font-bold text-[#393227] pt-20 text-center">Deixe no passado as tentativas frustradas de ser mais saudável.</h1> 
+        </div>
+    
+        <div class="flex items-center justify-center">
+            <h2 class="text-2xl font-bold text-[#393227] text-center">Confira as funcionalidades do Vigorize.</h2>
+        </div>
+
+        <div>
+            <button class="p-2 bg-[#ED8D00] text-white rounded-[14px] mt-16 px-16 font-bold text-[#393227]">Comece já</button>
+        </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-center">
+        <div>
+        </div>
+    </div>
+
+
+
+    
     {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
             <script>
