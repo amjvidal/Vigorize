@@ -18,8 +18,8 @@ def primeiroAcesso():
     generos = ["Masculino", "Feminino"]
     fisicos = ["Sedentário", "Atividade Ligeira", "Atividade Moderada", "Atividade Intensa", "Atividade Muito Intensa"]
     inputs = [
-        {'id': 'altura', 'type': 'number', 'placeholder': 'Altura (em cm)', 'name': 'altura'},
-        {'id': 'peso', 'type': 'number', 'placeholder': 'Peso (em kg)', 'name': 'peso'},
+        {'id': 'altura', 'type': 'number', 'placeholder': "Altura(cm)" ,'name': 'altura','max': '250','min': '100'},
+        {'id': 'peso', 'type': 'number', 'placeholder': "Peso(kg)",'name': 'peso','max': '200','min': '30'}
     ]
     if request.method == 'POST':
         data = request.form
@@ -29,21 +29,19 @@ def primeiroAcesso():
         genero = data['genero']
         fisico = data['fisico']
         
-        if altura > 260 or altura < 50:
-            flash("A altura é invalida!", 'danger')
-            return redirect(url_for('primeiroAcesso.primeiroAcesso'))
-        if peso > 200 or peso < 0:
-            flash("O peso é invalido!", 'danger')
-            return redirect(url_for('primeiroAcesso.primeiroAcesso'))
+        # if altura > 260 or altura < 50:
+        #     flash("A altura é invalida!", 'danger')
+        #     return redirect(url_for('primeiroAcesso.primeiroAcesso'))
+        # if peso > 200 or peso < 0:
+        #     flash("O peso é invalido!", 'danger')
+        #     return redirect(url_for('primeiroAcesso.primeiroAcesso'))
         
         try:
             enviarDadosDb(user_email,altura,peso,genero,fisico)
             flash("Dados Enviados!", 'sucess')
-            return redirect(url_for('perfil.pagina_perfil'))
+            return redirect(url_for('perGordura.pagina_perGordura'))
         except Exception as e:
             flash("Dados não foram enviados!", 'danger')
             return redirect(url_for('primeiroAcesso.primeiroAcesso'))
-        
-        
     
     return render_template('primeiroAcesso.html', inputs = inputs, generos = generos, fisicos = fisicos)
