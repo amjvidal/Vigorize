@@ -23,32 +23,22 @@
         <div class="">
             <h3 class="text-white">Dados Pessoais</h3>
         </div>
-        <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
-            <input type="hidden" name="action" value="update_name">
+        <form id="form_update_profile"action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
+            <input type="hidden" name="action" value="update_profile">
             <div class="grid grid-cols-2 gap-y-10 gap-x-10">
                 {% for input in inputs %}
                     <div class="bg-[#F8DCB3] flex items-center space-x-4 m-4">
                         <label class="text-black font-semibold min-w-20 float-start ms-2" for="{{ input.name }}">{{ input.label }}</label>
                         <input class="bg-[#F8DCB3] mx-4 py-4 outline-none border-0 placeholder:text-right text-right placeholder:text-black font-semibold form-control max-w-[60px] float-end"
                         type="{{ input.type }}"
+                        id = "{{ input.id }}"
                         name="{{ input.name }}"
-                        placeholder="{{ input.placeholder }}"
-                        required>
+                        max="{{ input.max }}"
+                        min="{{ input.min }}"
+                        value="{{ input.value}}">
                     </div>
                 {% endfor %}
-                    <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Salvar</button>
-            </div>
-        </form>
-        <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
-            <input type="hidden" name="action" value="recover_password">
-            <div>
-                <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Alterar Senha</button>
-            </div>
-        </form>
-        <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
-            <input type="hidden" name="action" value="delete_account">
-            <div class="mt-8">
-                <button class="p-2 bg-[#ac1d04] font-bold text-white rounded-lg">EXCLUIR CONTA</button>
+                <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Salvar</button>
             </div>
         </form>
     </div>
@@ -61,6 +51,28 @@
             </div>
         </div>
     </div>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Circle</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="flex justify-center mt-8">
+        <div class="relative w-52 h-52 rounded-full bg-[conic-gradient(#606c38_70%,_#e0e0e0_0%)] flex items-center justify-center">
+            <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
+            <div class="relative text-[#e0e0e0] text-4xl text-center">
+                {{ cal_value }}
+                <div class="text-base">Cal<br>Dietas</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
 
     {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}

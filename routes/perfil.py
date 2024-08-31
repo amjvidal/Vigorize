@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from firebaseAuth import recoverPassword, db, auth, emailDb
 import json
+from calculadora import calculaTMB
 
 
 
@@ -17,7 +18,7 @@ perfil_routes = Blueprint('perfil', __name__)
 def pagina_perfil():
     user=auth.current_user
     user_email = emailDb(user['email'])
-    name_user = db.child("usuarios").child(user_email).child("nome").get().val()
+
     altura_user = db.child("usuarios").child(user_email).child("altura").get().val()
     peso_user = db.child("usuarios").child(user_email).child("peso").get().val()
     cintura_user = db.child("usuarios").child(user_email).child("cintura").get().val()
@@ -26,14 +27,15 @@ def pagina_perfil():
 
 
     inputs = [
-        {'id': 'altura', 'type': 'number', 'placeholder': altura_user,'name': 'altura', 'label': 'Altura(cm)','max': '250','min': '100'},
-        {'id': 'peso', 'type': 'number', 'placeholder': peso_user,'name': 'peso', 'label': 'Peso(kg)','max': '500','min': '30'},
-        {'id': 'cintura', 'type': 'number', 'placeholder': cintura_user,'name': 'cintura', 'label': 'Cintura(cm)','max': '180','min': '30'},
-        {'id': 'pescoco', 'type': 'number', 'placeholder': pescoco_user,'name': 'pescoco', 'label': 'Pescoço(cm)','max': '500','min': '30'},
+        {'id': 'altura', 'type': 'number', 'value': altura_user,'name': 'altura', 'label': 'Altura(cm)','max': '250','min': '100'},
+        {'id': 'peso', 'type': 'number', 'value': peso_user,'name': 'peso', 'label': 'Peso(kg)','max': '500','min': '30'},
+        {'id': 'cintura', 'type': 'number', 'value': cintura_user,'name': 'cintura', 'label': 'Cintura(cm)','max': '180','min': '30'},
+        {'id': 'pescoco', 'type': 'number', 'value': pescoco_user,'name': 'pescoco', 'label': 'Pescoço(cm)','max': '60','min': '20'},
     ]
-    if sexo_user == 'feminino':
-        inputs.append({'id': 'cintura', 'type': 'number', 'placeholder': cintura_user,'name': 'cintura', 'label': 'Cintura'})
-    cal_value = 123
+    if sexo_user == 'Feminino':
+        quadril_user = db.child("usuarios").child(user_email).child("quadril").get().val()
+        inputs.append({'id': 'cintura', 'type': 'number', 'value': quadril_user,'name': 'cintura', 'label': 'Quadril(cm)', 'max': '180','min': '30'})
+    cal_value = db.child("usuarios").child(user_email).child("calorias").get().val()
 
     # if request.method == 'POST':
     #     user=auth.current_user
@@ -73,5 +75,8 @@ def pagina_perfil():
     #             error_message = str(e)
     #             flash(error_message, 'danger')
     #             return redirect(url_for('perfil.pagina_perfil'))
+    
+    
             
-    return render_template('perfil.html', inputs=inputs,cal_value=cal_value)
+    return render_template('perfil.html', inputs=inputs, cal_value=cal_value)
+
