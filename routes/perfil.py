@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from firebaseAuth import recoverPassword, db, auth, emailDb
 import json
+from calculadora import calculaTMB
 
 
 
@@ -36,7 +37,7 @@ def pagina_perfil():
     if sexo_user == 'feminino':
         inputs.append({'id': 'cintura', 'type': 'number', 'placeholder': cintura_user,'name': 'cintura', 'label': 'Cintura'})
 
-    cal_value = 6789
+    cal_value = calculaTMB(peso_user,altura_user,cintura_user,pescoco_user,sexo_user)
     # if request.method == 'POST':
     #     user=auth.current_user
     #     user_email = emailDb(user['email'])
