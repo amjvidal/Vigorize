@@ -18,8 +18,8 @@ def primeiroAcesso():
     generos = ["Masculino", "Feminino"]
     fisicos = ["Sedentário", "Atividade Ligeira", "Atividade Moderada", "Atividade Intensa", "Atividade Muito Intensa"]
     inputs = [
-        {'id': 'altura', 'type': 'number', 'placeholder': 'Altura (em cm)', 'name': 'altura'},
-        {'id': 'peso', 'type': 'number', 'placeholder': 'Peso (em kg)', 'name': 'peso'},
+        {'id': 'altura', 'type': 'number', 'placeholder': "Altura(cm)" ,'name': 'altura', 'label': 'Altura(cm)','max': '250','min': '100'},
+        {'id': 'peso', 'type': 'number', 'placeholder': "Peso(kg)",'name': 'peso', 'label': 'Peso(kg)','max': '500','min': '30'},
     ]
     if request.method == 'POST':
         data = request.form
