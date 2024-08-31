@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from firebaseAuth import recoverPassword, db, auth, emailDb
 import json
-from calculadora import calculaTMB
+from calculadora import calculaTMB, calculaPercentGorduraMASC
+
 
 
 
@@ -24,6 +25,7 @@ def pagina_perfil():
     cintura_user = db.child("usuarios").child(user_email).child("cintura").get().val()
     pescoco_user = db.child("usuarios").child(user_email).child("pescoco").get().val()
     sexo_user = db.child("usuarios").child(user_email).child("sexo").get().val()
+    
 
 
     inputs = [
@@ -68,6 +70,7 @@ def pagina_perfil():
                 error_message = json.loads(e.args[1])['error']['message']
                 flash(error_message, 'danger')
                 return redirect(url_for('perfil.pagina_perfil'))
+    cal_value = calculaPercentGorduraMASC(int(altura_user), int(cintura_user), int(pescoco_user))
     #     elif action == 'recover_password':
     #         try:
     #             recoverPassword(user['email'])
