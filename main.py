@@ -16,5 +16,4 @@ app.register_blueprint(perfil_routes, url_prefix='/perfil')
 app.register_blueprint(primeiroAcesso_routes, url_prefix='/primeiroAcesso')
 app.register_blueprint(perGordura_routes, url_prefix='/perGordura')
 
-
 app.run(debug=True)
