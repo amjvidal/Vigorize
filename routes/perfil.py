@@ -4,6 +4,8 @@ import json
 
 
 
+
+
 perfil_routes = Blueprint('perfil', __name__)
 
 """ Rotas de perfil
@@ -34,7 +36,7 @@ def pagina_perfil():
     if sexo_user == 'feminino':
         inputs.append({'id': 'cintura', 'type': 'number', 'placeholder': cintura_user,'name': 'cintura', 'label': 'Cintura'})
 
-
+    cal_value = 6789
     # if request.method == 'POST':
     #     user=auth.current_user
     #     user_email = emailDb(user['email'])
@@ -73,5 +75,8 @@ def pagina_perfil():
     #             error_message = str(e)
     #             flash(error_message, 'danger')
     #             return redirect(url_for('perfil.pagina_perfil'))
+    
+    
             
-    return render_template('perfil.html', inputs=inputs)
+    return render_template('perfil.html', inputs=inputs, cal_value=cal_value)
+
