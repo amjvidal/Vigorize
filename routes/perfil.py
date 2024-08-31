@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from firebaseAuth import recoverPassword, db, auth, emailDb
 import json
 
+
+
 perfil_routes = Blueprint('perfil', __name__)
 
 """ Rotas de perfil
@@ -13,11 +15,7 @@ perfil_routes = Blueprint('perfil', __name__)
 
 @perfil_routes.route('/', methods=['GET','POST'])
 def pagina_perfil():
-    user = auth.current_user
-    if not user:
-        flash('Você precisa estar logado para acessar esta página.', 'danger')
-        return redirect(url_for('login.pagina_login'))
-
+    user=auth.current_user
     user_email = emailDb(user['email'])
     name_user = db.child("usuarios").child(user_email).child("nome").get().val()
     text = [
