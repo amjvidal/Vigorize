@@ -2,8 +2,6 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from firebaseAuth import recoverPassword, db, auth, emailDb
 import json
 
-
-
 perfil_routes = Blueprint('perfil', __name__)
 
 """ Rotas de perfil
@@ -29,7 +27,7 @@ def pagina_perfil():
         {'id': 'altura', 'type': 'number', 'value': altura_user,'name': 'altura', 'label': 'Altura(cm)','max': '250','min': '100'},
         {'id': 'peso', 'type': 'number', 'value': peso_user,'name': 'peso', 'label': 'Peso(kg)','max': '500','min': '30'},
         {'id': 'cintura', 'type': 'number', 'value': cintura_user,'name': 'cintura', 'label': 'Cintura(cm)','max': '180','min': '30'},
-        {'id': 'pescoco', 'type': 'number', 'value': pescoco_user,'name': 'pescoco', 'label': 'Pescoço(cm)','max': '500','min': '30'},
+        {'id': 'pescoco', 'type': 'number', 'value': pescoco_user,'name': 'pescoco', 'label': 'Pescoço(cm)','max': '60','min': '20'},
     ]
     if sexo_user == 'Feminino':
         quadril_user = db.child("usuarios").child(user_email).child("quadril").get().val()
