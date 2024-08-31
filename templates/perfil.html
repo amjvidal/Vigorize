@@ -52,6 +52,15 @@
             </div>
         </form>
     </div>
+    <div class="flex justify-center mt-8">
+        <div class="relative w-52 h-52 rounded-full bg-[conic-gradient(#606c38_70%,_#e0e0e0_0%)] flex items-center justify-center">
+            <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
+            <div class="relative text-[#e0e0e0] text-4xl text-center">
+                {{ cal_value }}
+                <div class="text-base">Cal<br>Dietas</div>
+            </div>
+        </div>
+    </div>
 
     {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}

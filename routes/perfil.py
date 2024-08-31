@@ -33,7 +33,7 @@ def pagina_perfil():
     ]
     if sexo_user == 'feminino':
         inputs.append({'id': 'cintura', 'type': 'number', 'placeholder': cintura_user,'name': 'cintura', 'label': 'Cintura'})
-
+    cal_value = 123
 
     # if request.method == 'POST':
     #     user=auth.current_user
@@ -74,4 +74,4 @@ def pagina_perfil():
     #             flash(error_message, 'danger')
     #             return redirect(url_for('perfil.pagina_perfil'))
             
-    return render_template('perfil.html', inputs=inputs)
+    return render_template('perfil.html', inputs=inputs,cal_value=cal_value)
