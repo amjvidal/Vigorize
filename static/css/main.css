@@ -591,6 +591,14 @@ video {
   display: block;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -633,6 +641,10 @@ video {
 
 .w-\[30\%\] {
   width: 30%;
+}
+
+.w-32 {
+  width: 8rem;
 }
 
 .min-w-20 {

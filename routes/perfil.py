@@ -2,8 +2,6 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from firebaseAuth import recoverPassword, db, auth, emailDb
 import json
 
-
-
 perfil_routes = Blueprint('perfil', __name__)
 
 """ Rotas de perfil
@@ -17,7 +15,7 @@ perfil_routes = Blueprint('perfil', __name__)
 def pagina_perfil():
     user=auth.current_user
     user_email = emailDb(user['email'])
-    name_user = db.child("usuarios").child(user_email).child("nome").get().val()
+
     altura_user = db.child("usuarios").child(user_email).child("altura").get().val()
     peso_user = db.child("usuarios").child(user_email).child("peso").get().val()
     cintura_user = db.child("usuarios").child(user_email).child("cintura").get().val()
@@ -26,32 +24,53 @@ def pagina_perfil():
 
 
     inputs = [
-        {'id': 'altura', 'type': 'number', 'placeholder': altura_user,'name': 'altura', 'label': 'Altura(cm)','max': '250','min': '100'},
-        {'id': 'peso', 'type': 'number', 'placeholder': peso_user,'name': 'peso', 'label': 'Peso(kg)','max': '500','min': '30'},
-        {'id': 'cintura', 'type': 'number', 'placeholder': cintura_user,'name': 'cintura', 'label': 'Cintura(cm)','max': '180','min': '30'},
-        {'id': 'pescoco', 'type': 'number', 'placeholder': pescoco_user,'name': 'pescoco', 'label': 'Pescoço(cm)','max': '500','min': '30'},
+        {'id': 'altura', 'type': 'number', 'value': altura_user,'name': 'altura', 'label': 'Altura(cm)','max': '250','min': '100'},
+        {'id': 'peso', 'type': 'number', 'value': peso_user,'name': 'peso', 'label': 'Peso(kg)','max': '500','min': '30'},
+        {'id': 'cintura', 'type': 'number', 'value': cintura_user,'name': 'cintura', 'label': 'Cintura(cm)','max': '180','min': '30'},
+        {'id': 'pescoco', 'type': 'number', 'value': pescoco_user,'name': 'pescoco', 'label': 'Pescoço(cm)','max': '60','min': '20'},
     ]
+<<<<<<< HEAD
     if sexo_user == 'feminino':
         inputs.append({'id': 'cintura', 'type': 'number', 'placeholder': cintura_user,'name': 'cintura', 'label': 'Cintura'})
     cal_value = 123
+=======
+    if sexo_user == 'Feminino':
+        quadril_user = db.child("usuarios").child(user_email).child("quadril").get().val()
+        inputs.append({'id': 'cintura', 'type': 'number', 'value': quadril_user,'name': 'cintura', 'label': 'Quadril(cm)', 'max': '180','min': '30'})
 
-    # if request.method == 'POST':
-    #     user=auth.current_user
-    #     user_email = emailDb(user['email'])
-    #     name_user = db.child("usuarios").child(user_email).child("nome").get().val()
-    #     action = request.form.get('action')
-    #     data = request.form
-    #     if action == 'update_name':
-    #         try:
-    #             db.child("usuarios").child(user_email).update({'nome': data['nome']})
-    #             print("Nome atualizado com sucesso!")
-    #             flash('Nome de perfil atualizado com sucesso!', 'success')
-    #             return redirect(url_for('perfil.pagina_perfil'))
-    #         except Exception as e:
-    #             # Captura a exceção e imprime a mensagem de erro
-    #             error_message = json.loads(e.args[1])['error']['message']
-    #             flash(error_message, 'danger')
-    #             return redirect(url_for('perfil.pagina_perfil'))
+>>>>>>> 7d145b75ee23a14ad2c558efaaabfed56e163ade
+
+    if request.method == 'POST':
+        action = request.form.get('action')
+        data = request.form
+
+        if action == 'update_profile':
+            try:
+                if data['altura'] == '':
+                    data['altura'] = altura_user
+                if data['peso'] == '':
+                    data['peso'] = peso_user
+                if data['cintura'] == '':
+                    data['cintura'] = cintura_user
+                if data['pescoco'] == '':
+                    data['pescoco'] = pescoco_user
+                if sexo_user == 'Feminino':
+                    if data['quadril'] == '':
+                        data['quadril'] = quadril_user
+                
+                db.child("usuarios").child(user_email).update(
+                    {'altura': data['altura'],
+                     'peso': data['peso'],
+                     'cintura': data['cintura'],
+                     'pescoco': data['pescoco']})
+                flash('Perfil atualizado com sucesso!', 'success')
+
+                return redirect(url_for('perfil.pagina_perfil'))
+            except Exception as e:
+                # Captura a exceção e imprime a mensagem de erro
+                error_message = json.loads(e.args[1])['error']['message']
+                flash(error_message, 'danger')
+                return redirect(url_for('perfil.pagina_perfil'))
     #     elif action == 'recover_password':
     #         try:
     #             recoverPassword(user['email'])
