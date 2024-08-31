@@ -1,6 +1,9 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from firebaseAuth import recoverPassword, db, auth, emailDb
 import json
+from calculadora import calculaTMB
+
+
 
 perfil_routes = Blueprint('perfil', __name__)
 
@@ -86,5 +89,8 @@ def pagina_perfil():
     #             error_message = str(e)
     #             flash(error_message, 'danger')
     #             return redirect(url_for('perfil.pagina_perfil'))
+    
+    
             
-    return render_template('perfil.html', inputs=inputs,cal_value=cal_value)
+    return render_template('perfil.html', inputs=inputs, cal_value=cal_value)
+
