@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from firebaseAuth import recoverPassword, db, auth, emailDb
 import json
+from calculadora import calculaTMB
 
 
 
@@ -34,7 +35,7 @@ def pagina_perfil():
     if sexo_user == 'Feminino':
         quadril_user = db.child("usuarios").child(user_email).child("quadril").get().val()
         inputs.append({'id': 'cintura', 'type': 'number', 'value': quadril_user,'name': 'cintura', 'label': 'Quadril(cm)', 'max': '180','min': '30'})
-
+    cal_value = db.child("usuarios").child(user_email).child("calorias").get().val()
 
     # if request.method == 'POST':
     #     user=auth.current_user
