@@ -29,16 +29,10 @@ def pagina_perfil():
         {'id': 'cintura', 'type': 'number', 'value': cintura_user,'name': 'cintura', 'label': 'Cintura(cm)','max': '180','min': '30'},
         {'id': 'pescoco', 'type': 'number', 'value': pescoco_user,'name': 'pescoco', 'label': 'Pescoço(cm)','max': '60','min': '20'},
     ]
-<<<<<<< HEAD
-    if sexo_user == 'feminino':
-        inputs.append({'id': 'cintura', 'type': 'number', 'placeholder': cintura_user,'name': 'cintura', 'label': 'Cintura'})
-    cal_value = 123
-=======
     if sexo_user == 'Feminino':
         quadril_user = db.child("usuarios").child(user_email).child("quadril").get().val()
         inputs.append({'id': 'cintura', 'type': 'number', 'value': quadril_user,'name': 'cintura', 'label': 'Quadril(cm)', 'max': '180','min': '30'})
 
->>>>>>> 7d145b75ee23a14ad2c558efaaabfed56e163ade
 
     if request.method == 'POST':
         action = request.form.get('action')
