@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 from firebaseAuth import recoverPassword, db, auth, emailDb
 import json
 from calculadora import calculaTMB, calculaPercentGorduraMASC, calculaPercentGorduraFem, calculaIMC
-from datetime import datetime
+
 
 perfil_routes = Blueprint('perfil', __name__)
 
@@ -23,7 +23,8 @@ def pagina_perfil():
         cintura_user = db.child("usuarios").child(user_email).child("cintura").get().val()
         pescoco_user = db.child("usuarios").child(user_email).child("pescoco").get().val()
         sexo_user = db.child("usuarios").child(user_email).child("sexo").get().val()
-        atividade_user = db.child("usuarios").child(user_email).child("fisicos").get().val()
+        atividade_user = db.child("usuarios").child(user_email).child("fisico").get().val()
+        idade_user = db.child("usuarios").child(user_email).child("idade").get().val()
         
 
         inputs = [
@@ -32,7 +33,10 @@ def pagina_perfil():
             {'id': 'cintura', 'type': 'number', 'value': cintura_user, 'name': 'cintura', 'label': 'Cintura(cm)', 'max': '180', 'min': '30'},
             {'id': 'pescoco', 'type': 'number', 'value': pescoco_user, 'name': 'pescoco', 'label': 'Pescoço(cm)', 'max': '60', 'min': '20'},
             {'id': 'sexo', 'type': 'text', 'value': sexo_user, 'name': 'sexo', 'label': 'Sexo', 'disabled': 'true'},
-            {'id': 'fisicos', 'type': 'text', 'value': atividade_user, 'name': 'fisicos', 'label': 'Atividade Física', 'disabled': 'true'}
+            {'id': 'fisico', 'type': 'text', 'value': atividade_user, 'name': 'fisico', 'label': 'Atividade Física', 'disabled': 'true'},
+            {'id': 'idade', 'type': 'number', 'value': idade_user, 'name': 'idade', 'label': 'Idade', 'max': '120', 'min':15}
+            
+            
         ]
         
         if sexo_user == 'Feminino':
@@ -93,7 +97,8 @@ def pagina_perfil():
         flash('Erro ao acessar o perfil.', 'danger')
         return redirect(url_for('login.pagina_login'))
     
-    #cal_tmb = calculaTMB(altura_user, peso_user, sexo_user, atividade_user)
+    
+    #cal_tmb = calculaTMB(int(peso_user),int(altura_user) ,int(idade_user), sexo_user, atividade_user)
     if sexo_user == 'Masculino':
         percent_gordura = calculaPercentGorduraMASC(int(altura_user), int(cintura_user), int(pescoco_user))
     else:
