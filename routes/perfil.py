@@ -6,6 +6,13 @@ from calculadora import calculaTMB, calculaPercentGorduraMASC, calculaPercentGor
 
 perfil_routes = Blueprint('perfil', __name__)
 
+""" Rotas de perfil
+    - /perfil - Get - Retorna a página de perfil
+    - /perfil/editar - PUT - Retorna a página de edição de perfil
+    - /perfil/editar - POST - Edita o perfil do usuário
+    - /perfil/excluir - DELETE - Exclui o perfil do usuário
+"""
+
 @perfil_routes.route('/', methods=['GET','POST'])
 def pagina_perfil():
     user = auth.current_user
@@ -24,8 +31,7 @@ def pagina_perfil():
         pescoco_user = db.child("usuarios").child(user_email).child("pescoco").get().val()
         sexo_user = db.child("usuarios").child(user_email).child("sexo").get().val()
         atividade_user = db.child("usuarios").child(user_email).child("fisico").get().val()
-        idade_user = db.child("usuarios").child(user_email).child("dataNas").get().val()
-        
+        fisicos = ["Sedentário", "Atividade Ligeira", "Atividade Moderada", "Atividade Intensa", "Atividade Muito Intensa"]
 
         inputs = [
             {'id': 'altura', 'type': 'number', 'value': altura_user, 'name': 'altura', 'label': 'Altura(cm)', 'max': '250', 'min': '100'},
@@ -34,8 +40,7 @@ def pagina_perfil():
             {'id': 'pescoco', 'type': 'number', 'value': pescoco_user, 'name': 'pescoco', 'label': 'Pescoço(cm)', 'max': '60', 'min': '20'},
             {'id': 'sexo', 'type': 'text', 'value': sexo_user, 'name': 'sexo', 'label': 'Sexo', 'disabled': 'true'},
             {'id': 'fisico', 'type': 'text', 'value': atividade_user, 'name': 'fisico', 'label': 'Atividade Física', 'disabled': 'true'},
-            
-            
+            {'id': 'idade', 'type': 'number', 'value': idade_user, 'name': 'idade', 'label': 'Idade', 'max': '120', 'min':15}         
         ]
         
         if sexo_user == 'Feminino':
@@ -80,6 +85,10 @@ def pagina_perfil():
                     flash('Email de recuperação de senha enviado!', 'success')
                 except Exception as e:
                     print(e)
+                    # Captura a exceção e imprime a mensagem de erro
+                    # error_message = json.loads(e.args[1])['error']['message']
+                    # flash(error_message, 'danger')
+                    # return render_template('perfil.html', inputs=inputs, fisicos=fisicos)
             
             elif action == 'delete_account':
                 try:

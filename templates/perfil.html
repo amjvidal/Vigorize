@@ -35,10 +35,11 @@
             <button id="config-button" class="p-2 bg-[#ED8D00] text-white rounded-lg">Config</button>
         </nav>
     </header>
-
+    <!-- Aba de configuação que desliza -->
     <aside id="config-panel" class="slide-in fixed top-0 right-0 h-full w-[440px] bg-[#234035] text-white shadow-lg z-20">
         <div class="p-4">
             <h2 class="text-xl font-bold mb-4">Configurações</h2>
+            <!-- Conteúdo da aba de configuração aqui -->
             <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
                 <input type="hidden" name="action" value="recover_password">
                 <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Recuperar Senha</button>
@@ -71,6 +72,12 @@
                                 value="{{ input.value }}">
                         </div>
                     {% endfor %}
+                    <select class = "bg-[#F8DCB3] p-2 block rounded-lg border border-black placeholder:text-black font-semibold" list = "fisicos" id = "fisico" name = "fisico"  required>
+                        <option value = "" disabled selected>Atividade Física:</option>
+                        {% for fisico in fisicos%}
+                        <option value = "{{ fisico }}">{{ fisico }}</option>
+                        {% endfor %}
+                    </select>
                     <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Salvar</button>
                 </div>
             </form>
@@ -118,6 +125,7 @@
     {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
             <script>
+                // Transforma mensagens de flash em um array para o JavaScript
                 const messages = {{ messages | tojson }};
                 showFlashMessages(messages.map(msg => msg[1]));
             </script>
