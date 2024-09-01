@@ -24,7 +24,7 @@ def pagina_perfil():
         pescoco_user = db.child("usuarios").child(user_email).child("pescoco").get().val()
         sexo_user = db.child("usuarios").child(user_email).child("sexo").get().val()
         atividade_user = db.child("usuarios").child(user_email).child("fisico").get().val()
-        idade_user = db.child("usuarios").child(user_email).child("idade").get().val()
+        idade_user = db.child("usuarios").child(user_email).child("dataNas").get().val()
         
 
         inputs = [
@@ -34,7 +34,6 @@ def pagina_perfil():
             {'id': 'pescoco', 'type': 'number', 'value': pescoco_user, 'name': 'pescoco', 'label': 'Pescoço(cm)', 'max': '60', 'min': '20'},
             {'id': 'sexo', 'type': 'text', 'value': sexo_user, 'name': 'sexo', 'label': 'Sexo', 'disabled': 'true'},
             {'id': 'fisico', 'type': 'text', 'value': atividade_user, 'name': 'fisico', 'label': 'Atividade Física', 'disabled': 'true'},
-            {'id': 'idade', 'type': 'number', 'value': idade_user, 'name': 'idade', 'label': 'Idade', 'max': '120', 'min':15}
             
             
         ]
