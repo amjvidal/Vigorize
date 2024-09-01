@@ -612,29 +612,22 @@ video {
   margin-right: auto;
 }
 
-<<<<<<< HEAD
 .mb-2 {
   margin-bottom: 0.5rem;
 }
 
-=======
->>>>>>> origin/Nathan-Cunha
 .mb-4 {
   margin-bottom: 1rem;
 }
 
-<<<<<<< HEAD
 .mb-6 {
   margin-bottom: 1.5rem;
 }
 
-=======
->>>>>>> origin/Nathan-Cunha
 .ms-2 {
   margin-inline-start: 0.5rem;
 }
 
-<<<<<<< HEAD
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -643,8 +636,6 @@ video {
   margin-top: 2rem;
 }
 
-=======
->>>>>>> origin/Nathan-Cunha
 .block {
   display: block;
 }
@@ -673,7 +664,6 @@ video {
   height: 11rem;
 }
 
-<<<<<<< HEAD
 .h-52 {
   height: 13rem;
 }
@@ -682,8 +672,6 @@ video {
   height: 70px;
 }
 
-=======
->>>>>>> origin/Nathan-Cunha
 .h-full {
   height: 100%;
 }
@@ -750,13 +738,10 @@ video {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-<<<<<<< HEAD
 .flex-col {
   flex-direction: column;
 }
 
-=======
->>>>>>> origin/Nathan-Cunha
 .items-center {
   align-items: center;
 }
@@ -794,7 +779,6 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
-<<<<<<< HEAD
 }
 
 .rounded {
@@ -803,8 +787,6 @@ video {
 
 .rounded-full {
   border-radius: 9999px;
-=======
->>>>>>> origin/Nathan-Cunha
 }
 
 .rounded-lg {
@@ -853,7 +835,6 @@ video {
   background-color: #b01002d7;
 }
 
-<<<<<<< HEAD
 .bg-\[conic-gradient\(\#606c38_14\.63\%\2c _\#e0e0e0_0\%\)\] {
   background-image: conic-gradient(#606c38 14.63%, #e0e0e0 0%);
 }
@@ -862,8 +843,6 @@ video {
   background-image: conic-gradient(#606c38 70%, #e0e0e0 0%);
 }
 
-=======
->>>>>>> origin/Nathan-Cunha
 .p-2 {
   padding: 0.5rem;
 }
@@ -887,7 +866,6 @@ video {
   padding-right: 2rem;
 }
 
-<<<<<<< HEAD
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -906,8 +884,6 @@ video {
   padding-top: 1.5rem;
 }
 
-=======
->>>>>>> origin/Nathan-Cunha
 .pt-\[70px\] {
   padding-top: 70px;
 }
@@ -952,7 +928,6 @@ video {
 
 .font-bold {
   font-weight: 700;
-<<<<<<< HEAD
 }
 
 .font-semibold {
@@ -966,12 +941,6 @@ video {
 .text-\[\#234035\] {
   --tw-text-opacity: 1;
   color: rgb(35 64 53 / var(--tw-text-opacity));
-=======
->>>>>>> origin/Nathan-Cunha
-}
-
-.font-semibold {
-  font-weight: 600;
 }
 
 .text-\[\#F8DCB3\] {
