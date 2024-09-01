@@ -3,7 +3,7 @@ from firebaseAuth import loginfb, auth, db, emailDb, firstLogin
 
 login_routes = Blueprint('login', __name__)
 
-""" Rotas de logi
+""" Rotas de login
     - / - Get - Retorna a página de login
     - / - Post - Verifica o login do usuário
     - /home - Get - Retorna a página home
