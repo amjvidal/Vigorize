@@ -763,6 +763,10 @@ video {
   border-radius: 0.5rem;
 }
 
+.rounded {
+  border-radius: 0.25rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -771,9 +775,18 @@ video {
   border-width: 0px;
 }
 
+.border-2 {
+  border-width: 2px;
+}
+
 .border-black {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
 .bg-\[\#234035\] {
@@ -802,6 +815,98 @@ video {
 
 .bg-\[conic-gradient\(\#606c38_70\%\2c _\#e0e0e0_0\%\)\] {
   background-image: conic-gradient(#606c38 70%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#ffff\)\] {
+  background-image: conic-gradient(#ffff);
+}
+
+.bg-\[conic-gradient\(\#b01002d7\)\] {
+  background-image: conic-gradient(#b01002d7);
+}
+
+.bg-\[conic-gradient\(\#606c38_\{\{70\}\}\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 {{70}}%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_\{\{\}\}\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 {{}}%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_\{\{per\}\}\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 {{per}}%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_\{\{percent_gordura\}\}\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 {{percent gordura}}%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_\{70\}\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 {70}%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_per\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 per%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_perce\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 perce%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_percen\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 percen%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_percent\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 percent%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_percent_gor\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 percent gor%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_percent_gordura\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 percent gordura%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_90\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 90%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_14\.\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 14.%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_14\.63\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 14.63%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_\{14\.63\}\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 {14.63}%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_\{\{p\}\}\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 {{p}}%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_\{\{input\.percent_gordura\}\}\%\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 {{input.percent gordura}}%, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_\$\{percentage\}\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 ${percentage}, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_\$\{\{percentage\}\}\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 ${{percentage}}, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_\$\{\{per\}\}\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 ${{per}}, #e0e0e0 0%);
+}
+
+.bg-\[conic-gradient\(\#606c38_\$\{\{percent_gordura\}\}\2c _\#e0e0e0_0\%\)\] {
+  background-image: conic-gradient(#606c38 ${{percent gordura}}, #e0e0e0 0%);
 }
 
 .p-2 {
