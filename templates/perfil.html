@@ -35,35 +35,37 @@
             <button id="config-button" class="p-2 bg-[#ED8D00] text-white rounded-lg">Config</button>
         </nav>
     </header>
-    <!-- Aba de configuação que desliza -->
-    <aside id="config-panel" class="slide-in fixed top-0 right-0 h-full w-[440px] bg-[#234035] text-white shadow-lg z-20">
-        <div class="p-4">
-            <h2 class="text-xl font-bold mb-4">Configurações</h2>
+    <!-- ABA DE CONFIGURAÇÃO -->
+    <aside id="config-panel" class="slide-in fixed top-0 right-0 h-full w-[440px] bg-[#234035] text-white shadow-lg z-20 justify-center items-center">
+        <h2 class="text-xl font-bold mb-4">Configurações</h2>
+        <div class="p-4 ">
+            <button id="close-button" class="p-2 bg-[#b01002d7] text-white rounded-lg block mx-auto">Fechar</button>
             <!-- Conteúdo da aba de configuração aqui -->
             <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
                 <input type="hidden" name="action" value="recover_password">
-                <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Recuperar Senha</button>
+                <button class="p-2 bg-[#ED8D00] text-white rounded-lg block mx-auto">Recuperar Senha</button>
             </form>
             <form action="{{ url_for('login.pagina_login')}}" method="POST" >
                 <input type="hidden" name="action" value="logout">
-                <button class="p-2 bg-[#b01002d7] text-white rounded-lg">Logout</button>
+                <button class="p-2 bg-[#b01002d7] text-white rounded-lg flex mx-auto">Logout</button>
             </form>
-            <button id="close-button" class="p-2 bg-[#b01002d7] text-white rounded-lg">Fechar</button>
         </div>
     </aside>
+    <!-- PRINCIPAL
+     -->
     <main class="pt-[70px]">
-
         <div class=" bg-[#234035] space-y-2 h-screen w-[30%] ">
             <div class="">
                 <h3 class="text-white">Dados Pessoais</h3>
             </div>
+            <!-- FORMULÁRIO DE ATUALIZAÇÃO  -->
             <form id="form_update_profile"action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
                 <input type="hidden" name="action" value="update_profile">
                 <div class="grid grid-cols-2 gap-y-10 gap-x-10">
                     {% for input in inputs %}
                         <div class="bg-[#F8DCB3] flex items-center space-x-4 m-4">
                             <label class="text-black font-semibold min-w-20 float-start ms-2" for="{{ input.name }}">{{ input.label }}</label>
-                            <input class="bg-[#F8DCB3] mx-4 py-4 outline-none border-0 placeholder:text-right text-right placeholder:text-black font-semibold form-control max-w-[60px] float-end"
+                            <input class="bg-[#F8DCB3] mx-4 py-4 outline-none border-0 text-right font-semibold form-control max-w-[60px] float-end"
                             type="{{ input.type }}"
                             id = "{{ input.id }}"
                             name="{{ input.name }}"
@@ -72,10 +74,14 @@
                             value="{{ input.value}}">
                         </div>
                     {% endfor %}
-                    <select class = "bg-[#F8DCB3] p-2 block rounded-lg border border-black placeholder:text-black font-semibold" list = "fisicos" id = "fisico" name = "fisico"  required>
-                        <option value = "" disabled selected>Atividade Física:</option>
+                    <select class="bg-[#F8DCB3] mx-4 py-4 outline-none border-0 text-left placeholder:text-black font-semibold form-control max-w-[200px] float-start"
+                    name="fisico"
+                    required>
+                        <option value = "{{atividade_user}}" selected>{{atividade_user}}</option>
                         {% for fisico in fisicos%}
-                        <option value = "{{ fisico }}">{{ fisico }}</option>
+                        {%if fisico != atividade_user%}
+                            <option value = "{{ fisico }}">{{ fisico }}</option>
+                        {%endif%}
                         {% endfor %}
                     </select>
                     <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Salvar</button>

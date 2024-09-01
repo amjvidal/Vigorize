@@ -41,9 +41,7 @@ def pagina_perfil():
             {'id': 'altura', 'type': 'number', 'value': altura_user, 'name': 'altura', 'label': 'Altura(cm)', 'max': '250', 'min': '100'},
             {'id': 'peso', 'type': 'number', 'value': peso_user, 'name': 'peso', 'label': 'Peso(kg)', 'max': '500', 'min': '30'},
             {'id': 'cintura', 'type': 'number', 'value': cintura_user, 'name': 'cintura', 'label': 'Cintura(cm)', 'max': '180', 'min': '30'},
-            {'id': 'pescoco', 'type': 'number', 'value': pescoco_user, 'name': 'pescoco', 'label': 'Pescoço(cm)', 'max': '60', 'min': '20'},
-            {'id': 'sexo', 'type': 'text', 'value': sexo_user, 'name': 'sexo', 'label': 'Sexo', 'disabled': 'true'},
-            {'id': 'fisico', 'type': 'text', 'value': atividade_user, 'name': 'fisico', 'label': 'Atividade Física', 'disabled': 'true'},
+            {'id': 'pescoco', 'type': 'number', 'value': pescoco_user, 'name': 'pescoco', 'label': 'Pescoço(cm)', 'max': '60', 'min': '20'}
         ]
 
         if sexo_user == 'Feminino':
@@ -72,7 +70,8 @@ def pagina_perfil():
                         {'altura': data['altura'],
                         'peso': data['peso'],
                         'cintura': data['cintura'],
-                        'pescoco': data['pescoco']})
+                        'pescoco': data['pescoco'],
+                        'fisico': data['fisico']})
                     flash('Perfil atualizado com sucesso!', 'success')
 
                     return redirect(url_for('perfil.pagina_perfil'))
@@ -116,5 +115,5 @@ def pagina_perfil():
         percent_gordura = calculaPercentGorduraFem(int(altura_user), int(cintura_user), int(pescoco_user), int(quadril_user))
     
     imc = calculaIMC(int(peso_user), int(altura_user))
-
-    return render_template('perfil.html', inputs=inputs, percent_gordura=percent_gordura, imc=imc, cal_tmb=cal_tmb, fisicos=fisicos, idade=idade, cam_tmbpo=cam_tmbpo)
+            
+    return render_template('perfil.html', inputs=inputs, percent_gordura=percent_gordura, imc=imc, fisicos=fisicos, atividade_user=atividade_user)
