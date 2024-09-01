@@ -97,8 +97,8 @@ def pagina_perfil():
                 flash(error_message, 'danger')
                 return redirect(url_for('perfil.pagina_perfil'))
     gor_value = calculaPercentGorduraMASC(int(altura_user), int(cintura_user), int(pescoco_user))
-    #cal_value = calculaTMB(int(peso_user), int(altura_user),  idade, sexo_user, atividade_user)
-    # cal_valuefm = calculaPercentGorduraFem(int(altura_user), int(cintura_user), int(pescoco_user), int(quadril_user))
+    cal_value = calculaTMB(int(peso_user), int(altura_user),  idade, sexo_user, atividade_user)
+    cal_valuefm = calculaPercentGorduraFem(int(altura_user), int(cintura_user), int(pescoco_user), int(quadril_user))
     
 
     #     elif action == 'recover_password':
