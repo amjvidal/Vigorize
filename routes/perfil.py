@@ -33,7 +33,6 @@ def pagina_perfil():
         cintura_user = db.child("usuarios").child(user_email).child("cintura").get().val()
         pescoco_user = db.child("usuarios").child(user_email).child("pescoco").get().val()
         sexo_user = db.child("usuarios").child(user_email).child("sexo").get().val()
-        atividade_user = db.child("usuarios").child(user_email).child("fisico").get().val()
         data_nas_user = db.child("usuarios").child(user_email).child("data").get().val()  
         fisicos = ["Sedentário", "Atividade Ligeira", "Atividade Moderada", "Atividade Intensa", "Atividade Muito Intensa"]
 
@@ -105,7 +104,7 @@ def pagina_perfil():
     
     idade = calcular_idade(data_nas_user)  
     
-    cal_tmb = round(calculaTMB(int(peso_user), int(altura_user), int(idade), sexo_user, atividade_user),4)
+    cal_tmb = round(calculaTMB(int(peso_user), int(altura_user), int(idade), sexo_user, fisicos),4)
     max_cal_tmb = 10000
     cam_tmbpo = (cal_tmb / max_cal_tmb) * 100 
     
@@ -116,4 +115,4 @@ def pagina_perfil():
     
     imc = calculaIMC(int(peso_user), int(altura_user))
             
-    return render_template('perfil.html', inputs=inputs, percent_gordura=percent_gordura, imc=imc, fisicos=fisicos, atividade_user=atividade_user)
+    return render_template('perfil.html', inputs=inputs, percent_gordura=percent_gordura, imc=imc, fisicos=fisicos,cam_tmbpo=cam_tmbpo, idade=idade, cal_tmb=cal_tmb)

@@ -724,6 +724,10 @@ video {
   max-width: 28rem;
 }
 
+.max-w-\[200px\] {
+  max-width: 200px;
+}
+
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
@@ -886,6 +890,10 @@ video {
 
 .pt-\[70px\] {
   padding-top: 70px;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-center {
