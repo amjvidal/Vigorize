@@ -76,7 +76,8 @@
             </form>
         </div>
         <div class="flex justify-center mt-8">
-            <div class="relative w-52 h-52 rounded-full bg-[conic-gradient(#606c38_14.63%,_#e0e0e0_0%)] flex items-center justify-center">
+            <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
+                 style="background-image: conic-gradient(#606c38 {{ percent_gordura }}%, #e0e0e0 {{ percent_gordura }}%)">
                 <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
                 <div class="relative text-[#e0e0e0] text-4xl text-center">
                     {{ percent_gordura }}%
@@ -85,14 +86,18 @@
             </div>
         </div>
         <div class="flex justify-center mt-8">
-            <div class="relative w-52 h-52 rounded-full bg-[conic-gradient(#606c38_70%,_#e0e0e0_0%)] flex items-center justify-center">
+            <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
+                 style="background-image: conic-gradient(#606c38 {{ imc }}%, #e0e0e0 {{ imc }}%)">
                 <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
                 <div class="relative text-[#e0e0e0] text-4xl text-center">
                     {{ imc }}
-                    <div class="text-base">IMC<br>Dietas</div>
+                    <div class="text-base">Gordura<br>Dietas</div>
                 </div>
             </div>
         </div>
+        
+        
+        
 
         <!-- Adiciona o gráfico -->
         <div class="flex justify-center mt-8">
