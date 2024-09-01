@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/static/css/main.css ">
+    <link rel="stylesheet" href="/static/css/main.css">
     <title>Vigorize</title>
     <style>
         /* Estilo adicional para a transição da aba */
@@ -14,6 +14,7 @@
             transform: translateX(0);
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         function showFlashMessages(messages) {
             messages.forEach(message => {
@@ -21,76 +22,137 @@
             });
         }
     </script>
-    
-
 </head>
 <body class="bg-[#F8DCB3] min-h-screen">
-    <header class=" h-[70px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
+    <header class="h-[70px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
         <nav class="flex justify-between items-center space-x-6 py-4">
-            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-12">
+            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class="w-12">
             <a class="text-white underline" href="/perfil">Usuário</a>
             <a class="text-white underline" href="/perfil">Tabela Nutricional</a>
-            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-12">
+            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class="w-12">
             <a class="text-white underline" href="/cadastro">Planejar Refeições</a>
             <a class="text-white underline" href="/treinos">Calcular IMC</a>
             <button id="config-button" class="p-2 bg-[#ED8D00] text-white rounded-lg">Config</button>
         </nav>
     </header>
-    <!-- Aba de configuação que desliza -->
+
     <aside id="config-panel" class="slide-in fixed top-0 right-0 h-full w-[440px] bg-[#234035] text-white shadow-lg z-20">
         <div class="p-4">
             <h2 class="text-xl font-bold mb-4">Configurações</h2>
-            <!-- Conteúdo da aba de configuração aqui -->
             <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
                 <input type="hidden" name="action" value="recover_password">
                 <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Recuperar Senha</button>
             </form>
-            <form action="{{ url_for('login.pagina_login')}}" method="POST" >
+            <form action="{{ url_for('login.pagina_login')}}" method="POST">
                 <input type="hidden" name="action" value="logout">
                 <button class="p-2 bg-[#b01002d7] text-white rounded-lg">Logout</button>
             </form>
             <button id="close-button" class="p-2 bg-[#b01002d7] text-white rounded-lg">Fechar</button>
         </div>
     </aside>
-    <main class="pt-[70px]">
 
-        <div class=" bg-[#234035] space-y-2 h-screen w-[30%] ">
-            <div class="">
+    <main class="pt-[70px]">
+        <div class="bg-[#234035] space-y-2 h-screen w-[30%]">
+            <div>
                 <h3 class="text-white">Dados Pessoais</h3>
             </div>
-            <form id="form_update_profile"action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
+            <form id="form_update_profile" action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
                 <input type="hidden" name="action" value="update_profile">
                 <div class="grid grid-cols-2 gap-y-10 gap-x-10">
                     {% for input in inputs %}
                         <div class="bg-[#F8DCB3] flex items-center space-x-4 m-4">
                             <label class="text-black font-semibold min-w-20 float-start ms-2" for="{{ input.name }}">{{ input.label }}</label>
                             <input class="bg-[#F8DCB3] mx-4 py-4 outline-none border-0 placeholder:text-right text-right placeholder:text-black font-semibold form-control max-w-[60px] float-end"
-                            type="{{ input.type }}"
-                            id = "{{ input.id }}"
-                            name="{{ input.name }}"
-                            max="{{ input.max }}"
-                            min="{{ input.min }}"
-                            value="{{ input.value}}">
+                                type="{{ input.type }}"
+                                id="{{ input.id }}"
+                                name="{{ input.name }}"
+                                max="{{ input.max }}"
+                                min="{{ input.min }}"
+                                value="{{ input.value }}">
                         </div>
                     {% endfor %}
                     <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Salvar</button>
                 </div>
             </form>
-            
+        </div>
+        <div class="flex justify-center mt-8">
+            <div class="relative w-52 h-52 rounded-full bg-[conic-gradient(#606c38_70%,_#e0e0e0_0%)] flex items-center justify-center">
+                <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
+                <div class="relative text-[#e0e0e0] text-4xl text-center">
+                    {{ percent_gordura }}
+                    <div class="text-base">Gordura<br>Dietas</div>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center mt-8">
+            <div class="relative w-52 h-52 rounded-full bg-[conic-gradient(#606c38_70%,_#e0e0e0_0%)] flex items-center justify-center">
+                <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
+                <div class="relative text-[#e0e0e0] text-4xl text-center">
+                    {{ imc }}
+                    <div class="text-base">IMC<br>Dietas</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Adiciona o gráfico -->
+        <div class="flex justify-center mt-8">
+            <canvas id="activityGrowthChart" width="400" height="200"></canvas>
         </div>
     </main>
 
     {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
             <script>
-                // Transforma mensagens de flash em um array para o JavaScript
                 const messages = {{ messages | tojson }};
-                showFlashMessages(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
+                showFlashMessages(messages.map(msg => msg[1]));
             </script>
         {% endif %}
     {% endwith %}
 
     <script>
+        // Configuração do gráfico usando Chart.js
+        const ctx = document.getElementById('activityGrowthChart').getContext('2d');
+        const activityGrowthChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan 1', 'Jan 2', 'Jan 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8', 'Jan 9', 'Jan 10', 'Jan 11', 'Jan 12', 'Jan 13', 'Jan 14', 'Jan 15', 'Jan 16', 'Jan 17', 'Jan 18'],
+                datasets: [
+                    {
+                        label: 'Calorias',
+                        data: ["{{ calorias }}"],
+                        
+                        backgroundColor: '#EF476F'
+                    },
+                    {
+                        label: 'IMC',
+                        data: ["{{ imc }}"],
+                       
+                        backgroundColor: '#118AB2'
+                    },
+                    {
+                        label: 'Gordura',
+                        data: ["{{ percent_gordura }}"],
+                        
+                        
+                        backgroundColor: '#FFD166'
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + "%";
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
         // JavaScript para controlar a visibilidade da aba
         document.getElementById('config-button').addEventListener('click', function() {
             document.getElementById('config-panel').classList.toggle('active');
@@ -100,7 +162,5 @@
             document.getElementById('config-panel').classList.remove('active');
         });
     </script>
-
 </body>
-
 </html>

@@ -4,8 +4,8 @@ import math
 
 
 def calculaIMC(peso, altura):
-    imc = peso / (altura ** 2)
-    return imc
+    imc = (peso / (altura ** 2))*10000
+    return round(imc, 2)
 
 # fórmula de Harris-Benedict para cálculo de TMB (Taxa Metabólica Basal)
 def calculaTMB(peso, altura, idade, sexo, atividade):
@@ -31,9 +31,9 @@ def calculaTMB(peso, altura, idade, sexo, atividade):
 def calculaPercentGorduraMASC(alturaCM, cinturaCM, pescocoCM):
     alturaM = alturaCM / 100
     gordura_corporal = 86.010 * math.log10(cinturaCM - pescocoCM) - 70.041 * math.log10(alturaM) + 36.76
-    return round(gordura_corporal / 10, 2)
+    return round(gordura_corporal / 10, 2) 
 
 def calculaPercentGorduraFem(alturaCM, cinturaCM, pescocoCM, quadrilCM):
     alturaM = alturaCM / 100
     gordura_corporal = 163.205 * math.log10(cinturaCM + quadrilCM - pescocoCM) - 97.684 * math.log10(alturaM) - 78.387
-    return round(gordura_corporal / 10, 2) 
+    return round(gordura_corporal / 10, 2)
