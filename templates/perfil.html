@@ -73,8 +73,15 @@
                             value="{{ input.value}}">
                         </div>
                     {% endfor %}
+                    <select class = "bg-[#F8DCB3] p-2 block rounded-lg border border-black placeholder:text-black font-semibold" list = "fisicos" id = "fisico" name = "fisico"  required>
+                        <option value = "" disabled selected>Atividade Física:</option>
+                        {% for fisico in fisicos%}
+                        <option value = "{{ fisico }}">{{ fisico }}</option>
+                        {% endfor %}
+                    </select>
                     <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Salvar</button>
                 </div>
+
             </form>
             
         </div>

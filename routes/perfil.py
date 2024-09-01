@@ -28,21 +28,14 @@ def pagina_perfil():
         pescoco_user = db.child("usuarios").child(user_email).child("pescoco").get().val()
         sexo_user = db.child("usuarios").child(user_email).child("sexo").get().val()
         atividade_user = db.child("usuarios").child(user_email).child("fisico").get().val()
-<<<<<<< HEAD
->>>>>>> 15cd5d3e27a4ebeb3c3b781d0abc42c27260c474
-        
+        fisicos = ["Sedentário", "Atividade Ligeira", "Atividade Moderada", "Atividade Intensa", "Atividade Muito Intensa"]
 
+        
         inputs = [
             {'id': 'altura', 'type': 'number', 'value': altura_user, 'name': 'altura', 'label': 'Altura(cm)', 'max': '250', 'min': '100'},
             {'id': 'peso', 'type': 'number', 'value': peso_user, 'name': 'peso', 'label': 'Peso(kg)', 'max': '500', 'min': '30'},
             {'id': 'cintura', 'type': 'number', 'value': cintura_user, 'name': 'cintura', 'label': 'Cintura(cm)', 'max': '180', 'min': '30'},
-            {'id': 'pescoco', 'type': 'number', 'value': pescoco_user, 'name': 'pescoco', 'label': 'Pescoço(cm)', 'max': '60', 'min': '20'},
-            {'id': 'sexo', 'type': 'text', 'value': sexo_user, 'name': 'sexo', 'label': 'Sexo', 'disabled': 'true'},
-            {'id': 'fisico', 'type': 'text', 'value': atividade_user, 'name': 'fisico', 'label': 'Atividade Física', 'disabled': 'true'},
-<<<<<<< HEAD
-=======
->>>>>>> 15cd5d3e27a4ebeb3c3b781d0abc42c27260c474
-            
+            {'id': 'pescoco', 'type': 'number', 'value': pescoco_user, 'name': 'pescoco', 'label': 'Pescoço(cm)', 'max': '60', 'min': '20'}
             
         ]
         if sexo_user == 'Feminino':
@@ -89,7 +82,7 @@ def pagina_perfil():
                     # Captura a exceção e imprime a mensagem de erro
                     # error_message = json.loads(e.args[1])['error']['message']
                     # flash(error_message, 'danger')
-                    # return render_template('perfil.html', inputs=inputs)
+                    # return render_template('perfil.html', inputs=inputs, fisicos=fisicos)
             
             elif action == 'delete_account':
                 try:
@@ -106,4 +99,4 @@ def pagina_perfil():
         flash('Erro ao acessar o perfil.', 'danger')
         return redirect(url_for('login.pagina_login'))
             
-    return render_template('perfil.html', inputs=inputs)
+    return render_template('perfil.html', inputs=inputs, fisicos=fisicos)
