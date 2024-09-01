@@ -1,0 +1,40 @@
+def filtrarDados():
+    dadosFiltrados=[]
+    for item in dados:
+        if excluiCru(item["description"]):
+
+            caloria=item["energy_kcal"]
+            proteina=item["protein_g"]
+            carboidrato=item["carbohydrate_g"]
+            umidade=item["humidity_percents"]
+
+            if isinstance(item["energy_kcal"],str):
+                caloria=0
+
+            if isinstance(item["protein_g"],str):
+                proteina=0
+
+            if isinstance(item["carbohydrate_g"],str):
+                carboidrato=0
+
+            if isinstance(umidade,str):
+                umidade=0
+
+            dadosFiltrados.append({"Nome":item["description"],"Caloria":round(caloria,2),"Proteína":round(proteina,2),"Carboidrato":round(carboidrato,2),
+                                   "Umidade":round(umidade,2),'gorduraTotal':gordurasTotal(caloria,proteina,carboidrato)})
+    return dadosFiltrados
+        
+
+def gordurasTotal(caloria,proteina,carboidratos):
+    if isinstance(caloria, str):
+        caloria=0
+    if isinstance(proteina, str):
+        proteina=0
+    if isinstance(carboidratos, str):
+        carboidratos=0
+    gordurasTotal = (caloria-(proteina*4)-(carboidratos*4))/9
+    return str(round(gordurasTotal,2))
+
+
+with open('dados.json', 'w', encoding='utf-8') as arquivo_json:
+    json.dump(filtrarDados(), arquivo_json, ensure_ascii=False,indent=7 )

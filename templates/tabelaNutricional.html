@@ -29,17 +29,42 @@
             }
         </style>
 
-        <div class="flex items-center justify-center">
-            <div class="bg-[#f4d7b2] w-1/2 p-8 flex items-center justify-center">
-            <input  placeholder=" Procure Seu Alimento"  id="pesquisa"  >
-
-            </div>
-            
-                <form>
-
-                </form>
-            
+        <div class="search-container">
+            <form method="post">
+                <input type="text" id="search-bar" placeholder="Pesquisar..." onkeyup="filterItems()">
+                <select id="item-select" name="item" size="5">
+                    {% for item in items %}
+                        <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="add-button">Inflar Botão</button>
+            </form>
         </div>
+
+        <div class="button-container">
+            {% for button in buttons %}
+                <button>{{ button }}</button>
+            {% endfor %}
+        </div>
+
+        <script>
+            function filterItems() {
+                let input = document.getElementById('search-bar').value.toLowerCase();
+                let options = document.getElementById('item-select').options;
+                for (let i = 0; i < options.length; i++) {
+                    let option = options[i];
+                    if (option.value.toLowerCase().includes(input)) {
+                        option.style.display = '';
+                    } else {
+                        option.style.display = 'none';
+                    }
+                }
+            }
+        </script>
+
+
+
+        
     </div>
 </body>
 
