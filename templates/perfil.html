@@ -41,6 +41,10 @@
                 <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Salvar</button>
             </div>
         </form>
+        <form action="{{ url_for('login.pagina_login')}}" method="POST" >
+            <input type="hidden" name="action" value="logout">
+            <button class="p-2 bg-[#b01002d7] text-white rounded-lg">Logout</button>
+        </form>
     </div>
 
     {% with messages = get_flashed_messages(with_categories=True) %}

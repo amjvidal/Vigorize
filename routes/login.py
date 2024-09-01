@@ -15,8 +15,6 @@ def pagina_login():
     """ Retorna a página de login """
     user = auth.current_user
 
-    if user:
-        return redirect(url_for('perfil.pagina_perfil'))
     
     
     # Define os inputs da página de login
@@ -26,6 +24,7 @@ def pagina_login():
         
     ]
     if request.method == 'POST':
+        print("post")
 
         action = request.form.get('action')
         data = request.form
@@ -49,12 +48,14 @@ def pagina_login():
                 error_message = json.loads(e.args[1])['error']['message']
                 flash(error_message, 'danger')
                 return render_template('index.html', inputs=inputs)
-    
         
+        else:
+            print('logout')
+            auth.current_user = None
+            flash('Logout realizado com sucesso!', 'success')
+            return render_template('index.html', inputs=inputs)
+        
+    if user:
+        return redirect(url_for('perfil.pagina_perfil'))
+    
     return render_template('index.html', inputs=inputs)
-
-@login_routes.route('/logout', methods=['POST'])
-def logout():
-    auth.current_user = None
-    flash('Você saiu com sucesso.', 'success')
-    return redirect(url_for('pagina_login'))
