@@ -71,7 +71,7 @@
 
             <!-- Botão para calcular o IMC -->
             <div class="flex items-center justify-between">
-                <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Cadastrar</button>
+                <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Calcular</button>
             </div>
         </form>
 
@@ -83,15 +83,7 @@
         {% endif %}
         
         <!-- Exibir mensagens flash -->
-        {% with messages = get_flashed_messages(with_categories=True) %}
-            {% if messages %}
-                <div class="mt-6">
-                    {% for category, message in messages %}
-                        <div class="text-{{ 'green-600' if category == 'success' else 'red-600' }} font-bold">{{ message }}</div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
+        
     </div>
 
     <button class="bg-[#ED8D00] hover:bg-[#f2a30a] text-white font-bold py-2 px-6 rounded-full mt-6">
