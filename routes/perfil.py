@@ -21,22 +21,29 @@ def pagina_perfil():
         return redirect(url_for('login.pagina_login'))
     
     try:
-
         user_email = emailDb(user['email'])
-
-
         altura_user = db.child("usuarios").child(user_email).child("altura").get().val()
         peso_user = db.child("usuarios").child(user_email).child("peso").get().val()
         cintura_user = db.child("usuarios").child(user_email).child("cintura").get().val()
         pescoco_user = db.child("usuarios").child(user_email).child("pescoco").get().val()
         sexo_user = db.child("usuarios").child(user_email).child("sexo").get().val()
-
+        atividade_user = db.child("usuarios").child(user_email).child("fisico").get().val()
+<<<<<<< HEAD
+>>>>>>> 15cd5d3e27a4ebeb3c3b781d0abc42c27260c474
+        
 
         inputs = [
-            {'id': 'altura', 'type': 'number', 'value': altura_user,'name': 'altura', 'label': 'Altura(cm)','max': '250','min': '100'},
-            {'id': 'peso', 'type': 'number', 'value': peso_user,'name': 'peso', 'label': 'Peso(kg)','max': '500','min': '30'},
-            {'id': 'cintura', 'type': 'number', 'value': cintura_user,'name': 'cintura', 'label': 'Cintura(cm)','max': '180','min': '30'},
-            {'id': 'pescoco', 'type': 'number', 'value': pescoco_user,'name': 'pescoco', 'label': 'Pescoço(cm)','max': '60','min': '20'},
+            {'id': 'altura', 'type': 'number', 'value': altura_user, 'name': 'altura', 'label': 'Altura(cm)', 'max': '250', 'min': '100'},
+            {'id': 'peso', 'type': 'number', 'value': peso_user, 'name': 'peso', 'label': 'Peso(kg)', 'max': '500', 'min': '30'},
+            {'id': 'cintura', 'type': 'number', 'value': cintura_user, 'name': 'cintura', 'label': 'Cintura(cm)', 'max': '180', 'min': '30'},
+            {'id': 'pescoco', 'type': 'number', 'value': pescoco_user, 'name': 'pescoco', 'label': 'Pescoço(cm)', 'max': '60', 'min': '20'},
+            {'id': 'sexo', 'type': 'text', 'value': sexo_user, 'name': 'sexo', 'label': 'Sexo', 'disabled': 'true'},
+            {'id': 'fisico', 'type': 'text', 'value': atividade_user, 'name': 'fisico', 'label': 'Atividade Física', 'disabled': 'true'},
+<<<<<<< HEAD
+=======
+>>>>>>> 15cd5d3e27a4ebeb3c3b781d0abc42c27260c474
+            
+            
         ]
         if sexo_user == 'Feminino':
             quadril_user = db.child("usuarios").child(user_email).child("quadril").get().val()
