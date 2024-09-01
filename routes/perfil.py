@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from firebaseAuth import recoverPassword, db, auth, emailDb
 import json
-from calculadora import calculaTMB, calculaPercentGorduraMASC
+from calculadora import calculaTMB, calculaPercentGorduraMASC, calculaPercentGorduraFem
+from datetime import datetime
 
 
 
@@ -16,6 +17,8 @@ perfil_routes = Blueprint('perfil', __name__)
 """
 
 @perfil_routes.route('/', methods=['GET','POST'])
+
+
 def pagina_perfil():
     user=auth.current_user
     user_email = emailDb(user['email'])
@@ -25,8 +28,31 @@ def pagina_perfil():
     cintura_user = db.child("usuarios").child(user_email).child("cintura").get().val()
     pescoco_user = db.child("usuarios").child(user_email).child("pescoco").get().val()
     sexo_user = db.child("usuarios").child(user_email).child("sexo").get().val()
+    idade_user = db.child("usuarios").child(user_email).child("dataNas").get().val()
+    atividade_user = db.child("usuarios").child(user_email).child("fisico").get().val()
     
+    
+    # def calcular_idade(idade_user):
+ 
+    #     try:
+    #         # Converter a data de nascimento para um objeto datetime
+    #         data_nascimento = datetime.strptime(idade_user, '%Y-%m-%d')
+    #     except ValueError:
+    #         raise ValueError("A data de nascimento deve estar no formato 'YYYY-MM-DD'")
+        
+    #     # Obter a data atual
+    #     hoje = datetime.today()
 
+    #     # Calcular a diferença de anos
+    #     idade = hoje.year - data_nascimento.year
+
+    #     # Ajustar se a data de nascimento ainda não ocorreu neste ano
+    #     if (hoje.month, hoje.day) < (data_nascimento.month, data_nascimento.day):
+    #         idade -= 1
+
+    #     return idade
+    
+    # idade = calcular_idade(idade_user)
 
     inputs = [
         {'id': 'altura', 'type': 'number', 'value': altura_user,'name': 'altura', 'label': 'Altura(cm)','max': '250','min': '100'},
@@ -70,7 +96,11 @@ def pagina_perfil():
                 error_message = json.loads(e.args[1])['error']['message']
                 flash(error_message, 'danger')
                 return redirect(url_for('perfil.pagina_perfil'))
-    cal_value = calculaPercentGorduraMASC(int(altura_user), int(cintura_user), int(pescoco_user))
+    gor_value = calculaPercentGorduraMASC(int(altura_user), int(cintura_user), int(pescoco_user))
+    #cal_value = calculaTMB(int(peso_user), int(altura_user),  idade, sexo_user, atividade_user)
+    # cal_valuefm = calculaPercentGorduraFem(int(altura_user), int(cintura_user), int(pescoco_user), int(quadril_user))
+    
+
     #     elif action == 'recover_password':
     #         try:
     #             recoverPassword(user['email'])
@@ -95,5 +125,5 @@ def pagina_perfil():
     
     
             
-    return render_template('perfil.html', inputs=inputs, cal_value=cal_value)
+    return render_template('perfil.html', inputs=inputs, gor_value=gor_value)
 
