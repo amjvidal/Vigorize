@@ -2,7 +2,19 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 from firebaseAuth import recoverPassword, db, auth, emailDb
 import json
 from calculadora import calculaTMB, calculaPercentGorduraMASC, calculaPercentGorduraFem, calculaIMC
+from datetime import datetime
 
+def calcular_idade(data_nascimento):
+    # Converte a data de nascimento do formato "dd.mm.yyyy" para um objeto datetime
+    data_nascimento = datetime.strptime(data_nascimento, "%Y-%m-%d")
+    # Obtém a data atual
+    data_atual = datetime.now()
+    # Calcula a idade com base na diferença de anos
+    idade = data_atual.year - data_nascimento.year
+    # Ajusta a idade se o aniversário ainda não tiver ocorrido este ano
+    if (data_atual.month, data_atual.day) < (data_nascimento.month, data_nascimento.day):
+        idade -= 1
+    return idade
 
 perfil_routes = Blueprint('perfil', __name__)
 
@@ -22,8 +34,8 @@ def pagina_perfil():
         pescoco_user = db.child("usuarios").child(user_email).child("pescoco").get().val()
         sexo_user = db.child("usuarios").child(user_email).child("sexo").get().val()
         atividade_user = db.child("usuarios").child(user_email).child("fisico").get().val()
+        data_nas_user = db.child("usuarios").child(user_email).child("data").get().val()  
         fisicos = ["Sedentário", "Atividade Ligeira", "Atividade Moderada", "Atividade Intensa", "Atividade Muito Intensa"]
-        
 
         inputs = [
             {'id': 'altura', 'type': 'number', 'value': altura_user, 'name': 'altura', 'label': 'Altura(cm)', 'max': '250', 'min': '100'},
@@ -32,13 +44,11 @@ def pagina_perfil():
             {'id': 'pescoco', 'type': 'number', 'value': pescoco_user, 'name': 'pescoco', 'label': 'Pescoço(cm)', 'max': '60', 'min': '20'},
             {'id': 'sexo', 'type': 'text', 'value': sexo_user, 'name': 'sexo', 'label': 'Sexo', 'disabled': 'true'},
             {'id': 'fisico', 'type': 'text', 'value': atividade_user, 'name': 'fisico', 'label': 'Atividade Física', 'disabled': 'true'},
-            
-            
         ]
-        
+
         if sexo_user == 'Feminino':
             quadril_user = db.child("usuarios").child(user_email).child("quadril").get().val()
-            inputs.append({'id': 'cintura', 'type': 'number', 'value': quadril_user,'name': 'cintura', 'label': 'Quadril(cm)', 'max': '180','min': '30'})
+            inputs.append({'id': 'quadril', 'type': 'number', 'value': quadril_user,'name': 'quadril', 'label': 'Quadril(cm)', 'max': '180','min': '30'})
 
         if request.method == 'POST':
             action = request.form.get('action')
@@ -58,7 +68,6 @@ def pagina_perfil():
                         if data['quadril'] == '':
                             data['quadril'] = quadril_user
                     
-                    
                     db.child("usuarios").child(user_email).update(
                         {'altura': data['altura'],
                         'peso': data['peso'],
@@ -68,7 +77,6 @@ def pagina_perfil():
 
                     return redirect(url_for('perfil.pagina_perfil'))
                 except Exception as e:
-                    # Captura a exceção e imprime a mensagem de erro
                     error_message = json.loads(e.args[1])['error']['message']
                     flash(error_message, 'danger')
                     return redirect(url_for('perfil.pagina_perfil'))
@@ -78,21 +86,13 @@ def pagina_perfil():
                     flash('Email de recuperação de senha enviado!', 'success')
                 except Exception as e:
                     print(e)
-                    # Captura a exceção e imprime a mensagem de erro
-                    # error_message = json.loads(e.args[1])['error']['message']
-                    # flash(error_message, 'danger')
-                    # return render_template('perfil.html', inputs=inputs, fisicos=fisicos)
-                    # Captura a exceção e imprime a mensagem de erro
-                    # error_message = json.loads(e.args[1])['error']['message']
-                    # flash(error_message, 'danger')
-                    # return render_template('perfil.html', inputs=inputs, fisicos=fisicos)
             
             elif action == 'delete_account':
                 try:
-                    auth.delete_user_account(user['idToken'])  # Exclui o usuário da autenticação
-                    db.child("usuarios").child(user_email).remove()  # Exclui o perfil do usuário
+                    auth.delete_user_account(user['idToken'])
+                    db.child("usuarios").child(user_email).remove()
                     flash('Perfil excluído com sucesso!', 'success')
-                    return redirect(url_for('login.pagina_login'))  # Redireciona para a página de login
+                    return redirect(url_for('login.pagina_login'))
                 except Exception as e:
                     error_message = str(e)
                     flash(error_message, 'danger')
@@ -101,13 +101,20 @@ def pagina_perfil():
     except Exception as e:
         flash('Erro ao acessar o perfil.', 'danger')
         return redirect(url_for('login.pagina_login'))
+
+  
     
+    idade = calcular_idade(data_nas_user)  
     
-    #cal_tmb = calculaTMB(int(peso_user),int(altura_user) ,int(idade_user), sexo_user, atividade_user)
+    cal_tmb = round(calculaTMB(int(peso_user), int(altura_user), int(idade), sexo_user, atividade_user),4)
+    max_cal_tmb = 10000
+    cam_tmbpo = (cal_tmb / max_cal_tmb) * 100 
+    
     if sexo_user == 'Masculino':
         percent_gordura = calculaPercentGorduraMASC(int(altura_user), int(cintura_user), int(pescoco_user))
     else:
         percent_gordura = calculaPercentGorduraFem(int(altura_user), int(cintura_user), int(pescoco_user), int(quadril_user))
+    
     imc = calculaIMC(int(peso_user), int(altura_user))
-            
-    return render_template('perfil.html', inputs=inputs, percent_gordura=percent_gordura, imc=imc)
+
+    return render_template('perfil.html', inputs=inputs, percent_gordura=percent_gordura, imc=imc, cal_tmb=cal_tmb, fisicos=fisicos, idade=idade, cam_tmbpo=cam_tmbpo)
