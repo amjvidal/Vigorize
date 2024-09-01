@@ -7,6 +7,11 @@ imc_routes = Blueprint('imc', __name__)
 
 @imc_routes.route('/', methods=['GET', 'POST'])
 def pagina_calculadora_imc():
+    user = auth.current_user
+    if user is None:
+        flash('Você precisa estar logado para acessar esta página.', 'danger')
+        return redirect(url_for('login.pagina_login'))
+    
     imc_result = None
 
     if request.method == 'POST':
