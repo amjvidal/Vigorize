@@ -5,27 +5,23 @@ from calculadora import calculaTMB, calculaPercentGorduraMASC, calculaPercentGor
 from datetime import datetime
 
 def calcular_idade(data_nascimento):
-    # Converte a data de nascimento do formato "dd.mm.yyyy" para um objeto datetime
     data_nascimento = datetime.strptime(data_nascimento, "%Y-%m-%d")
-    # Obtém a data atual
     data_atual = datetime.now()
-    # Calcula a idade com base na diferença de anos
     idade = data_atual.year - data_nascimento.year
-    # Ajusta a idade se o aniversário ainda não tiver ocorrido este ano
     if (data_atual.month, data_atual.day) < (data_nascimento.month, data_nascimento.day):
         idade -= 1
     return idade
 
 perfil_routes = Blueprint('perfil', __name__)
 
-@perfil_routes.route('/', methods=['GET','POST'])
+@perfil_routes.route('/', methods=['GET', 'POST'])
 def pagina_perfil():
     user = auth.current_user
 
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
-    
+
     try:
         user_email = emailDb(user['email'])
         altura_user = db.child("usuarios").child(user_email).child("altura").get().val()
@@ -33,8 +29,9 @@ def pagina_perfil():
         cintura_user = db.child("usuarios").child(user_email).child("cintura").get().val()
         pescoco_user = db.child("usuarios").child(user_email).child("pescoco").get().val()
         sexo_user = db.child("usuarios").child(user_email).child("sexo").get().val()
-        data_nas_user = db.child("usuarios").child(user_email).child("data").get().val()  
+        data_nas_user = db.child("usuarios").child(user_email).child("data").get().val()
         fisicos = ["Sedentário", "Atividade Ligeira", "Atividade Moderada", "Atividade Intensa", "Atividade Muito Intensa"]
+        atividade_user = db.child("usuarios").child(user_email).child("fisico").get().val()
 
         inputs = [
             {'id': 'altura', 'type': 'number', 'value': altura_user, 'name': 'altura', 'label': 'Altura(cm)', 'max': '250', 'min': '100'},
@@ -45,7 +42,7 @@ def pagina_perfil():
 
         if sexo_user == 'Feminino':
             quadril_user = db.child("usuarios").child(user_email).child("quadril").get().val()
-            inputs.append({'id': 'quadril', 'type': 'number', 'value': quadril_user,'name': 'quadril', 'label': 'Quadril(cm)', 'max': '180','min': '30'})
+            inputs.append({'id': 'quadril', 'type': 'number', 'value': quadril_user, 'name': 'quadril', 'label': 'Quadril(cm)', 'max': '180', 'min': '30'})
 
         if request.method == 'POST':
             action = request.form.get('action')
@@ -64,13 +61,13 @@ def pagina_perfil():
                     if sexo_user == 'Feminino':
                         if data['quadril'] == '':
                             data['quadril'] = quadril_user
-                    
+
                     db.child("usuarios").child(user_email).update(
                         {'altura': data['altura'],
-                        'peso': data['peso'],
-                        'cintura': data['cintura'],
-                        'pescoco': data['pescoco'],
-                        'fisico': data['fisico']})
+                         'peso': data['peso'],
+                         'cintura': data['cintura'],
+                         'pescoco': data['pescoco'],
+                         'fisico': data['fisico']})
                     flash('Perfil atualizado com sucesso!', 'success')
 
                     return redirect(url_for('perfil.pagina_perfil'))
@@ -84,7 +81,7 @@ def pagina_perfil():
                     flash('Email de recuperação de senha enviado!', 'success')
                 except Exception as e:
                     print(e)
-            
+
             elif action == 'delete_account':
                 try:
                     auth.delete_user_account(user['idToken'])
@@ -95,24 +92,30 @@ def pagina_perfil():
                     error_message = str(e)
                     flash(error_message, 'danger')
                     return redirect(url_for('perfil.pagina_perfil'))
-    
+
     except Exception as e:
         flash('Erro ao acessar o perfil.', 'danger')
         return redirect(url_for('login.pagina_login'))
 
-  
-    
-    idade = calcular_idade(data_nas_user)  
-    
-    cal_tmb = round(calculaTMB(int(peso_user), int(altura_user), int(idade), sexo_user, fisicos),4)
-    max_cal_tmb = 10000
-    cam_tmbpo = (cal_tmb / max_cal_tmb) * 100 
-    
+    idade = calcular_idade(data_nas_user)
+
+    Caloria = round(calculaTMB(int(peso_user), int(altura_user), int(idade), sexo_user, atividade_user), 4)
+    max_Caloria = 10000
+    CaloriaMedia = (Caloria / max_Caloria) * 100
     if sexo_user == 'Masculino':
         percent_gordura = calculaPercentGorduraMASC(int(altura_user), int(cintura_user), int(pescoco_user))
     else:
         percent_gordura = calculaPercentGorduraFem(int(altura_user), int(cintura_user), int(pescoco_user), int(quadril_user))
-    
+
     imc = calculaIMC(int(peso_user), int(altura_user))
-            
-    return render_template('perfil.html', inputs=inputs, percent_gordura=percent_gordura, imc=imc, fisicos=fisicos,cam_tmbpo=cam_tmbpo, idade=idade, cal_tmb=cal_tmb)
+
+    # Salvar os dados calculados no Firebase
+    db.child("usuarios").child(user_email).update(
+        {
+            'imc': imc,
+            'percent_gordura': percent_gordura,
+            'Caloria': Caloria
+        }
+    )
+
+    return render_template('perfil.html', inputs=inputs, percent_gordura=percent_gordura, imc=imc, fisicos=fisicos, CaloriaMedia=CaloriaMedia, idade=idade, Caloria=Caloria, atividade_user=atividade_user)
