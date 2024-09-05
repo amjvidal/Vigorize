@@ -27,6 +27,7 @@
                 border-radius: 10px;
                 
             }
+
         </style>
 
         <div class="search-container">
@@ -34,10 +35,10 @@
                 <input type="text" id="search-bar" placeholder="Pesquisar..." onkeyup="filterItems()">
                 <select id="item-select" name="item" size="5">
                     {% for item in items %}
-                        <option value="{{ item }}">{{ item }}</option>
+                        <option value="{{ item.Nome }}">{{ item.Nome }}</option>
                     {% endfor %}
                 </select>
-                <button type="submit" class="add-button">Inflar Botão</button>
+                <button type="submit" class="add-button">Adicionar</button>
             </form>
         </div>
 

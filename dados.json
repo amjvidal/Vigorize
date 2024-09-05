@@ -5,7 +5,8 @@
               "Proteína": 2.59,
               "Carboidrato": 25.81,
               "Umidade": 70.14,
-              "gorduraTotal": "1.1"
+              "gorduraTotal": 1.0,
+              "Sodio": 1.24
        },
        {
               "Nome": "Arroz, tipo 1, cozido",
@@ -13,7 +14,8 @@
               "Proteína": 2.52,
               "Carboidrato": 28.06,
               "Umidade": 69.11,
-              "gorduraTotal": "0.66"
+              "gorduraTotal": 0.23,
+              "Sodio": 1.2
        },
        {
               "Nome": "Arroz, tipo 2, cozido",
@@ -21,7 +23,8 @@
               "Proteína": 2.57,
               "Carboidrato": 28.19,
               "Umidade": 68.73,
-              "gorduraTotal": "0.79"
+              "gorduraTotal": 0.36,
+              "Sodio": 1.96
        },
        {
               "Nome": "Biscoito, doce, maisena",
@@ -29,7 +32,8 @@
               "Proteína": 8.07,
               "Carboidrato": 75.23,
               "Umidade": 3.22,
-              "gorduraTotal": "12.18"
+              "gorduraTotal": 11.97,
+              "Sodio": 352.03
        },
        {
               "Nome": "Biscoito, doce, recheado com chocolate",
@@ -37,7 +41,8 @@
               "Proteína": 6.4,
               "Carboidrato": 70.55,
               "Umidade": 2.18,
-              "gorduraTotal": "18.23"
+              "gorduraTotal": 19.58,
+              "Sodio": 239.2
        },
        {
               "Nome": "Biscoito, doce, recheado com morango",
@@ -45,7 +50,8 @@
               "Proteína": 5.72,
               "Carboidrato": 71.01,
               "Umidade": 2.73,
-              "gorduraTotal": "18.25"
+              "gorduraTotal": 19.57,
+              "Sodio": 229.82
        },
        {
               "Nome": "Biscoito, doce, wafer, recheado de chocolate",
@@ -53,7 +59,8 @@
               "Proteína": 5.56,
               "Carboidrato": 67.54,
               "Umidade": 1.17,
-              "gorduraTotal": "23.34"
+              "gorduraTotal": 24.67,
+              "Sodio": 137.24
        },
        {
               "Nome": "Biscoito, doce, wafer, recheado de morango",
@@ -61,7 +68,8 @@
               "Proteína": 4.52,
               "Carboidrato": 67.35,
               "Umidade": 1.17,
-              "gorduraTotal": "25.11"
+              "gorduraTotal": 26.4,
+              "Sodio": 119.9
        },
        {
               "Nome": "Biscoito, salgado, cream cracker",
@@ -69,7 +77,8 @@
               "Proteína": 10.06,
               "Carboidrato": 68.73,
               "Umidade": 4.06,
-              "gorduraTotal": "12.95"
+              "gorduraTotal": 14.44,
+              "Sodio": 854.36
        },
        {
               "Nome": "Bolo, mistura para",
@@ -77,7 +86,8 @@
               "Proteína": 6.16,
               "Carboidrato": 84.71,
               "Umidade": 1,
-              "gorduraTotal": "6.13"
+              "gorduraTotal": 6.13,
+              "Sodio": 462.88
        },
        {
               "Nome": "Bolo, pronto, aipim",
@@ -85,7 +95,8 @@
               "Proteína": 4.42,
               "Carboidrato": 47.86,
               "Umidade": 34.13,
-              "gorduraTotal": "12.75"
+              "gorduraTotal": 12.75,
+              "Sodio": 111.01
        },
        {
               "Nome": "Bolo, pronto, chocolate",
@@ -93,7 +104,8 @@
               "Proteína": 6.22,
               "Carboidrato": 54.72,
               "Umidade": 19.28,
-              "gorduraTotal": "18.47"
+              "gorduraTotal": 18.47,
+              "Sodio": 283.3
        },
        {
               "Nome": "Bolo, pronto, coco",
@@ -101,7 +113,8 @@
               "Proteína": 5.67,
               "Carboidrato": 52.28,
               "Umidade": 29.32,
-              "gorduraTotal": "11.3"
+              "gorduraTotal": 11.3,
+              "Sodio": 190.34
        },
        {
               "Nome": "Bolo, pronto, milho",
@@ -109,7 +122,8 @@
               "Proteína": 4.8,
               "Carboidrato": 45.11,
               "Umidade": 36.69,
-              "gorduraTotal": "12.42"
+              "gorduraTotal": 12.41,
+              "Sodio": 133.81
        },
        {
               "Nome": "Canjica, com leite integral",
@@ -117,7 +131,8 @@
               "Proteína": 2.36,
               "Carboidrato": 23.63,
               "Umidade": 72.49,
-              "gorduraTotal": "0.94"
+              "gorduraTotal": 1.24,
+              "Sodio": 27.59
        },
        {
               "Nome": "Cereais, milho, flocos, com sal",
@@ -125,7 +140,8 @@
               "Proteína": 7.29,
               "Carboidrato": 80.83,
               "Umidade": 9.29,
-              "gorduraTotal": "1.9"
+              "gorduraTotal": 1.6,
+              "Sodio": 271.74
        },
        {
               "Nome": "Cereais, milho, flocos, sem sal",
@@ -133,7 +149,8 @@
               "Proteína": 6.88,
               "Carboidrato": 80.45,
               "Umidade": 11.22,
-              "gorduraTotal": "1.56"
+              "gorduraTotal": 1.18,
+              "Sodio": 30.97
        },
        {
               "Nome": "Cereais, mingau, milho, infantil",
@@ -141,7 +158,8 @@
               "Proteína": 6.43,
               "Carboidrato": 87.27,
               "Umidade": 4.7,
-              "gorduraTotal": "2.18"
+              "gorduraTotal": 1.09,
+              "Sodio": 399.4
        },
        {
               "Nome": "Cereais, mistura para vitamina, trigo, cevada e aveia",
@@ -149,7 +167,8 @@
               "Proteína": 8.9,
               "Carboidrato": 81.62,
               "Umidade": 4.37,
-              "gorduraTotal": "2.12"
+              "gorduraTotal": 2.12,
+              "Sodio": 1163.26
        },
        {
               "Nome": "Cereal matinal, milho",
@@ -157,7 +176,8 @@
               "Proteína": 7.16,
               "Carboidrato": 83.82,
               "Umidade": 5.53,
-              "gorduraTotal": "0.16"
+              "gorduraTotal": 0.96,
+              "Sodio": 654.54
        },
        {
               "Nome": "Cereal matinal, milho, açúcar",
@@ -165,7 +185,8 @@
               "Proteína": 4.74,
               "Carboidrato": 88.84,
               "Umidade": 4.27,
-              "gorduraTotal": "0.25"
+              "gorduraTotal": 0.67,
+              "Sodio": 405.31
        },
        {
               "Nome": "Creme de arroz, pó",
@@ -173,7 +194,8 @@
               "Proteína": 7.03,
               "Carboidrato": 83.87,
               "Umidade": 7.33,
-              "gorduraTotal": "2.49"
+              "gorduraTotal": 1.23,
+              "Sodio": 1.03
        },
        {
               "Nome": "Creme de milho, pó",
@@ -181,7 +203,8 @@
               "Proteína": 4.82,
               "Carboidrato": 86.15,
               "Umidade": 5.65,
-              "gorduraTotal": "-3.43"
+              "gorduraTotal": 1.64,
+              "Sodio": 593.79
        },
        {
               "Nome": "Curau, milho verde",
@@ -189,7 +212,8 @@
               "Proteína": 2.36,
               "Carboidrato": 13.94,
               "Umidade": 81.56,
-              "gorduraTotal": "1.47"
+              "gorduraTotal": 1.64,
+              "Sodio": 20.51
        },
        {
               "Nome": "Curau, milho verde, mistura para",
@@ -197,7 +221,8 @@
               "Proteína": 2.22,
               "Carboidrato": 79.82,
               "Umidade": 3.92,
-              "gorduraTotal": "8.24"
+              "gorduraTotal": 13.37,
+              "Sodio": 222.93
        },
        {
               "Nome": "Farinha, de arroz, enriquecida",
@@ -205,7 +230,8 @@
               "Proteína": 1.27,
               "Carboidrato": 85.5,
               "Umidade": 12.69,
-              "gorduraTotal": "1.77"
+              "gorduraTotal": 0.3,
+              "Sodio": 17.1
        },
        {
               "Nome": "Farinha, de centeio, integral",
@@ -213,7 +239,8 @@
               "Proteína": 12.52,
               "Carboidrato": 73.3,
               "Umidade": 10.78,
-              "gorduraTotal": "-0.83"
+              "gorduraTotal": 1.75,
+              "Sodio": 41.38
        },
        {
               "Nome": "Farinha, de milho, amarela",
@@ -221,7 +248,8 @@
               "Proteína": 7.19,
               "Carboidrato": 79.08,
               "Umidade": 11.77,
-              "gorduraTotal": "0.61"
+              "gorduraTotal": 1.47,
+              "Sodio": 44.93
        },
        {
               "Nome": "Farinha, de rosca",
@@ -229,7 +257,8 @@
               "Proteína": 11.38,
               "Carboidrato": 75.79,
               "Umidade": 9.81,
-              "gorduraTotal": "2.43"
+              "gorduraTotal": 1.46,
+              "Sodio": 332.5
        },
        {
               "Nome": "Farinha, de trigo",
@@ -237,7 +266,8 @@
               "Proteína": 9.79,
               "Carboidrato": 75.09,
               "Umidade": 12.98,
-              "gorduraTotal": "2.33"
+              "gorduraTotal": 1.37,
+              "Sodio": 0.74
        },
        {
               "Nome": "Farinha, láctea, de cereais",
@@ -245,7 +275,8 @@
               "Proteína": 11.88,
               "Carboidrato": 77.77,
               "Umidade": 2.7,
-              "gorduraTotal": "6.25"
+              "gorduraTotal": 5.79,
+              "Sodio": 125.07
        },
        {
               "Nome": "Lasanha, massa fresca, cozida",
@@ -253,7 +284,8 @@
               "Proteína": 5.81,
               "Carboidrato": 32.52,
               "Umidade": 59.65,
-              "gorduraTotal": "1.16"
+              "gorduraTotal": 1.16,
+              "Sodio": 206.77
        },
        {
               "Nome": "Macarrão, instantâneo",
@@ -261,7 +293,8 @@
               "Proteína": 8.79,
               "Carboidrato": 62.43,
               "Umidade": 5.97,
-              "gorduraTotal": "16.77"
+              "gorduraTotal": 17.24,
+              "Sodio": 1515.53
        },
        {
               "Nome": "Milho, verde, enlatado, drenado",
@@ -269,7 +302,8 @@
               "Proteína": 3.23,
               "Carboidrato": 17.14,
               "Umidade": 76.22,
-              "gorduraTotal": "1.79"
+              "gorduraTotal": 2.35,
+              "Sodio": 260.35
        },
        {
               "Nome": "Mingau tradicional, pó",
@@ -277,7 +311,8 @@
               "Proteína": 0.58,
               "Carboidrato": 89.34,
               "Umidade": 8.14,
-              "gorduraTotal": "1.53"
+              "gorduraTotal": 0.37,
+              "Sodio": 14.86
        },
        {
               "Nome": "Pamonha, barra para cozimento, pré-cozida",
@@ -285,7 +320,8 @@
               "Proteína": 2.55,
               "Carboidrato": 30.68,
               "Umidade": 61.31,
-              "gorduraTotal": "4.25"
+              "gorduraTotal": 4.85,
+              "Sodio": 131.99
        },
        {
               "Nome": "Pão, aveia, forma",
@@ -293,7 +329,8 @@
               "Proteína": 12.35,
               "Carboidrato": 59.57,
               "Umidade": 19.92,
-              "gorduraTotal": "6.16"
+              "gorduraTotal": 5.69,
+              "Sodio": 605.76
        },
        {
               "Nome": "Pão, de soja",
@@ -301,7 +338,8 @@
               "Proteína": 11.34,
               "Carboidrato": 56.51,
               "Umidade": 26.03,
-              "gorduraTotal": "4.15"
+              "gorduraTotal": 3.58,
+              "Sodio": 662.54
        },
        {
               "Nome": "Pão, glúten, forma",
@@ -309,7 +347,8 @@
               "Proteína": 11.95,
               "Carboidrato": 44.12,
               "Umidade": 40.67,
-              "gorduraTotal": "3.19"
+              "gorduraTotal": 2.73,
+              "Sodio": 22.05
        },
        {
               "Nome": "Pão, milho, forma",
@@ -317,7 +356,8 @@
               "Proteína": 8.3,
               "Carboidrato": 56.4,
               "Umidade": 30.42,
-              "gorduraTotal": "3.69"
+              "gorduraTotal": 3.11,
+              "Sodio": 506.64
        },
        {
               "Nome": "Pão, trigo, forma, integral",
@@ -325,7 +365,8 @@
               "Proteína": 9.43,
               "Carboidrato": 49.94,
               "Umidade": 34.72,
-              "gorduraTotal": "1.75"
+              "gorduraTotal": 3.65,
+              "Sodio": 506.1
        },
        {
               "Nome": "Pão, trigo, francês",
@@ -333,7 +374,8 @@
               "Proteína": 7.95,
               "Carboidrato": 58.65,
               "Umidade": 28.48,
-              "gorduraTotal": "3.71"
+              "gorduraTotal": 3.1,
+              "Sodio": 647.67
        },
        {
               "Nome": "Pão, trigo, sovado",
@@ -341,7 +383,8 @@
               "Proteína": 8.4,
               "Carboidrato": 61.45,
               "Umidade": 25.76,
-              "gorduraTotal": "3.51"
+              "gorduraTotal": 2.84,
+              "Sodio": 430.79
        },
        {
               "Nome": "Pastel, de carne, frito",
@@ -349,7 +392,8 @@
               "Proteína": 10.1,
               "Carboidrato": 43.77,
               "Umidade": 22.92,
-              "gorduraTotal": "19.21"
+              "gorduraTotal": 20.14,
+              "Sodio": 1039.89
        },
        {
               "Nome": "Pastel, de queijo, frito",
@@ -357,7 +401,8 @@
               "Proteína": 8.71,
               "Carboidrato": 48.13,
               "Umidade": 17.54,
-              "gorduraTotal": "21.64"
+              "gorduraTotal": 22.67,
+              "Sodio": 821.38
        },
        {
               "Nome": "Pastel, massa, frita",
@@ -365,7 +410,8 @@
               "Proteína": 6.02,
               "Carboidrato": 49.34,
               "Umidade": 0.97,
-              "gorduraTotal": "38.69"
+              "gorduraTotal": 40.86,
+              "Sodio": 1174.67
        },
        {
               "Nome": "Pipoca, com óleo de soja, sem sal",
@@ -373,7 +419,8 @@
               "Proteína": 9.93,
               "Carboidrato": 70.31,
               "Umidade": 2.82,
-              "gorduraTotal": "14.15"
+              "gorduraTotal": 15.94,
+              "Sodio": 4.32
        },
        {
               "Nome": "Polenta, pré-cozida",
@@ -381,7 +428,8 @@
               "Proteína": 2.29,
               "Carboidrato": 23.31,
               "Umidade": 72.74,
-              "gorduraTotal": "0.04"
+              "gorduraTotal": 0.3,
+              "Sodio": 441.89
        },
        {
               "Nome": "Torrada, pão francês",
@@ -389,7 +437,8 @@
               "Proteína": 10.52,
               "Carboidrato": 74.56,
               "Umidade": 9.05,
-              "gorduraTotal": "4.12"
+              "gorduraTotal": 3.3,
+              "Sodio": 829.49
        },
        {
               "Nome": "Abóbora, cabotian, cozida",
@@ -397,7 +446,8 @@
               "Proteína": 1.44,
               "Carboidrato": 10.76,
               "Umidade": 86.35,
-              "gorduraTotal": "-0.09"
+              "gorduraTotal": 0.73,
+              "Sodio": 1.45
        },
        {
               "Nome": "Abóbora, moranga, refogada",
@@ -405,7 +455,8 @@
               "Proteína": 0.39,
               "Carboidrato": 5.98,
               "Umidade": 92.46,
-              "gorduraTotal": "0.39"
+              "gorduraTotal": 0.8,
+              "Sodio": 3.03
        },
        {
               "Nome": "Abobrinha, italiana, cozida",
@@ -413,7 +464,8 @@
               "Proteína": 1.12,
               "Carboidrato": 2.98,
               "Umidade": 95.28,
-              "gorduraTotal": "-0.15"
+              "gorduraTotal": 0.2,
+              "Sodio": 0.83
        },
        {
               "Nome": "Abobrinha, italiana, refogada",
@@ -421,7 +473,8 @@
               "Proteína": 1.07,
               "Carboidrato": 4.19,
               "Umidade": 93.49,
-              "gorduraTotal": "0.38"
+              "gorduraTotal": 0.82,
+              "Sodio": 2.21
        },
        {
               "Nome": "Almeirão, refogado",
@@ -429,7 +482,8 @@
               "Proteína": 1.7,
               "Carboidrato": 5.7,
               "Umidade": 86.54,
-              "gorduraTotal": "3.94"
+              "gorduraTotal": 4.85,
+              "Sodio": 14.52
        },
        {
               "Nome": "Batata, baroa, cozida",
@@ -437,7 +491,8 @@
               "Proteína": 0.85,
               "Carboidrato": 18.95,
               "Umidade": 79.26,
-              "gorduraTotal": "0.1"
+              "gorduraTotal": 0.17,
+              "Sodio": 2.1
        },
        {
               "Nome": "Batata, doce, cozida",
@@ -445,7 +500,8 @@
               "Proteína": 0.64,
               "Carboidrato": 18.42,
               "Umidade": 80.42,
-              "gorduraTotal": "0.06"
+              "gorduraTotal": 0.09,
+              "Sodio": 2.7
        },
        {
               "Nome": "Batata, frita, tipo chips, industrializada",
@@ -453,7 +509,8 @@
               "Proteína": 5.58,
               "Carboidrato": 51.22,
               "Umidade": 2.7,
-              "gorduraTotal": "35.06"
+              "gorduraTotal": 36.62,
+              "Sodio": 607.4
        },
        {
               "Nome": "Batata, inglesa, cozida",
@@ -461,7 +518,8 @@
               "Proteína": 1.16,
               "Carboidrato": 11.94,
               "Umidade": 86.36,
-              "gorduraTotal": "-0.09"
+              "gorduraTotal": 0,
+              "Sodio": 2.29
        },
        {
               "Nome": "Batata, inglesa, frita",
@@ -469,7 +527,8 @@
               "Proteína": 4.97,
               "Carboidrato": 35.64,
               "Umidade": 44.12,
-              "gorduraTotal": "11.64"
+              "gorduraTotal": 13.11,
+              "Sodio": 1.91
        },
        {
               "Nome": "Batata, inglesa, sauté",
@@ -477,7 +536,8 @@
               "Proteína": 1.29,
               "Carboidrato": 14.09,
               "Umidade": 83.09,
-              "gorduraTotal": "0.71"
+              "gorduraTotal": 0.9,
+              "Sodio": 8.18
        },
        {
               "Nome": "Berinjela, cozida",
@@ -485,7 +545,8 @@
               "Proteína": 0.68,
               "Carboidrato": 4.47,
               "Umidade": 94.43,
-              "gorduraTotal": "-0.19"
+              "gorduraTotal": 0.15,
+              "Sodio": 1.32
        },
        {
               "Nome": "Beterraba, cozida",
@@ -493,7 +554,8 @@
               "Proteína": 1.29,
               "Carboidrato": 7.23,
               "Umidade": 90.57,
-              "gorduraTotal": "-0.22"
+              "gorduraTotal": 0.09,
+              "Sodio": 22.76
        },
        {
               "Nome": "Biscoito, polvilho doce",
@@ -501,7 +563,8 @@
               "Proteína": 1.29,
               "Carboidrato": 80.54,
               "Umidade": 5.44,
-              "gorduraTotal": "12.25"
+              "gorduraTotal": 12.25,
+              "Sodio": 97.8
        },
        {
               "Nome": "Brócolis, cozido",
@@ -509,7 +572,8 @@
               "Proteína": 2.13,
               "Carboidrato": 4.37,
               "Umidade": 92.62,
-              "gorduraTotal": "-0.15"
+              "gorduraTotal": 0.46,
+              "Sodio": 2.12
        },
        {
               "Nome": "Cará, cozido",
@@ -517,7 +581,8 @@
               "Proteína": 1.53,
               "Carboidrato": 18.85,
               "Umidade": 78.88,
-              "gorduraTotal": "-0.44"
+              "gorduraTotal": 0.11,
+              "Sodio": 1.01
        },
        {
               "Nome": "Catalonha, refogada",
@@ -525,7 +590,8 @@
               "Proteína": 1.95,
               "Carboidrato": 4.81,
               "Umidade": 87.43,
-              "gorduraTotal": "4.05"
+              "gorduraTotal": 4.81,
+              "Sodio": 24.72
        },
        {
               "Nome": "Cenoura, cozida",
@@ -533,7 +599,8 @@
               "Proteína": 0.85,
               "Carboidrato": 6.69,
               "Umidade": 91.66,
-              "gorduraTotal": "-0.03"
+              "gorduraTotal": 0.22,
+              "Sodio": 7.88
        },
        {
               "Nome": "Chuchu, cozido",
@@ -541,7 +608,8 @@
               "Proteína": 0.41,
               "Carboidrato": 4.79,
               "Umidade": 94.56,
-              "gorduraTotal": "-0.25"
+              "gorduraTotal": 0,
+              "Sodio": 1.81
        },
        {
               "Nome": "Coentro, folhas desidratadas",
@@ -549,7 +617,8 @@
               "Proteína": 20.88,
               "Carboidrato": 47.95,
               "Umidade": 10.63,
-              "gorduraTotal": "3.75"
+              "gorduraTotal": 10.39,
+              "Sodio": 18.26
        },
        {
               "Nome": "Couve, manteiga, refogada",
@@ -557,7 +626,8 @@
               "Proteína": 1.67,
               "Carboidrato": 8.71,
               "Umidade": 81.53,
-              "gorduraTotal": "5.43"
+              "gorduraTotal": 6.59,
+              "Sodio": 11.45
        },
        {
               "Nome": "Couve-flor, cozida",
@@ -565,7 +635,8 @@
               "Proteína": 1.24,
               "Carboidrato": 3.88,
               "Umidade": 94.34,
-              "gorduraTotal": "-0.15"
+              "gorduraTotal": 0.27,
+              "Sodio": 1.79
        },
        {
               "Nome": "Espinafre, Nova Zelândia, refogado",
@@ -573,7 +644,8 @@
               "Proteína": 2.72,
               "Carboidrato": 4.24,
               "Umidade": 86.57,
-              "gorduraTotal": "4.38"
+              "gorduraTotal": 5.43,
+              "Sodio": 47.02
        },
        {
               "Nome": "Farinha, de mandioca, torrada",
@@ -581,7 +653,8 @@
               "Proteína": 1.23,
               "Carboidrato": 89.19,
               "Umidade": 8.34,
-              "gorduraTotal": "0.4"
+              "gorduraTotal": 0.29,
+              "Sodio": 10.31
        },
        {
               "Nome": "Farinha, de puba",
@@ -589,7 +662,8 @@
               "Proteína": 1.62,
               "Carboidrato": 87.29,
               "Umidade": 9.8,
-              "gorduraTotal": "0.51"
+              "gorduraTotal": 0.47,
+              "Sodio": 3.61
        },
        {
               "Nome": "Fécula, de mandioca",
@@ -597,7 +671,8 @@
               "Proteína": 0.52,
               "Carboidrato": 81.15,
               "Umidade": 17.77,
-              "gorduraTotal": "0.46"
+              "gorduraTotal": 0.28,
+              "Sodio": 2.45
        },
        {
               "Nome": "Mandioca, cozida",
@@ -605,7 +680,8 @@
               "Proteína": 0.57,
               "Carboidrato": 30.09,
               "Umidade": 68.69,
-              "gorduraTotal": "0.3"
+              "gorduraTotal": 0.3,
+              "Sodio": 0.91
        },
        {
               "Nome": "Mandioca, farofa, temperada",
@@ -613,7 +689,8 @@
               "Proteína": 2.06,
               "Carboidrato": 80.3,
               "Umidade": 6.42,
-              "gorduraTotal": "8.47"
+              "gorduraTotal": 9.12,
+              "Sodio": 574.51
        },
        {
               "Nome": "Mandioca, frita",
@@ -621,7 +698,8 @@
               "Proteína": 1.38,
               "Carboidrato": 50.25,
               "Umidade": 36.57,
-              "gorduraTotal": "10.39"
+              "gorduraTotal": 11.2,
+              "Sodio": 8.94
        },
        {
               "Nome": "Nhoque, batata, cozido",
@@ -629,7 +707,8 @@
               "Proteína": 5.86,
               "Carboidrato": 36.78,
               "Umidade": 54.95,
-              "gorduraTotal": "1.14"
+              "gorduraTotal": 1.94,
+              "Sodio": 7.07
        },
        {
               "Nome": "Palmito, Juçara, em conserva",
@@ -637,7 +716,8 @@
               "Proteína": 1.79,
               "Carboidrato": 4.33,
               "Umidade": 91.37,
-              "gorduraTotal": "-0.14"
+              "gorduraTotal": 0.4,
+              "Sodio": 513.82
        },
        {
               "Nome": "Palmito, pupunha, em conserva",
@@ -645,7 +725,8 @@
               "Proteína": 2.46,
               "Carboidrato": 5.51,
               "Umidade": 89.44,
-              "gorduraTotal": "-0.27"
+              "gorduraTotal": 0.45,
+              "Sodio": 562.69
        },
        {
               "Nome": "Pão, de queijo, assado",
@@ -653,7 +734,8 @@
               "Proteína": 5.12,
               "Carboidrato": 34.24,
               "Umidade": 33.74,
-              "gorduraTotal": "22.85"
+              "gorduraTotal": 24.57,
+              "Sodio": 773.49
        },
        {
               "Nome": "Polvilho, doce",
@@ -661,7 +743,8 @@
               "Proteína": 0.43,
               "Carboidrato": 86.77,
               "Umidade": 12.58,
-              "gorduraTotal": "0.27"
+              "gorduraTotal": 0,
+              "Sodio": 1.58
        },
        {
               "Nome": "Repolho, roxo, refogado",
@@ -669,7 +752,8 @@
               "Proteína": 1.8,
               "Carboidrato": 7.56,
               "Umidade": 88.7,
-              "gorduraTotal": "0.48"
+              "gorduraTotal": 1.24,
+              "Sodio": 3.42
        },
        {
               "Nome": "Seleta de legumes, enlatada",
@@ -677,7 +761,8 @@
               "Proteína": 3.42,
               "Carboidrato": 12.67,
               "Umidade": 82.15,
-              "gorduraTotal": "-0.87"
+              "gorduraTotal": 0.35,
+              "Sodio": 398.14
        },
        {
               "Nome": "Tomate, extrato",
@@ -685,7 +770,8 @@
               "Proteína": 2.43,
               "Carboidrato": 14.96,
               "Umidade": 79.66,
-              "gorduraTotal": "-0.96"
+              "gorduraTotal": 0.19,
+              "Sodio": 497.93
        },
        {
               "Nome": "Tomate, molho industrializado",
@@ -693,7 +779,8 @@
               "Proteína": 1.38,
               "Carboidrato": 7.71,
               "Umidade": 88.14,
-              "gorduraTotal": "0.23"
+              "gorduraTotal": 0.9,
+              "Sodio": 418.28
        },
        {
               "Nome": "Tomate, purê",
@@ -701,7 +788,8 @@
               "Proteína": 1.36,
               "Carboidrato": 6.89,
               "Umidade": 90.79,
-              "gorduraTotal": "-0.57"
+              "gorduraTotal": 0,
+              "Sodio": 103.93
        },
        {
               "Nome": "Tomate, salada",
@@ -709,7 +797,8 @@
               "Proteína": 0.81,
               "Carboidrato": 5.12,
               "Umidade": 93.63,
-              "gorduraTotal": "-0.35"
+              "gorduraTotal": 0,
+              "Sodio": 5.24
        },
        {
               "Nome": "Abacaxi, polpa, congelada",
@@ -717,7 +806,8 @@
               "Proteína": 0.47,
               "Carboidrato": 7.8,
               "Umidade": 91.29,
-              "gorduraTotal": "-0.27"
+              "gorduraTotal": 0.11,
+              "Sodio": 1.24
        },
        {
               "Nome": "Açaí, polpa, com xarope de guaraná e glucose",
@@ -725,7 +815,8 @@
               "Proteína": 0.72,
               "Carboidrato": 21.46,
               "Umidade": 73.88,
-              "gorduraTotal": "2.4"
+              "gorduraTotal": 3.66,
+              "Sodio": 15.1
        },
        {
               "Nome": "Açaí, polpa, congelada",
@@ -733,7 +824,8 @@
               "Proteína": 0.8,
               "Carboidrato": 6.21,
               "Umidade": 88.7,
-              "gorduraTotal": "3.34"
+              "gorduraTotal": 3.94,
+              "Sodio": 5.18
        },
        {
               "Nome": "Acerola, polpa, congelada",
@@ -741,7 +833,8 @@
               "Proteína": 0.59,
               "Carboidrato": 5.54,
               "Umidade": 93.61,
-              "gorduraTotal": "-0.29"
+              "gorduraTotal": 0,
+              "Sodio": 1.28
        },
        {
               "Nome": "Ameixa, calda, enlatada",
@@ -749,7 +842,8 @@
               "Proteína": 0.41,
               "Carboidrato": 46.89,
               "Umidade": 52.17,
-              "gorduraTotal": "-0.71"
+              "gorduraTotal": 0,
+              "Sodio": 2.7
        },
        {
               "Nome": "Ameixa, em calda, enlatada, drenada",
@@ -757,7 +851,8 @@
               "Proteína": 1.02,
               "Carboidrato": 47.66,
               "Umidade": 50.34,
-              "gorduraTotal": "-1.93"
+              "gorduraTotal": 0.28,
+              "Sodio": 2.79
        },
        {
               "Nome": "Banana, doce em barra",
@@ -765,7 +860,8 @@
               "Proteína": 2.17,
               "Carboidrato": 75.67,
               "Umidade": 21.13,
-              "gorduraTotal": "-3.47"
+              "gorduraTotal": 0.05,
+              "Sodio": 9.88
        },
        {
               "Nome": "Cajá, polpa, congelada",
@@ -773,7 +869,8 @@
               "Proteína": 0.59,
               "Carboidrato": 6.37,
               "Umidade": 92.44,
-              "gorduraTotal": "-0.17"
+              "gorduraTotal": 0.17,
+              "Sodio": 6.95
        },
        {
               "Nome": "Caju, polpa, congelada",
@@ -781,7 +878,8 @@
               "Proteína": 0.48,
               "Carboidrato": 9.35,
               "Umidade": 89.82,
-              "gorduraTotal": "-0.31"
+              "gorduraTotal": 0.15,
+              "Sodio": 4.16
        },
        {
               "Nome": "Caju, suco concentrado, envasado",
@@ -789,7 +887,8 @@
               "Proteína": 0.4,
               "Carboidrato": 10.73,
               "Umidade": 88.37,
-              "gorduraTotal": "0.06"
+              "gorduraTotal": 0.2,
+              "Sodio": 45.04
        },
        {
               "Nome": "Cupuaçu, polpa, congelada",
@@ -797,7 +896,8 @@
               "Proteína": 0.84,
               "Carboidrato": 11.39,
               "Umidade": 86.55,
-              "gorduraTotal": "-0.01"
+              "gorduraTotal": 0.59,
+              "Sodio": 0.69
        },
        {
               "Nome": "Figo, enlatado, em calda",
@@ -805,7 +905,8 @@
               "Proteína": 0.56,
               "Carboidrato": 50.34,
               "Umidade": 48.77,
-              "gorduraTotal": "-2.14"
+              "gorduraTotal": 0.15,
+              "Sodio": 6.87
        },
        {
               "Nome": "Goiaba, doce em pasta",
@@ -813,7 +914,8 @@
               "Proteína": 0.58,
               "Carboidrato": 74.12,
               "Umidade": 24.78,
-              "gorduraTotal": "-3.32"
+              "gorduraTotal": 0,
+              "Sodio": 3.7
        },
        {
               "Nome": "Goiaba, doce, cascão",
@@ -821,7 +923,8 @@
               "Proteína": 0.41,
               "Carboidrato": 78.7,
               "Umidade": 20.26,
-              "gorduraTotal": "-3.43"
+              "gorduraTotal": 0.1,
+              "Sodio": 11.03
        },
        {
               "Nome": "Graviola, polpa, congelada",
@@ -829,7 +932,8 @@
               "Proteína": 0.57,
               "Carboidrato": 9.78,
               "Umidade": 89.16,
-              "gorduraTotal": "-0.35"
+              "gorduraTotal": 0.14,
+              "Sodio": 3.05
        },
        {
               "Nome": "Laranja, baía, suco",
@@ -837,7 +941,8 @@
               "Proteína": 0.65,
               "Carboidrato": 8.7,
               "Umidade": 90.25,
-              "gorduraTotal": "-0.08"
+              "gorduraTotal": 0,
+              "Sodio": 0
        },
        {
               "Nome": "Laranja, da terra, suco",
@@ -845,7 +950,8 @@
               "Proteína": 0.67,
               "Carboidrato": 9.57,
               "Umidade": 89.22,
-              "gorduraTotal": "-0.0"
+              "gorduraTotal": 0.14,
+              "Sodio": 0
        },
        {
               "Nome": "Laranja, lima, suco",
@@ -853,7 +959,8 @@
               "Proteína": 0.71,
               "Carboidrato": 9.17,
               "Umidade": 89.68,
-              "gorduraTotal": "-0.02"
+              "gorduraTotal": 0.12,
+              "Sodio": 0
        },
        {
               "Nome": "Laranja, pêra, suco",
@@ -861,7 +968,8 @@
               "Proteína": 0.74,
               "Carboidrato": 7.55,
               "Umidade": 91.29,
-              "gorduraTotal": "-0.05"
+              "gorduraTotal": 0.07,
+              "Sodio": 0
        },
        {
               "Nome": "Laranja, valência, suco",
@@ -869,7 +977,8 @@
               "Proteína": 0.48,
               "Carboidrato": 8.55,
               "Umidade": 90.53,
-              "gorduraTotal": "0.01"
+              "gorduraTotal": 0.12,
+              "Sodio": 0
        },
        {
               "Nome": "Limão, cravo, suco",
@@ -877,7 +986,8 @@
               "Proteína": 0.33,
               "Carboidrato": 5.25,
               "Umidade": 94.19,
-              "gorduraTotal": "-0.91"
+              "gorduraTotal": 0,
+              "Sodio": 0
        },
        {
               "Nome": "Limão, galego, suco",
@@ -885,7 +995,8 @@
               "Proteína": 0.57,
               "Carboidrato": 7.32,
               "Umidade": 91.8,
-              "gorduraTotal": "-1.04"
+              "gorduraTotal": 0.07,
+              "Sodio": 0
        },
        {
               "Nome": "Mamão, doce em calda, drenado",
@@ -893,7 +1004,8 @@
               "Proteína": 0.19,
               "Carboidrato": 54.0,
               "Umidade": 45.53,
-              "gorduraTotal": "-2.35"
+              "gorduraTotal": 0.07,
+              "Sodio": 2.91
        },
        {
               "Nome": "Mamão verde, doce em calda, drenado",
@@ -901,7 +1013,8 @@
               "Proteína": 0.32,
               "Carboidrato": 57.64,
               "Umidade": 41.88,
-              "gorduraTotal": "-2.49"
+              "gorduraTotal": 0.1,
+              "Sodio": 4.74
        },
        {
               "Nome": "Manga, polpa, congelada",
@@ -909,7 +1022,8 @@
               "Proteína": 0.38,
               "Carboidrato": 12.52,
               "Umidade": 86.5,
-              "gorduraTotal": "-0.37"
+              "gorduraTotal": 0.23,
+              "Sodio": 6.73
        },
        {
               "Nome": "Maracujá, polpa, congelada",
@@ -917,7 +1031,8 @@
               "Proteína": 0.81,
               "Carboidrato": 9.6,
               "Umidade": 88.9,
-              "gorduraTotal": "-0.32"
+              "gorduraTotal": 0.18,
+              "Sodio": 8.1
        },
        {
               "Nome": "Maracujá, suco concentrado, envasado",
@@ -925,7 +1040,8 @@
               "Proteína": 0.77,
               "Carboidrato": 9.64,
               "Umidade": 88.94,
-              "gorduraTotal": "0.04"
+              "gorduraTotal": 0.19,
+              "Sodio": 21.69
        },
        {
               "Nome": "Pêssego, enlatado, em calda",
@@ -933,7 +1049,8 @@
               "Proteína": 0.71,
               "Carboidrato": 16.88,
               "Umidade": 82.19,
-              "gorduraTotal": "-0.8"
+              "gorduraTotal": 0,
+              "Sodio": 3.2
        },
        {
               "Nome": "Pitanga, polpa, congelada",
@@ -941,7 +1058,8 @@
               "Proteína": 0.29,
               "Carboidrato": 4.76,
               "Umidade": 94.57,
-              "gorduraTotal": "-0.12"
+              "gorduraTotal": 0.12,
+              "Sodio": 5.03
        },
        {
               "Nome": "Tangerina, Poncã, suco",
@@ -949,7 +1067,8 @@
               "Proteína": 0.52,
               "Carboidrato": 8.8,
               "Umidade": 90.44,
-              "gorduraTotal": "-0.13"
+              "gorduraTotal": 0,
+              "Sodio": 0
        },
        {
               "Nome": "Umbu, polpa, congelada",
@@ -957,7 +1076,8 @@
               "Proteína": 0.51,
               "Carboidrato": 8.79,
               "Umidade": 90.19,
-              "gorduraTotal": "-0.36"
+              "gorduraTotal": 0.07,
+              "Sodio": 5.77
        },
        {
               "Nome": "Uva, suco concentrado, envasado",
@@ -965,7 +1085,8 @@
               "Proteína": 0,
               "Carboidrato": 14.71,
               "Umidade": 85.13,
-              "gorduraTotal": "-0.13"
+              "gorduraTotal": 0,
+              "Sodio": 9.58
        },
        {
               "Nome": "Azeite, de dendê",
@@ -973,7 +1094,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0,
-              "gorduraTotal": "98.22"
+              "gorduraTotal": 100,
+              "Sodio": 0
        },
        {
               "Nome": "Azeite, de oliva, extra virgem",
@@ -981,7 +1103,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0,
-              "gorduraTotal": "98.22"
+              "gorduraTotal": 100,
+              "Sodio": 0
        },
        {
               "Nome": "Manteiga, com sal",
@@ -989,7 +1112,8 @@
               "Proteína": 0.41,
               "Carboidrato": 0.06,
               "Umidade": 15.79,
-              "gorduraTotal": "80.45"
+              "gorduraTotal": 82.36,
+              "Sodio": 578.69
        },
        {
               "Nome": "Manteiga, sem sal",
@@ -997,7 +1121,8 @@
               "Proteína": 0.4,
               "Carboidrato": 0,
               "Umidade": 13.63,
-              "gorduraTotal": "84.0"
+              "gorduraTotal": 86.04,
+              "Sodio": 3.85
        },
        {
               "Nome": "Margarina, com óleo hidrogenado, com sal (65% de lipídeos)",
@@ -1005,7 +1130,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 32.23,
-              "gorduraTotal": "66.24"
+              "gorduraTotal": 67.43,
+              "Sodio": 894.04
        },
        {
               "Nome": "Margarina, com óleo hidrogenado, sem sal (80% de lipídeos)",
@@ -1013,7 +1139,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 19.59,
-              "gorduraTotal": "80.28"
+              "gorduraTotal": 81.73,
+              "Sodio": 77.89
        },
        {
               "Nome": "Margarina, com óleo interesterificado, com sal (65%de lipídeos)",
@@ -1021,7 +1148,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 31.97,
-              "gorduraTotal": "66.05"
+              "gorduraTotal": 67.25,
+              "Sodio": 560.8
        },
        {
               "Nome": "Margarina, com óleo interesterificado, sem sal (65% de lipídeos)",
@@ -1029,7 +1157,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 33.37,
-              "gorduraTotal": "65.9"
+              "gorduraTotal": 67.1,
+              "Sodio": 33.19
        },
        {
               "Nome": "Óleo, de babaçu",
@@ -1037,7 +1166,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0,
-              "gorduraTotal": "98.22"
+              "gorduraTotal": 100,
+              "Sodio": 0
        },
        {
               "Nome": "Óleo, de canola",
@@ -1045,7 +1175,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0,
-              "gorduraTotal": "98.22"
+              "gorduraTotal": 100,
+              "Sodio": 0
        },
        {
               "Nome": "Óleo, de girassol",
@@ -1053,7 +1184,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0,
-              "gorduraTotal": "98.22"
+              "gorduraTotal": 100,
+              "Sodio": 0
        },
        {
               "Nome": "Óleo, de milho",
@@ -1061,7 +1193,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0,
-              "gorduraTotal": "98.22"
+              "gorduraTotal": 100,
+              "Sodio": 0
        },
        {
               "Nome": "Óleo, de pequi",
@@ -1069,7 +1202,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0,
-              "gorduraTotal": "98.22"
+              "gorduraTotal": 100,
+              "Sodio": 0
        },
        {
               "Nome": "Óleo, de soja",
@@ -1077,7 +1211,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0,
-              "gorduraTotal": "98.22"
+              "gorduraTotal": 100,
+              "Sodio": 0
        },
        {
               "Nome": "Abadejo, filé, congelado, assado",
@@ -1085,7 +1220,8 @@
               "Proteína": 23.52,
               "Carboidrato": 0,
               "Umidade": 74.32,
-              "gorduraTotal": "1.95"
+              "gorduraTotal": 1.24,
+              "Sodio": 334.39
        },
        {
               "Nome": "Abadejo, filé, congelado,cozido",
@@ -1093,7 +1229,8 @@
               "Proteína": 19.35,
               "Carboidrato": 0,
               "Umidade": 79.73,
-              "gorduraTotal": "1.52"
+              "gorduraTotal": 0.94,
+              "Sodio": 189.34
        },
        {
               "Nome": "Abadejo, filé, congelado, grelhado",
@@ -1101,7 +1238,8 @@
               "Proteína": 27.61,
               "Carboidrato": 0,
               "Umidade": 70.96,
-              "gorduraTotal": "2.13"
+              "gorduraTotal": 1.3,
+              "Sodio": 305.09
        },
        {
               "Nome": "Atum, conserva em óleo",
@@ -1109,7 +1247,8 @@
               "Proteína": 26.19,
               "Carboidrato": 0,
               "Umidade": 64.5,
-              "gorduraTotal": "6.8"
+              "gorduraTotal": 6.0,
+              "Sodio": 362.15
        },
        {
               "Nome": "Bacalhau, salgado, refogado",
@@ -1117,7 +1256,8 @@
               "Proteína": 23.98,
               "Carboidrato": 1.22,
               "Umidade": 65.91,
-              "gorduraTotal": "4.32"
+              "gorduraTotal": 3.61,
+              "Sodio": 1256.28
        },
        {
               "Nome": "Cação, posta, com farinha de trigo, frita",
@@ -1125,7 +1265,8 @@
               "Proteína": 24.95,
               "Carboidrato": 3.1,
               "Umidade": 60.62,
-              "gorduraTotal": "10.68"
+              "gorduraTotal": 9.95,
+              "Sodio": 160.03
        },
        {
               "Nome": "Cação, posta, cozida",
@@ -1133,7 +1274,8 @@
               "Proteína": 25.59,
               "Carboidrato": 0,
               "Umidade": 75.93,
-              "gorduraTotal": "1.52"
+              "gorduraTotal": 0.75,
+              "Sodio": 114.91
        },
        {
               "Nome": "Camarão, Rio Grande, grande, cozido",
@@ -1141,7 +1283,8 @@
               "Proteína": 18.97,
               "Carboidrato": 0,
               "Umidade": 78.71,
-              "gorduraTotal": "1.57"
+              "gorduraTotal": 1.0,
+              "Sodio": 366.55
        },
        {
               "Nome": "Camarão, Sete Barbas, sem cabeça, com casca, frito",
@@ -1149,7 +1292,8 @@
               "Proteína": 18.39,
               "Carboidrato": 2.88,
               "Umidade": 61.04,
-              "gorduraTotal": "16.24"
+              "gorduraTotal": 15.62,
+              "Sodio": 99.06
        },
        {
               "Nome": "Caranguejo, cozido",
@@ -1157,7 +1301,8 @@
               "Proteína": 18.48,
               "Carboidrato": 0,
               "Umidade": 77.0,
-              "gorduraTotal": "0.98"
+              "gorduraTotal": 0.42,
+              "Sodio": 360.11
        },
        {
               "Nome": "Corimbatá, assado",
@@ -1165,7 +1310,8 @@
               "Proteína": 19.9,
               "Carboidrato": 0,
               "Umidade": 59.93,
-              "gorduraTotal": "20.21"
+              "gorduraTotal": 19.57,
+              "Sodio": 40.43
        },
        {
               "Nome": "Corimbatá, cozido",
@@ -1173,7 +1319,8 @@
               "Proteína": 20.13,
               "Carboidrato": 0,
               "Umidade": 64.56,
-              "gorduraTotal": "17.57"
+              "gorduraTotal": 16.93,
+              "Sodio": 37.17
        },
        {
               "Nome": "Corvina grande, assada",
@@ -1181,7 +1328,8 @@
               "Proteína": 26.77,
               "Carboidrato": 0,
               "Umidade": 69.03,
-              "gorduraTotal": "4.38"
+              "gorduraTotal": 3.57,
+              "Sodio": 85.35
        },
        {
               "Nome": "Corvina grande, cozida",
@@ -1189,7 +1337,8 @@
               "Proteína": 23.44,
               "Carboidrato": 0,
               "Umidade": 73.61,
-              "gorduraTotal": "0.7"
+              "gorduraTotal": 2.56,
+              "Sodio": 68.39
        },
        {
               "Nome": "Dourada de água doce, fresca",
@@ -1197,7 +1346,8 @@
               "Proteína": 18.81,
               "Carboidrato": 0,
               "Umidade": 76.16,
-              "gorduraTotal": "6.22"
+              "gorduraTotal": 5.64,
+              "Sodio": 40.3
        },
        {
               "Nome": "Lambari, congelado, frito",
@@ -1205,7 +1355,8 @@
               "Proteína": 28.43,
               "Carboidrato": 0,
               "Umidade": 40.14,
-              "gorduraTotal": "23.69"
+              "gorduraTotal": 22.78,
+              "Sodio": 64.55
        },
        {
               "Nome": "Manjuba, com farinha de trigo, frita",
@@ -1213,7 +1364,8 @@
               "Proteína": 23.45,
               "Carboidrato": 10.24,
               "Umidade": 41.3,
-              "gorduraTotal": "23.2"
+              "gorduraTotal": 22.59,
+              "Sodio": 36.52
        },
        {
               "Nome": "Manjuba, frita",
@@ -1221,7 +1373,8 @@
               "Proteína": 30.14,
               "Carboidrato": 0,
               "Umidade": 40.68,
-              "gorduraTotal": "25.42"
+              "gorduraTotal": 24.46,
+              "Sodio": 40.61
        },
        {
               "Nome": "Merluza, filé, assado",
@@ -1229,7 +1382,8 @@
               "Proteína": 26.6,
               "Carboidrato": 0,
               "Umidade": 70.73,
-              "gorduraTotal": "1.72"
+              "gorduraTotal": 0.92,
+              "Sodio": 119.95
        },
        {
               "Nome": "Merluza, filé, frito",
@@ -1237,7 +1391,8 @@
               "Proteína": 26.93,
               "Carboidrato": 0,
               "Umidade": 63.46,
-              "gorduraTotal": "9.32"
+              "gorduraTotal": 8.5,
+              "Sodio": 89.96
        },
        {
               "Nome": "Pescada, branca, frita",
@@ -1245,7 +1400,8 @@
               "Proteína": 27.36,
               "Carboidrato": 0,
               "Umidade": 57.0,
-              "gorduraTotal": "12.62"
+              "gorduraTotal": 11.78,
+              "Sodio": 107.23
        },
        {
               "Nome": "Pescada, filé, com farinha de trigo, frito",
@@ -1253,7 +1409,8 @@
               "Proteína": 21.44,
               "Carboidrato": 5.03,
               "Umidade": 53.2,
-              "gorduraTotal": "19.73"
+              "gorduraTotal": 19.11,
+              "Sodio": 90.51
        },
        {
               "Nome": "Pescada, filé, frito",
@@ -1261,7 +1418,8 @@
               "Proteína": 28.59,
               "Carboidrato": 0,
               "Umidade": 66.8,
-              "gorduraTotal": "4.44"
+              "gorduraTotal": 3.57,
+              "Sodio": 114.91
        },
        {
               "Nome": "Pescada, filé, molho escabeche",
@@ -1269,7 +1427,8 @@
               "Proteína": 11.75,
               "Carboidrato": 5.02,
               "Umidade": 74.53,
-              "gorduraTotal": "8.32"
+              "gorduraTotal": 8.02,
+              "Sodio": 51.29
        },
        {
               "Nome": "Pintado, assado",
@@ -1277,7 +1436,8 @@
               "Proteína": 36.45,
               "Carboidrato": 0,
               "Umidade": 56.98,
-              "gorduraTotal": "5.08"
+              "gorduraTotal": 3.98,
+              "Sodio": 80.95
        },
        {
               "Nome": "Pintado, grelhado",
@@ -1285,7 +1445,8 @@
               "Proteína": 30.8,
               "Carboidrato": 0,
               "Umidade": 65.49,
-              "gorduraTotal": "3.22"
+              "gorduraTotal": 2.29,
+              "Sodio": 53.09
        },
        {
               "Nome": "Salmão, filé, com pele, fresco,  grelhado",
@@ -1293,15 +1454,8 @@
               "Proteína": 23.92,
               "Carboidrato": 0,
               "Umidade": 60.93,
-              "gorduraTotal": "14.78"
-       },
-       {
-              "Nome": "Salmão, sem pele, fresco, grelhado",
-              "Caloria": 242.71,
-              "Proteína": 26.14,
-              "Carboidrato": 0,
-              "Umidade": 58.13,
-              "gorduraTotal": "15.35"
+              "gorduraTotal": 14.04,
+              "Sodio": 85.14
        },
        {
               "Nome": "Salmão, sem pele, fresco, cru",
@@ -1309,7 +1463,17 @@
               "Proteína": 19.25,
               "Carboidrato": 0,
               "Umidade": 68.98,
-              "gorduraTotal": "15.36"
+              "gorduraTotal": 9.71,
+              "Sodio": 64.24
+       },
+       {
+              "Nome": "Salmão, sem pele, fresco, grelhado",
+              "Caloria": 242.71,
+              "Proteína": 26.14,
+              "Carboidrato": 0,
+              "Umidade": 58.13,
+              "gorduraTotal": 14.53,
+              "Sodio": 95.81
        },
        {
               "Nome": "Sardinha, assada",
@@ -1317,7 +1481,8 @@
               "Proteína": 32.18,
               "Carboidrato": 0,
               "Umidade": 60.08,
-              "gorduraTotal": "3.96"
+              "gorduraTotal": 2.99,
+              "Sodio": 74.47
        },
        {
               "Nome": "Sardinha, conserva em óleo",
@@ -1325,7 +1490,8 @@
               "Proteína": 15.94,
               "Carboidrato": 0,
               "Umidade": 55.14,
-              "gorduraTotal": "24.58"
+              "gorduraTotal": 24.05,
+              "Sodio": 665.84
        },
        {
               "Nome": "Sardinha, frita",
@@ -1333,7 +1499,8 @@
               "Proteína": 33.38,
               "Carboidrato": 0,
               "Umidade": 48.49,
-              "gorduraTotal": "13.72"
+              "gorduraTotal": 12.69,
+              "Sodio": 60.1
        },
        {
               "Nome": "Apresuntado",
@@ -1341,7 +1508,8 @@
               "Proteína": 13.45,
               "Carboidrato": 2.86,
               "Umidade": 73.72,
-              "gorduraTotal": "7.07"
+              "gorduraTotal": 6.69,
+              "Sodio": 942.93
        },
        {
               "Nome": "Caldo de carne, tablete",
@@ -1349,7 +1517,8 @@
               "Proteína": 7.82,
               "Carboidrato": 15.05,
               "Umidade": 2.93,
-              "gorduraTotal": "16.57"
+              "gorduraTotal": 16.57,
+              "Sodio": 22179.67
        },
        {
               "Nome": "Caldo de galinha, tablete",
@@ -1357,7 +1526,8 @@
               "Proteína": 6.28,
               "Carboidrato": 10.65,
               "Umidade": 3.38,
-              "gorduraTotal": "20.42"
+              "gorduraTotal": 20.42,
+              "Sodio": 22299.9
        },
        {
               "Nome": "Carne, bovina, acém, moído, cozido",
@@ -1365,7 +1535,8 @@
               "Proteína": 26.69,
               "Carboidrato": 0,
               "Umidade": 61.62,
-              "gorduraTotal": "11.74"
+              "gorduraTotal": 10.92,
+              "Sodio": 52.36
        },
        {
               "Nome": "Carne, bovina, acém, sem gordura, cozido",
@@ -1373,7 +1544,8 @@
               "Proteína": 27.27,
               "Carboidrato": 0,
               "Umidade": 60.38,
-              "gorduraTotal": "11.73"
+              "gorduraTotal": 10.88,
+              "Sodio": 56.17
        },
        {
               "Nome": "Carne, bovina, almôndegas, fritas",
@@ -1381,7 +1553,8 @@
               "Proteína": 18.16,
               "Carboidrato": 14.29,
               "Umidade": 48.09,
-              "gorduraTotal": "15.78"
+              "gorduraTotal": 15.78,
+              "Sodio": 1030.26
        },
        {
               "Nome": "Carne, bovina, bucho, cozido",
@@ -1389,7 +1562,8 @@
               "Proteína": 21.64,
               "Carboidrato": 0,
               "Umidade": 74.12,
-              "gorduraTotal": "5.16"
+              "gorduraTotal": 4.5,
+              "Sodio": 38.2
        },
        {
               "Nome": "Carne, bovina, capa de contra-filé, com gordura, grelhada",
@@ -1397,7 +1571,8 @@
               "Proteína": 30.69,
               "Carboidrato": 0,
               "Umidade": 47.88,
-              "gorduraTotal": "21.0"
+              "gorduraTotal": 20.03,
+              "Sodio": 80.51
        },
        {
               "Nome": "Carne, bovina, capa de contra-filé, sem gordura, grelhada",
@@ -1405,7 +1580,8 @@
               "Proteína": 35.06,
               "Carboidrato": -0.01,
               "Umidade": 53.74,
-              "gorduraTotal": "11.02"
+              "gorduraTotal": 9.95,
+              "Sodio": 82.75
        },
        {
               "Nome": "Carne, bovina, charque, cozido",
@@ -1413,7 +1589,8 @@
               "Proteína": 36.36,
               "Carboidrato": 0,
               "Umidade": 45.79,
-              "gorduraTotal": "13.04"
+              "gorduraTotal": 11.92,
+              "Sodio": 1442.7
        },
        {
               "Nome": "Carne, bovina, contra-filé, à milanesa",
@@ -1421,7 +1598,8 @@
               "Proteína": 20.61,
               "Carboidrato": 12.17,
               "Umidade": 42.16,
-              "gorduraTotal": "24.49"
+              "gorduraTotal": 24.0,
+              "Sodio": 77.09
        },
        {
               "Nome": "Carne, bovina, contra-filé de costela, grelhado",
@@ -1429,7 +1607,8 @@
               "Proteína": 29.88,
               "Carboidrato": 0,
               "Umidade": 52.19,
-              "gorduraTotal": "17.27"
+              "gorduraTotal": 16.33,
+              "Sodio": 50.88
        },
        {
               "Nome": "Carne, bovina, contra-filé, com gordura, grelhado",
@@ -1437,7 +1616,8 @@
               "Proteína": 32.4,
               "Carboidrato": 0,
               "Umidade": 51.71,
-              "gorduraTotal": "16.5"
+              "gorduraTotal": 15.49,
+              "Sodio": 57.07
        },
        {
               "Nome": "Carne, bovina, contra-filé, sem gordura, grelhado",
@@ -1445,7 +1625,8 @@
               "Proteína": 35.88,
               "Carboidrato": 0,
               "Umidade": 57.53,
-              "gorduraTotal": "5.57"
+              "gorduraTotal": 4.49,
+              "Sodio": 57.51
        },
        {
               "Nome": "Carne, bovina, costela, assada",
@@ -1453,7 +1634,8 @@
               "Proteína": 28.81,
               "Carboidrato": 0,
               "Umidade": 43.19,
-              "gorduraTotal": "28.65"
+              "gorduraTotal": 27.72,
+              "Sodio": 91.86
        },
        {
               "Nome": "Carne, bovina, coxão duro, sem gordura, cozido",
@@ -1461,7 +1643,8 @@
               "Proteína": 31.88,
               "Carboidrato": 0,
               "Umidade": 58.53,
-              "gorduraTotal": "9.9"
+              "gorduraTotal": 8.92,
+              "Sodio": 41.1
        },
        {
               "Nome": "Carne, bovina, coxão mole, sem gordura, cozido",
@@ -1469,7 +1652,8 @@
               "Proteína": 32.38,
               "Carboidrato": 0,
               "Umidade": 58.04,
-              "gorduraTotal": "9.9"
+              "gorduraTotal": 8.91,
+              "Sodio": 43.5
        },
        {
               "Nome": "Carne, bovina, cupim, assado",
@@ -1477,7 +1661,8 @@
               "Proteína": 28.63,
               "Carboidrato": 0,
               "Umidade": 48.42,
-              "gorduraTotal": "23.95"
+              "gorduraTotal": 23.04,
+              "Sodio": 71.59
        },
        {
               "Nome": "Carne, bovina, fígado, grelhado",
@@ -1485,7 +1670,8 @@
               "Proteína": 29.86,
               "Carboidrato": 4.2,
               "Umidade": 54.97,
-              "gorduraTotal": "9.87"
+              "gorduraTotal": 9.01,
+              "Sodio": 82.19
        },
        {
               "Nome": "Carne, bovina, filé mingnon, sem gordura, grelhado",
@@ -1493,7 +1679,8 @@
               "Proteína": 32.8,
               "Carboidrato": 0,
               "Umidade": 57.0,
-              "gorduraTotal": "9.83"
+              "gorduraTotal": 8.83,
+              "Sodio": 57.91
        },
        {
               "Nome": "Carne, bovina, flanco, sem gordura, cozido",
@@ -1501,7 +1688,8 @@
               "Proteína": 29.38,
               "Carboidrato": 0,
               "Umidade": 61.98,
-              "gorduraTotal": "8.67"
+              "gorduraTotal": 7.77,
+              "Sodio": 41.68
        },
        {
               "Nome": "Carne, bovina, fraldinha, com gordura, cozida",
@@ -1509,7 +1697,8 @@
               "Proteína": 24.24,
               "Carboidrato": 0,
               "Umidade": 49.72,
-              "gorduraTotal": "26.83"
+              "gorduraTotal": 26.05,
+              "Sodio": 38.78
        },
        {
               "Nome": "Carne, bovina, lagarto, cozido",
@@ -1517,7 +1706,8 @@
               "Proteína": 32.86,
               "Carboidrato": 0,
               "Umidade": 57.63,
-              "gorduraTotal": "10.11"
+              "gorduraTotal": 9.11,
+              "Sodio": 47.54
        },
        {
               "Nome": "Carne, bovina, língua, cozida",
@@ -1525,7 +1715,8 @@
               "Proteína": 21.37,
               "Carboidrato": 0,
               "Umidade": 53.41,
-              "gorduraTotal": "25.49"
+              "gorduraTotal": 24.8,
+              "Sodio": 59.06
        },
        {
               "Nome": "Carne, bovina, maminha, grelhada",
@@ -1533,7 +1724,8 @@
               "Proteína": 30.74,
               "Carboidrato": 0,
               "Umidade": 65.28,
-              "gorduraTotal": "3.35"
+              "gorduraTotal": 2.42,
+              "Sodio": 58.12
        },
        {
               "Nome": "Carne, bovina, miolo de alcatra, sem gordura, grelhado",
@@ -1541,7 +1733,8 @@
               "Proteína": 31.93,
               "Carboidrato": 0,
               "Umidade": 52.43,
-              "gorduraTotal": "12.63"
+              "gorduraTotal": 11.64,
+              "Sodio": 51.62
        },
        {
               "Nome": "Carne, bovina, músculo, sem gordura, cozido",
@@ -1549,7 +1742,8 @@
               "Proteína": 31.23,
               "Carboidrato": 0,
               "Umidade": 62.82,
-              "gorduraTotal": "7.65"
+              "gorduraTotal": 6.7,
+              "Sodio": 61.79
        },
        {
               "Nome": "Carne, bovina, paleta, sem gordura, cozida",
@@ -1557,7 +1751,8 @@
               "Proteína": 29.72,
               "Carboidrato": 0,
               "Umidade": 62.94,
-              "gorduraTotal": "8.31"
+              "gorduraTotal": 7.4,
+              "Sodio": 57.62
        },
        {
               "Nome": "Carne, bovina, patinho, sem gordura, grelhado",
@@ -1565,7 +1760,8 @@
               "Proteína": 35.9,
               "Carboidrato": 0,
               "Umidade": 55.15,
-              "gorduraTotal": "8.41"
+              "gorduraTotal": 7.31,
+              "Sodio": 60.29
        },
        {
               "Nome": "Carne, bovina, peito, sem gordura, cozido",
@@ -1573,7 +1769,8 @@
               "Proteína": 22.25,
               "Carboidrato": 0,
               "Umidade": 51.18,
-              "gorduraTotal": "27.72"
+              "gorduraTotal": 26.99,
+              "Sodio": 55.71
        },
        {
               "Nome": "Carne, bovina, picanha, com gordura, grelhada",
@@ -1581,7 +1778,8 @@
               "Proteína": 26.42,
               "Carboidrato": 0,
               "Umidade": 53.39,
-              "gorduraTotal": "20.34"
+              "gorduraTotal": 19.51,
+              "Sodio": 60
        },
        {
               "Nome": "Carne, bovina, picanha, sem gordura, grelhada",
@@ -1589,7 +1787,8 @@
               "Proteína": 31.91,
               "Carboidrato": 0,
               "Umidade": 54.63,
-              "gorduraTotal": "12.32"
+              "gorduraTotal": 11.33,
+              "Sodio": 60.66
        },
        {
               "Nome": "Carne, bovina, seca, cozida",
@@ -1597,7 +1796,8 @@
               "Proteína": 26.93,
               "Carboidrato": 0,
               "Umidade": 47.19,
-              "gorduraTotal": "22.79"
+              "gorduraTotal": 21.93,
+              "Sodio": 1943.18
        },
        {
               "Nome": "Coxinha de frango, frita",
@@ -1605,7 +1805,8 @@
               "Proteína": 9.61,
               "Carboidrato": 34.52,
               "Umidade": 42.21,
-              "gorduraTotal": "11.84"
+              "gorduraTotal": 11.84,
+              "Sodio": 532.13
        },
        {
               "Nome": "Croquete, de carne, frito",
@@ -1613,7 +1814,8 @@
               "Proteína": 16.86,
               "Carboidrato": 18.15,
               "Umidade": 39.23,
-              "gorduraTotal": "22.97"
+              "gorduraTotal": 22.67,
+              "Sodio": 916.41
        },
        {
               "Nome": "Empada de frango, pré-cozida, assada",
@@ -1621,7 +1823,8 @@
               "Proteína": 6.94,
               "Carboidrato": 47.49,
               "Umidade": 28.19,
-              "gorduraTotal": "15.61"
+              "gorduraTotal": 15.61,
+              "Sodio": 524.93
        },
        {
               "Nome": "Empada, de frango, pré-cozida",
@@ -1629,7 +1832,8 @@
               "Proteína": 7.34,
               "Carboidrato": 35.53,
               "Umidade": 32.03,
-              "gorduraTotal": "22.89"
+              "gorduraTotal": 22.89,
+              "Sodio": 770.73
        },
        {
               "Nome": "Frango, caipira, inteiro, com pele, cozido",
@@ -1637,7 +1841,8 @@
               "Proteína": 23.88,
               "Carboidrato": 0,
               "Umidade": 59.69,
-              "gorduraTotal": "16.37"
+              "gorduraTotal": 15.62,
+              "Sodio": 56.09
        },
        {
               "Nome": "Frango, caipira, inteiro, sem pele, cozido",
@@ -1645,7 +1850,8 @@
               "Proteína": 29.57,
               "Carboidrato": 0,
               "Umidade": 61.42,
-              "gorduraTotal": "8.61"
+              "gorduraTotal": 7.7,
+              "Sodio": 53.24
        },
        {
               "Nome": "Frango, coração, grelhado",
@@ -1653,7 +1859,8 @@
               "Proteína": 22.44,
               "Carboidrato": 0.61,
               "Umidade": 63.51,
-              "gorduraTotal": "12.79"
+              "gorduraTotal": 12.1,
+              "Sodio": 128.24
        },
        {
               "Nome": "Frango, coxa, com pele, assada",
@@ -1661,7 +1868,8 @@
               "Proteína": 28.49,
               "Carboidrato": 0.06,
               "Umidade": 59.79,
-              "gorduraTotal": "11.21"
+              "gorduraTotal": 10.36,
+              "Sodio": 94.84
        },
        {
               "Nome": "Frango, coxa, sem pele, cozida",
@@ -1669,7 +1877,8 @@
               "Proteína": 26.86,
               "Carboidrato": 0,
               "Umidade": 66.66,
-              "gorduraTotal": "6.67"
+              "gorduraTotal": 5.85,
+              "Sodio": 64.34
        },
        {
               "Nome": "Frango, filé, à milanesa",
@@ -1677,7 +1886,8 @@
               "Proteína": 28.46,
               "Carboidrato": 7.51,
               "Umidade": 54.89,
-              "gorduraTotal": "8.55"
+              "gorduraTotal": 7.79,
+              "Sodio": 122.33
        },
        {
               "Nome": "Frango, inteiro, sem pele, assado",
@@ -1685,7 +1895,8 @@
               "Proteína": 28.02,
               "Carboidrato": 0,
               "Umidade": 63.2,
-              "gorduraTotal": "8.36"
+              "gorduraTotal": 7.5,
+              "Sodio": 70.27
        },
        {
               "Nome": "Frango, inteiro, sem pele, cozido",
@@ -1693,7 +1904,8 @@
               "Proteína": 24.99,
               "Carboidrato": 0,
               "Umidade": 67.45,
-              "gorduraTotal": "7.83"
+              "gorduraTotal": 7.06,
+              "Sodio": 50.89
        },
        {
               "Nome": "Frango, peito, com pele, assado",
@@ -1701,7 +1913,8 @@
               "Proteína": 33.42,
               "Carboidrato": 0,
               "Umidade": 58.54,
-              "gorduraTotal": "8.67"
+              "gorduraTotal": 7.65,
+              "Sodio": 55.7
        },
        {
               "Nome": "Frango, peito, sem pele, cozido",
@@ -1709,7 +1922,8 @@
               "Proteína": 31.47,
               "Carboidrato": 0,
               "Umidade": 65.57,
-              "gorduraTotal": "4.11"
+              "gorduraTotal": 3.16,
+              "Sodio": 36.17
        },
        {
               "Nome": "Frango, peito, sem pele, grelhado",
@@ -1717,7 +1931,8 @@
               "Proteína": 32.03,
               "Carboidrato": 0,
               "Umidade": 63.81,
-              "gorduraTotal": "3.45"
+              "gorduraTotal": 2.48,
+              "Sodio": 50.25
        },
        {
               "Nome": "Frango, sobrecoxa, com pele, assada",
@@ -1725,7 +1940,8 @@
               "Proteína": 28.7,
               "Carboidrato": 0,
               "Umidade": 55.0,
-              "gorduraTotal": "16.09"
+              "gorduraTotal": 15.19,
+              "Sodio": 95.94
        },
        {
               "Nome": "Frango, sobrecoxa, sem pele, assada",
@@ -1733,7 +1949,8 @@
               "Proteína": 29.18,
               "Carboidrato": 0,
               "Umidade": 55.63,
-              "gorduraTotal": "12.91"
+              "gorduraTotal": 12.01,
+              "Sodio": 106.08
        },
        {
               "Nome": "Hambúrguer, bovino, frito",
@@ -1741,7 +1958,8 @@
               "Proteína": 19.97,
               "Carboidrato": 6.32,
               "Umidade": 52.46,
-              "gorduraTotal": "17.01"
+              "gorduraTotal": 17.01,
+              "Sodio": 1251.8
        },
        {
               "Nome": "Hambúrguer, bovino, grelhado",
@@ -1749,7 +1967,8 @@
               "Proteína": 13.16,
               "Carboidrato": 11.33,
               "Umidade": 59.23,
-              "gorduraTotal": "12.43"
+              "gorduraTotal": 12.43,
+              "Sodio": 1090.33
        },
        {
               "Nome": "Lingüiça, frango, frita",
@@ -1757,7 +1976,8 @@
               "Proteína": 18.32,
               "Carboidrato": 0,
               "Umidade": 59.57,
-              "gorduraTotal": "19.13"
+              "gorduraTotal": 18.54,
+              "Sodio": 1373.89
        },
        {
               "Nome": "Lingüiça, frango, grelhada",
@@ -1765,7 +1985,8 @@
               "Proteína": 18.19,
               "Carboidrato": 0,
               "Umidade": 58.58,
-              "gorduraTotal": "18.99"
+              "gorduraTotal": 18.4,
+              "Sodio": 1351.49
        },
        {
               "Nome": "Lingüiça, porco, frita",
@@ -1773,7 +1994,8 @@
               "Proteína": 20.45,
               "Carboidrato": 0,
               "Umidade": 54.61,
-              "gorduraTotal": "21.97"
+              "gorduraTotal": 21.31,
+              "Sodio": 1431.59
        },
        {
               "Nome": "Lingüiça, porco, grelhada",
@@ -1781,7 +2003,8 @@
               "Proteína": 23.17,
               "Carboidrato": 0,
               "Umidade": 50.48,
-              "gorduraTotal": "22.65"
+              "gorduraTotal": 21.9,
+              "Sodio": 1455.86
        },
        {
               "Nome": "Mortadela",
@@ -1789,7 +2012,8 @@
               "Proteína": 11.95,
               "Carboidrato": 5.82,
               "Umidade": 56.44,
-              "gorduraTotal": "21.97"
+              "gorduraTotal": 21.65,
+              "Sodio": 1212.17
        },
        {
               "Nome": "Peru, congelado, assado",
@@ -1797,7 +2021,8 @@
               "Proteína": 26.2,
               "Carboidrato": 0,
               "Umidade": 65.32,
-              "gorduraTotal": "6.47"
+              "gorduraTotal": 5.67,
+              "Sodio": 627.88
        },
        {
               "Nome": "Porco, bisteca, frita",
@@ -1805,7 +2030,8 @@
               "Proteína": 33.75,
               "Carboidrato": 0,
               "Umidade": 47.33,
-              "gorduraTotal": "19.58"
+              "gorduraTotal": 18.52,
+              "Sodio": 63.03
        },
        {
               "Nome": "Porco, bisteca, grelhada",
@@ -1813,7 +2039,8 @@
               "Proteína": 28.89,
               "Carboidrato": 0,
               "Umidade": 51.84,
-              "gorduraTotal": "18.28"
+              "gorduraTotal": 17.38,
+              "Sodio": 51.45
        },
        {
               "Nome": "Porco, costela, assada",
@@ -1821,7 +2048,8 @@
               "Proteína": 30.22,
               "Carboidrato": 0,
               "Umidade": 36.92,
-              "gorduraTotal": "31.25"
+              "gorduraTotal": 30.28,
+              "Sodio": 62.68
        },
        {
               "Nome": "Porco, lombo, assado",
@@ -1829,7 +2057,8 @@
               "Proteína": 35.73,
               "Carboidrato": 0,
               "Umidade": 56.56,
-              "gorduraTotal": "7.48"
+              "gorduraTotal": 6.4,
+              "Sodio": 38.92
        },
        {
               "Nome": "Porco, pernil, assado",
@@ -1837,7 +2066,8 @@
               "Proteína": 32.13,
               "Carboidrato": 0,
               "Umidade": 49.26,
-              "gorduraTotal": "14.86"
+              "gorduraTotal": 13.86,
+              "Sodio": 62.41
        },
        {
               "Nome": "Presunto, com capa de gordura",
@@ -1845,7 +2075,8 @@
               "Proteína": 14.37,
               "Carboidrato": 1.4,
               "Umidade": 73.95,
-              "gorduraTotal": "7.2"
+              "gorduraTotal": 6.77,
+              "Sodio": 1020.77
        },
        {
               "Nome": "Presunto, sem capa de gordura",
@@ -1853,7 +2084,8 @@
               "Proteína": 14.29,
               "Carboidrato": 2.15,
               "Umidade": 77.18,
-              "gorduraTotal": "3.11"
+              "gorduraTotal": 2.71,
+              "Sodio": 1039.18
        },
        {
               "Nome": "Quibe, assado",
@@ -1861,7 +2093,8 @@
               "Proteína": 14.59,
               "Carboidrato": 12.86,
               "Umidade": 69.02,
-              "gorduraTotal": "2.93"
+              "gorduraTotal": 2.68,
+              "Sodio": 39.89
        },
        {
               "Nome": "Quibe, frito",
@@ -1869,7 +2102,8 @@
               "Proteína": 14.89,
               "Carboidrato": 12.34,
               "Umidade": 53.96,
-              "gorduraTotal": "16.1"
+              "gorduraTotal": 15.8,
+              "Sodio": 835.83
        },
        {
               "Nome": "Salame",
@@ -1877,7 +2111,8 @@
               "Proteína": 25.81,
               "Carboidrato": 2.91,
               "Umidade": 34.7,
-              "gorduraTotal": "31.44"
+              "gorduraTotal": 30.64,
+              "Sodio": 1574.17
        },
        {
               "Nome": "Toucinho, frito",
@@ -1885,7 +2120,8 @@
               "Proteína": 27.28,
               "Carboidrato": 0,
               "Umidade": 6.33,
-              "gorduraTotal": "65.27"
+              "gorduraTotal": 64.31,
+              "Sodio": 124.85
        },
        {
               "Nome": "Bebida láctea, pêssego",
@@ -1893,7 +2129,8 @@
               "Proteína": 2.13,
               "Carboidrato": 7.57,
               "Umidade": 87.69,
-              "gorduraTotal": "1.82"
+              "gorduraTotal": 1.91,
+              "Sodio": 46.26
        },
        {
               "Nome": "Creme de Leite",
@@ -1901,7 +2138,8 @@
               "Proteína": 1.51,
               "Carboidrato": 4.51,
               "Umidade": 70.89,
-              "gorduraTotal": "21.93"
+              "gorduraTotal": 22.48,
+              "Sodio": 51.72
        },
        {
               "Nome": "Iogurte, natural",
@@ -1909,7 +2147,8 @@
               "Proteína": 4.06,
               "Carboidrato": 1.92,
               "Umidade": 90.04,
-              "gorduraTotal": "3.06"
+              "gorduraTotal": 3.04,
+              "Sodio": 51.62
        },
        {
               "Nome": "Iogurte, natural, desnatado",
@@ -1917,7 +2156,8 @@
               "Proteína": 3.83,
               "Carboidrato": 5.77,
               "Umidade": 89.22,
-              "gorduraTotal": "0.34"
+              "gorduraTotal": 0.32,
+              "Sodio": 59.64
        },
        {
               "Nome": "Iogurte, sabor abacaxi",
@@ -1925,7 +2165,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0,
-              "gorduraTotal": "0.0"
+              "gorduraTotal": 0,
+              "Sodio": 0
        },
        {
               "Nome": "Iogurte, sabor morango",
@@ -1933,7 +2174,8 @@
               "Proteína": 2.71,
               "Carboidrato": 9.69,
               "Umidade": 84.63,
-              "gorduraTotal": "2.22"
+              "gorduraTotal": 2.33,
+              "Sodio": 37.66
        },
        {
               "Nome": "Iogurte, sabor pêssego",
@@ -1941,7 +2183,8 @@
               "Proteína": 2.53,
               "Carboidrato": 9.43,
               "Umidade": 85.06,
-              "gorduraTotal": "2.22"
+              "gorduraTotal": 2.34,
+              "Sodio": 36.96
        },
        {
               "Nome": "Leite, condensado",
@@ -1949,7 +2192,8 @@
               "Proteína": 7.67,
               "Carboidrato": 57.0,
               "Umidade": 26.96,
-              "gorduraTotal": "5.99"
+              "gorduraTotal": 6.74,
+              "Sodio": 93.8
        },
        {
               "Nome": "Leite, de cabra",
@@ -1957,7 +2201,8 @@
               "Proteína": 3.07,
               "Carboidrato": 5.25,
               "Umidade": 87.07,
-              "gorduraTotal": "3.68"
+              "gorduraTotal": 3.75,
+              "Sodio": 73.95
        },
        {
               "Nome": "Leite, de vaca, achocolatado",
@@ -1965,7 +2210,8 @@
               "Proteína": 2.1,
               "Carboidrato": 14.16,
               "Umidade": 80.89,
-              "gorduraTotal": "1.98"
+              "gorduraTotal": 2.17,
+              "Sodio": 71.74
        },
        {
               "Nome": "Leite, de vaca, desnatado, pó",
@@ -1973,7 +2219,8 @@
               "Proteína": 34.69,
               "Carboidrato": 53.04,
               "Umidade": 3.1,
-              "gorduraTotal": "1.19"
+              "gorduraTotal": 0.93,
+              "Sodio": 431.67
        },
        {
               "Nome": "Leite, de vaca, desnatado, UHT",
@@ -1981,7 +2228,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0,
-              "gorduraTotal": "0.0"
+              "gorduraTotal": 0,
+              "Sodio": 51.14
        },
        {
               "Nome": "Leite, de vaca, integral",
@@ -1989,7 +2237,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0,
-              "gorduraTotal": "0.0"
+              "gorduraTotal": 0,
+              "Sodio": 63.76
        },
        {
               "Nome": "Leite, de vaca, integral, pó",
@@ -1997,7 +2246,8 @@
               "Proteína": 25.42,
               "Carboidrato": 39.18,
               "Umidade": 2.7,
-              "gorduraTotal": "26.47"
+              "gorduraTotal": 26.9,
+              "Sodio": 323.2
        },
        {
               "Nome": "Leite, fermentado",
@@ -2005,7 +2255,8 @@
               "Proteína": 1.89,
               "Carboidrato": 15.67,
               "Umidade": 81.88,
-              "gorduraTotal": "-0.07"
+              "gorduraTotal": 0.1,
+              "Sodio": 33.43
        },
        {
               "Nome": "Queijo, minas, frescal",
@@ -2013,7 +2264,8 @@
               "Proteína": 17.41,
               "Carboidrato": 3.24,
               "Umidade": 56.12,
-              "gorduraTotal": "20.19"
+              "gorduraTotal": 20.18,
+              "Sodio": 31.23
        },
        {
               "Nome": "Queijo, minas, meia cura",
@@ -2021,7 +2273,8 @@
               "Proteína": 21.21,
               "Carboidrato": 3.57,
               "Umidade": 47.12,
-              "gorduraTotal": "24.62"
+              "gorduraTotal": 24.61,
+              "Sodio": 501.17
        },
        {
               "Nome": "Queijo, mozarela",
@@ -2029,7 +2282,8 @@
               "Proteína": 22.65,
               "Carboidrato": 3.05,
               "Umidade": 45.34,
-              "gorduraTotal": "25.23"
+              "gorduraTotal": 25.18,
+              "Sodio": 581.36
        },
        {
               "Nome": "Queijo, parmesão",
@@ -2037,7 +2291,8 @@
               "Proteína": 35.55,
               "Carboidrato": 1.66,
               "Umidade": 21.25,
-              "gorduraTotal": "33.79"
+              "gorduraTotal": 33.53,
+              "Sodio": 1844.08
        },
        {
               "Nome": "Queijo, pasteurizado",
@@ -2045,7 +2300,8 @@
               "Proteína": 9.36,
               "Carboidrato": 5.68,
               "Umidade": 54.42,
-              "gorduraTotal": "26.99"
+              "gorduraTotal": 27.44,
+              "Sodio": 780.43
        },
        {
               "Nome": "Queijo, petit suisse, morango",
@@ -2053,7 +2309,8 @@
               "Proteína": 5.79,
               "Carboidrato": 18.46,
               "Umidade": 72.22,
-              "gorduraTotal": "2.68"
+              "gorduraTotal": 2.84,
+              "Sodio": 412.47
        },
        {
               "Nome": "Queijo, prato",
@@ -2061,7 +2318,8 @@
               "Proteína": 22.66,
               "Carboidrato": 1.88,
               "Umidade": 42.44,
-              "gorduraTotal": "29.08"
+              "gorduraTotal": 29.11,
+              "Sodio": 579.77
        },
        {
               "Nome": "Maria mole",
@@ -2069,7 +2327,8 @@
               "Proteína": 9.63,
               "Carboidrato": 2.43,
               "Umidade": 62.47,
-              "gorduraTotal": "23.15"
+              "gorduraTotal": 23.44,
+              "Sodio": 557.92
        },
        {
               "Nome": "Queijo, ricota",
@@ -2077,7 +2336,8 @@
               "Proteína": 12.6,
               "Carboidrato": 3.79,
               "Umidade": 73.57,
-              "gorduraTotal": "8.24"
+              "gorduraTotal": 8.11,
+              "Sodio": 282.58
        },
        {
               "Nome": "Bebida isotônica, sabores variados",
@@ -2085,7 +2345,8 @@
               "Proteína": 0,
               "Carboidrato": 6.4,
               "Umidade": 93.51,
-              "gorduraTotal": "-0.0"
+              "gorduraTotal": 0,
+              "Sodio": 44.08
        },
        {
               "Nome": "Café, infusão 10%",
@@ -2093,7 +2354,8 @@
               "Proteína": 0.71,
               "Carboidrato": 1.48,
               "Umidade": 97.37,
-              "gorduraTotal": "0.03"
+              "gorduraTotal": 0.07,
+              "Sodio": 1.03
        },
        {
               "Nome": "Cana, aguardente 1",
@@ -2101,7 +2363,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0,
-              "gorduraTotal": "23.96"
+              "gorduraTotal": 0,
+              "Sodio": 3.15
        },
        {
               "Nome": "Cana, caldo de",
@@ -2109,7 +2372,8 @@
               "Proteína": 0,
               "Carboidrato": 18.15,
               "Umidade": 81.73,
-              "gorduraTotal": "-0.81"
+              "gorduraTotal": 0,
+              "Sodio": 0
        },
        {
               "Nome": "Cerveja, pilsen 2",
@@ -2117,7 +2381,8 @@
               "Proteína": 0.56,
               "Carboidrato": 3.32,
               "Umidade": 92.38,
-              "gorduraTotal": "2.8"
+              "gorduraTotal": 0,
+              "Sodio": 4.23
        },
        {
               "Nome": "Chá, erva-doce, infusão 5%",
@@ -2125,7 +2390,8 @@
               "Proteína": 0,
               "Carboidrato": 0.39,
               "Umidade": 99.61,
-              "gorduraTotal": "-0.02"
+              "gorduraTotal": 0,
+              "Sodio": 0.63
        },
        {
               "Nome": "Chá, mate, infusão 5%",
@@ -2133,7 +2399,8 @@
               "Proteína": 0,
               "Carboidrato": 0.64,
               "Umidade": 99.31,
-              "gorduraTotal": "0.02"
+              "gorduraTotal": 0.05,
+              "Sodio": 0
        },
        {
               "Nome": "Chá, preto, infusão 5%",
@@ -2141,7 +2408,8 @@
               "Proteína": 0,
               "Carboidrato": 0.63,
               "Umidade": 99.37,
-              "gorduraTotal": "-0.03"
+              "gorduraTotal": 0,
+              "Sodio": 0
        },
        {
               "Nome": "Coco, água de",
@@ -2149,7 +2417,8 @@
               "Proteína": 0,
               "Carboidrato": 5.28,
               "Umidade": 94.25,
-              "gorduraTotal": "0.04"
+              "gorduraTotal": 0,
+              "Sodio": 1.78
        },
        {
               "Nome": "Refrigerante, tipo água tônica",
@@ -2157,7 +2426,8 @@
               "Proteína": 0,
               "Carboidrato": 7.95,
               "Umidade": 92.01,
-              "gorduraTotal": "-0.11"
+              "gorduraTotal": 0,
+              "Sodio": 8.29
        },
        {
               "Nome": "Refrigerante, tipo cola",
@@ -2165,7 +2435,8 @@
               "Proteína": 0,
               "Carboidrato": 8.66,
               "Umidade": 91.28,
-              "gorduraTotal": "-0.13"
+              "gorduraTotal": 0,
+              "Sodio": 7.12
        },
        {
               "Nome": "Refrigerante, tipo guaraná",
@@ -2173,7 +2444,8 @@
               "Proteína": 0,
               "Carboidrato": 10,
               "Umidade": 89.96,
-              "gorduraTotal": "-0.14"
+              "gorduraTotal": 0,
+              "Sodio": 9.01
        },
        {
               "Nome": "Refrigerante, tipo laranja",
@@ -2181,7 +2453,8 @@
               "Proteína": 0,
               "Carboidrato": 11.79,
               "Umidade": 88.17,
-              "gorduraTotal": "-0.17"
+              "gorduraTotal": 0,
+              "Sodio": 9.27
        },
        {
               "Nome": "Refrigerante, tipo limão",
@@ -2189,7 +2462,8 @@
               "Proteína": 0,
               "Carboidrato": 10.26,
               "Umidade": 89.69,
-              "gorduraTotal": "-0.15"
+              "gorduraTotal": 0,
+              "Sodio": 8.8
        },
        {
               "Nome": "Omelete, de queijo",
@@ -2197,7 +2471,8 @@
               "Proteína": 15.57,
               "Carboidrato": 0.44,
               "Umidade": 60.49,
-              "gorduraTotal": "22.66"
+              "gorduraTotal": 22.01,
+              "Sodio": 216.05
        },
        {
               "Nome": "Ovo, de galinha, clara, cozida/10minutos",
@@ -2205,7 +2480,8 @@
               "Proteína": 13.45,
               "Carboidrato": 0,
               "Umidade": 85.23,
-              "gorduraTotal": "0.63"
+              "gorduraTotal": 0.09,
+              "Sodio": 180.54
        },
        {
               "Nome": "Ovo, de galinha, gema, cozida/10minutos",
@@ -2213,7 +2489,8 @@
               "Proteína": 15.9,
               "Carboidrato": 1.56,
               "Umidade": 50.02,
-              "gorduraTotal": "31.43"
+              "gorduraTotal": 30.78,
+              "Sodio": 44.91
        },
        {
               "Nome": "Ovo, de galinha, inteiro, cozido/10minutos",
@@ -2221,7 +2498,8 @@
               "Proteína": 13.29,
               "Carboidrato": 0.61,
               "Umidade": 75.77,
-              "gorduraTotal": "10.01"
+              "gorduraTotal": 9.48,
+              "Sodio": 145.9
        },
        {
               "Nome": "Ovo, de galinha, inteiro, frito",
@@ -2229,7 +2507,8 @@
               "Proteína": 15.62,
               "Carboidrato": 1.19,
               "Umidade": 63.5,
-              "gorduraTotal": "19.22"
+              "gorduraTotal": 18.59,
+              "Sodio": 166.11
        },
        {
               "Nome": "Achocolatado, pó",
@@ -2237,7 +2516,8 @@
               "Proteína": 4.2,
               "Carboidrato": 91.18,
               "Umidade": 1.1,
-              "gorduraTotal": "2.17"
+              "gorduraTotal": 2.17,
+              "Sodio": 64.79
        },
        {
               "Nome": "Açúcar, cristal",
@@ -2245,7 +2525,8 @@
               "Proteína": 0.32,
               "Carboidrato": 99.61,
               "Umidade": 0.05,
-              "gorduraTotal": "-1.43"
+              "gorduraTotal": 0,
+              "Sodio": 0
        },
        {
               "Nome": "Açúcar, mascavo",
@@ -2253,7 +2534,8 @@
               "Proteína": 0.76,
               "Carboidrato": 94.45,
               "Umidade": 3.32,
-              "gorduraTotal": "-1.36"
+              "gorduraTotal": 0.09,
+              "Sodio": 25.2
        },
        {
               "Nome": "Açúcar, refinado",
@@ -2261,7 +2543,8 @@
               "Proteína": 0.32,
               "Carboidrato": 99.54,
               "Umidade": 0.12,
-              "gorduraTotal": "-1.43"
+              "gorduraTotal": 0,
+              "Sodio": 12.16
        },
        {
               "Nome": "Chocolate, ao leite",
@@ -2269,7 +2552,8 @@
               "Proteína": 7.22,
               "Carboidrato": 59.58,
               "Umidade": 1.26,
-              "gorduraTotal": "30.27"
+              "gorduraTotal": 30.27,
+              "Sodio": 77.1
        },
        {
               "Nome": "Chocolate, ao leite, com castanha do Pará",
@@ -2277,7 +2561,8 @@
               "Proteína": 7.41,
               "Carboidrato": 55.38,
               "Umidade": 1.21,
-              "gorduraTotal": "34.19"
+              "gorduraTotal": 34.19,
+              "Sodio": 64.05
        },
        {
               "Nome": "Chocolate, ao leite, dietético",
@@ -2285,7 +2570,8 @@
               "Proteína": 6.9,
               "Carboidrato": 56.32,
               "Umidade": 1.73,
-              "gorduraTotal": "33.77"
+              "gorduraTotal": 33.77,
+              "Sodio": 84.71
        },
        {
               "Nome": "Chocolate, meio amargo",
@@ -2293,7 +2579,8 @@
               "Proteína": 4.86,
               "Carboidrato": 62.42,
               "Umidade": 1.02,
-              "gorduraTotal": "22.86"
+              "gorduraTotal": 29.86,
+              "Sodio": 8.87
        },
        {
               "Nome": "Cocada branca",
@@ -2301,7 +2588,8 @@
               "Proteína": 1.12,
               "Carboidrato": 81.38,
               "Umidade": 3.42,
-              "gorduraTotal": "13.2"
+              "gorduraTotal": 13.59,
+              "Sodio": 28.99
        },
        {
               "Nome": "Doce, de abóbora, cremoso",
@@ -2309,7 +2597,8 @@
               "Proteína": 0.92,
               "Carboidrato": 54.61,
               "Umidade": 43.88,
-              "gorduraTotal": "-2.58"
+              "gorduraTotal": 0.21,
+              "Sodio": 0
        },
        {
               "Nome": "Doce, de leite, cremoso",
@@ -2317,7 +2606,8 @@
               "Proteína": 5.48,
               "Carboidrato": 59.49,
               "Umidade": 27.5,
-              "gorduraTotal": "5.16"
+              "gorduraTotal": 5.99,
+              "Sodio": 120.09
        },
        {
               "Nome": "Geléia, mocotó, natural",
@@ -2325,7 +2615,8 @@
               "Proteína": 2.12,
               "Carboidrato": 24.23,
               "Umidade": 73.48,
-              "gorduraTotal": "0.07"
+              "gorduraTotal": 0.07,
+              "Sodio": 42.68
        },
        {
               "Nome": "Glicose de milho",
@@ -2333,7 +2624,8 @@
               "Proteína": 0,
               "Carboidrato": 79.38,
               "Umidade": 20.41,
-              "gorduraTotal": "-2.82"
+              "gorduraTotal": 0,
+              "Sodio": 58.93
        },
        {
               "Nome": "Maria mole",
@@ -2341,7 +2633,8 @@
               "Proteína": 3.81,
               "Carboidrato": 73.55,
               "Umidade": 21.57,
-              "gorduraTotal": "-0.91"
+              "gorduraTotal": 0.19,
+              "Sodio": 15.31
        },
        {
               "Nome": "Maria mole, coco queimado",
@@ -2349,7 +2642,8 @@
               "Proteína": 3.93,
               "Carboidrato": 75.06,
               "Umidade": 20.73,
-              "gorduraTotal": "-1.04"
+              "gorduraTotal": 0.09,
+              "Sodio": 14.29
        },
        {
               "Nome": "Marmelada",
@@ -2357,7 +2651,8 @@
               "Proteína": 0.4,
               "Carboidrato": 70.76,
               "Umidade": 28.5,
-              "gorduraTotal": "-3.05"
+              "gorduraTotal": 0.14,
+              "Sodio": 10.88
        },
        {
               "Nome": "Mel, de abelha",
@@ -2365,7 +2660,8 @@
               "Proteína": 0,
               "Carboidrato": 84.03,
               "Umidade": 15.82,
-              "gorduraTotal": "-2.99"
+              "gorduraTotal": 0,
+              "Sodio": 6.04
        },
        {
               "Nome": "Melado",
@@ -2373,7 +2669,8 @@
               "Proteína": 0,
               "Carboidrato": 76.62,
               "Umidade": 22.09,
-              "gorduraTotal": "-1.11"
+              "gorduraTotal": 0,
+              "Sodio": 4.01
        },
        {
               "Nome": "Quindim",
@@ -2381,7 +2678,8 @@
               "Proteína": 4.74,
               "Carboidrato": 46.3,
               "Umidade": 23.93,
-              "gorduraTotal": "23.02"
+              "gorduraTotal": 24.43,
+              "Sodio": 27.37
        },
        {
               "Nome": "Rapadura",
@@ -2389,7 +2687,8 @@
               "Proteína": 0.99,
               "Carboidrato": 90.79,
               "Umidade": 7.1,
-              "gorduraTotal": "-1.69"
+              "gorduraTotal": 0.07,
+              "Sodio": 21.71
        },
        {
               "Nome": "Café, pó, torrado",
@@ -2397,7 +2696,8 @@
               "Proteína": 14.7,
               "Carboidrato": 65.75,
               "Umidade": 2.93,
-              "gorduraTotal": "10.76"
+              "gorduraTotal": 11.95,
+              "Sodio": 1.13
        },
        {
               "Nome": "Capuccino, pó",
@@ -2405,7 +2705,8 @@
               "Proteína": 11.31,
               "Carboidrato": 73.61,
               "Umidade": 2.6,
-              "gorduraTotal": "8.63"
+              "gorduraTotal": 8.63,
+              "Sodio": 382.29
        },
        {
               "Nome": "Fermento em pó, químico",
@@ -2413,7 +2714,8 @@
               "Proteína": 0.48,
               "Carboidrato": 43.91,
               "Umidade": 7.08,
-              "gorduraTotal": "-9.76"
+              "gorduraTotal": 0.07,
+              "Sodio": 10052.41
        },
        {
               "Nome": "Fermento, biológico, levedura, tablete",
@@ -2421,7 +2723,8 @@
               "Proteína": 16.96,
               "Carboidrato": 7.7,
               "Umidade": 71.9,
-              "gorduraTotal": "-0.98"
+              "gorduraTotal": 1.52,
+              "Sodio": 39.61
        },
        {
               "Nome": "Gelatina, sabores variados, pó",
@@ -2429,7 +2732,8 @@
               "Proteína": 8.89,
               "Carboidrato": 89.22,
               "Umidade": 1.24,
-              "gorduraTotal": "-1.36"
+              "gorduraTotal": 0,
+              "Sodio": 234.92
        },
        {
               "Nome": "Sal, dietético",
@@ -2437,7 +2741,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0.6,
-              "gorduraTotal": "0.0"
+              "gorduraTotal": 0,
+              "Sodio": 23431.52
        },
        {
               "Nome": "Sal, grosso",
@@ -2445,7 +2750,8 @@
               "Proteína": 0,
               "Carboidrato": 0,
               "Umidade": 0.41,
-              "gorduraTotal": "0.0"
+              "gorduraTotal": 0,
+              "Sodio": 39943.2
        },
        {
               "Nome": "Shoyu",
@@ -2453,7 +2759,8 @@
               "Proteína": 3.31,
               "Carboidrato": 11.65,
               "Umidade": 70.63,
-              "gorduraTotal": "0.12"
+              "gorduraTotal": 0.33,
+              "Sodio": 5024.21
        },
        {
               "Nome": "Tempero a base de sal",
@@ -2461,7 +2768,8 @@
               "Proteína": 2.67,
               "Carboidrato": 2.07,
               "Umidade": 7.65,
-              "gorduraTotal": "0.26"
+              "gorduraTotal": 0.26,
+              "Sodio": 32560
        },
        {
               "Nome": "Azeitona, preta, conserva",
@@ -2469,7 +2777,8 @@
               "Proteína": 1.16,
               "Carboidrato": 5.54,
               "Umidade": 68.46,
-              "gorduraTotal": "18.59"
+              "gorduraTotal": 20.34,
+              "Sodio": 1566.66
        },
        {
               "Nome": "Azeitona, verde, conserva",
@@ -2477,7 +2786,8 @@
               "Proteína": 0.95,
               "Carboidrato": 4.1,
               "Umidade": 76.26,
-              "gorduraTotal": "12.97"
+              "gorduraTotal": 14.22,
+              "Sodio": 1347.18
        },
        {
               "Nome": "Chantilly, spray, com gordura vegetal",
@@ -2485,7 +2795,8 @@
               "Proteína": 0.53,
               "Carboidrato": 16.86,
               "Umidade": 55.14,
-              "gorduraTotal": "27.27"
+              "gorduraTotal": 27.27,
+              "Sodio": 109.7
        },
        {
               "Nome": "Leite, de coco",
@@ -2493,7 +2804,8 @@
               "Proteína": 1.01,
               "Carboidrato": 2.19,
               "Umidade": 77.98,
-              "gorduraTotal": "17.04"
+              "gorduraTotal": 18.36,
+              "Sodio": 44.29
        },
        {
               "Nome": "Maionese, tradicional com ovos",
@@ -2501,7 +2813,8 @@
               "Proteína": 0.58,
               "Carboidrato": 7.9,
               "Umidade": 58.42,
-              "gorduraTotal": "29.8"
+              "gorduraTotal": 30.5,
+              "Sodio": 786.83
        },
        {
               "Nome": "Acarajé",
@@ -2509,7 +2822,8 @@
               "Proteína": 8.35,
               "Carboidrato": 19.11,
               "Umidade": 50.46,
-              "gorduraTotal": "19.93"
+              "gorduraTotal": 19.93,
+              "Sodio": 304.89
        },
        {
               "Nome": "Arroz carreteiro",
@@ -2517,7 +2831,8 @@
               "Proteína": 10.83,
               "Carboidrato": 11.58,
               "Umidade": 68.04,
-              "gorduraTotal": "7.12"
+              "gorduraTotal": 7.12,
+              "Sodio": 1621.73
        },
        {
               "Nome": "Baião de dois, arroz e feijão-de-corda",
@@ -2525,7 +2840,8 @@
               "Proteína": 6.24,
               "Carboidrato": 20.42,
               "Umidade": 69.05,
-              "gorduraTotal": "3.23"
+              "gorduraTotal": 3.23,
+              "Sodio": 93.3
        },
        {
               "Nome": "Barreado",
@@ -2533,7 +2849,8 @@
               "Proteína": 18.27,
               "Carboidrato": 0.24,
               "Umidade": 71.17,
-              "gorduraTotal": "10.11"
+              "gorduraTotal": 9.53,
+              "Sodio": 47.63
        },
        {
               "Nome": "Bife à cavalo, com contra filé",
@@ -2541,7 +2858,8 @@
               "Proteína": 23.66,
               "Carboidrato": 0,
               "Umidade": 54.21,
-              "gorduraTotal": "21.84"
+              "gorduraTotal": 21.15,
+              "Sodio": 82.87
        },
        {
               "Nome": "Bolinho de arroz",
@@ -2549,7 +2867,8 @@
               "Proteína": 8.04,
               "Carboidrato": 41.68,
               "Umidade": 41.5,
-              "gorduraTotal": "8.29"
+              "gorduraTotal": 8.29,
+              "Sodio": 58.86
        },
        {
               "Nome": "Camarão à baiana",
@@ -2557,7 +2876,8 @@
               "Proteína": 7.94,
               "Carboidrato": 3.17,
               "Umidade": 81.99,
-              "gorduraTotal": "6.26"
+              "gorduraTotal": 5.97,
+              "Sodio": 84.79
        },
        {
               "Nome": "Charuto, de repolho",
@@ -2565,7 +2885,8 @@
               "Proteína": 6.78,
               "Carboidrato": 10.13,
               "Umidade": 81.55,
-              "gorduraTotal": "1.18"
+              "gorduraTotal": 1.12,
+              "Sodio": 12.1
        },
        {
               "Nome": "Cuscuz, de milho, cozido com sal",
@@ -2573,7 +2894,8 @@
               "Proteína": 2.16,
               "Carboidrato": 25.28,
               "Umidade": 71.14,
-              "gorduraTotal": "0.41"
+              "gorduraTotal": 0.68,
+              "Sodio": 247.67
        },
        {
               "Nome": "Cuscuz, paulista",
@@ -2581,7 +2903,8 @@
               "Proteína": 2.56,
               "Carboidrato": 22.51,
               "Umidade": 68.94,
-              "gorduraTotal": "4.65"
+              "gorduraTotal": 4.65,
+              "Sodio": 235.71
        },
        {
               "Nome": "Cuxá, molho",
@@ -2589,7 +2912,8 @@
               "Proteína": 5.64,
               "Carboidrato": 5.74,
               "Umidade": 80.99,
-              "gorduraTotal": "3.84"
+              "gorduraTotal": 3.59,
+              "Sodio": 1344.29
        },
        {
               "Nome": "Dobradinha",
@@ -2597,7 +2921,8 @@
               "Proteína": 19.77,
               "Carboidrato": 0,
               "Umidade": 75.27,
-              "gorduraTotal": "5.05"
+              "gorduraTotal": 4.44,
+              "Sodio": 28.77
        },
        {
               "Nome": "Estrogonofe de carne",
@@ -2605,7 +2930,8 @@
               "Proteína": 15.03,
               "Carboidrato": 2.98,
               "Umidade": 70.13,
-              "gorduraTotal": "11.23"
+              "gorduraTotal": 10.8,
+              "Sodio": 122.85
        },
        {
               "Nome": "Estrogonofe de frango",
@@ -2613,7 +2939,8 @@
               "Proteína": 17.55,
               "Carboidrato": 2.59,
               "Umidade": 70.89,
-              "gorduraTotal": "8.47"
+              "gorduraTotal": 7.96,
+              "Sodio": 99.45
        },
        {
               "Nome": "Feijão tropeiro mineiro",
@@ -2621,7 +2948,8 @@
               "Proteína": 10.17,
               "Carboidrato": 19.58,
               "Umidade": 61.67,
-              "gorduraTotal": "3.62"
+              "gorduraTotal": 6.79,
+              "Sodio": 365.07
        },
        {
               "Nome": "Feijoada",
@@ -2629,7 +2957,8 @@
               "Proteína": 8.67,
               "Carboidrato": 11.64,
               "Umidade": 71.8,
-              "gorduraTotal": "3.96"
+              "gorduraTotal": 6.48,
+              "Sodio": 278.22
        },
        {
               "Nome": "Frango, com açafrão",
@@ -2637,7 +2966,8 @@
               "Proteína": 9.7,
               "Carboidrato": 4.06,
               "Umidade": 79.52,
-              "gorduraTotal": "6.42"
+              "gorduraTotal": 6.17,
+              "Sodio": 28.81
        },
        {
               "Nome": "Macarrão, molho bolognesa",
@@ -2645,7 +2975,8 @@
               "Proteína": 4.93,
               "Carboidrato": 22.52,
               "Umidade": 71.41,
-              "gorduraTotal": "1.08"
+              "gorduraTotal": 0.89,
+              "Sodio": 8.94
        },
        {
               "Nome": "Maniçoba",
@@ -2653,7 +2984,8 @@
               "Proteína": 9.96,
               "Carboidrato": 3.42,
               "Umidade": 76.4,
-              "gorduraTotal": "8.97"
+              "gorduraTotal": 8.7,
+              "Sodio": 406.7
        },
        {
               "Nome": "Quibebe",
@@ -2661,7 +2993,8 @@
               "Proteína": 8.56,
               "Carboidrato": 6.64,
               "Umidade": 81.11,
-              "gorduraTotal": "2.84"
+              "gorduraTotal": 2.67,
+              "Sodio": 246.61
        },
        {
               "Nome": "Salada, de legumes, com maionese",
@@ -2669,7 +3002,8 @@
               "Proteína": 1.05,
               "Carboidrato": 8.92,
               "Umidade": 82.04,
-              "gorduraTotal": "6.25"
+              "gorduraTotal": 7.04,
+              "Sodio": 228.43
        },
        {
               "Nome": "Salada, de legumes, cozida no vapor",
@@ -2677,7 +3011,8 @@
               "Proteína": 2.01,
               "Carboidrato": 7.09,
               "Umidade": 89.98,
-              "gorduraTotal": "-0.11"
+              "gorduraTotal": 0.31,
+              "Sodio": 2.51
        },
        {
               "Nome": "Salpicão, de frango",
@@ -2685,7 +3020,8 @@
               "Proteína": 13.93,
               "Carboidrato": 4.57,
               "Umidade": 72.53,
-              "gorduraTotal": "8.21"
+              "gorduraTotal": 7.84,
+              "Sodio": 248.35
        },
        {
               "Nome": "Sarapatel",
@@ -2693,7 +3029,8 @@
               "Proteína": 18.47,
               "Carboidrato": 1.09,
               "Umidade": 74.95,
-              "gorduraTotal": "4.97"
+              "gorduraTotal": 4.42,
+              "Sodio": 215.62
        },
        {
               "Nome": "Tabule",
@@ -2701,7 +3038,8 @@
               "Proteína": 2.05,
               "Carboidrato": 10.58,
               "Umidade": 85.77,
-              "gorduraTotal": "0.77"
+              "gorduraTotal": 1.21,
+              "Sodio": 1.19
        },
        {
               "Nome": "Tacacá",
@@ -2709,7 +3047,8 @@
               "Proteína": 6.96,
               "Carboidrato": 3.39,
               "Umidade": 85.19,
-              "gorduraTotal": "0.61"
+              "gorduraTotal": 0.36,
+              "Sodio": 1349.06
        },
        {
               "Nome": "Tapioca, com manteiga",
@@ -2717,7 +3056,8 @@
               "Proteína": 0.09,
               "Carboidrato": 63.59,
               "Umidade": 24.9,
-              "gorduraTotal": "10.34"
+              "gorduraTotal": 10.91,
+              "Sodio": 157.52
        },
        {
               "Nome": "Tucupi, com pimenta-de-cheiro",
@@ -2725,7 +3065,8 @@
               "Proteína": 2.06,
               "Carboidrato": 4.74,
               "Umidade": 91.88,
-              "gorduraTotal": "0.0"
+              "gorduraTotal": 0.28,
+              "Sodio": 5.13
        },
        {
               "Nome": "Vaca atolada",
@@ -2733,7 +3074,8 @@
               "Proteína": 5.12,
               "Carboidrato": 10.06,
               "Umidade": 74.95,
-              "gorduraTotal": "9.35"
+              "gorduraTotal": 9.32,
+              "Sodio": 25.63
        },
        {
               "Nome": "Vatapá",
@@ -2741,7 +3083,8 @@
               "Proteína": 6.0,
               "Carboidrato": 9.75,
               "Umidade": 58.36,
-              "gorduraTotal": "21.32"
+              "gorduraTotal": 23.23,
+              "Sodio": 879.85
        },
        {
               "Nome": "Virado à paulista",
@@ -2749,7 +3092,8 @@
               "Proteína": 10.18,
               "Carboidrato": 14.11,
               "Umidade": 48.59,
-              "gorduraTotal": "23.31"
+              "gorduraTotal": 25.59,
+              "Sodio": 345.53
        },
        {
               "Nome": "Yakisoba",
@@ -2757,7 +3101,8 @@
               "Proteína": 7.52,
               "Carboidrato": 18.25,
               "Umidade": 69.38,
-              "gorduraTotal": "1.08"
+              "gorduraTotal": 2.61,
+              "Sodio": 793.76
        },
        {
               "Nome": "Amendoim, torrado, salgado",
@@ -2765,7 +3110,8 @@
               "Proteína": 22.48,
               "Carboidrato": 18.7,
               "Umidade": 1.69,
-              "gorduraTotal": "49.01"
+              "gorduraTotal": 53.96,
+              "Sodio": 375.73
        },
        {
               "Nome": "Ervilha, em vagem",
@@ -2773,7 +3119,8 @@
               "Proteína": 7.45,
               "Carboidrato": 14.23,
               "Umidade": 76.84,
-              "gorduraTotal": "0.15"
+              "gorduraTotal": 0.47,
+              "Sodio": 0
        },
        {
               "Nome": "Ervilha, enlatada, drenada",
@@ -2781,7 +3128,8 @@
               "Proteína": 4.6,
               "Carboidrato": 13.44,
               "Umidade": 80.14,
-              "gorduraTotal": "0.19"
+              "gorduraTotal": 0.38,
+              "Sodio": 372.11
        },
        {
               "Nome": "Feijão, carioca, cozido",
@@ -2789,7 +3137,8 @@
               "Proteína": 4.78,
               "Carboidrato": 13.59,
               "Umidade": 80.35,
-              "gorduraTotal": "0.33"
+              "gorduraTotal": 0.54,
+              "Sodio": 1.76
        },
        {
               "Nome": "Feijão, fradinho, cozido",
@@ -2797,7 +3146,8 @@
               "Proteína": 5.09,
               "Carboidrato": 13.5,
               "Umidade": 80.01,
-              "gorduraTotal": "0.4"
+              "gorduraTotal": 0.64,
+              "Sodio": 0.98
        },
        {
               "Nome": "Feijão, jalo, cozido",
@@ -2805,7 +3155,8 @@
               "Proteína": 6.14,
               "Carboidrato": 16.5,
               "Umidade": 75.84,
-              "gorduraTotal": "0.24"
+              "gorduraTotal": 0.51,
+              "Sodio": 0.52
        },
        {
               "Nome": "Feijão, preto, cozido",
@@ -2813,7 +3164,8 @@
               "Proteína": 4.48,
               "Carboidrato": 14.01,
               "Umidade": 80.22,
-              "gorduraTotal": "0.34"
+              "gorduraTotal": 0.54,
+              "Sodio": 1.85
        },
        {
               "Nome": "Feijão, rajado, cozido",
@@ -2821,7 +3173,8 @@
               "Proteína": 5.54,
               "Carboidrato": 15.27,
               "Umidade": 77.86,
-              "gorduraTotal": "0.16"
+              "gorduraTotal": 0.4,
+              "Sodio": 0.69
        },
        {
               "Nome": "Feijão, rosinha, cozido",
@@ -2829,7 +3182,8 @@
               "Proteína": 4.54,
               "Carboidrato": 11.82,
               "Umidade": 82.58,
-              "gorduraTotal": "0.27"
+              "gorduraTotal": 0.48,
+              "Sodio": 2.08
        },
        {
               "Nome": "Feijão, roxo, cozido",
@@ -2837,7 +3191,8 @@
               "Proteína": 5.72,
               "Carboidrato": 12.91,
               "Umidade": 79.99,
-              "gorduraTotal": "0.26"
+              "gorduraTotal": 0.54,
+              "Sodio": 1.46
        },
        {
               "Nome": "Lentilha, cozida",
@@ -2845,7 +3200,8 @@
               "Proteína": 6.31,
               "Carboidrato": 16.3,
               "Umidade": 76.25,
-              "gorduraTotal": "0.24"
+              "gorduraTotal": 0.52,
+              "Sodio": 1.18
        },
        {
               "Nome": "Paçoca, amendoim",
@@ -2853,7 +3209,8 @@
               "Proteína": 16.0,
               "Carboidrato": 52.38,
               "Umidade": 1.8,
-              "gorduraTotal": "23.72"
+              "gorduraTotal": 26.08,
+              "Sodio": 166.84
        },
        {
               "Nome": "Pé-de-moleque, amendoim",
@@ -2861,7 +3218,8 @@
               "Proteína": 13.16,
               "Carboidrato": 54.73,
               "Umidade": 2.91,
-              "gorduraTotal": "25.74"
+              "gorduraTotal": 28.05,
+              "Sodio": 16.35
        },
        {
               "Nome": "Soja, farinha",
@@ -2869,7 +3227,8 @@
               "Proteína": 36.03,
               "Carboidrato": 38.44,
               "Umidade": 5.75,
-              "gorduraTotal": "11.79"
+              "gorduraTotal": 14.63,
+              "Sodio": 5.75
        },
        {
               "Nome": "Soja, extrato solúvel, natural, fluido",
@@ -2877,7 +3236,8 @@
               "Proteína": 2.38,
               "Carboidrato": 4.28,
               "Umidade": 91.28,
-              "gorduraTotal": "1.39"
+              "gorduraTotal": 1.61,
+              "Sodio": 56.53
        },
        {
               "Nome": "Soja, extrato solúvel, pó",
@@ -2885,7 +3245,8 @@
               "Proteína": 35.69,
               "Carboidrato": 28.48,
               "Umidade": 4.47,
-              "gorduraTotal": "22.47"
+              "gorduraTotal": 26.18,
+              "Sodio": 83.47
        },
        {
               "Nome": "Soja, queijo (tofu)",
@@ -2893,7 +3254,8 @@
               "Proteína": 6.55,
               "Carboidrato": 2.13,
               "Umidade": 86.65,
-              "gorduraTotal": "3.31"
+              "gorduraTotal": 3.95,
+              "Sodio": 1.21
        },
        {
               "Nome": "Tremoço, em conserva",
@@ -2901,7 +3263,8 @@
               "Proteína": 11.11,
               "Carboidrato": 12.39,
               "Umidade": 67.68,
-              "gorduraTotal": "2.96"
+              "gorduraTotal": 3.78,
+              "Sodio": 1808.76
        },
        {
               "Nome": "Amêndoa, torrada, salgada",
@@ -2909,7 +3272,8 @@
               "Proteína": 18.55,
               "Carboidrato": 29.55,
               "Umidade": 3.11,
-              "gorduraTotal": "43.15"
+              "gorduraTotal": 47.32,
+              "Sodio": 278.52
        },
        {
               "Nome": "Castanha-de-caju, torrada, salgada",
@@ -2917,7 +3281,8 @@
               "Proteína": 18.51,
               "Carboidrato": 29.13,
               "Umidade": 3.46,
-              "gorduraTotal": "42.18"
+              "gorduraTotal": 46.28,
+              "Sodio": 125
        },
        {
               "Nome": "Gergelim, semente",
@@ -2925,7 +3290,8 @@
               "Proteína": 21.16,
               "Carboidrato": 21.62,
               "Umidade": 3.86,
-              "gorduraTotal": "45.82"
+              "gorduraTotal": 50.43,
+              "Sodio": 2.58
        },
        {
               "Nome": "Linhaça, semente",
@@ -2933,7 +3299,8 @@
               "Proteína": 14.08,
               "Carboidrato": 43.31,
               "Umidade": 6.68,
-              "gorduraTotal": "29.5"
+              "gorduraTotal": 32.25,
+              "Sodio": 8.67
        },
        {
               "Nome": "Pinhão, cozido",
@@ -2941,7 +3308,8 @@
               "Proteína": 2.98,
               "Carboidrato": 43.92,
               "Umidade": 50.51,
-              "gorduraTotal": "-1.47"
+              "gorduraTotal": 0.75,
+              "Sodio": 0.86
        },
        {
               "Nome": "Pupunha, cozida",
@@ -2949,6 +3317,7 @@
               "Proteína": 2.52,
               "Carboidrato": 29.57,
               "Umidade": 54.46,
-              "gorduraTotal": "10.02"
+              "gorduraTotal": 12.76,
+              "Sodio": 0.91
        }
 ]

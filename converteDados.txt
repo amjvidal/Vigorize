@@ -1,3 +1,7 @@
+import json
+with open("TACO.json",encoding="utf-8") as alimentos:
+    dados=json.load(alimentos)
+
 def filtrarDados():
     dadosFiltrados=[]
     for item in dados:
@@ -7,6 +11,11 @@ def filtrarDados():
             proteina=item["protein_g"]
             carboidrato=item["carbohydrate_g"]
             umidade=item["humidity_percents"]
+            sodio=item["sodium_mg"]
+            gordurasTotal=item["lipid_g"]
+
+            if isinstance(gordurasTotal,str):
+                gordurasTotal=0
 
             if isinstance(item["energy_kcal"],str):
                 caloria=0
@@ -20,8 +29,11 @@ def filtrarDados():
             if isinstance(umidade,str):
                 umidade=0
 
+            if isinstance(sodio,str):
+                sodio=0
+
             dadosFiltrados.append({"Nome":item["description"],"Caloria":round(caloria,2),"Proteína":round(proteina,2),"Carboidrato":round(carboidrato,2),
-                                   "Umidade":round(umidade,2),'gorduraTotal':gordurasTotal(caloria,proteina,carboidrato)})
+                                   "Umidade":round(umidade,2),'gorduraTotal':round(gordurasTotal,2),"Sodio":round(sodio,2)})
     return dadosFiltrados
         
 
@@ -35,6 +47,14 @@ def gordurasTotal(caloria,proteina,carboidratos):
     gordurasTotal = (caloria-(proteina*4)-(carboidratos*4))/9
     return str(round(gordurasTotal,2))
 
+def excluiCru(nome):
+    if not'Salmão' in nome:
+        if 'cru' in nome:
+            return None
+        else:
+            return nome
+    else:
+        return nome
 
 with open('dados.json', 'w', encoding='utf-8') as arquivo_json:
     json.dump(filtrarDados(), arquivo_json, ensure_ascii=False,indent=7 )
