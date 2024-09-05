@@ -143,8 +143,8 @@
                     <h1 class="text-[#234035] mt-[-650px] text-8xl font-bold whitespace-nowrap ml-[-300px]">Exercitar-se é importante!</h1>
                     <p class="text-[#234035] text-5xl text-center tracking-wide  font-medium mt-[150px] mr-[-100px] mb-[-450px]">
                         A prática regular de exercícios físicos é essencial para potencializar
-                         os benefícios da nutrição, ajudando na absorção dos nutrientes, na 
-                         manutenção de um peso saudável e no equilíbrio do metabolismo.</p>
+                        os benefícios da nutrição, ajudando na absorção dos nutrientes, na 
+                        manutenção de um peso saudável e no equilíbrio do metabolismo.</p>
                 </div>
             
                 
@@ -160,7 +160,7 @@
                         Um sono de qualidade é fundamental para a nutrição e a saúde geral, pois 
                         durante o sono o corpo regula hormônios responsáveis pelo apetite, melhora 
                         a absorção e o processamento dos nutrientes, e apoia o metabolismo, ajudando
-                         a manter o equilíbrio energético e o peso saudável.</p>
+                        a manter o equilíbrio energético e o peso saudável.</p>
                 </div>
             
                 <!-- Parte direita -->
@@ -171,7 +171,26 @@
         </div>
     </div>
     
-    {% with messages = get_flashed_messages(with_categories=True) %}
+
+        <div class = "flex h-[270px] bg-[#234035] items-center justify-between mt-[600px] w-full">
+            <div>
+                <img src= "../static/logo.png" class= "ml-[30px]">
+            </div>
+            <div>
+            <p class= "mt-[70px] text-center text-[#F8DCB3] text-2xl font-bold">Desenvolvido por estudantes da UABJ - UFRPE.</p>
+            <p class= "text-center text-[#F8DCB3] text-2xl font-bold">Projeto Interdisciplinar 2</p>
+            <p class= "mt-[60px] text-center text-[#F8DCB3] text-xl font-bold">© 2024 Vigorize, Inc. Todos os direitos reservados.</p>
+                    
+            </div>
+            <div>
+                <img src= "../static/logoUFRPE.png" class= "mr-[30px]">
+            </div>
+        </div>
+
+        
+        
+    
+
         {% if messages %}
             <script>
                 // Transforma mensagens de flash em um array para o JavaScript
