@@ -42,10 +42,9 @@
     </header>
     <!-- ABA DE CONFIGURAÇÃO -->
     <!-- ABA DE CONFIGURAÇÃO -->
-    <aside id="config-panel" class="slide-in fixed top-0 right-0 h-full w-[440px] bg-[#234035] text-white shadow-lg z-20 justify-center items-center">
+    <aside id="config-panel" class="slide-in fixed top-[70px] right-0 h-full w-[440px] bg-[#234035] text-white shadow-lg z-20 justify-center items-center">
         <h2 class="text-xl font-bold mb-4">Configurações</h2>
         <div class="p-4 ">
-            <button id="close-button" class="p-2 bg-[#b01002d7] text-white rounded-lg block mx-auto">Fechar</button>
             <!-- Conteúdo da aba de configuração aqui -->
             <!-- Conteúdo da aba de configuração aqui -->
             <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" enctype="multipart/form-data">
@@ -56,7 +55,7 @@
                 
                     <!-- Botão personalizado -->
                     <!-- <button type="button" id="upload-button" class="w-64 h-64 rounded-full bg-cover bg-center block mx-auto" style="background-image: url('{{ profile_picture_url }}');" onclick="document.getElementById('profile-picture').click();"> -->
-                        <img type="button" id="upload-button" class="w-64 h-64 rounded-full block mx-auto cursor-pointer" src="{{ profile_picture_url }}" onclick="document.getElementById('profile-picture').click();">
+                        <img type="button" id="upload-button" class=" border-[3px] border-[#F8DCB3] w-64 h-64 rounded-full block mx-auto cursor-pointer" src="{{ profile_picture_url }}" onclick="document.getElementById('profile-picture').click();">
                         <!-- Pode adicionar um ícone ou texto opcional aqui -->
                     </button>
                 
