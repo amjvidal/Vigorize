@@ -26,7 +26,6 @@ def pagina_login():
         
     ]
     if request.method == 'POST':
-        print("post")
 
         action = request.form.get('action')
         data = request.form
@@ -37,7 +36,7 @@ def pagina_login():
                  
                 if email_verified == False:
                     flash('Email não verificado, por favor verifique seu email!', 'danger')
-                    return render_template('index.html', inputs=inputs)
+                    return redirect(url_for('login.pagina_login'))
 
                 if firstLogin(data['email']):
                     return redirect(url_for('primeiroAcesso.primeiroAcesso'))
@@ -49,13 +48,13 @@ def pagina_login():
                 # Captura a exceção e imprime a mensagem de erro
                 error_message = json.loads(e.args[1])['error']['message']
                 flash(error_message, 'danger')
-                return render_template('index.html', inputs=inputs)
+                return redirect(url_for('login.pagina_login'))
         
         else:
             print('logout')
             auth.current_user = None
             flash('Logout realizado com sucesso!', 'success')
-            return render_template('index.html', inputs=inputs)
+            return redirect(url_for('login.pagina_login'))
         
     if user:
         return redirect(url_for('perfil.pagina_perfil'))

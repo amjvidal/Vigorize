@@ -26,7 +26,12 @@
 <body class="bg-[#F8DCB3] min-h-screen">
     <header class="h-[70px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
         <nav class="flex justify-between items-center space-x-6 py-4">
-            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-12">
+            {% if profile_picture_url %}
+                <img src="{{ profile_picture_url }}" alt="Foto de Perfil" class='max-w-[200px] max-h-[200px]'>
+            {% else %}
+                <p>CU.</p>
+            {% endif %}
+
             <a class="text-white underline" href="/perfil">Usuário</a>
             <a class="text-white underline" href="/perfil">Tabela Nutricional</a>
             <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-12">
@@ -36,11 +41,18 @@
         </nav>
     </header>
     <!-- ABA DE CONFIGURAÇÃO -->
+    <!-- ABA DE CONFIGURAÇÃO -->
     <aside id="config-panel" class="slide-in fixed top-0 right-0 h-full w-[440px] bg-[#234035] text-white shadow-lg z-20 justify-center items-center">
         <h2 class="text-xl font-bold mb-4">Configurações</h2>
         <div class="p-4 ">
             <button id="close-button" class="p-2 bg-[#b01002d7] text-white rounded-lg block mx-auto">Fechar</button>
             <!-- Conteúdo da aba de configuração aqui -->
+            <!-- Conteúdo da aba de configuração aqui -->
+            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="action" value="save_profile">
+                <input type="file" id="profile-picture" accept="image/*" name="file" required>
+                <button type="submit">Salvar Foto</button>
+            </form>
             <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
                 <input type="hidden" name="action" value="recover_password">
                 <button class="p-2 bg-[#ED8D00] text-white rounded-lg block mx-auto">Recuperar Senha</button>
@@ -51,13 +63,14 @@
             </form>
         </div>
     </aside>
-    <!-- PRINCIPAL
-     -->
+    <!-- PRINCIPAL-->
+    <!-- PRINCIPAL-->
     <main class="pt-[70px]">
         <div class=" bg-[#234035] space-y-2 h-screen w-[30%] ">
             <div class="">
                 <h3 class="text-white">Dados Pessoais</h3>
             </div>
+            <!-- FORMULÁRIO DE ATUALIZAÇÃO  -->
             <!-- FORMULÁRIO DE ATUALIZAÇÃO  -->
             <form id="form_update_profile"action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
                 <input type="hidden" name="action" value="update_profile">
@@ -123,6 +136,7 @@
         
 
         <!-- Adiciona o gráfico -->
+        <!-- Adiciona o gráfico -->
         <div class="flex justify-center mt-8">
             <canvas id="activityGrowthChart" width="400" height="100"></canvas>
         </div>
@@ -138,6 +152,7 @@
     {% endwith %}
 
     <script>
+        // Configuração do gráfico usando Chart.js
         // Configuração do gráfico usando Chart.js
         const ctx = document.getElementById('activityGrowthChart').getContext('2d');
         const activityGrowthChart = new Chart(ctx, {
