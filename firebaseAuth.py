@@ -58,3 +58,7 @@ def firstLogin(email):
     user_email = emailDb(email)
     firstLogin = db.child("usuarios").child(user_email).child("firstTime").get().val()
     return firstLogin
+
+def set_persistence_local(): #pessitencia de login
+    auth.set_persistence(firebase.auth.Auth.Persistence.LOCAL)
+
