@@ -27,7 +27,7 @@
     <header class="h-[70px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
         <nav class="flex justify-between items-center space-x-6 py-4">
             {% if profile_picture_url %}
-                <img src="{{ profile_picture_url }}" alt="Foto de Perfil" class='max-w-[200px] max-h-[200px]'>
+                <img src="{{ profile_picture_url }}" alt="Foto de Perfil" class='w-16 h-16 rounded-full'>
             {% else %}
                 <p>CU.</p>
             {% endif %}
@@ -50,8 +50,19 @@
             <!-- Conteúdo da aba de configuração aqui -->
             <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="action" value="save_profile">
-                <input type="file" id="profile-picture" accept="image/*" name="file" required>
-                <button type="submit">Salvar Foto</button>
+                <form action="/sua-rota" method="POST" enctype="multipart/form-data">
+                    <!-- Input de arquivo escondido -->
+                    <input type="file" id="profile-picture" accept="image/*" name="file" required class="hidden" onchange="updateProfilePicturePreview()">
+                
+                    <!-- Botão personalizado -->
+                    <!-- <button type="button" id="upload-button" class="w-64 h-64 rounded-full bg-cover bg-center block mx-auto" style="background-image: url('{{ profile_picture_url }}');" onclick="document.getElementById('profile-picture').click();"> -->
+                        <img type="button" id="upload-button" class="w-64 h-64 rounded-full block mx-auto cursor-pointer" src="{{ profile_picture_url }}" onclick="document.getElementById('profile-picture').click();">
+                        <!-- Pode adicionar um ícone ou texto opcional aqui -->
+                    </button>
+                
+                    <!-- Submit button -->
+                    <button type="submit" class="p-2 bg-[#ED8D00] text-white rounded-lg block mx-auto">Salvar Foto</button>
+                </form>
             </form>
             <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
                 <input type="hidden" name="action" value="recover_password">
@@ -204,6 +215,24 @@
         document.getElementById('close-button').addEventListener('click', function() {
             document.getElementById('config-panel').classList.remove('active');
         });
+    </script>
+
+    <!-- Script do botão da foto do perfil  -->
+    <script>
+        function updateProfilePicturePreview() {
+            var fileInput = document.getElementById('profile-picture');
+            var uploadButton = document.getElementById('upload-button');
+            
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    uploadButton.src = e.target.result;
+                }
+                
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
     </script>
 </body>
 </html>
