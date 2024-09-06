@@ -148,19 +148,19 @@
                 datasets: [
                     {
                         label: 'Calorias',
-                        data: ["{{ Caloria }}"],
+                        data: {{ calorias_data | tojson }},
                         
                         backgroundColor: '#606c38'
                     },
                     {
                         label: 'IMC',
-                        data: ["{{ imc }}"],
+                        data: {{ imc_data | tojson }},
                        
                         backgroundColor: '#ED8D00'
                     },
                     {
                         label: 'Gordura',
-                        data: ["{{ percent_gordura }}"],
+                        data: {{ percent_gordura_data | tojson }},
                         
                         
                         backgroundColor: '#e0e0e0'

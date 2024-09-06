@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
-from firebaseAuth import recoverPassword, db, auth, emailDb
+from firebaseAuth import recoverPassword, db, auth, emailDb, armazenar_dados_mensais
 import json
 from calculadora import calculaTMB, calculaPercentGorduraMASC, calculaPercentGorduraFem, calculaIMC
 from datetime import datetime
@@ -109,13 +109,24 @@ def pagina_perfil():
 
     imc = calculaIMC(int(peso_user), int(altura_user))
 
-    # Salvar os dados calculados no Firebase
-    db.child("usuarios").child(user_email).update(
-        {
-            'imc': imc,
-            'percent_gordura': percent_gordura,
-            'Caloria': Caloria
-        }
-    )
+    # Armazenar os dados mensais
+    hoje = datetime.now()
+    mes_atual = hoje.strftime("%m")
+    ano_atual = hoje.strftime("%Y")
+    armazenar_dados_mensais(user_email, mes_atual, ano_atual, Caloria, imc, percent_gordura)
 
-    return render_template('perfil.html', inputs=inputs, percent_gordura=percent_gordura, imc=imc, fisicos=fisicos, CaloriaMedia=CaloriaMedia, idade=idade, Caloria=Caloria, atividade_user=atividade_user)
+    # Buscar os dados mensais para o gráfico
+    dados_mensais = db.child("usuarios").child(user_email).child("dados_mensais").get().val()
+    labels = []
+    calorias_data = []
+    imc_data = []
+    percent_gordura_data = []
+
+    if dados_mensais:
+        for mes, dados in dados_mensais.items():
+            labels.append(mes)
+            calorias_data.append(dados['calorias'])
+            imc_data.append(dados['imc'])
+            percent_gordura_data.append(dados['percent_gordura'])
+
+    return render_template('perfil.html', inputs=inputs, percent_gordura=percent_gordura, imc=imc, fisicos=fisicos, CaloriaMedia=CaloriaMedia, idade=idade, Caloria=Caloria, atividade_user=atividade_user, labels=labels, calorias_data=calorias_data, imc_data=imc_data, percent_gordura_data=percent_gordura_data)

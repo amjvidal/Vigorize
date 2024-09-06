@@ -61,4 +61,15 @@ def firstLogin(email):
 
 def set_persistence_local(): #pessitencia de login
     auth.set_persistence(firebase.auth.Auth.Persistence.LOCAL)
+    
+    
+def armazenar_dados_mensais(user_email, mes, ano, calorias, imc, percent_gordura):
+    data = {
+        'calorias': calorias,
+        'imc': imc,
+        'percent_gordura': percent_gordura
+    }
+    db.child("usuarios").child(user_email).child("dados_mensais").child(f"{ano}-{mes}").set(data)
+    
+
 
