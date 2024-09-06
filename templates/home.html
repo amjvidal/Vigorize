@@ -49,10 +49,12 @@
         <div class="flex items-center justify-center">
             <h2 class="text-3xl font-bold text-[#393227] text-center">Confira as funcionalidades do Vigorize.</h2>
         </div>
-
-        <div>
-            <button class="p-2 bg-[#ED8D00] text-3xl rounded-[210px] mt-16 px-16 font-medium text-[#393227]">Comece já</button>
-        </div>
+        <!-- formulário para botão para ir para pagina de login -->
+        <form action="{{ url_for('home.home')}}" method="POST">
+            <div>
+                <button href="/login" class="p-2 bg-[#ED8D00] text-3xl rounded-[210px] mt-16 px-16 font-medium text-[#393227]">Comece já</button>
+            </div>
+        </form>
     </div>
 
     <div class="w-full mt-80 h-[1600px] flex items-center justify-between relative" style="background: linear-gradient(to bottom, #234035, #f8dcb3);">
@@ -100,8 +102,10 @@
                     <p class="text-xl font-normal text-center text-[#F8DCB3] mt-[90px]">Monte cardápios saudáveis e saborosos com as nossas dicas de planejamento de refeições.</p>
                 </div>
             </div>
-            <button class="p-3 w-[300px] bg-[#ED8D00] rounded-[210px] mt-16 font-bold text-2xl text-[#234035]">Quero saber mais!</button>
-
+            <!-- formulário para botão para ir para pagina de login -->
+            <form action="{{ url_for('home.home')}}" method="POST">
+                <button href="/login" class="p-3 w-[300px] bg-[#ED8D00] rounded-[210px] mt-16 font-bold text-2xl text-[#234035]">Quero saber mais!</button>
+            </form>
         </div>
     </div>
 
@@ -201,7 +205,7 @@
         
         
     
-
+    {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
             <script>
                 // Transforma mensagens de flash em um array para o JavaScript
