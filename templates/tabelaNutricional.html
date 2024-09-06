@@ -2,10 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/static/css/main.css ">
+    <link rel="stylesheet" href="/static/css/main.css">
     <title>Vigorize</title>
-    
-
 </head>
 <body class="bg-[#f4d7b2] h-screen flex items-center justify-center">
     <div class="w-full max-w-md">
@@ -14,20 +12,17 @@
             <img src="{{ url_for('static', filename='VIGORIZE.svg') }}" alt="Logo VIGORIZE" class="mx-auto mb-4 w-24">
             <h1 class="text-2xl text-green-700 font-bold">VIGORIZE</h1>
         </div>
-
-
+ 
         <style>
             input::placeholder {
-            font-size: 12px; 
-            color: #576A5C; 
-            padding: 8px;
+                font-size: 12px; 
+                color: #576A5C; 
+                padding: 8px;
             }
 
-            input{
+            input {
                 border-radius: 10px;
-                
             }
-
         </style>
 
         <div class="search-container">
@@ -44,7 +39,10 @@
 
         <div class="button-container">
             {% for button in buttons %}
-                <button>{{ button }}</button>
+                <div class="button-wrapper" data-id="{{ loop.index }}">
+                    <button class="inflated-button">{{ button }}</button>
+                    <span class="delete-icon" onclick="excluirBotao('{{ loop.index }}')">x</span>
+                </div>
             {% endfor %}
         </div>
 
@@ -61,12 +59,37 @@
                     }
                 }
             }
+                
+            function excluirBotao(id) {
+            var buttonWrapper = document.querySelector(`.button-wrapper[data-id='${id}']`);
+            
+            // Remover visualmente o botão antes de enviar a requisição
+            if (buttonWrapper) {
+                buttonWrapper.remove();
+            }
+
+            // Enviar a requisição para o backend para remover o botão da sessão
+            fetch('/remover-botao', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ id: id })  // Envia o id do botão para o backend
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Botão removido com sucesso');
+                } else {
+                    console.error('Erro ao remover botão:', data.error);
+                }
+            })
+            .catch((error) => console.error('Erro:', error));
+            }
+
         </script>
 
-
-
-        
     </div>
 </body>
-
 </html>
