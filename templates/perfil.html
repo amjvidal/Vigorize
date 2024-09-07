@@ -40,8 +40,6 @@
             <button id="config-button" class="p-2 bg-[#ED8D00] text-white rounded-lg">Config</button>
         </nav>
     </header>
-    <!-- ABA DE CONFIGURAÇÃO -->
-    <!-- ABA DE CONFIGURAÇÃO -->
     <aside id="config-panel" class="slide-in fixed top-[70px] right-0 h-full w-[440px] bg-[#234035] text-white shadow-lg z-20 justify-center items-center">
         <h2 class="text-xl font-bold mb-4">Configurações</h2>
         <div class="p-4 ">
@@ -77,16 +75,16 @@
             </form>
         </div>
     </aside>
-    <!-- PRINCIPAL-->
-    <!-- PRINCIPAL-->
-    <main class="pt-[70px]">
+
+    <!-- PRINCIPAL -->
+    <main class="pt-[70px] flex space-x-8">
+        <!-- Div de Dados Pessoais -->
         <div class=" bg-[#234035] space-y-2 h-screen w-[30%] ">
             <div class="">
                 <h3 class="text-white">Dados Pessoais</h3>
             </div>
             <!-- FORMULÁRIO DE ATUALIZAÇÃO  -->
-            <!-- FORMULÁRIO DE ATUALIZAÇÃO  -->
-            <form id="form_update_profile"action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
+            <form id="form_update_profile"action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
                 <input type="hidden" name="action" value="update_profile">
                 <div class="grid grid-cols-2 gap-y-10 gap-x-10">
                     {% for input in inputs %}
@@ -98,64 +96,71 @@
                             name="{{ input.name }}"
                             max="{{ input.max }}"
                             min="{{ input.min }}"
-                            value="{{ input.value}}">
+                            value="{{ input.value }}">
                         </div>
                     {% endfor %}
                     <select class="bg-[#F8DCB3] mx-4 py-4 outline-none border-0 text-left placeholder:text-black font-semibold form-control max-w-[200px] float-start"
                     name="fisico"
                     required>
-                        <option value = "{{atividade_user}}" selected>{{atividade_user}}</option>
-                        {% for fisico in fisicos%}
-                        {%if fisico != atividade_user%}
-                            <option value = "{{ fisico }}">{{ fisico }}</option>
-                            
-                        {%endif%}
+                        <option value="{{ atividade_user }}" selected>{{ atividade_user }}</option>
+                        {% for fisico in fisicos %}
+                        {% if fisico != atividade_user %}
+                            <option value="{{ fisico }}">{{ fisico }}</option>
+                        {% endif %}
                         {% endfor %}
                     </select>
                     <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Salvar</button>
                 </div>
             </form>
         </div>
-        <div class="flex justify-center mt-8">
-            <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
-                 style="background-image: conic-gradient(#606c38 {{ percent_gordura }}%, #e0e0e0 {{ percent_gordura }}%)">
-                <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
-                <div class="relative text-[#e0e0e0] text-4xl text-center">
+
+        <!-- Div com os Círculos -->
+        <!-- DIV COM OS CÍRCULOS E O GRÁFICO -->
+        <div class="flex-col items-center justify-center mt-7 ">
+            <!-- Div com os Círculos -->
+            <div class="flex justify-center space-x-20">
+                <!-- Primeiro círculo -->
+                <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
+                style="background-image: conic-gradient(#F3D3A0 {{ percent_gordura }}%, #576A5C {{ percent_gordura }}%);
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                        <div class="absolute w-44 h-44 bg-[#F8DCB3] rounded-full"
+                        style="box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);"> <!-- Sombra interna -->
+                        </div>
+                <div class="relative text-[#576A5C] text-3xl text-center">
                     {{ percent_gordura }}%
                     <div class="text-base">Gordura<br>Dietas</div>
                 </div>
             </div>
-        </div>
-        <div class="flex justify-center mt-8">
-            <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
-                 style="background-image: conic-gradient(#606c38 {{ imc }}%, #e0e0e0 {{ imc }}%)">
-                <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
-                <div class="relative text-[#e0e0e0] text-4xl text-center">
-                    {{ imc }}
-                    <div class="text-base">IMC<br>Dietas</div>
-                </div>
-            </div>
-        </div>
-        <div class="flex justify-center mt-8">
-            <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
-                 style="background-image: conic-gradient(#606c38 {{ caloriaMedia }}%, #e0e0e0 {{ caloriaMedia }}%)">
-                <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
-                <div class="relative text-[#e0e0e0] text-4xl text-center">
-                    {{ caloria }}
-                    <div class="text-base">Calorias<br>Dietas</div>
-                </div>
-            </div>
-        </div>
-        
-        
-        
 
-        <!-- Adiciona o gráfico -->
-        <!-- Adiciona o gráfico -->
-        <div class="flex justify-center mt-8">
-            <canvas id="activityGrowthChart" width="400" height="100"></canvas>
+
+                <!-- Segundo círculo -->
+                <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
+                    style="background-image: conic-gradient(#ffffff {{ imc }}%, #576A5C {{ imc }}%)">
+                    <div class="absolute w-44 h-44 bg-[#F8DCB3] rounded-full"></div>
+                    <div class="relative text-[#576A5C] text-4xl text-center">
+                        {{ imc }}
+                        <div class="text-base">IMC<br>Dietas</div>
+                    </div>
+                </div>
+
+                <!-- Terceiro círculo -->
+                <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
+                    style="background-image: conic-gradient(#F8DCB3 {{ caloriaMedia }}%, #576A5C {{ caloriaMedia }}%)">
+                    <div class="absolute w-44 h-44 bg-[#F8DCB3] rounded-full"></div>
+                    <div class="relative text-[#576A5C] text-4xl text-center">
+                        {{ caloria }}
+                        <div class="text-base">Calorias<br>Dietas</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Adiciona o gráfico abaixo dos círculos -->
+            <div class="flex justify-center mt-8 w-full">
+                <canvas id="activityGrowthChart" width="800" height="200"></canvas>
+            </div>
         </div>
-    </main>
+
+    
 
     {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
