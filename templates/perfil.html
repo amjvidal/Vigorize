@@ -162,7 +162,16 @@
 
     
 
-        <canvas id="activityGrowthChart" width="400" height="200"></canvas>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <script>
+                const messages = {{ messages | tojson }};
+                showFlashMessages(messages.map(msg => msg[1]));
+            </script>
+        {% endif %}
+    {% endwith %}
+
+    
 
         <script>
         // Configuração do gráfico usando Chart.js
@@ -232,7 +241,9 @@
                         beginAtZero: true,
                         max: 100,
                         grid: {
-                            color: '#E5E5E5',
+                            color: '#576A5C', // Cor das linhas horizontais
+                            lineWidth: 1,
+                            drawBorder: false, // Remove a borda do eixo Y
                         },
                         ticks: {
                             color: '#576A5C',
@@ -248,7 +259,35 @@
                 }
             }
         });
-        </script>
+
+
+
+        // JavaScript para controlar a visibilidade da aba
+        document.getElementById('config-button').addEventListener('click', function() {
+            document.getElementById('config-panel').classList.toggle('active');
+        });
+
+        document.getElementById('close-button').addEventListener('click', function() {
+            document.getElementById('config-panel').classList.remove('active');
+        });
+    // Script do botão da foto do perfil
+    function updateProfilePicturePreview() {
+        var fileInput = document.getElementById('profile-picture');
+        var uploadButton = document.getElementById('upload-button');
         
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                uploadButton.src = e.target.result;
+            }
+            
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+    function confirmDeletion() {
+        return confirm("Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.");
+    }
+    </script>
 </body>
 </html>
