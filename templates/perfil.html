@@ -122,7 +122,7 @@
                 <!-- Primeiro círculo -->
                 <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
                 style="background-image: conic-gradient(#F3D3A0 {{ percent_gordura }}%, #576A5C {{ percent_gordura }}%);
-                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); clip-path: inset(0 round 100%);">
                         <div class="absolute w-44 h-44 bg-[#F8DCB3] rounded-full"
                         style="box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);"> <!-- Sombra interna -->
                         </div>
@@ -145,7 +145,7 @@
 
                 <!-- Terceiro círculo -->
                 <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
-                    style="background-image: conic-gradient(#F8DCB3 {{ caloriaMedia }}%, #576A5C {{ caloriaMedia }}%); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                    style="background-image: conic-gradient(#F3D3A0 {{ caloriaMedia }}%, #576A5C {{ caloriaMedia }}%); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
                     <div class="absolute w-44 h-44 bg-[#F8DCB3] rounded-full"style="box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);"></div>
                     <div class="relative text-[#576A5C] text-4xl text-center">
                         {{ caloria }}
@@ -162,51 +162,84 @@
 
     
 
-    {% with messages = get_flashed_messages(with_categories=True) %}
-        {% if messages %}
-            <script>
-                const messages = {{ messages | tojson }};
-                showFlashMessages(messages.map(msg => msg[1]));
-            </script>
-        {% endif %}
-    {% endwith %}
+        <canvas id="activityGrowthChart" width="400" height="200"></canvas>
 
-    <script>
-        // Configuração do gráfico usando Chart.js
+        <script>
         // Configuração do gráfico usando Chart.js
         const ctx = document.getElementById('activityGrowthChart').getContext('2d');
         const activityGrowthChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Jan 1', 'Fer 2', 'Mar 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8', 'Jan 9', 'Jan 10', 'Jan 11', 'Jan 12'],
+                labels: ['Jan 1', 'Jan 2', 'Jan 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8', 'Jan 9', 'Jan 10', 'Jan 11', 'Jan 12'],
                 datasets: [
                     {
                         label: 'Calorias',
                         data: {{ calorias_data | tojson }},
-                        
-                        backgroundColor: '#606c38'
+                        backgroundColor: '#BC6C25',
+                        borderColor: '#BC6C25',
+                        borderWidth: 2,
+                        borderRadius: 5,
+                        barThickness: 10,
                     },
                     {
                         label: 'IMC',
                         data: {{ imc_data | tojson }},
-                       
-                        backgroundColor: '#ED8D00'
+                        backgroundColor: '#606C38',
+                        borderColor: '#606C38',
+                        borderWidth: 2,
+                        borderRadius: 5,
+                        barThickness: 10,
                     },
                     {
                         label: 'Gordura',
                         data: {{ percent_gordura_data | tojson }},
-                        
-                        
-                        backgroundColor: '#e0e0e0'
+                        backgroundColor: '#F7D08A',
+                        borderColor: '#F7D08A',
+                        borderWidth: 2,
+                        borderRadius: 5,
+                        barThickness: 10,
                     }
                 ]
             },
             options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#576A5C',
+                            font: {
+                                family: 'Arial, sans-serif',
+                                size: 14,
+                            }
+                        }
+                    }
+                },
                 scales: {
+                    x: {
+                        grid: {
+                            display: false,
+                        },
+                        ticks: {
+                            color: '#576A5C',
+                            font: {
+                                family: 'Arial, sans-serif',
+                                size: 12,
+                            }
+                        }
+                    },
                     y: {
                         beginAtZero: true,
                         max: 100,
+                        grid: {
+                            color: '#E5E5E5',
+                        },
                         ticks: {
+                            color: '#576A5C',
+                            font: {
+                                family: 'Arial, sans-serif',
+                                size: 12,
+                            },
                             callback: function(value) {
                                 return value + "%";
                             }
@@ -215,33 +248,7 @@
                 }
             }
         });
-
-        // JavaScript para controlar a visibilidade da aba
-        document.getElementById('config-button').addEventListener('click', function() {
-            document.getElementById('config-panel').classList.toggle('active');
-        });
-
-        document.getElementById('close-button').addEventListener('click', function() {
-            document.getElementById('config-panel').classList.remove('active');
-        });
-    // Script do botão da foto do perfil
-    function updateProfilePicturePreview() {
-        var fileInput = document.getElementById('profile-picture');
-        var uploadButton = document.getElementById('upload-button');
+        </script>
         
-        if (fileInput.files && fileInput.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                uploadButton.src = e.target.result;
-            }
-            
-            reader.readAsDataURL(fileInput.files[0]);
-        }
-    }
-    function confirmDeletion() {
-        return confirm("Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.");
-    }
-    </script>
 </body>
 </html>
