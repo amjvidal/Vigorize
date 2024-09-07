@@ -71,6 +71,10 @@
                 <input type="hidden" name="action" value="logout">
                 <button class="p-2 bg-[#b01002d7] text-white rounded-lg flex mx-auto">Logout</button>
             </form>
+            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" ></form>
+                <input type="hidden" name="action" value="delete_account">
+                <button class="p-2 bg-[#b01002d7] text-white rounded-lg flex mx-auto" onclick="return confirmDeletion()">Excluir Conta</button>
+            </form>
         </div>
     </aside>
     <!-- PRINCIPAL-->
@@ -214,24 +218,24 @@
         document.getElementById('close-button').addEventListener('click', function() {
             document.getElementById('config-panel').classList.remove('active');
         });
-    </script>
-
-    <!-- Script do botão da foto do perfil  -->
-    <script>
-        function updateProfilePicturePreview() {
-            var fileInput = document.getElementById('profile-picture');
-            var uploadButton = document.getElementById('upload-button');
+    // Script do botão da foto do perfil
+    function updateProfilePicturePreview() {
+        var fileInput = document.getElementById('profile-picture');
+        var uploadButton = document.getElementById('upload-button');
+        
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
             
-            if (fileInput.files && fileInput.files[0]) {
-                var reader = new FileReader();
-                
-                reader.onload = function (e) {
-                    uploadButton.src = e.target.result;
-                }
-                
-                reader.readAsDataURL(fileInput.files[0]);
+            reader.onload = function (e) {
+                uploadButton.src = e.target.result;
             }
+            
+            reader.readAsDataURL(fileInput.files[0]);
         }
+    }
+    function confirmDeletion() {
+        return confirm("Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.");
+    }
     </script>
 </body>
 </html>
