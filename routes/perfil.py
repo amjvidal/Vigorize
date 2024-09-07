@@ -4,6 +4,7 @@ import os, json
 from werkzeug.utils import secure_filename
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from calculadora import calculaTMB, calculaPercentGorduraMASC, calculaPercentGorduraFem, calculaIMC, calcular_idade
+from datetime import datetime
 
 perfil_routes = Blueprint('perfil', __name__)
 
@@ -151,9 +152,9 @@ def pagina_perfil():
     #cal_tmb = calculaTMB(int(peso_user),int(altura_user) ,int(idade_user), sexo_user, atividade_user)
 
     idade = calcular_idade(data_nas_user)
-    Caloria = round(calculaTMB(int(peso_user), int(altura_user), int(idade), sexo_user, atividade_user), 4)
+    caloria = round(calculaTMB(int(peso_user), int(altura_user), int(idade), sexo_user, atividade_user), 4)
     max_Caloria = 10000
-    CaloriaMedia = (Caloria / max_Caloria) * 100
+    caloriaMedia = (caloria / max_Caloria) * 100
 
     if sexo_user == 'Masculino':
         percent_gordura = calculaPercentGorduraMASC(int(altura_user), int(cintura_user), int(pescoco_user))
@@ -162,13 +163,11 @@ def pagina_perfil():
 
     imc = calculaIMC(int(peso_user), int(altura_user))
             
-
-
     # Armazenar os dados mensais
     hoje = datetime.now()
     mes_atual = hoje.strftime("%m")
     ano_atual = hoje.strftime("%Y")
-    armazenar_dados_mensais(user_id, mes_atual, ano_atual, Caloria, imc, percent_gordura)
+    armazenar_dados_mensais(user_id, mes_atual, ano_atual, caloria, imc, percent_gordura)
 
     # Buscar os dados mensais para o gráfico
     dados_mensais = db.child("usuarios").child(user_id).child("dados_mensais").get().val()
@@ -187,7 +186,13 @@ def pagina_perfil():
     return render_template('perfil.html', 
                            inputs=inputs, 
                            percent_gordura=percent_gordura, 
-                           imc=imc, fisicos=fisicos, 
+                           imc=imc,
+                           fisicos=fisicos, 
                            atividade_user=atividade_user, 
-                           profile_picture_url=profile_picture_url)
+                           profile_picture_url=profile_picture_url,
+                           caloria=caloria,
+                           caloriaMedia=caloriaMedia,
+                           calorias_data=calorias_data,
+                           imc_data=imc_data,
+                           percent_gordura_data=percent_gordura_data)
     

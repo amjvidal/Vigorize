@@ -1,5 +1,6 @@
 # Definindo as calculadoras de IMC, TMB e Porcentagem de Gordura
 import math
+from datetime import datetime
 
 def calculaIMC(peso, altura):
     imc = (peso / (altura ** 2))*10000
@@ -69,3 +70,11 @@ def calculaPercentGorduraFem(alturaCM, cinturaCM, pescocoCM, quadrilCM):
         # Captura qualquer outro erro inesperado
         print(f"Ocorreu um erro inesperado: {e}")
         return None
+    
+def calcular_idade(data_nascimento):
+    data_nascimento = datetime.strptime(data_nascimento, "%Y-%m-%d")
+    data_atual = datetime.now()
+    idade = data_atual.year - data_nascimento.year
+    if (data_atual.month, data_atual.day) < (data_nascimento.month, data_nascimento.day):
+        idade -= 1
+    return idade
