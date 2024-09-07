@@ -1,21 +1,20 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from firebaseAuth import recoverPassword, db, auth, emailDb, storage, img_url_firebase
-import os
+from firebaseAuth import recoverPassword, db, auth, emailDb, storage, img_url_firebase, armazenar_dados_mensais
+import os, json
 from werkzeug.utils import secure_filename
-import json
-from calculadora import calculaTMB, calculaPercentGorduraMASC, calculaPercentGorduraFem, calculaIMC
-
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+from calculadora import calculaTMB, calculaPercentGorduraMASC, calculaPercentGorduraFem, calculaIMC, calcular_idade
 
 perfil_routes = Blueprint('perfil', __name__)
 
-@perfil_routes.route('/', methods=['GET','POST'])
+@perfil_routes.route('/', methods=['GET', 'POST'])
 def pagina_perfil():
     user = auth.current_user
 
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
-    
+
     try:
         user_id = emailDb(user['email'])
         user_data = db.child("usuarios").child(user_id).get().val()
@@ -26,6 +25,7 @@ def pagina_perfil():
         pescoco_user = db.child("usuarios").child(user_id).child("pescoco").get().val()
         sexo_user = db.child("usuarios").child(user_id).child("sexo").get().val()
         atividade_user = db.child("usuarios").child(user_id).child("fisico").get().val()
+        data_nas_user = db.child("usuarios").child(user_id).child("data").get().val()
         fisicos = ["Sedentário", "Atividade Ligeira", "Atividade Moderada", "Atividade Intensa", "Atividade Muito Intensa"]
 
         inputs = [
@@ -34,10 +34,10 @@ def pagina_perfil():
             {'id': 'cintura', 'type': 'number', 'value': cintura_user, 'name': 'cintura', 'label': 'Cintura(cm)', 'max': '180', 'min': '30'},
             {'id': 'pescoco', 'type': 'number', 'value': pescoco_user, 'name': 'pescoco', 'label': 'Pescoço(cm)', 'max': '60', 'min': '20'}
         ]
-        
+
         if sexo_user == 'Feminino':
             quadril_user = db.child("usuarios").child(user_id).child("quadril").get().val()
-            inputs.append({'id': 'cintura', 'type': 'number', 'value': quadril_user,'name': 'cintura', 'label': 'Quadril(cm)', 'max': '180','min': '30'})
+            inputs.append({'id': 'quadril', 'type': 'number', 'value': quadril_user, 'name': 'quadril', 'label': 'Quadril(cm)', 'max': '180', 'min': '30'})
 
         if request.method == 'POST':
             action = request.form.get('action')
@@ -60,15 +60,14 @@ def pagina_perfil():
                     
                     db.child("usuarios").child(user_id).update(
                         {'altura': data['altura'],
-                        'peso': data['peso'],
-                        'cintura': data['cintura'],
-                        'pescoco': data['pescoco'],
-                        'fisico': data['fisico']})
+                         'peso': data['peso'],
+                         'cintura': data['cintura'],
+                         'pescoco': data['pescoco'],
+                         'fisico': data['fisico']})
                     flash('Perfil atualizado com sucesso!', 'success')
 
                     return redirect(url_for('perfil.pagina_perfil'))
                 except Exception as e:
-                    # Captura a exceção e imprime a mensagem de erro
                     error_message = json.loads(e.args[1])['error']['message']
                     flash(error_message, 'danger')
                     return redirect(url_for('perfil.pagina_perfil'))
@@ -82,13 +81,12 @@ def pagina_perfil():
                     # error_message = json.loads(e.args[1])['error']['message']
                     # flash(error_message, 'danger')
                     # return render_template('perfil.html', inputs=inputs, fisicos=fisicos)
-            
             elif action == 'delete_account':
                 try:
                     auth.delete_user_account(user['idToken'])  # Exclui o usuário da autenticação
                     db.child("usuarios").child(user_id).remove()  # Exclui o perfil do usuário
                     flash('Perfil excluído com sucesso!', 'success')
-                    return redirect(url_for('login.pagina_login'))  # Redireciona para a página de login
+                    return redirect(url_for('login.pagina_login'))
                 except Exception as e:
                     error_message = str(e)
                     flash(error_message, 'danger')
@@ -143,6 +141,7 @@ def pagina_perfil():
                         return redirect(url_for('perfil.pagina_perfil'))
     
 
+
     except Exception as e:
         error_message = str(e)
         print(error_message)
@@ -150,12 +149,40 @@ def pagina_perfil():
         return redirect(url_for('login.pagina_login'))
     
     #cal_tmb = calculaTMB(int(peso_user),int(altura_user) ,int(idade_user), sexo_user, atividade_user)
+
+    idade = calcular_idade(data_nas_user)
+    Caloria = round(calculaTMB(int(peso_user), int(altura_user), int(idade), sexo_user, atividade_user), 4)
+    max_Caloria = 10000
+    CaloriaMedia = (Caloria / max_Caloria) * 100
+
     if sexo_user == 'Masculino':
         percent_gordura = calculaPercentGorduraMASC(int(altura_user), int(cintura_user), int(pescoco_user))
     else:
         percent_gordura = calculaPercentGorduraFem(int(altura_user), int(cintura_user), int(pescoco_user), int(quadril_user))
+
     imc = calculaIMC(int(peso_user), int(altura_user))
             
+
+
+    # Armazenar os dados mensais
+    hoje = datetime.now()
+    mes_atual = hoje.strftime("%m")
+    ano_atual = hoje.strftime("%Y")
+    armazenar_dados_mensais(user_id, mes_atual, ano_atual, Caloria, imc, percent_gordura)
+
+    # Buscar os dados mensais para o gráfico
+    dados_mensais = db.child("usuarios").child(user_id).child("dados_mensais").get().val()
+    labels = []
+    calorias_data = []
+    imc_data = []
+    percent_gordura_data = []
+
+    if dados_mensais:
+        for mes, dados in dados_mensais.items():
+            labels.append(mes)
+            calorias_data.append(dados['calorias'])
+            imc_data.append(dados['imc'])
+            percent_gordura_data.append(dados['percent_gordura'])
 
     return render_template('perfil.html', 
                            inputs=inputs, 

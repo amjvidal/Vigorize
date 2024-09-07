@@ -760,6 +760,10 @@ video {
   max-width: 200px;
 }
 
+.max-w-\[200px\] {
+  max-width: 200px;
+}
+
 .max-w-\[60px\] {
   max-width: 60px;
 }
@@ -1011,6 +1015,10 @@ video {
 
 .pt-\[70px\] {
   padding-top: 70px;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-left {

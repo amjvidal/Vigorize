@@ -36,7 +36,7 @@
             <a class="text-white underline" href="/perfil">Tabela Nutricional</a>
             <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-12">
             <a class="text-white underline" href="/cadastro">Planejar Refeições</a>
-            <a class="text-white underline" href="/treinos">Calcular IMC</a>
+            <a class="text-white underline" href="/imc">Calcular IMC</a>
             <button id="config-button" class="p-2 bg-[#ED8D00] text-white rounded-lg">Config</button>
         </nav>
     </header>
@@ -108,6 +108,7 @@
                         {% for fisico in fisicos%}
                         {%if fisico != atividade_user%}
                             <option value = "{{ fisico }}">{{ fisico }}</option>
+                            
                         {%endif%}
                         {% endfor %}
                     </select>
@@ -137,11 +138,11 @@
         </div>
         <div class="flex justify-center mt-8">
             <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
-                 style="background-image: conic-gradient(#606c38 {{ cal_value }}%, #e0e0e0 {{ cal_value }}%)">
+                 style="background-image: conic-gradient(#606c38 {{ CaloriaMedia }}%, #e0e0e0 {{ CaloriaMedia }}%)">
                 <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
                 <div class="relative text-[#e0e0e0] text-4xl text-center">
-                    {{ cal_value }}
-                    <div class="text-base">IMC<br>Dietas</div>
+                    {{ Caloria }}
+                    <div class="text-base">Calorias<br>Dietas</div>
                 </div>
             </div>
         </div>
@@ -172,23 +173,23 @@
         const activityGrowthChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Jan 1', 'Jan 2', 'Jan 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8', 'Jan 9', 'Jan 10', 'Jan 11', 'Jan 12'],
+                labels: ['Jan 1', 'Fer 2', 'Mar 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8', 'Jan 9', 'Jan 10', 'Jan 11', 'Jan 12'],
                 datasets: [
                     {
                         label: 'Calorias',
-                        data: ["{{ calorias }}"],
+                        data: {{ calorias_data | tojson }},
                         
-                        backgroundColor: '#ED8D00'
+                        backgroundColor: '#606c38'
                     },
                     {
                         label: 'IMC',
-                        data: ["{{ imc }}"],
+                        data: {{ imc_data | tojson }},
                        
                         backgroundColor: '#ED8D00'
                     },
                     {
                         label: 'Gordura',
-                        data: ["{{ percent_gordura }}"],
+                        data: {{ percent_gordura_data | tojson }},
                         
                         
                         backgroundColor: '#e0e0e0'

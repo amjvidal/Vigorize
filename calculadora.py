@@ -12,15 +12,15 @@ def calculaTMB(peso, altura, idade, sexo, atividade):
     else:
         tmb = 655.1 + (9.56 * peso) + (1.85 * altura) - (4.68 * idade)
 
-    if atividade == "sedentário":
+    if atividade == "Sedentário":
         tmb *= 1.2
-    elif atividade == "ligeira":
+    elif atividade == "Atividade Ligeira":
         tmb *= 1.375
-    elif atividade == "moderada":
+    elif atividade == "Atividade Moderada":
         tmb *= 1.55
-    elif atividade == "intensa":
+    elif atividade == "Atividade Intensa":
         tmb *= 1.725
-    elif atividade == "muito intensa":
+    elif atividade == "Atividade Muito Intensa":
         tmb *= 1.9
 
     return tmb
