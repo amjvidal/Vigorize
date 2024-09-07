@@ -15,27 +15,58 @@
     
 </head>
 <body class="bg-[#234035] flex justify-center items-center min-h-screen">
-    <div class="space-y-2">    
-        <h1 class="text-[#F8DCB3] text-5xl ">Cadastro</h1>
-        <form action="{{ url_for('cadastro.cadastro')}}" method="POST">
-            <div class="space-y-2">
+    <!-- Botão de Voltar com PNG -->
+    <button 
+        class="absolute top-8 left-16 w-[80px] h-[80px] bg-no-repeat bg-center bg-contain" 
+        style="background-image: url('../static/voltarbtn.png');" 
+        onclick="window.history.back()">
+    </button>
+    
+    <div class="flex flex-col items-center space-y-8 w-[400px]">
+        <!-- Logo -->
+        <img src="../static/logo.png" alt="" class="w-[200px] h-auto">
+        
+        <!-- Título -->
+        <h1 class="text-[#F8DCB3] text-5xl">Cadastro</h1>
+        
+        <!-- Formulário de cadastro -->
+        <form action="{{ url_for('cadastro.cadastro')}}" method="POST" class="w-full flex flex-col items-center space-y-4">
+            <div class="space-y-4 w-full flex flex-col items-center">
                 {% for input in inputs %}
-                        <input class="bg-[#F8DCB3] p-2 rounded-lg {{input.block}} border border-black 
-                        placeholder:text-black font-semibold" type="{{ input.type }}" id="{{input.id}}"
-                        placeholder="{{ input.placeholder }}" name="{{input.name}}" value="{{input.value}}"
-                        max="{{input.max}}" min="{{input.min}}" required></input>
-                    {% if input['name'] == 'termo'  %}
-                    <label for="{{input.id}}" class="text-white text-sm" >Aceito os Termos</label>
+                    <!-- Campo de input comum -->
+                    {% if input['name'] != 'termo' %}
+                        <input class="bg-[#F8DCB3] p-3 w-full rounded-[20px] placeholder:text-[#234035] text-lg font-medium" 
+                               type="{{ input.type }}" 
+                               id="{{input.id}}"
+                               placeholder="{{input.placeholder}}" 
+                               name="{{input.name}}" 
+                               value="{{input.value}}"
+                               max="{{input.max}}" 
+                               min="{{input.min}}" 
+                               required>
+                    {% else %}
+                        <!-- Checkbox e texto "Aceito os Termos" -->
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" 
+                                   id="{{input.id}}" 
+                                   name="{{input.name}}" 
+                                   class="form-checkbox h-5 w-5 border-[#ED8D00] rounded" 
+                                   required>
+                            <label for="{{input.id}}" class="text-[#F8DCB3] font-semibold text-lg">Aceito os Termos</label>
+                        </div>
                     {% endif %}
                 {% endfor %}
+            </div>
             
+            <!-- Links para Login e Recuperar Senha -->
+            <div class="flex justify-between w-full text-white font-semibold text-lg underline underline-offset-2">
+                <a href="/login">Login</a>
+                <a href="/recuperar">Recuperar Senha</a>
             </div>
+            
+            <!-- Botão de Cadastrar -->
             <div>
-                <a href="/" class="underline text-white">Login</a>
-                <a href="/recuperar" class="underline text-white">Recuperar Senha</a>
-            </div>
-            <div>
-                <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Cadastrar</button>
+                <button class="p-3 w-[200px] bg-[#ED8D00] text-[#234035] text-xl font-bold rounded-[28px]">Cadastrar</button>
             </div>
         </form>
     </div>
