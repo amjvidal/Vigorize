@@ -27,7 +27,7 @@ def pagina_perfil():
         sexo_user = db.child("usuarios").child(user_id).child("sexo").get().val()
         atividade_user = db.child("usuarios").child(user_id).child("fisico").get().val()
         data_nas_user = db.child("usuarios").child(user_id).child("data").get().val()
-        fisicos = ["Sedentário", "Atividade Ligeira", "Atividade Moderada", "Atividade Intensa", "Atividade Muito Intensa"]
+        fisicos = ["Sedentário", "Ligeira", "Moderada", "Intensa", "Muito Intensa"]
 
         inputs = [
             {'id': 'altura', 'type': 'number', 'value': altura_user, 'name': 'altura', 'label': 'Altura(cm)', 'max': '250', 'min': '100'},
@@ -185,6 +185,7 @@ def pagina_perfil():
 
     return render_template('perfil.html', 
                            inputs=inputs, 
+                           sexo_user=sexo_user,
                            percent_gordura=percent_gordura, 
                            imc=imc,
                            fisicos=fisicos, 
