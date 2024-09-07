@@ -12,12 +12,13 @@ from routes.perfil import perfil_routes
 from routes.primeiroAcesso import primeiroAcesso_routes
 from routes.perGordura import perGordura_routes
 from routes.imc import imc_routes
-
+from routes.tabelaNutricional import tabelaNutricao
 
 app.config['UPLOAD_FOLDER'] = profilePics_folder
 
 app.register_blueprint(home_routes)
 app.register_blueprint(login_routes, url_prefix='/login')
+app.register_blueprint(tabelaNutricao, url_prefix='/tabelaNutricional')
 app.register_blueprint(recuperar_routes, url_prefix='/recuperar')
 app.register_blueprint(cadastro_routes, url_prefix='/cadastro')
 app.register_blueprint(perfil_routes, url_prefix='/perfil')
