@@ -18,25 +18,65 @@ def tabelaNutri():
     try:
         user_email = emailDb(user['email'])   
         listaAlimento = db.child('usuarios').child(user_email).child('Alimentos').get()
-        
-        if request.method == 'POST':
-            if listaAlimento.val() is None:
-                session['inflated_buttons'] = []
-            else:
-                session['inflated_buttons'] = listaAlimento.val()
 
+        
+        
+        if listaAlimento.val() is None:
+            session['inflated_buttons'] = []
+        else:
+            session['inflated_buttons'] = listaAlimento.val()
+
+        if request.method == 'POST':
+            
             selected_item = request.form.get('item')
 
-            if selected_item and selected_item not in session['inflated_buttons']:
+            if selected_item not in session['inflated_buttons']:
                 session['inflated_buttons'].append(selected_item)
                 session.modified = True  
                 enviaData(user_email, session['inflated_buttons'])
-    
+        total_calorias = round(somaAtributo('Caloria'),2)
+        total_Carboidrato = round(somaAtributo('Carboidrato'),2)
+        total_Umidade = round(somaAtributo('Umidade'),2)
+        total_gorduraTotal = round(somaAtributo('gorduraTotal'),2)
+        total_Sodio = round(somaAtributo('Sodio'),2)
+        total_proteina = round(somaAtributo('Proteína'))
+        
+
+
     except Exception as e:
         print(f'Erro: {e}')
         return redirect(url_for('login.pagina_login'))
     
-    return render_template('tabelaNutricional.html', items=dados, buttons=session.get('inflated_buttons', []))
+    return render_template('tabelaNutricional.html', items=dados,total_Umidade=total_Umidade,total_Sodio=total_Sodio, 
+    buttons=session.get('inflated_buttons', []),total_calorias=total_calorias,total_Carboidrato=total_Carboidrato,
+    total_gorduraTotal=total_gorduraTotal, total_proteina=total_proteina)
+
+def pegaAtributo(nome_alimento, atributo):
+    try:
+      
+        for alimento in dados:
+            if alimento.get('Nome') == nome_alimento:
+
+                return alimento.get(atributo)
+
+        print('Alimento não encontrado.')
+        return None
+    except Exception as e:
+        print(f'Erro ao buscar atributo: {e}')
+        return None
+            
+def somaAtributo(atributo):
+    totalAtributo = 0
+    try:
+        for nome_alimento in session.get('inflated_buttons', []):
+            proteina = pegaAtributo(nome_alimento,atributo)
+            if proteina is not None:
+                totalAtributo += proteina
+    except Exception as e:
+        print(f'Erro ao calcular a soma das proteínas: {e}')
+    
+    return totalAtributo
+
 
 def enviaData(user, data):
     db.child('usuarios').child(user).child('Alimentos').set(data)

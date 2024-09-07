@@ -18,38 +18,67 @@
                 font-size: 12px; 
                 color: #576A5C; 
                 padding: 8px;
+                
             }
 
             input {
                 border-radius: 10px;
+                margin-top: 23px;
+                margin-bottom: 10px;
             }
         </style>
 
-        <div class="search-container">
-            <form method="post">
-                <input type="text" id="search-bar" placeholder="Pesquisar..." onkeyup="filterItems()">
-                <select id="item-select" name="item" size="5">
-                    {% for item in items %}
-                        <option value="{{ item.Nome }}">{{ item.Nome }}</option>
-                    {% endfor %}
-                </select>
-                <button type="submit" class="add-button">Adicionar</button>
-            </form>
-        </div>
 
-        <div class="button-container">
-            {% for button in buttons %}
-                <div class="button-wrapper" data-id="{{ loop.index }}">
-                    <button class="inflated-button">{{ button }}</button>
-                    <span class="delete-icon" onclick="excluirBotao('{{ loop.index }}')">x</span>
-                </div>
-            {% endfor %}
+        <style>
+            .Alimento {
+                display: block;
+                margin-right: 5px;
+                padding: 5px;    
+        
+            }
+        </style>
+
+
+            <div class="search-container" style="display: block;">
+                <form method="post">
+                    <input type="text" size="59px" id="search-bar" placeholder="Pesquisar..." onkeyup="filterItems()">
+                    <select id="item-select" name="item" size="0">
+                        {% for item in items %}
+                            <option value="{{ item.Nome }}">{{ item.Nome }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="add-button" style="margin: 10px;
+                    border-radius: 10px;background-color:#097E4A; padding: 8px;">
+                    <h1 class="text-2xl text-[#f4d7b2]">Adicionar</h1></button>
+                </form>
+            </div>
+
+        <div style="display: inline-flex;"> 
+            <div class="button-container">
+                {% for button in buttons %}
+                    <div class= "button-wrapper" style="padding: 10px;" data-id="{{ loop.index }}">
+                        <texto class="inflated-button">{{ button }}</texto>
+                        <button class="delete-icon" onclick="excluirBotao('{{ loop.index }}')">x</button>
+                    </div>
+                {% endfor %}
+            </div>
+        
+
+            <div class="tabelaAlimento"> 
+                <caloria class="Alimento">Calorias: {{ total_calorias }} </caloria>
+                <carboitrato class="Alimento">Carboidrato: {{ total_Carboidrato }}</carboitrato>
+                <umidade class="Alimento">Umidade: {{ total_Umidade }}</umidade>
+                <gordura class="Alimento">Gordura Total: {{ total_gorduraTotal }}</gordura>
+                <sodio class="Alimento">Sodio: {{ total_Sodio }}</sodio>
+                <proteina class="Alimento">Proteína: {{total_proteina}}</proteina>
+            </div>
         </div>
 
         <script>
             function filterItems() {
                 let input = document.getElementById('search-bar').value.toLowerCase();
                 let options = document.getElementById('item-select').options;
+                options.style.
                 for (let i = 0; i < options.length; i++) {
                     let option = options[i];
                     if (option.value.toLowerCase().includes(input)) {
@@ -60,22 +89,22 @@
                 }
             }
                 
+
+            // tem q arrumar um jeito de apagar do banco de dados tb, só tá apagando no front
             function excluirBotao(id) {
             var buttonWrapper = document.querySelector(`.button-wrapper[data-id='${id}']`);
             
-            // Remover visualmente o botão antes de enviar a requisição
             if (buttonWrapper) {
                 buttonWrapper.remove();
             }
 
-            // Enviar a requisição para o backend para remover o botão da sessão
             fetch('/remover-botao', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRFToken': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 },
-                body: JSON.stringify({ id: id })  // Envia o id do botão para o backend
+                body: JSON.stringify({ id: id })
             })
             .then(response => response.json())
             .then(data => {
