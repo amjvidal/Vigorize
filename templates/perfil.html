@@ -29,24 +29,24 @@
     </script>
 </head>
 <body class="bg-[#F8DCB3] min-h-screen">
-    <header class="h-[70px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
-        <nav class="flex justify-between items-center space-x-6 px-4 pt-1">
+    <header class="h-[80px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
+        <nav class="flex justify-between items-center space-x-6 px-4 pt-2">
             {% if profile_picture_url %}
                 <img src="{{ profile_picture_url }}" alt="Foto de Perfil" class='w-16 h-16 rounded-full border-[2px] border-[#F8DCB3]'>
             {% else %}
             <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Foto de Perfil Padrão" class='w-16 h-16 rounded-full'>
             {% endif %}
-            <a class="text-white underline" href="/perfil">Usuário</a>
-            <a class="text-white underline" href="/perfil">Tabela Nutricional</a>
-            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-12">
-            <a class="text-white underline" href="/perfil">Planejar Refeições</a>
-            <a class="text-white underline" href="/imc">Calcular IMC</a>
+            <a class="text-[#F8DCB3] text-xl" href="/perfil">Usuário</a>
+            <a class="text-[#F8DCB3] text-xl" href="/perfil">Tabela Nutricional</a>
+            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-16">
+            <a class="text-[#F8DCB3] text-xl" href="/perfil">Planejar Refeições</a>
+            <a class="text-[#F8DCB3] text-xl" href="/imc">Calcular IMC</a>
             <img id="config-button" src="{{ url_for('static', filename='engrenagem.svg') }}" alt="Foto de Perfil Padrão" class="cursor-pointer w-8">
         </nav>
     </header>
     <!-- ABA DE CONFIGURAÇÃO -->
     <!-- ABA DE CONFIGURAÇÃO -->
-    <aside id="config-panel" class="slide-in fixed top-[70px] right-0 h-[calc(100%-70px)] w-[440px] bg-[#234035] text-white shadow-lg z-20 flex flex-col justify-between overflow-y-auto">
+    <aside id="config-panel" class="slide-in fixed top-[80px] right-0 h-[calc(100%-70px)] w-[440px] bg-[#234035] text-white shadow-lg z-20 flex flex-col justify-between overflow-y-auto">
         <div class="p-4">
             <!-- Conteúdo da aba de configuração aqui -->
             <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" enctype="multipart/form-data" class="mb-8">
@@ -83,7 +83,7 @@
     </aside>
     <!-- PRINCIPAL-->
     <!-- PRINCIPAL-->
-    <main class="pt-[70px]">
+    <main class="pt-[80px]">
         <div class="bg-[#234035] space-y-4 h-screen w-[30%] p-6 shadow-md">
             <div class="text-center">
                 <h3 class="text-white text-xl font-extralight">Dados Pessoais</h3>
