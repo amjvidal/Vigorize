@@ -20,7 +20,14 @@
         <form action="{{ url_for('primeiroAcesso.primeiroAcesso')}}" method="POST">
             <div class="space-y-2">
                 {% for input in inputs %}
-                    <input class="bg-[#F8DCB3] p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="{{ input.type }}" id="{{ input.id }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" name="{{input.name}}"  required>
+                    <input class="bg-[#F8DCB3] p-2 block rounded-lg border border-black placeholder:text-black font-semibold"
+                     type="{{ input.type }}" 
+                     id="{{ input.id }}" 
+                     placeholder="{{ input.placeholder }}"
+                     max="{{input.max}}"
+                     min="{{input.min}}" 
+                     name="{{input.name}}"  
+                     required>
                 {% endfor %}
                 <select class = "bg-[#F8DCB3] p-2 block rounded-lg border border-black placeholder:text-black font-semibold" list = "generos" id = "genero" name = "genero" required>
                     <option value = "" disabled selected>Sexo:</option>

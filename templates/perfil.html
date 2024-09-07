@@ -2,9 +2,19 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/static/css/main.css ">
+    <link rel="stylesheet" href="/static/css/main.css">
     <title>Vigorize</title>
-
+    <style>
+        /* Estilo adicional para a transição da aba */
+        .slide-in {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .slide-in.active {
+            transform: translateX(0);
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         function showFlashMessages(messages) {
             messages.forEach(message => {
@@ -12,50 +22,221 @@
             });
         }
     </script>
-    
-
 </head>
-<body class="bg-[#234035] flex justify-center items-center min-h-screen">
-    <div class="space-y-2">    
-        <h1 class="text-yellow-100 text-5xl ">Perfil</h1>
-        {% for txt in text %}
-            <p class="text-white">{{ text.email }}</p>
-        {% endfor %}
-        <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
-            <input type="hidden" name="action" value="update_name">
-            <div class="space-y-2">
-                {% for input in inputs %}
-                    <div class="block">
-                        <input class="bg-[#F8DCB3] p-2 inline rounded-lg border border-black placeholder:text-black font-semibold form-control" type="{{ input.type }}" name="{{ input.name }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" required>
-                        <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Salvar</button>
-                    </div>
-                {% endfor %}
+<body class="bg-[#F8DCB3] min-h-screen">
+    <header class="h-[70px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
+        <nav class="flex justify-between items-center space-x-6 py-4">
+            {% if profile_picture_url %}
+                <img src="{{ profile_picture_url }}" alt="Foto de Perfil" class='w-16 h-16 rounded-full'>
+            {% else %}
+                <p>CU.</p>
+            {% endif %}
+
+            <a class="text-white underline" href="/perfil">Usuário</a>
+            <a class="text-white underline" href="/perfil">Tabela Nutricional</a>
+            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-12">
+            <a class="text-white underline" href="/cadastro">Planejar Refeições</a>
+            <a class="text-white underline" href="/imc">Calcular IMC</a>
+            <button id="config-button" class="p-2 bg-[#ED8D00] text-white rounded-lg">Config</button>
+        </nav>
+    </header>
+    <!-- ABA DE CONFIGURAÇÃO -->
+    <!-- ABA DE CONFIGURAÇÃO -->
+    <aside id="config-panel" class="slide-in fixed top-[70px] right-0 h-full w-[440px] bg-[#234035] text-white shadow-lg z-20 justify-center items-center">
+        <h2 class="text-xl font-bold mb-4">Configurações</h2>
+        <div class="p-4 ">
+            <!-- Conteúdo da aba de configuração aqui -->
+            <!-- Conteúdo da aba de configuração aqui -->
+            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="action" value="save_profile">
+                <form action="/sua-rota" method="POST" enctype="multipart/form-data">
+                    <!-- Input de arquivo escondido -->
+                    <input type="file" id="profile-picture" accept="image/*" name="file" required class="hidden" onchange="updateProfilePicturePreview()">
+                
+                    <!-- Botão personalizado -->
+                    <!-- <button type="button" id="upload-button" class="w-64 h-64 rounded-full bg-cover bg-center block mx-auto" style="background-image: url('{{ profile_picture_url }}');" onclick="document.getElementById('profile-picture').click();"> -->
+                        <img type="button" id="upload-button" class=" border-[3px] border-[#F8DCB3] w-64 h-64 rounded-full block mx-auto cursor-pointer" src="{{ profile_picture_url }}" onclick="document.getElementById('profile-picture').click();">
+                        <!-- Pode adicionar um ícone ou texto opcional aqui -->
+                    </button>
+                
+                    <!-- Submit button -->
+                    <button type="submit" class="p-2 bg-[#ED8D00] text-white rounded-lg block mx-auto">Salvar Foto</button>
+                </form>
+            </form>
+            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
+                <input type="hidden" name="action" value="recover_password">
+                <button class="p-2 bg-[#ED8D00] text-white rounded-lg block mx-auto">Recuperar Senha</button>
+            </form>
+            <form action="{{ url_for('login.pagina_login')}}" method="POST" >
+                <input type="hidden" name="action" value="logout">
+                <button class="p-2 bg-[#b01002d7] text-white rounded-lg flex mx-auto">Logout</button>
+            </form>
+            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" ></form>
+                <input type="hidden" name="action" value="delete_account">
+                <button class="p-2 bg-[#b01002d7] text-white rounded-lg flex mx-auto" onclick="return confirmDeletion()">Excluir Conta</button>
+            </form>
+        </div>
+    </aside>
+    <!-- PRINCIPAL-->
+    <!-- PRINCIPAL-->
+    <main class="pt-[70px]">
+        <div class=" bg-[#234035] space-y-2 h-screen w-[30%] ">
+            <div class="">
+                <h3 class="text-white">Dados Pessoais</h3>
             </div>
-        </form>
-        <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
-            <input type="hidden" name="action" value="recover_password">
-            <div>
-                <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Alterar Senha</button>
+            <!-- FORMULÁRIO DE ATUALIZAÇÃO  -->
+            <!-- FORMULÁRIO DE ATUALIZAÇÃO  -->
+            <form id="form_update_profile"action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
+                <input type="hidden" name="action" value="update_profile">
+                <div class="grid grid-cols-2 gap-y-10 gap-x-10">
+                    {% for input in inputs %}
+                        <div class="bg-[#F8DCB3] flex items-center space-x-4 m-4">
+                            <label class="text-black font-semibold min-w-20 float-start ms-2" for="{{ input.name }}">{{ input.label }}</label>
+                            <input class="bg-[#F8DCB3] mx-4 py-4 outline-none border-0 text-right font-semibold form-control max-w-[60px] float-end"
+                            type="{{ input.type }}"
+                            id = "{{ input.id }}"
+                            name="{{ input.name }}"
+                            max="{{ input.max }}"
+                            min="{{ input.min }}"
+                            value="{{ input.value}}">
+                        </div>
+                    {% endfor %}
+                    <select class="bg-[#F8DCB3] mx-4 py-4 outline-none border-0 text-left placeholder:text-black font-semibold form-control max-w-[200px] float-start"
+                    name="fisico"
+                    required>
+                        <option value = "{{atividade_user}}" selected>{{atividade_user}}</option>
+                        {% for fisico in fisicos%}
+                        {%if fisico != atividade_user%}
+                            <option value = "{{ fisico }}">{{ fisico }}</option>
+                            
+                        {%endif%}
+                        {% endfor %}
+                    </select>
+                    <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Salvar</button>
+                </div>
+            </form>
+        </div>
+        <div class="flex justify-center mt-8">
+            <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
+                 style="background-image: conic-gradient(#606c38 {{ percent_gordura }}%, #e0e0e0 {{ percent_gordura }}%)">
+                <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
+                <div class="relative text-[#e0e0e0] text-4xl text-center">
+                    {{ percent_gordura }}%
+                    <div class="text-base">Gordura<br>Dietas</div>
+                </div>
             </div>
-        </form>
-        <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
-            <input type="hidden" name="action" value="delete_account">
-            <div class="mt-8">
-                <button class="p-2 bg-[#ac1d04] font-bold text-white rounded-lg">EXCLUIR CONTA</button>
+        </div>
+        <div class="flex justify-center mt-8">
+            <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
+                 style="background-image: conic-gradient(#606c38 {{ imc }}%, #e0e0e0 {{ imc }}%)">
+                <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
+                <div class="relative text-[#e0e0e0] text-4xl text-center">
+                    {{ imc }}
+                    <div class="text-base">IMC<br>Dietas</div>
+                </div>
             </div>
-        </form>
-    </div>
+        </div>
+        <div class="flex justify-center mt-8">
+            <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
+                 style="background-image: conic-gradient(#606c38 {{ caloriaMedia }}%, #e0e0e0 {{ caloriaMedia }}%)">
+                <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
+                <div class="relative text-[#e0e0e0] text-4xl text-center">
+                    {{ caloria }}
+                    <div class="text-base">Calorias<br>Dietas</div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+
+        <!-- Adiciona o gráfico -->
+        <!-- Adiciona o gráfico -->
+        <div class="flex justify-center mt-8">
+            <canvas id="activityGrowthChart" width="400" height="100"></canvas>
+        </div>
+    </main>
 
     {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
             <script>
-                // Transforma mensagens de flash em um array para o JavaScript
                 const messages = {{ messages | tojson }};
-                showFlashMessages(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
+                showFlashMessages(messages.map(msg => msg[1]));
             </script>
         {% endif %}
     {% endwith %}
 
-</body>
+    <script>
+        // Configuração do gráfico usando Chart.js
+        // Configuração do gráfico usando Chart.js
+        const ctx = document.getElementById('activityGrowthChart').getContext('2d');
+        const activityGrowthChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan 1', 'Fer 2', 'Mar 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8', 'Jan 9', 'Jan 10', 'Jan 11', 'Jan 12'],
+                datasets: [
+                    {
+                        label: 'Calorias',
+                        data: {{ calorias_data | tojson }},
+                        
+                        backgroundColor: '#606c38'
+                    },
+                    {
+                        label: 'IMC',
+                        data: {{ imc_data | tojson }},
+                       
+                        backgroundColor: '#ED8D00'
+                    },
+                    {
+                        label: 'Gordura',
+                        data: {{ percent_gordura_data | tojson }},
+                        
+                        
+                        backgroundColor: '#e0e0e0'
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + "%";
+                            }
+                        }
+                    }
+                }
+            }
+        });
 
+        // JavaScript para controlar a visibilidade da aba
+        document.getElementById('config-button').addEventListener('click', function() {
+            document.getElementById('config-panel').classList.toggle('active');
+        });
+
+        document.getElementById('close-button').addEventListener('click', function() {
+            document.getElementById('config-panel').classList.remove('active');
+        });
+    // Script do botão da foto do perfil
+    function updateProfilePicturePreview() {
+        var fileInput = document.getElementById('profile-picture');
+        var uploadButton = document.getElementById('upload-button');
+        
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                uploadButton.src = e.target.result;
+            }
+            
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+    function confirmDeletion() {
+        return confirm("Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.");
+    }
+    </script>
+</body>
 </html>

@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 import json
-from firebaseAuth import cadastrofb
+from firebaseAuth import cadastrofb, set_persistence_local
+
 
 cadastro_routes = Blueprint('cadastro', __name__)
 
@@ -13,15 +14,13 @@ cadastro_routes = Blueprint('cadastro', __name__)
 
 @cadastro_routes.route('/', methods=['GET', 'POST'])
 def cadastro():
-    """ Retorna a página de cadastro """
-    # Define os inputs da página de cadastro
     inputs = [
-        {'id': 'nome', 'type': 'text', 'placeholder': 'Digite seu nome', 'name': 'nome','block' : 'block'},
-        {'id': 'email', 'type': 'email', 'placeholder': 'Email', 'name': 'email','block' : 'block'},
-        {'id': 'dataNas', 'type': 'date', 'placeholder': 'dd.mm.yyyy','name':'dataNas','max': '2015-12-31','min': '1924-01-01','block' : 'block'},
-        {'id': 'senha', 'type': 'password', 'placeholder': 'Senha', 'name': 'senha','block' : 'block'},
-        {'id': 'confirmaSenha', 'type': 'password', 'placeholder': 'Confirme sua senha', 'name': 'confirmaSenha','block' : 'block'},
-        {'id': 'termo', 'type': 'checkbox', 'name': 'termo', 'value':'aceito','block' : 'inline'},
+        {'id': 'nome', 'type': 'text', 'placeholder': 'Digite seu nome', 'name': 'nome', 'block': 'block'},
+        {'id': 'email', 'type': 'email', 'placeholder': 'Email', 'name': 'email', 'block': 'block'},
+        {'id': 'dataNas', 'type': 'date', 'placeholder': 'dd.mm.yyyy', 'name': 'dataNas', 'max': '2015-12-31', 'min': '1924-01-01', 'block': 'block'},
+        {'id': 'senha', 'type': 'password', 'placeholder': 'Senha', 'name': 'senha', 'block': 'block'},
+        {'id': 'confirmaSenha', 'type': 'password', 'placeholder': 'Confirme sua senha', 'name': 'confirmaSenha', 'block': 'block'},
+        {'id': 'termo', 'type': 'checkbox', 'name': 'termo', 'value': 'aceito', 'block': 'inline'},
     ]
     
     if request.method == 'POST':
@@ -32,15 +31,13 @@ def cadastro():
             flash('senhas não coencidem', 'danger')
             return render_template('cadastro.html', inputs=inputs)
         try:
-            cadastrofb(data['nome'],data['email'], data['senha'],data['dataNas'])
-            flash('Foi enviado um email de verificação para: '+data['email']+' !', 'success')
+            cadastrofb(data['nome'], data['email'], data['senha'], data['dataNas'])
+            set_persistence_local()  #pessitencia de login
+            flash('Foi enviado um email de verificação para: ' + data['email'] + ' !', 'success')
             return redirect(url_for('login.pagina_login'))
         except Exception as e:
-            # Captura a exceção e imprime a mensagem de erro
             error_message = json.loads(e.args[1])['error']['message']
             flash(error_message, 'danger')
-            return render_template('cadastro.html', inputs=inputs) 
+            return render_template('cadastro.html', inputs=inputs)
         
-
-
     return render_template('cadastro.html', inputs=inputs)

@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, request, redirect,url_for, flash
 import json
-from firebaseAuth import loginfb, auth, db, emailDb, firstLogin
+from flask import Blueprint, render_template, request, redirect,url_for, flash
+from firebaseAuth import loginfb, auth, db, emailDb, firstLogin, set_persistence_local
+
 
 login_routes = Blueprint('login', __name__)
 
@@ -10,14 +11,14 @@ login_routes = Blueprint('login', __name__)
     - /home - Get - Retorna a página home
 """
 
-@login_routes.route('/', methods=['GET','POST'])
+@login_routes.route('/', methods=['GET', 'POST'])
 def pagina_login():
-    """ Retorna a página de login """
-    # Define os inputs da página de login
+
+    user = auth.current_user
+
     inputs = [
         {'id': 'email', 'type': 'email', 'placeholder': 'Email', 'name': 'email'},
         {'id': 'senha', 'type': 'password', 'placeholder': 'Senha', 'name': 'senha'}
-        
     ]
     if request.method == 'POST':
 
@@ -26,19 +27,25 @@ def pagina_login():
         if action == 'login':
             try:
                 email_verified = loginfb(data['email'], data['senha'])
-                 
                 if email_verified == False:
                     flash('Email não verificado, por favor verifique seu email!', 'danger')
-                    return render_template('index.html', inputs=inputs)
+                    return redirect(url_for('login.pagina_login'))
+
                 if firstLogin(data['email']):
                     return redirect(url_for('primeiroAcesso.primeiroAcesso'))
-                return redirect(url_for('perfil.pagina_perfil'))
-            
                 
+                return redirect(url_for('perfil.pagina_perfil'))
             except Exception as e:
-                # Captura a exceção e imprime a mensagem de erro
                 error_message = json.loads(e.args[1])['error']['message']
                 flash(error_message, 'danger')
-                return render_template('index.html', inputs=inputs)
+                return redirect(url_for('login.pagina_login'))
         
+        else:
+            auth.current_user = None
+            flash('Logout realizado com sucesso!', 'success')
+            return redirect(url_for('login.pagina_login'))
+        
+    if user:
+        return redirect(url_for('perfil.pagina_perfil'))
+    
     return render_template('index.html', inputs=inputs)

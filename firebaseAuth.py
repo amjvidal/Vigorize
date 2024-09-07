@@ -1,5 +1,4 @@
-import pyrebase
-from flask import flash
+import pyrebase 
 import requests
 
 config = {
@@ -12,9 +11,11 @@ config = {
     'appId': "1:385997478942:web:dc73f225e95938034fe20f",
     'measurementId': "G-N2ETEHJM8N"}
 
+profilePics_folder = 'profile_pics'
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
-db=firebase.database()
+storage = firebase.storage()
+db = firebase.database()
 
 def cadastrofb(nome, email, password):
         user = auth.create_user_with_email_and_password(email, password)
@@ -55,3 +56,27 @@ def firstLogin(email):
     user_email = emailDb(email)
     firstLogin = db.child("usuarios").child(user_email).child("firstTime").get().val()
     return firstLogin
+
+def set_persistence_local(): #pessitencia de login
+    auth.set_persistence(firebase.auth.Auth.Persistence.LOCAL)
+    
+    
+def armazenar_dados_mensais(user_email, mes, ano, calorias, imc, percent_gordura):
+    data = {
+        'calorias': calorias,
+        'imc': imc,
+        'percent_gordura': percent_gordura
+    }
+    db.child("usuarios").child(user_email).child("dados_mensais").child(f"{ano}-{mes}").set(data)
+
+def img_url_firebase(url):
+    for i in range((len(url)-1), 0, -1):
+        # Retirar até o %
+        if url[i] == '%':
+            url = url[:i]
+            break
+    # Acessar o link
+    response = requests.get(url)
+    token = response.json()['downloadTokens']
+    url = url + "?alt=media&token=" + token
+    return url
