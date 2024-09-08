@@ -17,14 +17,18 @@
 <body class=" bg-[#F8DCB3] flex min-h-screen">
     <div class="w-[50%] flex items-center justify-center mx-auto">
         <!-- Conteúdo da aba de configuração aqui -->
-        <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url_for('primeiroAcesso.primeiroAcesso')}}" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="action" value="save_profile">
             
             <!-- Input de arquivo escondido -->
             <input type="file" id="profile-picture" accept="image/*" name="file" required class="hidden" onchange="updateProfilePicturePreview()">
             
             <!-- Botão personalizado -->
-            <img type="button" id="upload-button" class=" rounded-full block mx-auto w-[360px] h-[360px] cursor-pointer shadow-2xl" src="/static/botao_bege.svg" onclick="document.getElementById('profile-picture').click();">
+             {% if profile_picture_url %}
+                <img type="button" id="upload-button" class=" rounded-full block mx-auto w-[360px] h-[360px] cursor-pointer shadow-2xl" src="{{ profile_picture_url }}" onclick="document.getElementById('profile-picture').click();">
+            {% else %}
+                <img type="button" id="upload-button" class=" rounded-full block mx-auto w-[360px] h-[360px] cursor-pointer shadow-2xl" src="/static/botao_bege.svg" onclick="document.getElementById('profile-picture').click();">
+            {% endif %}
             
             <!-- Submit button -->
             <button type="submit" class="bg-[#ED8D00] hover:bg-[#f2a30a] font-bold rounded-full p-2 text-white block mx-auto mt-4">Salvar Foto</button>
@@ -37,6 +41,9 @@
             </div>
             <h1 class="text-[#F8DCB3] text-4xl text-center font-semibold mb-12">Primeiros Passos</h1>
             <form action="{{ url_for('primeiroAcesso.primeiroAcesso')}}" method="POST">
+
+                <input type="hidden" name="action" value="send_data">
+            
                 <div class="grid grid-rows-1 gap-4 items-center mx-auto w-[60%]">
                     {% for input in inputs %}
                         <input class="bg-[#F8DCB3] p-2 px-5 block w-full rounded-full border border-black text-[#316A55] font-normal placeholder:text-[#316A55] placeholder:font-normal"

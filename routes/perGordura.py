@@ -11,8 +11,12 @@ perGordura_routes = Blueprint('perGordura', __name__)
 @perGordura_routes.route('/', methods=['GET','POST'])
 def pagina_perGordura():
     user=auth.current_user
-    user_email = emailDb(user['email'])
-    user_sexo = db.child("usuarios").child(user_email).child("sexo").get().val()
+    if user is None:
+        flash('Você precisa estar logado para acessar esta página.', 'danger')
+        return redirect(url_for('login.pagina_login'))
+    
+    user_id = emailDb(user['email'])
+    user_sexo = db.child("usuarios").child(user_id).child("sexo").get().val()
 
     inputs = [
         {'id': 'cintura', 'type': 'number', 'placeholder': "Cintura(cm)",'name': 'cintura', 'label': 'Cintura(cm)','max': '180','min': '30'},
@@ -34,13 +38,13 @@ def pagina_perGordura():
                 if user_sexo == 'Feminino':
                     if data['quadril'] == '':
                         data['quadril'] = None
-                    db.child("usuarios").child(user_email).update(
+                    db.child("usuarios").child(user_id).update(
                         {'cintura': data['cintura'],
                          'pescoco': data['pescoco'],
                          'quadril': data['quadril']
                         })
                 else:
-                    db.child("usuarios").child(user_email).update(
+                    db.child("usuarios").child(user_id).update(
                         {'cintura': data['cintura'],
                         'pescoco': data['pescoco'],
                         'quadril': None
@@ -53,7 +57,7 @@ def pagina_perGordura():
         
         if action == "pular":
             try:
-                db.child("usuarios").child(user_email).update(
+                db.child("usuarios").child(user_id).update(
                     {'cintura': None,
                     'pescoco': None,
                     'quadril': None

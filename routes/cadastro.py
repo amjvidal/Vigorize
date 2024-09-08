@@ -32,7 +32,6 @@ def cadastro():
             return render_template('cadastro.html', inputs=inputs)
         try:
             cadastrofb(data['nome'], data['email'], data['senha'], data['dataNas'])
-            set_persistence_local()  #pessitencia de login
             flash('Foi enviado um email de verificação para: ' + data['email'] + ' !', 'success')
             return redirect(url_for('login.pagina_login'))
         except Exception as e:

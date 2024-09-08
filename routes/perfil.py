@@ -87,7 +87,7 @@ def pagina_perfil():
                     auth.delete_user_account(user['idToken'])  # Exclui o usuário da autenticação
                     db.child("usuarios").child(user_id).remove()  # Exclui o perfil do usuário
                     flash('Perfil excluído com sucesso!', 'success')
-                    return redirect(url_for('login.pagina_login'))
+                    return redirect(url_for('login..logout'))
                 except Exception as e:
                     error_message = str(e)
                     flash(error_message, 'danger')
@@ -155,11 +155,13 @@ def pagina_perfil():
     caloria = round(calculaTMB(int(peso_user), int(altura_user), int(idade), sexo_user, atividade_user), 4)
     max_Caloria = 10000
     caloriaMedia = (caloria / max_Caloria) * 100
-
-    if sexo_user == 'Masculino':
-        percent_gordura = calculaPercentGorduraMASC(int(altura_user), int(cintura_user), int(pescoco_user))
-    else:
-        percent_gordura = calculaPercentGorduraFem(int(altura_user), int(cintura_user), int(pescoco_user), int(quadril_user))
+    try:
+        if sexo_user == 'Masculino':
+            percent_gordura = calculaPercentGorduraMASC(int(altura_user), int(cintura_user), int(pescoco_user))
+        else:
+            percent_gordura = calculaPercentGorduraFem(int(altura_user), int(cintura_user), int(pescoco_user), int(quadril_user))
+    except:
+        percent_gordura = 0
 
     imc = calculaIMC(int(peso_user), int(altura_user))
             

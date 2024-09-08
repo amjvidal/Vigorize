@@ -20,7 +20,7 @@ app.register_blueprint(recuperar_routes, url_prefix='/recuperar')
 app.register_blueprint(cadastro_routes, url_prefix='/cadastro')
 app.register_blueprint(perfil_routes, url_prefix='/perfil')
 app.register_blueprint(primeiroAcesso_routes, url_prefix='/primeiro-acesso')
-app.register_blueprint(perGordura_routes, url_prefix='/perGordura')
+app.register_blueprint(perGordura_routes, url_prefix='/percentual-gordura')
 app.register_blueprint(imc_routes, url_prefix='/imc')
 
 
