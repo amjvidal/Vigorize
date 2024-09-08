@@ -136,7 +136,7 @@
                 <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
                 style="background-image: conic-gradient(#F3D3A0 {{ percent_gordura }}%, #576A5C {{ percent_gordura }}%);
                         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); clip-path: inset(0 round 100%);">
-                        <div class="absolute w-44 h-44 bg-[#F8DCB3] rounded-full"
+                        <div class="absolute w-[185px] h-[185px]   bg-[#F8DCB3] rounded-full"
                         style="box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);"> <!-- Sombra interna -->
                         </div>
                 <div class="relative text-[#576A5C] text-3xl text-center">
@@ -149,7 +149,7 @@
                 <!-- Segundo círculo -->
                 <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
                     style="background-image: conic-gradient(#F3D3A0 {{ imc }}%, #576A5C {{ imc }}%);box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
-                    <div class="absolute w-44 h-44 bg-[#F8DCB3] rounded-full"style="box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);"></div>
+                    <div class="absolute w-[185px] h-[185px] bg-[#F8DCB3] rounded-full"style="box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);"></div>
                     <div class="relative text-[#576A5C] text-4xl text-center">
                         {{ imc }}
                         <div class="text-base">IMC</div>
@@ -160,7 +160,7 @@
                 <!-- Terceiro círculo -->
                 <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
                     style="background-image: conic-gradient(#F3D3A0 {{ caloriaMedia }}%, #576A5C {{ caloriaMedia }}%); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
-                    <div class="absolute w-44 h-44 bg-[#F8DCB3] rounded-full"style="box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);"></div>
+                    <div class="absolute w-[185px] h-[185px] bg-[#F8DCB3] rounded-full"style="box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);"></div>
                     <div class="relative text-[#576A5C] text-4xl text-center">
                         {{ caloria }}
                         <div class="text-base">Calorias<br>Dietas</div>
@@ -184,8 +184,6 @@
             </script>
         {% endif %}
     {% endwith %}
-
-    
 
         <!-- Dropdown de seleção -->
     <div class="flex justify-end mb-4">
@@ -304,7 +302,7 @@
         if (selectedMetric === 'calorias') {
             maxScaleY = 10000; // Define o máximo com base nos dados de calorias
         } else if (selectedMetric === 'imc') {
-            maxScaleY = 100; // Define o máximo com base nos dados de IMC
+            maxScaleY = 50; // Define o máximo com base nos dados de IMC
         } else if (selectedMetric === 'gordura') {
             maxScaleY = 100; // Define o máximo para gordura como 100 (porcentagem)
         }
@@ -315,18 +313,14 @@
         activityGrowthChart.update();
     });
     
+        // JavaScript para controlar a visibilidade da aba
+        document.getElementById('config-button').addEventListener('click', function() {
+            document.getElementById('config-panel').classList.toggle('active');
+        });
 
-
-
-
-            // JavaScript para controlar a visibilidade da aba
-            document.getElementById('config-button').addEventListener('click', function() {
-                document.getElementById('config-panel').classList.toggle('active');
-            });
-
-            document.getElementById('close-button').addEventListener('click', function() {
-                document.getElementById('config-panel').classList.remove('active');
-            });
+        document.getElementById('close-button').addEventListener('click', function() {
+            document.getElementById('config-panel').classList.remove('active');
+        });
         // Script do botão da foto do perfil
         function updateProfilePicturePreview() {
             var fileInput = document.getElementById('profile-picture');
