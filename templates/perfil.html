@@ -13,6 +13,19 @@
         .slide-in.active {
             transform: translateX(0);
         }
+        /* Estilo do dropdown */
+        #metric-selector {
+            margin-right: 20px;
+            background-color: #F8DCB3;
+            color: #576A5C;
+            border: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+}
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -128,7 +141,8 @@
                         </div>
                 <div class="relative text-[#576A5C] text-3xl text-center">
                     {{ percent_gordura }}%
-                    <div class="text-base">Gordura<br>Dietas</div>
+                    <div class="text-base">Gordura</div>
+                        <div class="text-base">{{classificacao_percentual_gordura}}</div>
                 </div>
             </div>
 
@@ -139,7 +153,8 @@
                     <div class="absolute w-44 h-44 bg-[#F8DCB3] rounded-full"style="box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);"></div>
                     <div class="relative text-[#576A5C] text-4xl text-center">
                         {{ imc }}
-                        <div class="text-base">IMC<br>Dietas</div>
+                        <div class="text-base">IMC</div>
+                        <div class="text-base">{{classificacao_imc}}</div>
                     </div>
                 </div>
 
@@ -156,7 +171,7 @@
 
             <!-- Adiciona o gráfico abaixo dos círculos -->
             <div class="flex justify-center mt-8 w-full">
-                <canvas id="activityGrowthChart" width="800" height="200"></canvas>
+                <canvas id="activityGrowthChart" width="800" height="250"></canvas>
             </div>
         </div>
 
@@ -173,121 +188,164 @@
 
     
 
-        <script>
-        // Configuração do gráfico usando Chart.js
-        const ctx = document.getElementById('activityGrowthChart').getContext('2d');
-        const activityGrowthChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Jan 1', 'Jan 2', 'Jan 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8', 'Jan 9', 'Jan 10', 'Jan 11', 'Jan 12'],
-                datasets: [
-                    {
-                        label: 'Calorias',
-                        data: {{ calorias_data | tojson }},
-                        backgroundColor: '#BC6C25',
-                        borderColor: '#BC6C25',
-                        borderWidth: 2,
-                        borderRadius: 5,
-                        barThickness: 10,
-                    },
-                    {
-                        label: 'IMC',
-                        data: {{ imc_data | tojson }},
-                        backgroundColor: '#606C38',
-                        borderColor: '#606C38',
-                        borderWidth: 2,
-                        borderRadius: 5,
-                        barThickness: 10,
-                    },
-                    {
-                        label: 'Gordura',
-                        data: {{ percent_gordura_data | tojson }},
-                        backgroundColor: '#F7D08A',
-                        borderColor: '#F7D08A',
-                        borderWidth: 2,
-                        borderRadius: 5,
-                        barThickness: 10,
-                    }
-                ]
+        <!-- Dropdown de seleção -->
+    <div class="flex justify-end mb-4">
+        <select id="metric-selector" class="bg-[#F8DCB3] text-[#576A5C] p-2 rounded shadow">
+            <option value="all">Mostrar todas as métricas</option>
+            <option value="calorias">Calorias</option>
+            <option value="imc">IMC</option>
+            <option value="gordura">Gordura</option>
+        </select>
+    </div>
+
+
+    <script>
+    // Configuração inicial do gráfico
+    const ctx = document.getElementById('activityGrowthChart').getContext('2d');
+    const initialData = {
+        labels: ['Jan 1', 'Jan 2', 'Jan 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8', 'Jan 9', 'Jan 10', 'Jan 11', 'Jan 12'],
+        datasets: [
+            {
+                label: 'Calorias',
+                data: {{ calorias_data | tojson }},
+                backgroundColor: '#BC6C25',
+                borderColor: '#BC6C25',
+                borderWidth: 2,
+                borderRadius: 5,
+                barThickness: 10,
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            color: '#576A5C',
-                            font: {
-                                family: 'Arial, sans-serif',
-                                size: 14,
-                            }
+            {
+                label: 'IMC',
+                data: {{ imc_data | tojson }},
+                backgroundColor: '#606C38',
+                borderColor: '#606C38',
+                borderWidth: 2,
+                borderRadius: 5,
+                barThickness: 10,
+            },
+            {
+                label: 'Gordura',
+                data: {{ percent_gordura_data | tojson }},
+                backgroundColor: '#F7D08A',
+                borderColor: '#F7D08A',
+                borderWidth: 2,
+                borderRadius: 5,
+                barThickness: 10,
+            }
+        ]
+    };
+
+    const activityGrowthChart = new Chart(ctx, {
+        type: 'bar',
+        data: initialData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#576A5C',
+                        font: {
+                            family: 'Arial, sans-serif',
+                            size: 14,
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false,
+                    },
+                    ticks: {
+                        color: '#576A5C',
+                        font: {
+                            family: 'Arial, sans-serif',
+                            size: 12,
                         }
                     }
                 },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false,
-                        },
-                        ticks: {
-                            color: '#576A5C',
-                            font: {
-                                family: 'Arial, sans-serif',
-                                size: 12,
-                            }
-                        }
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: {
+                        color: '#576A5C', 
+                        lineWidth: 1,
+                        drawBorder: false,
                     },
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        grid: {
-                            color: '#576A5C', // Cor das linhas horizontais
-                            lineWidth: 1,
-                            drawBorder: false, // Remove a borda do eixo Y
+                    ticks: {
+                        color: '#576A5C',
+                        font: {
+                            family: 'Arial, sans-serif',
+                            size: 12,
                         },
-                        ticks: {
-                            color: '#576A5C',
-                            font: {
-                                family: 'Arial, sans-serif',
-                                size: 12,
-                            },
-                            callback: function(value) {
-                                return value + "%";
-                            }
+                        callback: function(value) {
+                            return value + "%";
                         }
                     }
                 }
             }
-        });
-
-
-
-        // JavaScript para controlar a visibilidade da aba
-        document.getElementById('config-button').addEventListener('click', function() {
-            document.getElementById('config-panel').classList.toggle('active');
-        });
-
-        document.getElementById('close-button').addEventListener('click', function() {
-            document.getElementById('config-panel').classList.remove('active');
-        });
-    // Script do botão da foto do perfil
-    function updateProfilePicturePreview() {
-        var fileInput = document.getElementById('profile-picture');
-        var uploadButton = document.getElementById('upload-button');
-        
-        if (fileInput.files && fileInput.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                uploadButton.src = e.target.result;
-            }
-            
-            reader.readAsDataURL(fileInput.files[0]);
         }
-    }
-    function confirmDeletion() {
-        return confirm("Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.");
-    }
-    </script>
+    });
+
+    document.getElementById('metric-selector').addEventListener('change', function() {
+        const selectedMetric = this.value;
+        
+        // Define os datasets com base na seleção
+        let filteredDatasets = [];
+    
+        if (selectedMetric === 'all') {
+            filteredDatasets = initialData.datasets; // Mostra todos os dados
+        } else {
+            filteredDatasets = initialData.datasets.filter(dataset => dataset.label.toLowerCase() === selectedMetric);
+        }
+    
+        // Atualiza o máximo do eixo Y com base na métrica selecionada
+        let maxScaleY = 100; // Padrão para porcentagem
+        if (selectedMetric === 'calorias') {
+            maxScaleY = 10000; // Define o máximo com base nos dados de calorias
+        } else if (selectedMetric === 'imc') {
+            maxScaleY = 100; // Define o máximo com base nos dados de IMC
+        } else if (selectedMetric === 'gordura') {
+            maxScaleY = 100; // Define o máximo para gordura como 100 (porcentagem)
+        }
+    
+        // Atualiza as configurações do gráfico
+        activityGrowthChart.options.scales.y.max = maxScaleY;
+        activityGrowthChart.data.datasets = filteredDatasets;
+        activityGrowthChart.update();
+    });
+    
+
+
+
+
+            // JavaScript para controlar a visibilidade da aba
+            document.getElementById('config-button').addEventListener('click', function() {
+                document.getElementById('config-panel').classList.toggle('active');
+            });
+
+            document.getElementById('close-button').addEventListener('click', function() {
+                document.getElementById('config-panel').classList.remove('active');
+            });
+        // Script do botão da foto do perfil
+        function updateProfilePicturePreview() {
+            var fileInput = document.getElementById('profile-picture');
+            var uploadButton = document.getElementById('upload-button');
+            
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    uploadButton.src = e.target.result;
+                }
+                
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+        function confirmDeletion() {
+            return confirm("Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.");
+        }
+        </script>
 </body>
 </html>

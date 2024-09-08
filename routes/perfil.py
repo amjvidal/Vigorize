@@ -3,7 +3,7 @@ from firebaseAuth import recoverPassword, db, auth, emailDb, storage, img_url_fi
 import os, json
 from werkzeug.utils import secure_filename
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from calculadora import calculaTMB, calculaPercentGorduraMASC, calculaPercentGorduraFem, calculaIMC, calcular_idade
+from calculadora import calculaTMB, calculaPercentGorduraMASC, calculaPercentGorduraFem, calculaIMC, calcular_idade, classificaIMC, classifica_percentual_gordura
 from datetime import datetime
 
 perfil_routes = Blueprint('perfil', __name__)
@@ -182,6 +182,9 @@ def pagina_perfil():
             calorias_data.append(dados['calorias'])
             imc_data.append(dados['imc'])
             percent_gordura_data.append(dados['percent_gordura'])
+            
+    classificacao_imc = classificaIMC(imc)
+    classificacao_percentual_gordura = classifica_percentual_gordura(percent_gordura, sexo_user,idade )
 
     return render_template('perfil.html', 
                            inputs=inputs, 
@@ -194,5 +197,5 @@ def pagina_perfil():
                            caloriaMedia=caloriaMedia,
                            calorias_data=calorias_data,
                            imc_data=imc_data,
-                           percent_gordura_data=percent_gordura_data)
+                           percent_gordura_data=percent_gordura_data,classificacao_imc=classificacao_imc, labels=labels, classificacao_percentual_gordura=classificacao_percentual_gordura)
     
