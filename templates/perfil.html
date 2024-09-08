@@ -86,7 +86,7 @@
     <main class="pt-[80px]">
         <div class="bg-[#234035] space-y-4 h-screen w-[30%] p-6 shadow-md">
             <div class="text-center">
-                <h3 class="text-white text-xl font-extralight">Dados Pessoais</h3>
+                <h3 class="text-white text-xl font-light">Dados Pessoais</h3>
             </div>
         
             <!-- FORMULÁRIO DE ATUALIZAÇÃO  -->
@@ -96,7 +96,7 @@
                 <div class="grid grid-cols-2 gap-y-4 gap-x-6">
                     {% for input in inputs %}
                         <div class="flex flex-col">
-                            <label class="text-white font-semibold mb-2" for="{{ input.name }}">{{ input.label }}</label>
+                            <label class="text-white font-normal mb-2" for="{{ input.name }}">{{ input.label }}</label>
                             <input class="bg-[#F8DCB3] px-4 py-2 rounded-lg outline-none border-0 text-right font-semibold form-control w-full"
                             type="{{ input.type }}"
                             id="{{ input.id }}"
@@ -113,7 +113,7 @@
                     {% else %}
                     <div class="flex flex-col col-span-2">
                 {% endif %}
-                        <label class="text-white font-semibold mb-2" for="fisico">Atividade Física</label>
+                        <label class="text-white font-normal mb-2" for="fisico">Atividade Física</label>
                         <select class="bg-[#F8DCB3] px-4 py-2 rounded-lg outline-none border-0 text-black font-semibold w-full"
                         name="fisico" id="fisico" required>
                             <option value="{{ atividade_user }}" selected>{{ atividade_user }}</option>

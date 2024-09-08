@@ -13,11 +13,17 @@ def primeiroAcesso():
     """ Retorna a página de primeiroAcesso """
     
     user = auth.current_user
+
+    if user is None:
+        flash('Você precisa estar logado para acessar esta página.', 'danger')
+        return redirect(url_for('login.pagina_login'))
+    
     user_email = emailDb(user['email'])
     
     generos = ["Masculino", "Feminino"]
-    fisicos = ["Sedentário", "Atividade Ligeira", "Atividade Moderada", "Atividade Intensa", "Atividade Muito Intensa"]
+    fisicos = ["Sedentário", "Ligeira", "Moderada", "Intensa", "Muito Intensa"]
     inputs = [
+
         {'id': 'altura', 'type': 'number', 'placeholder': "Altura(cm)" ,'name': 'altura','max': '250','min': '100'},
         {'id': 'peso', 'type': 'number', 'placeholder': "Peso(kg)",'name': 'peso','max': '200','min': '30'}
     ]
