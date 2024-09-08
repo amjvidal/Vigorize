@@ -15,6 +15,10 @@
     
 </head>
 <body class=" bg-[#F8DCB3] flex min-h-screen">
+    <img src="/static/voltarbtn_verde.svg" alt="Botão de Voltar"
+        class="absolute top-8 left-16 w-[80px] h-[80px] bg-no-repeat bg-center bg-contain cursor-pointer" 
+        onclick="window.history.back()">
+
     <div class="w-[50%] flex items-center justify-center mx-auto">
         <!-- Conteúdo da aba de configuração aqui -->
         <form action="{{ url_for('primeiroAcesso.primeiroAcesso')}}" method="POST" enctype="multipart/form-data">
