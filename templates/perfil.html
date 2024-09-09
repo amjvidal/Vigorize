@@ -185,49 +185,6 @@
     {% endwith %}
 
     <script>
-        // Configuração do gráfico usando Chart.js
-        // Configuração do gráfico usando Chart.js
-        const ctx = document.getElementById('activityGrowthChart').getContext('2d');
-        const activityGrowthChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Jan 1', 'Fer 2', 'Mar 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8', 'Jan 9', 'Jan 10', 'Jan 11', 'Jan 12'],
-                datasets: [
-                    {
-                        label: 'Calorias',
-                        data: {{ calorias_data | tojson }},
-                        
-                        backgroundColor: '#606c38'
-                    },
-                    {
-                        label: 'IMC',
-                        data: {{ imc_data | tojson }},
-                       
-                        backgroundColor: '#ED8D00'
-                    },
-                    {
-                        label: 'Gordura',
-                        data: {{ percent_gordura_data | tojson }},
-                        
-                        
-                        backgroundColor: '#e0e0e0'
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        ticks: {
-                            callback: function(value) {
-                                return value + "%";
-                            }
-                        }
-                    }
-                }
-            }
-        });
 
         // JavaScript para controlar a visibilidade da aba
         document.getElementById('config-button').addEventListener('click', function() {
