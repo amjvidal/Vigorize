@@ -49,3 +49,4 @@ def pagina_login():
         return redirect(url_for('perfil.pagina_perfil'))
     
     return render_template('index.html', inputs=inputs)
+

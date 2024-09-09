@@ -15,107 +15,124 @@
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
         function showFlashMessages(messages) {
             messages.forEach(message => {
-                alert(message);  // Exibe um alerta com a mensagem
+                var category = message[0];  // Exemplo: 'success' ou 'danger'
+                var text = message[1];  // A mensagem em si
+                
+                // Aqui você pode exibir a mensagem como preferir, exemplo com 'alert`:
+                alert(`${category}: ${text}`);  // Exibe um alerta com a mensagem
             });
         }
     </script>
 </head>
 <body class="bg-[#F8DCB3] min-h-screen">
-    <header class="h-[70px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
-        <nav class="flex justify-between items-center space-x-6 py-4">
+    <header class="h-[80px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
+        <nav class="flex justify-between items-center space-x-6 px-4 pt-2">
             {% if profile_picture_url %}
-                <img src="{{ profile_picture_url }}" alt="Foto de Perfil" class='w-16 h-16 rounded-full'>
+                <img src="{{ profile_picture_url }}" alt="Foto de Perfil" class='w-16 h-16 rounded-full border-[2px] border-[#F8DCB3]'>
             {% else %}
-                <p>CU.</p>
+            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Foto de Perfil Padrão" class='w-16 h-16 rounded-full'>
             {% endif %}
-
-            <a class="text-white underline" href="/perfil">Usuário</a>
-            <a class="text-white underline" href="/tabelaNutricional">Tabela Nutricional</a>
-            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-12">
-            <a class="text-white underline" href="/cadastro">Planejar Refeições</a>
-            <a class="text-white underline" href="/imc">Calcular IMC</a>
-            <button id="config-button" class="p-2 bg-[#ED8D00] text-white rounded-lg">Config</button>
+            <a class="text-[#F8DCB3] text-xl" href="/perfil">Usuário</a>
+            <a class="text-[#F8DCB3] text-xl" href="/perfil">Tabela Nutricional</a>
+            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-16">
+            <a class="text-[#F8DCB3] text-xl" href="/perfil">Planejar Refeições</a>
+            <a class="text-[#F8DCB3] text-xl" href="/imc">Calcular IMC</a>
+            <img id="config-button" src="{{ url_for('static', filename='engrenagem.svg') }}" alt="Foto de Perfil Padrão" class="cursor-pointer w-8">
         </nav>
     </header>
     <!-- ABA DE CONFIGURAÇÃO -->
     <!-- ABA DE CONFIGURAÇÃO -->
-    <aside id="config-panel" class="slide-in fixed top-[70px] right-0 h-full w-[440px] bg-[#234035] text-white shadow-lg z-20 justify-center items-center">
-        <h2 class="text-xl font-bold mb-4">Configurações</h2>
-        <div class="p-4 ">
+    <aside id="config-panel" class="slide-in fixed top-[80px] right-0 h-[calc(100%-70px)] w-[440px] bg-[#234035] text-white shadow-lg z-20 flex flex-col justify-between overflow-y-auto">
+        <div class="p-4">
             <!-- Conteúdo da aba de configuração aqui -->
-            <!-- Conteúdo da aba de configuração aqui -->
-            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" enctype="multipart/form-data" class="mb-8">
                 <input type="hidden" name="action" value="save_profile">
-                <form action="/sua-rota" method="POST" enctype="multipart/form-data">
-                    <!-- Input de arquivo escondido -->
-                    <input type="file" id="profile-picture" accept="image/*" name="file" required class="hidden" onchange="updateProfilePicturePreview()">
                 
-                    <!-- Botão personalizado -->
-                    <!-- <button type="button" id="upload-button" class="w-64 h-64 rounded-full bg-cover bg-center block mx-auto" style="background-image: url('{{ profile_picture_url }}');" onclick="document.getElementById('profile-picture').click();"> -->
-                        <img type="button" id="upload-button" class=" border-[3px] border-[#F8DCB3] w-64 h-64 rounded-full block mx-auto cursor-pointer" src="{{ profile_picture_url }}" onclick="document.getElementById('profile-picture').click();">
-                        <!-- Pode adicionar um ícone ou texto opcional aqui -->
-                    </button>
+                <!-- Input de arquivo escondido -->
+                <input type="file" id="profile-picture" accept="image/*" name="file" required class="hidden" onchange="updateProfilePicturePreview()">
                 
-                    <!-- Submit button -->
-                    <button type="submit" class="p-2 bg-[#ED8D00] text-white rounded-lg block mx-auto">Salvar Foto</button>
-                </form>
+                <!-- Botão personalizado -->
+                <img type="button" id="upload-button" class="border-[3px] border-[#F8DCB3] w-64 h-64 rounded-full block mx-auto cursor-pointer" src="{{ profile_picture_url }}" onclick="document.getElementById('profile-picture').click();">
+                
+                <!-- Submit button -->
+                <button type="submit" class="bg-[#ED8D00] hover:bg-[#f2a30a] font-bold rounded-full p-2 text-white block mx-auto mt-4">Salvar Foto</button>
             </form>
+    
             <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
                 <input type="hidden" name="action" value="recover_password">
-                <button class="p-2 bg-[#ED8D00] text-white rounded-lg block mx-auto">Recuperar Senha</button>
+                <button class="bg-[#ED8D00] hover:bg-[#f2a30a] text-white font-bold py-2 px-6 rounded-full mt-6 block mx-auto">Recuperar Senha</button>
             </form>
-            <form action="{{ url_for('login.pagina_login')}}" method="POST" >
+        </div>
+    
+        <!-- Botões no final da página -->
+        <div class="p-4 flex justify-center space-x-4 mb-4">
+            <form action="{{ url_for('login.pagina_login')}}" method="POST">
                 <input type="hidden" name="action" value="logout">
-                <button class="p-2 bg-[#b01002d7] text-white rounded-lg flex mx-auto">Logout</button>
+                <button class="hover:bg-[#b01002fe] font-bold rounded-full py-2 px-8 bg-[#b01002d7] text-white">Logout</button>
             </form>
-            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" ></form>
+    
+            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" onsubmit="return confirmDeletion()">
                 <input type="hidden" name="action" value="delete_account">
-                <button class="p-2 bg-[#b01002d7] text-white rounded-lg flex mx-auto" onclick="return confirmDeletion()">Excluir Conta</button>
+                <button class="hover:bg-[#b01002fe] font-bold p-2 bg-[#b01002d7] text-white rounded-full">Excluir Conta</button>
             </form>
         </div>
     </aside>
     <!-- PRINCIPAL-->
     <!-- PRINCIPAL-->
-    <main class="pt-[70px]">
-        <div class=" bg-[#234035] space-y-2 h-screen w-[30%] ">
-            <div class="">
-                <h3 class="text-white">Dados Pessoais</h3>
+    <main class="pt-[80px]">
+        <div class="bg-[#234035] space-y-4 h-screen w-[30%] p-6 shadow-md">
+            <div class="text-center">
+                <h3 class="text-white text-xl font-light">Dados Pessoais</h3>
             </div>
+        
             <!-- FORMULÁRIO DE ATUALIZAÇÃO  -->
-            <!-- FORMULÁRIO DE ATUALIZAÇÃO  -->
-            <form id="form_update_profile"action="{{ url_for('perfil.pagina_perfil')}}" method="POST" >
+            <form id="form_update_profile" action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
                 <input type="hidden" name="action" value="update_profile">
-                <div class="grid grid-cols-2 gap-y-10 gap-x-10">
+        
+                <div class="grid grid-cols-2 gap-y-4 gap-x-6">
                     {% for input in inputs %}
-                        <div class="bg-[#F8DCB3] flex items-center space-x-4 m-4">
-                            <label class="text-black font-semibold min-w-20 float-start ms-2" for="{{ input.name }}">{{ input.label }}</label>
-                            <input class="bg-[#F8DCB3] mx-4 py-4 outline-none border-0 text-right font-semibold form-control max-w-[60px] float-end"
+                        <div class="flex flex-col">
+                            <label class="text-white font-normal mb-2" for="{{ input.name }}">{{ input.label }}</label>
+                            <input class="bg-[#F8DCB3] px-4 py-2 rounded-lg outline-none border-0 text-right font-semibold form-control w-full"
                             type="{{ input.type }}"
-                            id = "{{ input.id }}"
+                            id="{{ input.id }}"
                             name="{{ input.name }}"
                             max="{{ input.max }}"
                             min="{{ input.min }}"
-                            value="{{ input.value}}">
+                            value="{{ input.value }}">
                         </div>
                     {% endfor %}
-                    <select class="bg-[#F8DCB3] mx-4 py-4 outline-none border-0 text-left placeholder:text-black font-semibold form-control max-w-[200px] float-start"
-                    name="fisico"
-                    required>
-                        <option value = "{{atividade_user}}" selected>{{atividade_user}}</option>
-                        {% for fisico in fisicos%}
-                        {%if fisico != atividade_user%}
-                            <option value = "{{ fisico }}">{{ fisico }}</option>
-                            
-                        {%endif%}
-                        {% endfor %}
-                    </select>
-                    <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Salvar</button>
+        
+                    <!-- Select field -->
+                {% if sexo_user == "Feminino" %}
+                    <div class="flex flex-col">
+                    {% else %}
+                    <div class="flex flex-col col-span-2">
+                {% endif %}
+                        <label class="text-white font-normal mb-2" for="fisico">Atividade Física</label>
+                        <select class="bg-[#F8DCB3] px-4 py-2 rounded-lg outline-none border-0 text-black font-semibold w-full"
+                        name="fisico" id="fisico" required>
+                            <option value="{{ atividade_user }}" selected>{{ atividade_user }}</option>
+                            {% for fisico in fisicos %}
+                                {% if fisico != atividade_user %}
+                                    <option value="{{ fisico }}">{{ fisico }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+        
+                    <!-- Botão de salvar -->
+                    <div class="col-span-2 text-center mt-4">
+                        <button class="bg-[#ED8D00] hover:bg-[#f2a30a] font-bold rounded-full py-2 px-8 text-white">Salvar</button>
+                    </div>
                 </div>
             </form>
         </div>
+        
         <div class="flex justify-center mt-8">
             <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
                  style="background-image: conic-gradient(#606c38 {{ percent_gordura }}%, #e0e0e0 {{ percent_gordura }}%)">
@@ -160,8 +177,9 @@
     {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
             <script>
+                // Transforma mensagens de flash em um array para o JavaScript
                 const messages = {{ messages | tojson }};
-                showFlashMessages(messages.map(msg => msg[1]));
+                showFlashMessages(messages);  // msg[1] é a mensagem, msg[0] é a categoria
             </script>
         {% endif %}
     {% endwith %}
@@ -219,6 +237,7 @@
         document.getElementById('close-button').addEventListener('click', function() {
             document.getElementById('config-panel').classList.remove('active');
         });
+
     // Script do botão da foto do perfil
     function updateProfilePicturePreview() {
         var fileInput = document.getElementById('profile-picture');
