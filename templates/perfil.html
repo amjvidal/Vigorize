@@ -174,16 +174,14 @@
             </div>
         </div>
 
-    
-
-    {% with messages = get_flashed_messages(with_categories=True) %}
-        {% if messages %}
-            <script>
-                const messages = {{ messages | tojson }};
-                showFlashMessages(messages.map(msg => msg[1]));
-            </script>
-        {% endif %}
-    {% endwith %}
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                <script>
+                    const messages = {{ messages | tojson }};
+                    showFlashMessages(messages.map(msg => msg[1]));
+                </script>
+            {% endif %}
+        {% endwith %}
 
         <!-- Dropdown de seleção -->
     <div class="flex justify-end mb-4">
