@@ -1,84 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/static/css/main.css">
     <title>Vigorize</title>
+    <style>
+        /* Estilos para a barra de pesquisa e o select */
+        #search-bar, #item-select {
+            width: 100%;
+            padding: 4px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family:'mulish';
+        }
+
+        #item-select {
+            margin-top: 10px;
+            display: none; /* O select ficará oculto até a pesquisa começar */
+        }
+
+        input::placeholder {
+            font-size: 12px; 
+            color: #576A5C;
+        }
+
+        /* Estilos adicionais */
+        .search-container {
+            display: block;
+            width: 100%;
+        }
+
+        button.add-button {
+            margin: 10px;
+            border-radius: 10px;
+            background-color: #097E4A;
+            padding: 8px;
+        }
+
+        .Alimento {
+            display: block;
+            margin-right: 5px;
+            padding: 5px;
+        }
+
+        .delete-icon {
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body class="bg-[#f4d7b2] h-screen flex items-center justify-center">
     <div class="w-full max-w-md">
-
+        <!-- Seção do logo -->
         <div class="text-center">
             <img src="{{ url_for('static', filename='VIGORIZE.svg') }}" alt="Logo VIGORIZE" class="mx-auto mb-4 w-24">
             <h1 class="text-2xl text-green-700 font-bold">VIGORIZE</h1>
         </div>
- 
-        <style>
-            input::placeholder {
-                font-size: 12px; 
-                color: #576A5C; 
-                padding: 8px;
-                
-            }
 
-            input {
-                border-radius: 10px;
-                margin-top: 23px;
-                margin-bottom: 10px;
-            }
-        </style>
+        <div class="search-container">
+            <form method="post">
+                <input type="hidden" name="action" value="pesquisa">
+                <input type="text" id="search-bar" placeholder="Pesquisar..." onkeyup="filterItems()" autocomplete="off">
+                <select id="item-select" name="item" size="5">
+                    {% for item in items %}
+                        <option value="{{ item.Nome }}">{{ item.Nome }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="add-button">
+                    <h1 class="text-2xl text-[#f4d7b2]">Adicionar</h1>
+                </button>
+            </form>
+        </div>
 
-
-        <style>
-            .Alimento {
-                display: block;
-                margin-right: 5px;
-                padding: 5px;    
+        <form action="{{ url_for('tabelaNutricional.tabelaNutri') }}" method="POST">
+            <input type="hidden" name="action" value="delete_alimento">
+            {% for button in buttons %}
+                <div class="button-wrapper" style="padding: 10px;" data-id="{{ loop.index }}">
+                    <span class="inflated-button">{{ button }}</span>
+                    <button type="submit" name="delete_button" value="{{ button }}" class="delete-icon">x</button>
+                </div>
+            {% endfor %}
+        </form>
         
-            }
-        </style>
-
-
-            <div class="search-container" style="display: block;">
-                <form method="post">
-                    <input type="text" size="59px" id="search-bar" placeholder="Pesquisar..." onkeyup="filterItems()">
-                    <select id="item-select" name="item" size="0">
-                        {% for item in items %}
-                            <option value="{{ item.Nome }}">{{ item.Nome }}</option>
-                        {% endfor %}
-                    </select>
-                    <button type="submit" class="add-button" style="margin: 10px;
-                    border-radius: 10px;background-color:#097E4A; padding: 8px;">
-                    <h1 class="text-2xl text-[#f4d7b2]">Adicionar</h1></button>
-                </form>
-            </div>
-
-        <div style="display: inline-flex;"> 
-            <div class="button-container">
-                {% for button in buttons %}
-                    <div class= "button-wrapper" style="padding: 10px;" data-id="{{ loop.index }}">
-                        <texto class="inflated-button">{{ button }}</texto>
-                        <button class="delete-icon" onclick="excluirBotao('{{ loop.index }}')">x</button>
-                    </div>
-                {% endfor %}
-            </div>
-        
-
             <div class="tabelaAlimento"> 
                 <caloria class="Alimento">Calorias: {{ total_calorias }} </caloria>
-                <carboitrato class="Alimento">Carboidrato: {{ total_Carboidrato }}</carboitrato>
+                <carboidrato class="Alimento">Carboidrato: {{ total_Carboidrato }}</carboidrato>
                 <umidade class="Alimento">Umidade: {{ total_Umidade }}</umidade>
                 <gordura class="Alimento">Gordura Total: {{ total_gorduraTotal }}</gordura>
-                <sodio class="Alimento">Sodio: {{ total_Sodio }}</sodio>
-                <proteina class="Alimento">Proteína: {{total_proteina}}</proteina>
+                <sodio class="Alimento">Sódio: {{ total_Sodio }}</sodio>
+                <proteina class="Alimento">Proteína: {{ total_proteina }}</proteina>
             </div>
         </div>
 
         <script>
             function filterItems() {
                 let input = document.getElementById('search-bar').value.toLowerCase();
-                let options = document.getElementById('item-select').options;
-                options.style.
+                let select = document.getElementById('item-select');
+                let options = select.options;
+
+                // Exibe o select quando o usuário começa a digitar
+                if (input.length > 0) {
+                    select.style.display = 'block';
+                } else {
+                    select.style.display = 'none';
+                }
+
+                // Filtra os itens do select de acordo com o valor inserido
                 for (let i = 0; i < options.length; i++) {
                     let option = options[i];
                     if (option.value.toLowerCase().includes(input)) {
@@ -88,37 +118,9 @@
                     }
                 }
             }
-                
 
-            // tem q arrumar um jeito de apagar do banco de dados tb, só tá apagando no front
-            function excluirBotao(id) {
-            var buttonWrapper = document.querySelector(`.button-wrapper[data-id='${id}']`);
             
-            if (buttonWrapper) {
-                buttonWrapper.remove();
-            }
-
-            fetch('/remover-botao', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                },
-                body: JSON.stringify({ id: id })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    console.log('Botão removido com sucesso');
-                } else {
-                    console.error('Erro ao remover botão:', data.error);
-                }
-            })
-            .catch((error) => console.error('Erro:', error));
-            }
-
         </script>
-
     </div>
 </body>
 </html>
