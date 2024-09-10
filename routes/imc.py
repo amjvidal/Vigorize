@@ -31,7 +31,7 @@ def pagina_calculadora_imc():
                 peso = float(request.form.get('peso'))
                 imc_result = (calculaIMC(peso, altura))/10000
                 
-                flash(f'Seu IMC é: {imc_result:.2f}', 'success')
+                # flash(f'Seu IMC é: {imc_result:.2f}', 'success')
 
             elif action == 'recover_password':
                 try:
