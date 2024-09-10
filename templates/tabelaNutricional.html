@@ -53,12 +53,24 @@
     </style>
 </head>
 <body class="bg-[#f4d7b2] h-screen flex items-center justify-center">
+    <header class="h-[80px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
+        <nav class="flex justify-between items-center space-x-6 px-4 pt-2">
+            {% if profile_picture_url %}
+                <img src="{{ profile_picture_url }}" alt="Foto de Perfil" class='w-16 h-16 rounded-full border-[2px] border-[#F8DCB3]'>
+            {% else %}
+            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Foto de Perfil Padrão" class='w-16 h-16 rounded-full'>
+            {% endif %}
+            <a class="text-[#F8DCB3] text-xl" href="/perfil">Usuário</a>
+            <a class="text-[#F8DCB3] text-xl" href="/tabelaNutricional">Tabela Nutricional</a>
+            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-16">
+            <a class="text-[#F8DCB3] text-xl" href="/perfil">Planejar Refeições</a>
+            <a class="text-[#F8DCB3] text-xl" href="/imc">Calcular IMC</a>
+            <img id="config-button" src="{{ url_for('static', filename='engrenagem.svg') }}" alt="Foto de Perfil Padrão" class="cursor-pointer w-8">
+        </nav>
+    </header>
     <div class="w-full max-w-md">
         <!-- Seção do logo -->
-        <div class="text-center">
-            <img src="{{ url_for('static', filename='VIGORIZE.svg') }}" alt="Logo VIGORIZE" class="mx-auto mb-4 w-24">
-            <h1 class="text-2xl text-green-700 font-bold">VIGORIZE</h1>
-        </div>
+        
 
         <div class="search-container">
             <form method="post">
@@ -118,6 +130,34 @@
                     }
                 }
             }
+
+         // JavaScript para controlar a visibilidade da aba
+            document.getElementById('config-button').addEventListener('click', function() {
+                document.getElementById('config-panel').classList.toggle('active');
+            });
+
+            document.getElementById('close-button').addEventListener('click', function() {
+                document.getElementById('config-panel').classList.remove('active');
+            });
+
+        // Script do botão da foto do perfil
+        function updateProfilePicturePreview() {
+            var fileInput = document.getElementById('profile-picture');
+            var uploadButton = document.getElementById('upload-button');
+            
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    uploadButton.src = e.target.result;
+                }
+                
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+        function confirmDeletion() {
+            return confirm("Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.");
+        }
 
             
         </script>
