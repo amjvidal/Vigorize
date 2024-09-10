@@ -21,6 +21,7 @@
                 <label for="cintura" class="block text-gray-700">Cintura (cm)</label>
                 <input type="number" id="cintura" name="cintura" value="{{ user['cintura'] }}" class="w-full p-2 border rounded-lg">
             </div>
+           
             <div class="mb-4">
                 <label for="fisico" class="block text-gray-700">Atividade Física</label>
                 <select id="fisico" name="fisico" class="w-full p-2 border rounded-lg">
@@ -32,6 +33,7 @@
                     <option value="Muito Intensa">Muito Intensa</option>
                 </select>
             </div>
+            
             <div class="flex justify-between">
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Salvar</button>
                 <a href="{{ url_for('admin.admin_dashboard') }}" class="bg-gray-500 text-white px-4 py-2 rounded">Cancelar</a>
