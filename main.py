@@ -14,6 +14,7 @@ from routes.primeiroAcesso import primeiroAcesso_routes
 from routes.perGordura import perGordura_routes
 from routes.imc import imc_routes
 from routes.tabelaNutricional import tabelaNutricao
+from routes.admin import admin_routes
 
 app.config['UPLOAD_FOLDER'] = profilePics_folder
 
@@ -26,6 +27,7 @@ app.register_blueprint(perfil_routes, url_prefix='/perfil')
 app.register_blueprint(primeiroAcesso_routes, url_prefix='/primeiro-acesso')
 app.register_blueprint(perGordura_routes, url_prefix='/percentual-gordura')
 app.register_blueprint(imc_routes, url_prefix='/imc')
+app.register_blueprint(admin_routes, url_prefix='/admin')
 
 
 app.run(debug=True)
