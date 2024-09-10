@@ -27,13 +27,23 @@ def tabelaNutri():
             session['inflated_buttons'] = listaAlimento.val()
 
         if request.method == 'POST':
-            
-            selected_item = request.form.get('item')
+            data = request.form
+            action = request.form.get('action')
+            if action == 'pesquisa':
+                selected_item = request.form.get('item')
+                if selected_item not in session['inflated_buttons']:
+                    session['inflated_buttons'].append(selected_item)
+                    session.modified = True  
+                    enviaData(user_email, session['inflated_buttons'])
+            elif action == "delete_alimento":
+                if 'delete_button' in request.form:
+                    item_to_delete = request.form.get('delete_button')
+                    eliminaAtributo(item_to_delete,session['inflated_buttons'])
+                    enviaData(user_email, session['inflated_buttons'])
+                    
 
-            if selected_item not in session['inflated_buttons']:
-                session['inflated_buttons'].append(selected_item)
-                session.modified = True  
-                enviaData(user_email, session['inflated_buttons'])
+                
+
         total_calorias = round(somaAtributo('Caloria'),2)
         total_Carboidrato = round(somaAtributo('Carboidrato'),2)
         total_Umidade = round(somaAtributo('Umidade'),2)
@@ -41,8 +51,6 @@ def tabelaNutri():
         total_Sodio = round(somaAtributo('Sodio'),2)
         total_proteina = round(somaAtributo('Proteína'))
         
-
-
     except Exception as e:
         print(f'Erro: {e}')
         return redirect(url_for('login.pagina_login'))
@@ -50,6 +58,7 @@ def tabelaNutri():
     return render_template('tabelaNutricional.html', items=dados,total_Umidade=total_Umidade,total_Sodio=total_Sodio, 
     buttons=session.get('inflated_buttons', []),total_calorias=total_calorias,total_Carboidrato=total_Carboidrato,
     total_gorduraTotal=total_gorduraTotal, total_proteina=total_proteina)
+
 
 def pegaAtributo(nome_alimento, atributo):
     try:
@@ -64,7 +73,22 @@ def pegaAtributo(nome_alimento, atributo):
     except Exception as e:
         print(f'Erro ao buscar atributo: {e}')
         return None
-            
+
+def eliminaAtributo(itemElimindado,array):
+    try:
+        i=0
+        for alimento in array:
+            if alimento==itemElimindado:
+                print(i)
+                array.pop(i)
+                return array
+            i=i+1
+        
+    except Exception as e:
+        print(f'Erro ao buscar atributo: {e}')
+        return None
+
+
 def somaAtributo(atributo):
     totalAtributo = 0
     try:
