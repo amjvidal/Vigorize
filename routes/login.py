@@ -48,4 +48,5 @@ def pagina_login():
     if user:
         return redirect(url_for('perfil.pagina_perfil'))
     
-    return render_template('index.html', inputs=inputs)
+    return render_template('login.html', inputs=inputs)
+

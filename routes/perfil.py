@@ -27,7 +27,7 @@ def pagina_perfil():
         sexo_user = db.child("usuarios").child(user_id).child("sexo").get().val()
         atividade_user = db.child("usuarios").child(user_id).child("fisico").get().val()
         data_nas_user = db.child("usuarios").child(user_id).child("data").get().val()
-        fisicos = ["Sedentário", "Atividade Ligeira", "Atividade Moderada", "Atividade Intensa", "Atividade Muito Intensa"]
+        fisicos = ["Sedentário", "Ligeira", "Moderada", "Intensa", "Muito Intensa"]
 
         inputs = [
             {'id': 'altura', 'type': 'number', 'value': altura_user, 'name': 'altura', 'label': 'Altura(cm)', 'max': '250', 'min': '100'},
@@ -86,6 +86,7 @@ def pagina_perfil():
                 try:
                     auth.delete_user_account(user['idToken'])  # Exclui o usuário da autenticação
                     db.child("usuarios").child(user_id).remove()  # Exclui o perfil do usuário
+                    auth.current_user = None
                     flash('Perfil excluído com sucesso!', 'success')
                     return redirect(url_for('login.pagina_login'))
                 except Exception as e:
@@ -155,11 +156,13 @@ def pagina_perfil():
     caloria = round(calculaTMB(int(peso_user), int(altura_user), int(idade), sexo_user, atividade_user), 4)
     max_Caloria = 10000
     caloriaMedia = (caloria / max_Caloria) * 100
-
-    if sexo_user == 'Masculino':
-        percent_gordura = calculaPercentGorduraMASC(int(altura_user), int(cintura_user), int(pescoco_user))
-    else:
-        percent_gordura = calculaPercentGorduraFem(int(altura_user), int(cintura_user), int(pescoco_user), int(quadril_user))
+    try:
+        if sexo_user == 'Masculino':
+            percent_gordura = calculaPercentGorduraMASC(int(altura_user), int(cintura_user), int(pescoco_user))
+        else:
+            percent_gordura = calculaPercentGorduraFem(int(altura_user), int(cintura_user), int(pescoco_user), int(quadril_user))
+    except:
+        percent_gordura = 0
 
     imc = calculaIMC(int(peso_user), int(altura_user))
             
@@ -187,6 +190,7 @@ def pagina_perfil():
 
     return render_template('perfil.html', 
                            inputs=inputs, 
+                           sexo_user=sexo_user,
                            percent_gordura=percent_gordura, 
                            imc=imc,
                            fisicos=fisicos, 
