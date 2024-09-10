@@ -1,8 +1,8 @@
 from flask import Flask
-from flask_cors import CORS
+# from flask_cors import CORS
 from firebaseAuth import profilePics_folder
 app = Flask(__name__)
-CORS(app)
+# CORS(app)
 app.secret_key = 'vigorizee'
 
 from routes.home import home_routes
