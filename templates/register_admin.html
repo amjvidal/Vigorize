@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Administrador</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body class="bg-[#234035] flex justify-center items-center min-h-screen">
+    <div class="container mx-auto p-8 bg-white rounded-lg shadow-lg">
+        <h1 class="text-4xl font-bold mb-8 text-center">Cadastrar Administrador</h1>
+        <form action="{{ url_for('cadastroadmin.register_admin') }}" method="POST" class="space-y-4">
+            {% for input in inputs %}
+                <div class="mb-4">
+                    <input class="bg-gray-200 p-3 w-full rounded-lg" 
+                           type="{{ input.type }}" 
+                           id="{{ input.id }}" 
+                           name="{{ input.name }}" 
+                           placeholder="{{ input.placeholder }}" 
+                           required>
+                </div>
+            {% endfor %}
+            <div class="text-center">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
