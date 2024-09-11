@@ -52,6 +52,7 @@ def edit_user(user_id):
 def delete_user(user_id):
     try:
         # Excluir o usuário do banco de dados
+        
         db.child("usuarios").child(user_id).remove()
         flash('Usuário excluído com sucesso!', 'success')
     except Exception as e:

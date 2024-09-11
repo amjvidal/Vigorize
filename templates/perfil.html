@@ -145,6 +145,10 @@
             </div>
     
             <!-- Div com os Círculos -->
+            <div>
+
+            </div>
+
             <div class="flex-col items-center justify-center mt-7">
                 <div class="flex justify-center space-x-20">
                     <!-- Primeiro círculo -->
@@ -179,9 +183,18 @@
                         </div>
                     </div>
                 </div>
+                <!-- Dropdown de seleção -->
+            <div class="flex justify-end mb-4">
+                <select id="metric-selector" class="bg-[#F8DCB3] text-[#576A5C] p-2 rounded shadow">
+                    <option value="all">Mostrar todas as métricas</option>
+                    <option value="calorias">Calorias</option>
+                    <option value="imc">IMC</option>
+                    <option value="gordura">Gordura</option>
+                </select>
+            </div>
                 <!-- Adiciona o gráfico abaixo dos círculos -->
                 <div class="flex justify-center mt-8 w-full">
-                    <canvas id="activityGrowthChart" width="800" height="250"></canvas>
+                    <canvas id="activityGrowthChart" width="800" height="300"></canvas>
                 </div>
             </div>
         </div>
@@ -198,15 +211,6 @@
             {% endif %}
         {% endwith %}
 
-        <!-- Dropdown de seleção -->
-    <div class="flex justify-end mb-4">
-        <select id="metric-selector" class="bg-[#F8DCB3] text-[#576A5C] p-2 rounded shadow">
-            <option value="all">Mostrar todas as métricas</option>
-            <option value="calorias">Calorias</option>
-            <option value="imc">IMC</option>
-            <option value="gordura">Gordura</option>
-        </select>
-    </div>
 
 
     <script>
