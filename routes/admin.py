@@ -38,7 +38,7 @@ def edit_user(user_id):
                 'peso': data['peso'],
                 'cintura': data['cintura'],
                 'fisico': data['fisico'],
-                'percoco': data['percoco'],
+                
                 
             })
             flash('Dados atualizados com sucesso!', 'success')
