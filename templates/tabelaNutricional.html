@@ -75,26 +75,38 @@
             </form>
         </div>
 
+        
+
         <form action="{{ url_for('tabelaNutricional.tabelaNutri') }}" method="POST">
             <input type="hidden" name="action" value="delete_alimento">
             {% for button in buttons %}
+            
                 <div class="button-wrapper" style="padding: 10px;" data-id="{{ loop.index }}">
                     <span class="inflated-button">{{ button }}</span>
                     <button type="submit" name="delete_button" value="{{ button }}" class="delete-icon">x</button>
                 </div>
             {% endfor %}
         </form>
-        
-            <div class="tabelaAlimento"> 
-                <caloria class="Alimento">Calorias: {{ total_calorias }} </caloria>
-                <carboidrato class="Alimento">Carboidrato: {{ total_Carboidrato }}</carboidrato>
-                <umidade class="Alimento">Umidade: {{ total_Umidade }}</umidade>
-                <gordura class="Alimento">Gordura Total: {{ total_gorduraTotal }}</gordura>
-                <sodio class="Alimento">Sódio: {{ total_Sodio }}</sodio>
-                <proteina class="Alimento">Proteína: {{ total_proteina }}</proteina>
-            </div>
-        </div>
 
+        <div class="flex-1 flex flex-col justify-center items-right rounded-[50px] bg-[#576A5C] p-4">
+            <h3 class="text-1xl text-left font-bold text-[#F8DCB3] mt-[-80px]">
+                
+                <div class="tabelaAlimento" >
+                    <caloria class="Alimento">Calorias: {{ total_calorias }} </caloria>
+                    <carboidrato class="Alimento">Carboidrato: {{ total_Carboidrato }}</carboidrato >
+                    <umidade class="Alimento">Umidade: {{ total_Umidade }}</umidade>
+                    <gordura class="Alimento">Gordura Total: {{ total_gorduraTotal }}</gordura>
+                    <sodio class="Alimento">Sódio: {{ total_Sodio }}</sodio>
+                    <proteina class="Alimento">Proteína: {{ total_proteina }}</proteina>
+                    </div>
+                </div>
+
+            </h3>
+            </p>
+        </div>
+        
+    
+            
         <script>
             function filterItems() {
                 let input = document.getElementById('search-bar').value.toLowerCase();
