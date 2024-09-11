@@ -13,7 +13,7 @@ def admin_dashboard():
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
 
-    # Verificar se o usuário é administrador (deve ser configurado na criação do usuário)
+    # Verificar se o usuário é administrador
     user_id = emailDb(user['email'])
     user_data = db.child("usuarios").child(user_id).get().val()
 
@@ -154,3 +154,12 @@ def reset_password(user_id):
 
     return redirect(url_for('admin.user_details', user_id=user_id))
 
+@admin_routes.route('/logout', methods=['POST'])
+def logout():
+    try:
+        # Limpar a sessão do usuário
+        auth.current_user = None
+        flash('Você saiu com sucesso.', 'success')
+    except Exception as e:
+        flash(f'Ocorreu um erro ao sair: {str(e)}', 'danger')
+    return redirect(url_for('login.pagina_login'))

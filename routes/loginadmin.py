@@ -1,7 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from firebaseAuth import auth, db, emailDb
-import json
-
 
 loginadmin_routes = Blueprint('loginadmin', __name__)
 
@@ -22,7 +20,7 @@ def login_admin():
 
             if user_data and user_data.get('is_admin'):
                 flash('Login de administrador bem-sucedido!', 'success')
-                return redirect(url_for('admin_dashboard'))  # Redireciona para o dashboard do admin
+                return redirect(url_for('admin.admin_dashboard'))  # Redireciona para o dashboard do admin
             else:
                 flash('Você não tem permissão de administrador', 'danger')
         except Exception as e:
