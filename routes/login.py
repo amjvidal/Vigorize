@@ -33,12 +33,15 @@ def pagina_login():
 
                 if firstLogin(data['email']):
                     return redirect(url_for('primeiroAcesso.primeiroAcesso'))
-                
+            
                 return redirect(url_for('perfil.pagina_perfil'))
+                
             except Exception as e:
                 error_message = json.loads(e.args[1])['error']['message']
                 flash(error_message, 'danger')
                 return redirect(url_for('login.pagina_login'))
+            
+            
         
         else:
             auth.current_user = None

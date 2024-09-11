@@ -6,25 +6,27 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 import datetime
 admin_routes = Blueprint('admin', __name__)
 
-@admin_routes.route('/', methods=['GET'])
-def admin_dashboard():
-    user = auth.current_user
-    if user is None:
-        flash('Você precisa estar logado para acessar esta página.', 'danger')
-        return redirect(url_for('login.pagina_login'))
-
-    # Verificar se o usuário é administrador
-    user_id = emailDb(user['email'])
+@admin_routes.route('/admin/edit_user/<user_id>', methods=['GET', 'POST'])
+def edit_user(user_id):
     user_data = db.child("usuarios").child(user_id).get().val()
 
-    if not user_data.get('is_admin', False):
-        flash('Você não tem permissão para acessar esta página.', 'danger')
-        return redirect(url_for('perfil.pagina_perfil'))
+    if request.method == 'POST':
+        data = request.form
+        try:
+            db.child("usuarios").child(user_id).update({
+                'altura': data['altura'],
+                'peso': data['peso'],
+                'cintura': data['cintura'],
+                
+                'fisico': data.get('fisico', '') 
+            })
+            flash('Dados atualizados com sucesso!', 'success')
+            return redirect(url_for('admin.admin_dashboard'))
+        except Exception as e:
+            flash(f'Ocorreu um erro: {str(e)}', 'danger')
 
-    # Buscar todos os usuários cadastrados
-    all_users = db.child("usuarios").get().val()
-    
-    return render_template('admin_dashboard.html', users=all_users)
+    return render_template('edit_user.html', user=user_data, user_id=user_id)
+
 
 @admin_routes.route('/admin/edit_user/<user_id>', methods=['GET', 'POST'])
 def edit_user(user_id):
@@ -37,9 +39,7 @@ def edit_user(user_id):
                 'altura': data['altura'],
                 'peso': data['peso'],
                 'cintura': data['cintura'],
-                'fisico': data['fisico'],
-                
-                
+                'fisico': data.get('fisico', '') 
             })
             flash('Dados atualizados com sucesso!', 'success')
             return redirect(url_for('admin.admin_dashboard'))
@@ -47,6 +47,7 @@ def edit_user(user_id):
             flash(f'Ocorreu um erro: {str(e)}', 'danger')
 
     return render_template('edit_user.html', user=user_data, user_id=user_id)
+
 
 @admin_routes.route('/admin/delete_user/<user_id>', methods=['POST'])
 def delete_user(user_id):
