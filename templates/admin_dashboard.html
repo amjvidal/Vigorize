@@ -24,6 +24,11 @@
                     <td class="py-2 px-4">{{ user['email'] }}</td>
                     <td class="py-2 px-4">
                         <a href="{{ url_for('admin.edit_user', user_id=user_id) }}" class="bg-blue-500 text-white px-4 py-2 rounded">Editar</a>
+                        <a href="{{ url_for('admin.user_details', user_id=user_id) }}" class="bg-green-500 text-white px-4 py-2 rounded">Detalhes</a>
+                        <a href="{{ url_for('admin.upload_image', user_id=user_id) }}" class="bg-yellow-500 text-white px-4 py-2 rounded">Upload Imagem</a>
+                        <form action="{{ url_for('admin.reset_password', user_id=user_id) }}" method="POST" class="inline-block">
+                            <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded">Resetar Senha</button>
+                        </form>
                         <form action="{{ url_for('admin.delete_user', user_id=user_id) }}" method="POST" class="inline-block">
                             <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Excluir</button>
                         </form>
