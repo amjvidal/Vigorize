@@ -23,7 +23,7 @@ def admin_dashboard():
 
     # Buscar todos os usuários cadastrados
     all_users = db.child("usuarios").get().val()
-    
+    print(user)
     return render_template('admin_dashboard.html', users=all_users)
 
 @admin_routes.route('/admin/edit_user/<user_id>', methods=['GET', 'POST'])
@@ -51,12 +51,14 @@ def edit_user(user_id):
 @admin_routes.route('/admin/delete_user/<user_id>', methods=['POST'])
 def delete_user(user_id):
     try:
-        # Excluir o usuário do banco de dados
+        user_data = db.child("usuarios").child(user_id).get().val()
         
+        auth.delete_user_account(user_data['idToken'])
         db.child("usuarios").child(user_id).remove()
         flash('Usuário excluído com sucesso!', 'success')
     except Exception as e:
-        flash(f'Erro ao excluir usuário: {str(e)}', 'danger')
+        error_message = str(e)
+        flash(error_message, 'danger')
 
     return redirect(url_for('admin.admin_dashboard'))
 

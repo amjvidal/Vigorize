@@ -27,12 +27,18 @@ def pagina_login():
         if action == 'login':
             try:
                 email_verified = loginfb(data['email'], data['senha'])
+                is_admin = db.child("usuarios").child(emailDb(data['email'])).get().val().get('is_admin', False)
                 if email_verified == False:
                     flash('Email não verificado, por favor verifique seu email!', 'danger')
                     return redirect(url_for('login.pagina_login'))
+                
+                if is_admin:
+                    return redirect(url_for('admin.admin_dashboard'))
+                
 
                 if firstLogin(data['email']):
                     return redirect(url_for('primeiroAcesso.primeiroAcesso'))
+                
                 
                 return redirect(url_for('perfil.pagina_perfil'))
             except Exception as e:
@@ -46,6 +52,10 @@ def pagina_login():
             return redirect(url_for('login.pagina_login'))
         
     if user:
+        is_admin = db.child("usuarios").child(emailDb(user['email'])).get().val().get('is_admin', False)
+        if is_admin:
+            return redirect(url_for('admin.admin_dashboard'))
+        print("não admin")
         return redirect(url_for('perfil.pagina_perfil'))
     
     return render_template('login.html', inputs=inputs)

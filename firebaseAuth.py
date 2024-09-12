@@ -23,9 +23,11 @@ def cadastrofb(nome, email, password, dataNas):
     
     # Enviar email de verificação
     auth.send_email_verification(user['idToken'])
+    idToken = user['idToken']
     
     # Definir os dados do usuário, incluindo is_admin como False
     data = {
+        'idToken': idToken,
         'nome': nome,
         'email': email,
         'data': dataNas,

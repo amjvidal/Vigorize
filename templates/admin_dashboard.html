@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <title>Painel de Administração</title>
     <link rel="stylesheet" href="/static/css/main.css">
+
+    <script>
+        function showFlashMessages(messages) {
+            messages.forEach(message => {
+                alert(message);  // Exibe um alerta com a mensagem
+            });
+        }
+    </script>
 </head>
 <body class="bg-[#234035] min-h-screen">
     <div class="container mx-auto p-8">
@@ -11,7 +19,7 @@
 
         <!-- Botão de Logout -->
         <form action="{{ url_for('admin.logout') }}" method="POST" class="mb-4">
-            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Sair</button>
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
         </form>
 
         <table class="min-w-full bg-white">
@@ -43,5 +51,16 @@
             </tbody>
         </table>
     </div>
+
+    
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <script>
+                // Transforma mensagens de flash em um array para o JavaScript
+                const messages = {{ messages | tojson }};
+                showFlashMessages(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
+            </script>
+        {% endif %}
+    {% endwith %}
 </body>
 </html>
