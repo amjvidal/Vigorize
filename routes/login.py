@@ -16,10 +16,6 @@ def pagina_login():
 
     user = auth.current_user
 
-    if user:
-        flash('Você já está logado!', 'info')
-        return redirect(url_for('perfil.pagina_perfil'))
-
     inputs = [
         {'id': 'email', 'type': 'email', 'placeholder': 'Email', 'name': 'email'},
         {'id': 'senha', 'type': 'password', 'placeholder': 'Senha', 'name': 'senha'}
@@ -53,6 +49,7 @@ def pagina_login():
             return redirect(url_for('login.pagina_login'))
         
     if user:
+        flash('Você já está logado!', 'info')
         return redirect(url_for('perfil.pagina_perfil'))
     
     return render_template('login.html', inputs=inputs)
