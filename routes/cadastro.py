@@ -25,17 +25,20 @@ def cadastro():
     
     if request.method == 'POST':
         data = request.form
-        if len(data['senha']) < 6 or len(data['senha']) > 15:
-            flash('A senha deve ter entre 6 e 15 caracteres', 'danger')
         if data['senha'] != data['confirmaSenha']:
-            flash('senhas não coencidem', 'danger')
+            flash('Senhas não coencidem !', 'danger')
             return render_template('cadastro.html', inputs=inputs)
         try:
             cadastrofb(data['nome'], data['email'], data['senha'], data['dataNas'])
             flash('Foi enviado um email de verificação para: ' + data['email'] + ' !', 'success')
             return redirect(url_for('login.pagina_login'))
         except Exception as e:
-            error_message = json.loads(e.args[1])['error']['message']
+            error_message = str(e)
+            if "EMAIL_EXISTS" in error_message:
+               error_message= 'Email já cadastrado !'
+            if "WEAK_PASSWORD" in error_message:
+               error_message= 'Senha precisa ter no mínimo 6 caracteres !'
+            
             flash(error_message, 'danger')
             return render_template('cadastro.html', inputs=inputs)
         

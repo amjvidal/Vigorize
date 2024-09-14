@@ -44,40 +44,24 @@ def primeiroAcesso():
             peso = int(data['peso'])
             genero = data['genero']
             fisico = data['fisico']
-            
-            # if altura > 260 or altura < 50:
-            #     flash("A altura é invalida!", 'danger')
-            #     return redirect(url_for('primeiroAcesso.primeiroAcesso'))
-            # if peso > 200 or peso < 0:
-            #     flash("O peso é invalido!", 'danger')
-            #     return redirect(url_for('primeiroAcesso.primeiroAcesso'))
+
             
             try:
-                enviarDadosDb(user_id,altura,peso,genero,fisico)
-                flash("Dados Enviados!", 'sucess')
-                return redirect(url_for('perGordura.pagina_perGordura'))
-            except Exception as e:
-                flash("Dados não foram enviados!", 'danger')
-                return redirect(url_for('primeiroAcesso.primeiroAcesso'))
-            
-        elif action == 'save_profile':
+                from firebaseAuth import profilePics_folder
 
-            from firebaseAuth import profilePics_folder
+                if not os.path.exists(profilePics_folder):
+                    os.makedirs(profilePics_folder)  
 
-            if not os.path.exists(profilePics_folder):
-                os.makedirs(profilePics_folder)  
+                if 'file' not in request.files:
+                    flash('Nenhum arquivo selecionado.')
+                    return redirect(url_for('primeiroAcesso.primeiroAcesso'))
+                
+                file = request.files['file']
 
-            if 'file' not in request.files:
-                flash('Nenhum arquivo selecionado.')
-                return redirect(url_for('primeiroAcesso.primeiroAcesso'))
-            
-            file = request.files['file']
-
-            if file.filename == '':
-                flash('Nenhum arquivo selecionado.')
-                return redirect(url_for('primeiroAcesso.primeiroAcesso'))
-            if file:
-                try:
+                if file.filename == '':
+                    flash('Nenhum arquivo selecionado.')
+                    return redirect(url_for('primeiroAcesso.primeiroAcesso'))
+                if file:
                     # Salva a imagem no diretório local
                     filename = secure_filename(file.filename)
                     file_path = os.path.join(profilePics_folder, filename)
@@ -96,13 +80,19 @@ def primeiroAcesso():
                         'profilePicture': download_url
                     })
                     os.remove(file_path)
-                    flash('Foto de perfil atualizada com sucesso!', 'success')
-                    return redirect(url_for('primeiroAcesso.primeiroAcesso'))
-                except Exception as e:
-                    error_message = str(e)
-                    print(error_message)
-                    flash("Erro ao salvar a imagem", 'danger')
-                    return redirect(url_for('primeiroAcesso.primeiroAcesso'))
+                
+                
+                enviarDadosDb(user_id,altura,peso,genero,fisico)
+                flash("Dados Enviados!", 'sucess')
+                return redirect(url_for('perGordura.pagina_perGordura'))
+            
+            except Exception as e:
+            
+                flash("Dados não foram enviados!", 'danger')
+                error_message = str(e)
+                print(error_message)
+                flash("Erro ao salvar a imagem", 'danger')
+                return redirect(url_for('primeiroAcesso.primeiroAcesso'))
     
     return render_template('primeiroAcesso.html', inputs = inputs, 
                            generos = generos, 

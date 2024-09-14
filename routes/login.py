@@ -16,6 +16,10 @@ def pagina_login():
 
     user = auth.current_user
 
+    if user:
+        flash('Você já está logado!', 'info')
+        return redirect(url_for('perfil.pagina_perfil'))
+
     inputs = [
         {'id': 'email', 'type': 'email', 'placeholder': 'Email', 'name': 'email'},
         {'id': 'senha', 'type': 'password', 'placeholder': 'Senha', 'name': 'senha'}
@@ -28,15 +32,18 @@ def pagina_login():
             try:
                 email_verified = loginfb(data['email'], data['senha'])
                 if email_verified == False:
-                    flash('Email não verificado, por favor verifique seu email!', 'danger')
+                    flash('Email não verificado, por favor verifique seu email !', 'danger')
                     return redirect(url_for('login.pagina_login'))
 
                 if firstLogin(data['email']):
+                    flash('Primeiro acesso, por favor complete seu cadastro!', 'success')
                     return redirect(url_for('primeiroAcesso.primeiroAcesso'))
-                
                 return redirect(url_for('perfil.pagina_perfil'))
+            
             except Exception as e:
-                error_message = json.loads(e.args[1])['error']['message']
+                error_message = str(e)
+                if "INVALID_LOGIN_CREDENTIALS" in error_message:
+                    error_message = "Email ou senha inválidos !"
                 flash(error_message, 'danger')
                 return redirect(url_for('login.pagina_login'))
         
@@ -48,5 +55,5 @@ def pagina_login():
     if user:
         return redirect(url_for('perfil.pagina_perfil'))
     
-    return render_template('index.html', inputs=inputs)
+    return render_template('login.html', inputs=inputs)
 
