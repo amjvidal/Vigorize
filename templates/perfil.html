@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="/static/css/main.css">
     <title>Vigorize</title>
     <style>
-        /* Estilo adicional para a transição da aba */
         .slide-in {
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
@@ -13,23 +12,10 @@
         .slide-in.active {
             transform: translateX(0);
         }
-        /* Estilo do dropdown */
-        #metric-selector {
-            margin-right: 20px;
-            background-color: #F8DCB3;
-            color: #576A5C;
-            border: none;
-            padding: 8px 12px;
-            font-size: 14px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-}
-
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-[#F8DCB3] min-h-screen">
+<body class="bg-[#F8DCB3] min-h-screen overflow-hidden">
     <header class="h-[80px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
         <nav class="flex justify-between items-center space-x-6 px-4 pt-2">
             {% if profile_picture_url %}
@@ -47,7 +33,7 @@
     </header>
     <!-- ABA DE CONFIGURAÇÃO -->
     <!-- ABA DE CONFIGURAÇÃO -->
-    <aside id="config-panel" class="slide-in fixed top-[80px] right-0 h-[calc(100%-70px)] w-[440px] bg-[#234035] text-white shadow-lg z-20 flex flex-col justify-between overflow-y-auto">
+    <aside id="config-panel" class="slide-in fixed top-[80px] right-0 h-[calc(100vh-80px)] w-[440px] bg-[#234035] text-white shadow-lg z-20 flex flex-col justify-between overflow-y-auto">
         <div class="p-4">
             <!-- Conteúdo da aba de configuração aqui -->
             <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" enctype="multipart/form-data" class="mb-8">
@@ -84,10 +70,10 @@
     </aside>
     <!-- PRINCIPAL-->
     <!-- PRINCIPAL-->
-    <main class="pt-[80px]">
-        <div class="flex space-x-4"> <!-- Flex container para alinhar lado a lado -->
-            <!-- Div de Dados Pessoais -->
-            <div class="bg-[#234035] space-y-4 h-screen w-[30%] p-6 shadow-md">
+    <main class="pt-[80px] h-[calc(100vh-80px)]">
+        <div class="flex space-x-4 h-screen">
+            <!-- Div com os Dados Pessoais -->
+            <div class="bg-[#234035] space-y-4 h-full w-[30%] p-6 shadow-md">
                 <div class="text-center">
                     <h3 class="text-white text-xl font-light">Dados Pessoais</h3>
                 </div>
@@ -133,7 +119,7 @@
             </div>
     
             <!-- Div com os Círculos -->
-            <div class="flex-col items-center justify-center mt-7">
+            <div class="flex-col items-center justify-center mt-7 w-[70%]">
                 <div class="flex justify-center space-x-20">
                     <!-- Primeiro círculo -->
                     <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
@@ -167,13 +153,17 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Adiciona o gráfico abaixo dos círculos -->
-                <div class="flex justify-center mt-8 w-full">
-                    <canvas id="activityGrowthChart" width="800" height="250"></canvas>
+                <div class="flex justify-center items-center w-full mt-8">
+                    <div class="w-[60%] h-[300px] "> <!-- Ajuste a largura máxima conforme necessário -->
+                        <canvas id="activityGrowthChart"></canvas>
+                    </div>
                 </div>
+                <p class="text-center text-sm text-[#a92121] mt-4">Clique nas legendas para visualizar os dados</p>
             </div>
         </div>
-   
+        
     
 
         {% with messages = get_flashed_messages(with_categories=True) %}
@@ -186,20 +176,13 @@
             {% endif %}
         {% endwith %}
 
-        <!-- Dropdown de seleção -->
-    <div class="flex justify-end mb-4">
-        <select id="metric-selector" class="bg-[#F8DCB3] text-[#576A5C] p-2 rounded shadow">
-            <option value="all">Mostrar todas as métricas</option>
-            <option value="calorias">Calorias</option>
-            <option value="imc">IMC</option>
-            <option value="gordura">Gordura</option>
-        </select>
-    </div>
 
 
     <script>
-    // Configuração inicial do gráfico
+        document.addEventListener('DOMContentLoaded', function() {
     const ctx = document.getElementById('activityGrowthChart').getContext('2d');
+    
+    // Dados iniciais
     const initialData = {
         labels: ['Jan 1', 'Jan 2', 'Jan 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8', 'Jan 9', 'Jan 10', 'Jan 11', 'Jan 12'],
         datasets: [
@@ -215,8 +198,8 @@
             {
                 label: 'IMC',
                 data: {{ imc_data | tojson }},
-                backgroundColor: '#606C38',
-                borderColor: '#606C38',
+                backgroundColor: '#576A5C',
+                borderColor: '#576A5C',
                 borderWidth: 2,
                 borderRadius: 5,
                 barThickness: 10,
@@ -224,8 +207,8 @@
             {
                 label: 'Gordura',
                 data: {{ percent_gordura_data | tojson }},
-                backgroundColor: '#F7D08A',
-                borderColor: '#F7D08A',
+                backgroundColor: '#234035',
+                borderColor: '#234035',
                 borderWidth: 2,
                 borderRadius: 5,
                 barThickness: 10,
@@ -234,85 +217,101 @@
     };
 
     const activityGrowthChart = new Chart(ctx, {
-        type: 'bar',
-        data: initialData,
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        color: '#576A5C',
-                        font: {
-                            family: 'Arial, sans-serif',
-                            size: 14,
-                        }
+    type: 'bar',
+    data: initialData,
+    options: {
+        responsive: true,
+        maintainAspectRatio: false, // Isso garante que o gráfico preencha a div pai
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    color: '#576A5C',
+                    font: {
+                        family: 'Arial, sans-serif',
+                        size: 14,
+                    }
+                },
+                onClick: function(event, legendItem, legend) {
+                    const chart = legend.chart;
+                    const datasetIndex = legendItem.datasetIndex;
+
+                    // Oculta todos os datasets
+                    chart.data.datasets.forEach((ds) => {
+                        ds.hidden = true;
+                    });
+
+                    // Exibe apenas o dataset clicado
+                    const dataset = chart.data.datasets[datasetIndex];
+                    dataset.hidden = false;
+
+                    // Define o máximo do eixo Y com base na métrica selecionada
+                    let maxScaleY = 100; // Padrão para gordura
+
+                    if (dataset.label === 'Calorias') {
+                        maxScaleY = 10000;
+                    } else if (dataset.label === 'IMC') {
+                        maxScaleY = 50;
+                    } else if (dataset.label === 'Gordura') {
+                        maxScaleY = 100;
+                    }
+
+                    // Atualiza o máximo do eixo Y
+                    chart.options.scales.y.max = maxScaleY;
+
+                    // Atualiza o gráfico
+                    chart.update();
+                }
+            }
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false,
+                },
+                ticks: {
+                    color: '#576A5C',
+                    font: {
+                        family: 'Arial, sans-serif',
+                        size: 12,
                     }
                 }
             },
-            scales: {
-                x: {
-                    grid: {
-                        display: false,
-                    },
-                    ticks: {
-                        color: '#576A5C',
-                        font: {
-                            family: 'Arial, sans-serif',
-                            size: 12,
-                        }
-                    }
+            y: {
+                beginAtZero: true,
+                max: 10000, // Valor inicial máximo para calorias
+                grid: {
+                    color: '#576A5C',
+                    lineWidth: 1,
+                    drawBorder: false,
                 },
-                y: {
-                    beginAtZero: true,
-                    max: 100,
-                    grid: {
-                        color: '#576A5C', 
-                        lineWidth: 1,
-                        drawBorder: false,
+                ticks: {
+                    color: '#576A5C',
+                    font: {
+                        family: 'Arial, sans-serif',
+                        size: 12,
                     },
-                    ticks: {
-                        color: '#576A5C',
-                        font: {
-                            family: 'Arial, sans-serif',
-                            size: 12,
-                        },
-                        callback: function(value) {
-                            return value + "%";
-                        }
+                    callback: function(value) {
+                        return value;
                     }
                 }
             }
         }
-    });
+    }
+});
 
-    document.getElementById('metric-selector').addEventListener('change', function() {
-        const selectedMetric = this.value;
-        
-        // Define os datasets com base na seleção
-        let filteredDatasets = [];
-    
-        if (selectedMetric === 'all') {
-            filteredDatasets = initialData.datasets; // Mostra todos os dados
-        } else {
-            filteredDatasets = initialData.datasets.filter(dataset => dataset.label.toLowerCase() === selectedMetric);
+    // Configuração inicial: exibir apenas 'Calorias'
+    activityGrowthChart.data.datasets.forEach((dataset) => {
+        if (dataset.label !== 'Calorias') {
+            dataset.hidden = true;
         }
-    
-        // Atualiza o máximo do eixo Y com base na métrica selecionada
-        let maxScaleY = 100; // Padrão para porcentagem
-        if (selectedMetric === 'calorias') {
-            maxScaleY = 10000; // Define o máximo com base nos dados de calorias
-        } else if (selectedMetric === 'imc') {
-            maxScaleY = 50; // Define o máximo com base nos dados de IMC
-        } else if (selectedMetric === 'gordura') {
-            maxScaleY = 100; // Define o máximo para gordura como 100 (porcentagem)
-        }
-    
-        // Atualiza as configurações do gráfico
-        activityGrowthChart.options.scales.y.max = maxScaleY;
-        activityGrowthChart.data.datasets = filteredDatasets;
-        activityGrowthChart.update();
     });
+    activityGrowthChart.update();
+});
+
+
+
+
     
         // JavaScript para controlar a visibilidade da aba
         document.getElementById('config-button').addEventListener('click', function() {
