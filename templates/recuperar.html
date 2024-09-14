@@ -42,7 +42,7 @@
         {% if messages %}
             <script>
                 const messages = {{ messages | tojson }};
-                showFlashMessages(messages.map(msg => msg[1]));
+                alert(messages.map(msg => msg[1]));
             </script>
         {% endif %}
         {% endwith %}
