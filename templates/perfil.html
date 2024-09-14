@@ -13,6 +13,19 @@
         .slide-in.active {
             transform: translateX(0);
         }
+        /* Estilo do dropdown */
+        #metric-selector {
+            margin-right: 20px;
+            background-color: #F8DCB3;
+            color: #576A5C;
+            border: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+}
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -37,7 +50,7 @@
             <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Foto de Perfil Padrão" class='w-16 h-16 rounded-full'>
             {% endif %}
             <a class="text-[#F8DCB3] text-xl" href="/perfil">Usuário</a>
-            <a class="text-[#F8DCB3] text-xl" href="/perfil">Tabela Nutricional</a>
+            <a class="text-[#F8DCB3] text-xl" href="/tabelaNutricional">Tabela Nutricional</a>
             <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-16">
             <a class="text-[#F8DCB3] text-xl" href="/perfil">Planejar Refeições</a>
             <a class="text-[#F8DCB3] text-xl" href="/imc">Calcular IMC</a>
@@ -84,151 +97,235 @@
     <!-- PRINCIPAL-->
     <!-- PRINCIPAL-->
     <main class="pt-[80px]">
-        <div class="bg-[#234035] space-y-4 h-screen w-[30%] p-6 shadow-md">
-            <div class="text-center">
-                <h3 class="text-white text-xl font-light">Dados Pessoais</h3>
-            </div>
-        
-            <!-- FORMULÁRIO DE ATUALIZAÇÃO  -->
-            <form id="form_update_profile" action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
-                <input type="hidden" name="action" value="update_profile">
-        
-                <div class="grid grid-cols-2 gap-y-4 gap-x-6">
-                    {% for input in inputs %}
+        <div class="flex space-x-4"> <!-- Flex container para alinhar lado a lado -->
+            <!-- Div de Dados Pessoais -->
+            <div class="bg-[#234035] space-y-4 h-screen w-[30%] p-6 shadow-md">
+                <div class="text-center">
+                    <h3 class="text-white text-xl font-light">Dados Pessoais</h3>
+                </div>
+                <!-- FORMULÁRIO DE ATUALIZAÇÃO -->
+                <form id="form_update_profile" action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
+                    <input type="hidden" name="action" value="update_profile">
+                    <div class="grid grid-cols-2 gap-y-4 gap-x-6">
+                        {% for input in inputs %}
+                            <div class="flex flex-col">
+                                <label class="text-white font-normal mb-2" for="{{ input.name }}">{{ input.label }}</label>
+                                <input class="bg-[#F8DCB3] px-4 py-2 rounded-lg outline-none border-0 text-right font-semibold form-control w-full"
+                                type="{{ input.type }}"
+                                id="{{ input.id }}"
+                                name="{{ input.name }}"
+                                max="{{ input.max }}"
+                                min="{{ input.min }}"
+                                value="{{ input.value }}">
+                            </div>
+                        {% endfor %}
+                        <!-- Select field -->
+                        {% if sexo_user == "Feminino" %}
                         <div class="flex flex-col">
-                            <label class="text-white font-normal mb-2" for="{{ input.name }}">{{ input.label }}</label>
-                            <input class="bg-[#F8DCB3] px-4 py-2 rounded-lg outline-none border-0 text-right font-semibold form-control w-full"
-                            type="{{ input.type }}"
-                            id="{{ input.id }}"
-                            name="{{ input.name }}"
-                            max="{{ input.max }}"
-                            min="{{ input.min }}"
-                            value="{{ input.value }}">
+                        {% else %}
+                        <div class="flex flex-col col-span-2">
+                        {% endif %}
+                            <label class="text-white font-normal mb-2" for="fisico">Atividade Física</label>
+                            <select class="bg-[#F8DCB3] px-4 py-2 rounded-lg outline-none border-0 text-black font-semibold w-full"
+                            name="fisico" id="fisico" required>
+                                <option value="{{ atividade_user }}" selected>{{ atividade_user }}</option>
+                                {% for fisico in fisicos %}
+                                    {% if fisico != atividade_user %}
+                                        <option value="{{ fisico }}">{{ fisico }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
                         </div>
-                    {% endfor %}
-        
-                    <!-- Select field -->
-                {% if sexo_user == "Feminino" %}
-                    <div class="flex flex-col">
-                    {% else %}
-                    <div class="flex flex-col col-span-2">
-                {% endif %}
-                        <label class="text-white font-normal mb-2" for="fisico">Atividade Física</label>
-                        <select class="bg-[#F8DCB3] px-4 py-2 rounded-lg outline-none border-0 text-black font-semibold w-full"
-                        name="fisico" id="fisico" required>
-                            <option value="{{ atividade_user }}" selected>{{ atividade_user }}</option>
-                            {% for fisico in fisicos %}
-                                {% if fisico != atividade_user %}
-                                    <option value="{{ fisico }}">{{ fisico }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
+                        <!-- Botão de salvar -->
+                        <div class="col-span-2 text-center mt-4">
+                            <button class="bg-[#ED8D00] hover:bg-[#f2a30a] font-bold rounded-full py-2 px-8 text-white">Salvar</button>
+                        </div>
                     </div>
-        
-                    <!-- Botão de salvar -->
-                    <div class="col-span-2 text-center mt-4">
-                        <button class="bg-[#ED8D00] hover:bg-[#f2a30a] font-bold rounded-full py-2 px-8 text-white">Salvar</button>
+                </form>
+            </div>
+    
+            <!-- Div com os Círculos -->
+            <div class="flex-col items-center justify-center mt-7">
+                <div class="flex justify-center space-x-20">
+                    <!-- Primeiro círculo -->
+                    <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
+                    style="background-image: conic-gradient(#F3D3A0 {{ percent_gordura }}%, #576A5C {{ percent_gordura }}%);
+                            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); clip-path: inset(0 round 100%);">
+                            <div class="absolute w-[185px] h-[185px]   bg-[#F8DCB3] rounded-full"
+                            style="box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);"> <!-- Sombra interna -->
+                            </div>
+                    <div class="relative text-[#576A5C] text-3xl text-center">
+                        {{ percent_gordura }}%
+                        <div class="text-base">Gordura<br>Dietas</div>
                     </div>
                 </div>
-            </form>
-        </div>
-        
-        <div class="flex justify-center mt-8">
-            <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
-                 style="background-image: conic-gradient(#606c38 {{ percent_gordura }}%, #e0e0e0 {{ percent_gordura }}%)">
-                <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
-                <div class="relative text-[#e0e0e0] text-4xl text-center">
-                    {{ percent_gordura }}%
-                    <div class="text-base">Gordura<br>Dietas</div>
+                    <!-- Segundo círculo -->
+                    <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
+                        style="background-image: conic-gradient(#F3D3A0 {{ imc }}%, #576A5C {{ imc }}%);box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                        <div class="absolute w-[185px] h-[185px] bg-[#F8DCB3] rounded-full"style="box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);"></div>
+                        <div class="relative text-[#576A5C] text-4xl text-center">
+                            {{ imc }}
+                            <div class="text-base">IMC</div>
+                            <div class="text-base">{{classificacao_imc}}</div>
+                        </div>
+                    </div>
+                    <!-- Terceiro círculo -->
+                    <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
+                        style="background-image: conic-gradient(#F3D3A0 {{ caloriaMedia }}%, #576A5C {{ caloriaMedia }}%); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+                        <div class="absolute w-[185px] h-[185px] bg-[#F8DCB3] rounded-full"style="box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);"></div>
+                        <div class="relative text-[#576A5C] text-4xl text-center">
+                            {{ caloria }}
+                            <div class="text-base">Calorias<br>Dietas</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Adiciona o gráfico abaixo dos círculos -->
+                <div class="flex justify-center mt-8 w-full">
+                    <canvas id="activityGrowthChart" width="800" height="250"></canvas>
                 </div>
             </div>
         </div>
-        <div class="flex justify-center mt-8">
-            <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
-                 style="background-image: conic-gradient(#606c38 {{ imc }}%, #e0e0e0 {{ imc }}%)">
-                <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
-                <div class="relative text-[#e0e0e0] text-4xl text-center">
-                    {{ imc }}
-                    <div class="text-base">IMC<br>Dietas</div>
-                </div>
-            </div>
-        </div>
-        <div class="flex justify-center mt-8">
-            <div class="relative w-52 h-52 rounded-full flex items-center justify-center"
-                 style="background-image: conic-gradient(#606c38 {{ caloriaMedia }}%, #e0e0e0 {{ caloriaMedia }}%)">
-                <div class="absolute w-44 h-44 bg-[#2f3e46] rounded-full"></div>
-                <div class="relative text-[#e0e0e0] text-4xl text-center">
-                    {{ caloria }}
-                    <div class="text-base">Calorias<br>Dietas</div>
-                </div>
-            </div>
-        </div>
-        
-        
-        
+   
+    
 
-        <!-- Adiciona o gráfico -->
-        <!-- Adiciona o gráfico -->
-        <div class="flex justify-center mt-8">
-            <canvas id="activityGrowthChart" width="400" height="100"></canvas>
-        </div>
-    </main>
-
-    {% with messages = get_flashed_messages(with_categories=True) %}
-        {% if messages %}
-            <script>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                <script>
                 // Transforma mensagens de flash em um array para o JavaScript
-                const messages = {{ messages | tojson }};
-                showFlashMessages(messages);  // msg[1] é a mensagem, msg[0] é a categoria
-            </script>
-        {% endif %}
-    {% endwith %}
+                    const messages = {{ messages | tojson }};
+                    showFlashMessages(messages);  // msg[1] é a mensagem, msg[0] é a categoria
+                </script>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Dropdown de seleção -->
+    <div class="flex justify-end mb-4">
+        <select id="metric-selector" class="bg-[#F8DCB3] text-[#576A5C] p-2 rounded shadow">
+            <option value="all">Mostrar todas as métricas</option>
+            <option value="calorias">Calorias</option>
+            <option value="imc">IMC</option>
+            <option value="gordura">Gordura</option>
+        </select>
+    </div>
+
 
     <script>
-        // Configuração do gráfico usando Chart.js
-        // Configuração do gráfico usando Chart.js
-        const ctx = document.getElementById('activityGrowthChart').getContext('2d');
-        const activityGrowthChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Jan 1', 'Fer 2', 'Mar 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8', 'Jan 9', 'Jan 10', 'Jan 11', 'Jan 12'],
-                datasets: [
-                    {
-                        label: 'Calorias',
-                        data: {{ calorias_data | tojson }},
-                        
-                        backgroundColor: '#606c38'
-                    },
-                    {
-                        label: 'IMC',
-                        data: {{ imc_data | tojson }},
-                       
-                        backgroundColor: '#ED8D00'
-                    },
-                    {
-                        label: 'Gordura',
-                        data: {{ percent_gordura_data | tojson }},
-                        
-                        
-                        backgroundColor: '#e0e0e0'
-                    }
-                ]
+    // Configuração inicial do gráfico
+    const ctx = document.getElementById('activityGrowthChart').getContext('2d');
+    const initialData = {
+        labels: ['Jan 1', 'Jan 2', 'Jan 3', 'Jan 4', 'Jan 5', 'Jan 6', 'Jan 7', 'Jan 8', 'Jan 9', 'Jan 10', 'Jan 11', 'Jan 12'],
+        datasets: [
+            {
+                label: 'Calorias',
+                data: {{ calorias_data | tojson }},
+                backgroundColor: '#BC6C25',
+                borderColor: '#BC6C25',
+                borderWidth: 2,
+                borderRadius: 5,
+                barThickness: 10,
             },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        ticks: {
-                            callback: function(value) {
-                                return value + "%";
-                            }
+            {
+                label: 'IMC',
+                data: {{ imc_data | tojson }},
+                backgroundColor: '#606C38',
+                borderColor: '#606C38',
+                borderWidth: 2,
+                borderRadius: 5,
+                barThickness: 10,
+            },
+            {
+                label: 'Gordura',
+                data: {{ percent_gordura_data | tojson }},
+                backgroundColor: '#F7D08A',
+                borderColor: '#F7D08A',
+                borderWidth: 2,
+                borderRadius: 5,
+                barThickness: 10,
+            }
+        ]
+    };
+
+    const activityGrowthChart = new Chart(ctx, {
+        type: 'bar',
+        data: initialData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#576A5C',
+                        font: {
+                            family: 'Arial, sans-serif',
+                            size: 14,
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false,
+                    },
+                    ticks: {
+                        color: '#576A5C',
+                        font: {
+                            family: 'Arial, sans-serif',
+                            size: 12,
+                        }
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: {
+                        color: '#576A5C', 
+                        lineWidth: 1,
+                        drawBorder: false,
+                    },
+                    ticks: {
+                        color: '#576A5C',
+                        font: {
+                            family: 'Arial, sans-serif',
+                            size: 12,
+                        },
+                        callback: function(value) {
+                            return value + "%";
                         }
                     }
                 }
             }
-        });
+        }
+    });
 
+    document.getElementById('metric-selector').addEventListener('change', function() {
+        const selectedMetric = this.value;
+        
+        // Define os datasets com base na seleção
+        let filteredDatasets = [];
+    
+        if (selectedMetric === 'all') {
+            filteredDatasets = initialData.datasets; // Mostra todos os dados
+        } else {
+            filteredDatasets = initialData.datasets.filter(dataset => dataset.label.toLowerCase() === selectedMetric);
+        }
+    
+        // Atualiza o máximo do eixo Y com base na métrica selecionada
+        let maxScaleY = 100; // Padrão para porcentagem
+        if (selectedMetric === 'calorias') {
+            maxScaleY = 10000; // Define o máximo com base nos dados de calorias
+        } else if (selectedMetric === 'imc') {
+            maxScaleY = 50; // Define o máximo com base nos dados de IMC
+        } else if (selectedMetric === 'gordura') {
+            maxScaleY = 100; // Define o máximo para gordura como 100 (porcentagem)
+        }
+    
+        // Atualiza as configurações do gráfico
+        activityGrowthChart.options.scales.y.max = maxScaleY;
+        activityGrowthChart.data.datasets = filteredDatasets;
+        activityGrowthChart.update();
+    });
+    
         // JavaScript para controlar a visibilidade da aba
         document.getElementById('config-button').addEventListener('click', function() {
             document.getElementById('config-panel').classList.toggle('active');
@@ -237,25 +334,24 @@
         document.getElementById('close-button').addEventListener('click', function() {
             document.getElementById('config-panel').classList.remove('active');
         });
-
-    // Script do botão da foto do perfil
-    function updateProfilePicturePreview() {
-        var fileInput = document.getElementById('profile-picture');
-        var uploadButton = document.getElementById('upload-button');
-        
-        if (fileInput.files && fileInput.files[0]) {
-            var reader = new FileReader();
+        // Script do botão da foto do perfil
+        function updateProfilePicturePreview() {
+            var fileInput = document.getElementById('profile-picture');
+            var uploadButton = document.getElementById('upload-button');
             
-            reader.onload = function (e) {
-                uploadButton.src = e.target.result;
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    uploadButton.src = e.target.result;
+                }
+                
+                reader.readAsDataURL(fileInput.files[0]);
             }
-            
-            reader.readAsDataURL(fileInput.files[0]);
         }
-    }
-    function confirmDeletion() {
-        return confirm("Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.");
-    }
-    </script>
+        function confirmDeletion() {
+            return confirm("Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.");
+        }
+        </script>
 </body>
 </html>
