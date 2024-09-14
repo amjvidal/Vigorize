@@ -27,9 +27,9 @@ def pagina_recuperar():
             return render_template('recuperar.html', inputs=inputs)
         
         except Exception as e:
-            # Captura a exceção e imprime a mensagem de erro
-            print(e)
-            # flash(error_message, 'danger')
+            error_message = str(e)
+            print(error_message)
+            flash('Erro ao enviar email de recuperação de senha!', 'danger')
             return render_template('recuperar.html', inputs=inputs)
         
     return render_template('recuperar.html', inputs=inputs)
