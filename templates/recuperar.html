@@ -4,44 +4,49 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/static/css/main.css ">
     <title>Vigorize</title>
-
-    <script>
-        function showFlashMessages(messages) {
-            messages.forEach(message => {
-                alert(message);  // Exibe um alerta com a mensagem
-            });
-        }
-    </script>
 </head>
 <body class="bg-[#234035] flex justify-center items-center min-h-screen">
-    <div class="space-y-2">
-        <h1 class="text-yellow-100 text-5xl ">Recuperar Senha</h1>
-        <form  action="{{ url_for('recuperar.pagina_recuperar')}}" method="POST">
-            <div class="space-y-2">
+    <div class="w-full max-w-md space-y-6 text-center">
+        <!-- Título da página -->
+        <h1 class="text-[#F8DCB3] text-5xl font-bold">Recuperar Senha</h1>
+
+        <!-- Formulário de recuperação de senha -->
+        <form action="{{ url_for('recuperar.pagina_recuperar')}}" method="POST" class="space-y-6">
+            <!-- Inputs -->
+            <div class="space-y-4">
                 {% for input in inputs %}
-                    <input class="bg-[#F8DCB3] p-2 block rounded-lg border border-black placeholder:text-black font-semibold" type="{{ input.type }}" name="{{ input.name }}" placeholder="{{ input.placeholder }}" class="p-2 rounded-lg" required>
+                    <input class="bg-[#F8DCB3] p-3 block rounded-full border border-black placeholder:text-black font-semibold w-full text-center" 
+                           type="{{ input.type }}" 
+                           name="{{ input.name }}" 
+                           placeholder="{{ input.placeholder }}" 
+                           required>
                 {% endfor %}
             </div>
+
+            <!-- Botão de Recuperar -->
             <div>
-                <a href="/cadastro" class="underline text-white">Cadastrar</a>
-                <a href="/login" class="underline text-white">Login</a>
-            </div> 
-            <div>
-            <button class="p-2 bg-[#ED8D00] text-white rounded-lg"onClik=recoverPassword() id="btnRecuperar">Recuperar</button>
-        </div> 
+                <button class="p-3 w-full bg-[#ED8D00] text-white font-bold rounded-full hover:bg-[#f2a30a] focus:ring-2 focus:ring-[#f2a30a] transition-all duration-200" id="btnRecuperar">
+                    Recuperar
+                </button>
+            </div>
+
+            <!-- Links de Cadastrar e Login -->
+            <div class="flex justify-between text-white font-medium underline">
+                <a href="/cadastro" class="hover:text-[#f2a30a]">Cadastrar</a>
+                <a href="/login" class="hover:text-[#f2a30a]">Login</a>
+            </div>
         </form>
 
+        <!-- Exibição de mensagens flash -->
         {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
             <script>
-                // Transforma mensagens de flash em um array para o JavaScript
                 const messages = {{ messages | tojson }};
-                showFlashMessages(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
+                alert(messages.map(msg => msg[1]));
             </script>
         {% endif %}
-    {% endwith %}
-
-    
+        {% endwith %}
     </div>
 </body>
+
 </html>
