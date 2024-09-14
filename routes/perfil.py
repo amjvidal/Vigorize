@@ -69,19 +69,20 @@ def pagina_perfil():
 
                     return redirect(url_for('perfil.pagina_perfil'))
                 except Exception as e:
-                    error_message = json.loads(e.args[1])['error']['message']
-                    flash(error_message, 'danger')
+                    error_message = str(e)
+                    print(error_message)
+                    flash('Erro ao atualizar o perfil.', 'danger')
                     return redirect(url_for('perfil.pagina_perfil'))
             elif action == 'recover_password':
                 try:
                     recoverPassword(user['email'])
                     flash('Email de recuperação de senha enviado!', 'success')
                 except Exception as e:
-                    print(e)
-                    # Captura a exceção e imprime a mensagem de erro
-                    # error_message = json.loads(e.args[1])['error']['message']
-                    # flash(error_message, 'danger')
-                    # return render_template('perfil.html', inputs=inputs, fisicos=fisicos)
+                    error_message = str(e)
+                    print(error_message)
+                    flash('Erro ao enviar o email de recuperação de senha.', 'danger')
+                    return redirect(url_for('perfil.pagina_perfil'))
+                
             elif action == 'delete_account':
                 try:
                     auth.delete_user_account(user['idToken'])  # Exclui o usuário da autenticação
@@ -91,7 +92,8 @@ def pagina_perfil():
                     return redirect(url_for('login.pagina_login'))
                 except Exception as e:
                     error_message = str(e)
-                    flash(error_message, 'danger')
+                    print(error_message)
+                    flash('Erro ao excluir o perfil.', 'danger')
                     return redirect(url_for('perfil.pagina_perfil'))
             
             elif action == 'save_profile':
@@ -133,7 +135,6 @@ def pagina_perfil():
                         })
                         
                         os.remove(file_path)
-
                         flash('Foto de perfil atualizada com sucesso!', 'success')
                         return redirect(url_for('perfil.pagina_perfil'))
                     except Exception as e:

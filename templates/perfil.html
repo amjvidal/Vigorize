@@ -28,18 +28,6 @@
 
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-        function showFlashMessages(messages) {
-            messages.forEach(message => {
-                var category = message[0];  // Exemplo: 'success' ou 'danger'
-                var text = message[1];  // A mensagem em si
-                
-                // Aqui você pode exibir a mensagem como preferir, exemplo com 'alert`:
-                alert(`${category}: ${text}`);  // Exibe um alerta com a mensagem
-            });
-        }
-    </script>
 </head>
 <body class="bg-[#F8DCB3] min-h-screen">
     <header class="h-[80px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
@@ -193,7 +181,7 @@
                 <script>
                 // Transforma mensagens de flash em um array para o JavaScript
                     const messages = {{ messages | tojson }};
-                    showFlashMessages(messages);  // msg[1] é a mensagem, msg[0] é a categoria
+                    alert(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
                 </script>
             {% endif %}
         {% endwith %}
