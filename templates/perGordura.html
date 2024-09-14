@@ -38,7 +38,7 @@
             <!-- Formulário de Pular -->
             <form class="space-y-4" action="{{ url_for('perGordura.pagina_perGordura')}}" method="POST">
                 <input type="hidden" name="action" value="pular">
-                <button class="p-2 w-40 bg-inherit text-white rounded-full font-semibold underline underline-offset-2">Pular Etapa</button>
+                <button class="p-2 w-40 bg-inherit text-white rounded-full font-semibold underline underline-offset-2 hover:text-[#f2a30a]">Pular Etapa</button>
             </form>
         </div>
     </div>
@@ -53,8 +53,5 @@
         {% endif %}
     {% endwith %}
 </body>
-
-
-
 
 </html>

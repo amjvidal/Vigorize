@@ -1750,6 +1750,11 @@ video {
   color: rgb(242 163 10 / var(--tw-text-opacity));
 }
 
+.first-letter\:hover\:text-\[\#f2a30a\]:hover::first-letter {
+  --tw-text-opacity: 1;
+  color: rgb(242 163 10 / var(--tw-text-opacity));
+}
+
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
