@@ -4,21 +4,12 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/static/css/main.css ">
     <title>Vigorize</title>
-
-    <script>
-        function showFlashMessages(messages) {
-            messages.forEach(message => {
-                alert(message);  // Exibe um alerta com a mensagem
-            });
-        }
-    </script>
     
 </head>
 <body class="bg-[#234035] flex justify-center items-center min-h-screen">
-    <!-- Botão de Voltar com PNG -->
+    <!-- Botão de Voltar -->
     <img src="/static/voltarbtn_bege.svg" alt="Botão de Voltar"
-        class="absolute top-8 left-16 w-[80px] h-[80px] bg-no-repeat bg-center bg-contain cursor-pointer" 
-        style="background-image: url('../static/voltarbtn.png');" 
+        class="absolute top-8 left-16 w-[80px] h-[80px] bg-no-repeat bg-center bg-contain cursor-pointer"  
         onclick="window.history.back()">
     
     <div class="flex flex-col items-center space-y-8 w-[400px]">
@@ -59,8 +50,8 @@
             
             <!-- Links para Login e Recuperar Senha -->
             <div class="flex justify-between w-full text-white font-semibold text-lg underline underline-offset-2">
-                <a href="/login">Login</a>
-                <a href="/recuperar">Recuperar Senha</a>
+                <a href="/login" class="hover:text-[#f2a30a]">Login</a>
+                <a href="/recuperar" class="hover:text-[#f2a30a]">Recuperar Senha</a>
             </div>
             
             <!-- Botão de Cadastrar -->
@@ -75,7 +66,7 @@
             <script>
                 // Transforma mensagens de flash em um array para o JavaScript
                 const messages = {{ messages | tojson }};
-                showFlashMessages(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
+                alert(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
             </script>
         {% endif %}
     {% endwith %}

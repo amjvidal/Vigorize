@@ -52,6 +52,8 @@ def pagina_perGordura():
                 flash('Dados enviados com sucesso!', 'success')
                 return redirect(url_for('perfil.pagina_perfil'))
             except Exception as e:
+                error_message = str(e)
+                print(error_message)
                 flash('Erro ao atualizar gordura!', 'danger')
                 return redirect(url_for('perGordura.perGordura'))
         
@@ -62,10 +64,11 @@ def pagina_perGordura():
                     'pescoco': None,
                     'quadril': None
                     })
-                
-                flash('Dados não enviados!', 'success')
+                flash('Nenhum dado enviado!', 'success')
                 return redirect(url_for('perfil.pagina_perfil'))
             except Exception as e:
+                error_message = str(e)
+                print(error_message)
                 flash('Erro ao atualizar gordura!', 'danger')
                 return redirect(url_for('perGordura.perGordura'))
 

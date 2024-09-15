@@ -16,8 +16,9 @@ def tabelaNutri():
         return redirect(url_for('login.pagina_login'))
     
     try:
-        user_email = emailDb(user['email'])   
-        listaAlimento = db.child('usuarios').child(user_email).child('Alimentos').get()
+        user_id = emailDb(user['email'])
+        profile_picture_url = db.child('usuarios').child(user_id).child('profilePicture').get().val()
+        listaAlimento = db.child('usuarios').child(user_id).child('Alimentos').get()
 
         
         
@@ -34,12 +35,12 @@ def tabelaNutri():
                 if selected_item not in session['inflated_buttons']:
                     session['inflated_buttons'].append(selected_item)
                     session.modified = True  
-                    enviaData(user_email, session['inflated_buttons'])
+                    enviaData(user_id, session['inflated_buttons'])
             elif action == "delete_alimento":
                 if 'delete_button' in request.form:
                     item_to_delete = request.form.get('delete_button')
                     eliminaAtributo(item_to_delete,session['inflated_buttons'])
-                    enviaData(user_email, session['inflated_buttons'])
+                    enviaData(user_id, session['inflated_buttons'])
                     
 
                 
@@ -52,12 +53,14 @@ def tabelaNutri():
         total_proteina = round(somaAtributo('Proteína'))
         
     except Exception as e:
-        print(f'Erro: {e}')
+        error_message = str(e)
+        print(error_message)
+        flash('Erro ao carregar a página de tabela nutricional', 'danger')
         return redirect(url_for('login.pagina_login'))
     
     return render_template('tabelaNutricional.html', items=dados,total_Umidade=total_Umidade,total_Sodio=total_Sodio, 
     buttons=session.get('inflated_buttons', []),total_calorias=total_calorias,total_Carboidrato=total_Carboidrato,
-    total_gorduraTotal=total_gorduraTotal, total_proteina=total_proteina)
+    total_gorduraTotal=total_gorduraTotal, total_proteina=total_proteina, profile_picture_url=profile_picture_url)
 
 
 def pegaAtributo(nome_alimento, atributo):
@@ -71,7 +74,9 @@ def pegaAtributo(nome_alimento, atributo):
         print('Alimento não encontrado.')
         return None
     except Exception as e:
-        print(f'Erro ao buscar atributo: {e}')
+        error_message = str(e)
+        print(error_message)
+        flash('Erro ao buscar o alimento', 'danger')
         return None
 
 def eliminaAtributo(itemElimindado,array):
@@ -85,7 +90,9 @@ def eliminaAtributo(itemElimindado,array):
             i=i+1
         
     except Exception as e:
-        print(f'Erro ao buscar atributo: {e}')
+        error_message = str(e)
+        print(error_message)
+        flash('Erro ao deletar o alimento', 'danger')
         return None
 
 
@@ -97,7 +104,9 @@ def somaAtributo(atributo):
             if proteina is not None:
                 totalAtributo += proteina
     except Exception as e:
-        print(f'Erro ao calcular a soma das proteínas: {e}')
+        error_meessage = str(e)
+        print(error_meessage)
+        flash('Erro ao calcular a soma das proteínas', 'danger')
     
     return totalAtributo
 

@@ -4,52 +4,54 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/static/css/main.css ">
     <title>Vigorize</title>
-
-    <script >
-        function showFlashMessages(messages) {
-            messages.forEach(message => {
-                alert(message);  // Exibe um alerta com a mensagem
-            });
-        }
-    </script>
     
 </head>
 <body class="bg-[#234035] flex justify-center items-center min-h-screen">
-    <div class="space-y-2">    
-        <h1 class="text-[#F8DCB3] text-5xl ">Percentual de Gordura</h1>
-        <form class='inline-block' action="{{ url_for('perGordura.pagina_perGordura')}}" method="POST">
-            <input type="hidden" name="action" value="enviar_dados">
-            <div class="space-y-2">
-                {% for input in inputs %}
-                    <input class="bg-[#F8DCB3] p-2 block rounded-lg border border-black placeholder:text-black font-semibold w-32 " 
-                    type="{{ input.type }}" 
-                    id="{{ input.id }}" 
-                    placeholder="{{ input.placeholder }}" 
-                    name="{{input.name}}" 
-                    max="{{input.max}}"
-                    min="{{input.min}}"
-                    required>
-                {% endfor %}
-            </div>
-            <div>
-                <button class="p-2 inline bg-[#ED8D00] text-white rounded-lg">Finalizar</button>
-            </div>
-        </form>
-        <form class='inline-block' action="{{ url_for('perGordura.pagina_perGordura')}}" method="POST">
-            <input type="hidden" name="action" value="pular">
-            <button class="p-2 bg-[#ED8D00] text-white rounded-lg">Pular</button>
-        </form>
+    <div class="space-y-6 text-center">    
+        <!-- Título Principal -->
+        <h1 class="text-[#F8DCB3] text-5xl font-bold">Percentual de Gordura</h1>
+
+        <!-- Container flex para garantir que os formulários fiquem um abaixo do outro -->
+        <div class="flex flex-col items-center space-y-4">
+            <!-- Formulário de enviar dados -->
+            <form class="space-y-4" action="{{ url_for('perGordura.pagina_perGordura')}}" method="POST">
+                <input type="hidden" name="action" value="enviar_dados">
+                
+                <!-- Entradas do formulário -->
+                <div class="space-y-2">
+                    {% for input in inputs %}
+                        <input class="bg-[#F8DCB3] p-2 block rounded-full border border-black placeholder:text-black text-center font-semibold w-40"
+                        type="{{ input.type }}" 
+                        id="{{ input.id }}" 
+                        placeholder="{{ input.placeholder }}" 
+                        name="{{input.name}}" 
+                        max="{{input.max}}"
+                        min="{{input.min}}"
+                        required>
+                    {% endfor %}
+                </div>
+
+                <!-- Botão de Finalizar -->
+                <button class="p-2 w-40 bg-[#ED8D00] text-white rounded-full font-bold hover:bg-[#f2a30a]">Finalizar</button>
+            </form>
+
+            <!-- Formulário de Pular -->
+            <form class="space-y-4" action="{{ url_for('perGordura.pagina_perGordura')}}" method="POST">
+                <input type="hidden" name="action" value="pular">
+                <button class="p-2 w-40 bg-inherit text-white rounded-full font-semibold underline underline-offset-2 hover:text-[#f2a30a]">Pular Etapa</button>
+            </form>
+        </div>
     </div>
+
+    <!-- Mensagens de feedback -->
     {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
             <script>
-                // Transforma mensagens de flash em um array para o JavaScript
                 const messages = {{ messages | tojson }};
-                showFlashMessages(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
+                alert(messages.map(msg => msg[1]));
             </script>
         {% endif %}
     {% endwith %}
-   
 </body>
 
 </html>
