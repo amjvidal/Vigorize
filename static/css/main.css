@@ -911,6 +911,14 @@ video {
   margin-top: -10%;
 }
 
+.mt-\[480px\] {
+  margin-top: 480px;
+}
+
+.mt-\[-75\%\] {
+  margin-top: -75%;
+}
+
 .block {
   display: block;
 }
@@ -1173,6 +1181,10 @@ video {
 
 .w-auto {
   width: auto;
+}
+
+.w-\[80\%\] {
+  width: 80%;
 }
 
 .max-w-full {
@@ -1613,6 +1625,22 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-\[50\%\] {
+  font-size: 50%;
+}
+
+.text-\[500\%\] {
+  font-size: 500%;
+}
+
+.text-\[550\%\] {
+  font-size: 550%;
+}
+
+.text-\[300\%\] {
+  font-size: 300%;
 }
 
 .font-bold {
