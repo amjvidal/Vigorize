@@ -21,9 +21,11 @@ def admin_dashboard():
         flash('Você não tem permissão para acessar esta página.', 'danger')
         return redirect(url_for('perfil.pagina_perfil'))
 
-    # Buscar todos os usuários cadastrados
-    all_users = db.child("usuarios").get().val()
-    print(user)
+    
+    # all_users = db.child("usuarios").get().val()
+    
+    # for usuario in all_users:
+        
     return render_template('admin_dashboard.html', users=all_users)
 
 @admin_routes.route('/admin/edit_user/<user_id>', methods=['GET', 'POST'])
