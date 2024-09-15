@@ -52,14 +52,17 @@
         }
     </style>
 </head>
-<body class="bg-[#f4d7b2] h-screen flex items-center justify-center">
+<body class="bg-[#f4d7b2] h-screen flex flex-col items-center justify-center">
+    
+    
     <div class="w-full max-w-md">
         <!-- Seção do logo -->
         <div class="text-center">
+            
             <img src="{{ url_for('static', filename='VIGORIZE.svg') }}" alt="Logo VIGORIZE" class="mx-auto mb-4 w-24">
             <h1 class="text-2xl text-green-700 font-bold">VIGORIZE</h1>
         </div>
-
+        
         <div class="search-container">
             <form method="post">
                 <input type="hidden" name="action" value="pesquisa">
@@ -74,7 +77,6 @@
                 </button>
             </form>
         </div>
-
         
 
         <form action="{{ url_for('tabelaNutricional.tabelaNutri') }}" method="POST">
@@ -88,22 +90,28 @@
             {% endfor %}
         </form>
 
-        <div class="flex-1 flex flex-col justify-center items-right shadow-md rounded-[50px] bg-[#F8DCB3] p-4 m">
-            <h3 class="text-1xl text-left font-bold text-[#234035] mt-[-80px]">
-                
-                <div class="tabelaAlimento" >
-                    <caloria class="Alimento">Calorias: {{ total_calorias }} </caloria>
-                    <carboidrato class="Alimento">Carboidrato: {{ total_Carboidrato }}</carboidrato >
-                    <umidade class="Alimento">Umidade: {{ total_Umidade }}</umidade>
-                    <gordura class="Alimento">Gordura Total: {{ total_gorduraTotal }}</gordura>
-                    <sodio class="Alimento">Sódio: {{ total_Sodio }}</sodio>
-                    <proteina class="Alimento">Proteína: {{ total_proteina }}</proteina>
-                    </div>
-                </div>
 
+        <div class="justify-items-end grid">
+            <!-- Seção de Medidas -->
+            <h1 class="text-1xl text-green-700 font-bold">Medidas para cada 100g: </h1>
+
+            <!-- Caixa alinhada à direita -->
+            
+            <div class="justify-items-end grid">
+            <div class="w-flex w-full justify-end"> <!-- Adicionei flex e justify-end aqui -->
+            <div class="flex ml-auto items-center shadow-md rounded-[50px] bg-[#F8DCB3] p-6">
+            <h3 class="text-1xl text-left font-bold text-[#234035]">
+                    <div class="tabelaAlimento">
+                        <span class="Alimento">Calorias: {{ total_calorias }}</span><br>
+                        <span class="Alimento">Carboidrato: {{ total_Carboidrato }}</span><br>
+                        <span class="Alimento">Umidade: {{ total_Umidade }}</span><br>
+                        <span class="Alimento">Gordura Total: {{ total_gorduraTotal }}</span><br>
+                        <span class="Alimento">Sódio: {{ total_Sodio }}</span><br>
+                        <span class="Alimento">Proteína: {{ total_proteina }}</span>
+                </div>
             </h3>
-            </p>
-        </div>
+                </div>
+                </div>
         
     
             
