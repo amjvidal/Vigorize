@@ -15,6 +15,12 @@ def pagina_perfil():
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
+    
+    is_admin = db.child("usuarios").child(emailDb(user['email'])).get().val().get('is_admin', False)
+    if is_admin:
+        
+        flash('Você não tem permissão para acessar esta página.', 'danger')
+        return redirect(url_for('login.pagina_login'))
 
     try:
         user_id = emailDb(user['email'])

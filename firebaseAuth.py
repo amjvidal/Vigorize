@@ -17,16 +17,27 @@ auth = firebase.auth()
 storage = firebase.storage()
 db = firebase.database()
 
-def cadastrofb(nome, email, password,dataNas):
-        user = auth.create_user_with_email_and_password(email, password)
-        auth.send_email_verification(user['idToken'])
-        data={
-            'nome':nome,
-            'email':email,
-            'data': dataNas,
-            'firstTime': True
-              }
-        db.child('usuarios').child(remove_pontos(email)).set(data)
+def cadastrofb(nome, email, password, dataNas):
+    # Criar usuário no Firebase Auth
+    user = auth.create_user_with_email_and_password(email, password)
+    
+    # Enviar email de verificação
+    auth.send_email_verification(user['idToken'])
+    idToken = user['idToken']
+    
+    # Definir os dados do usuário, incluindo is_admin como False
+    data = {
+        'idToken': idToken,
+        'nome': nome,
+        'email': email,
+        'data': dataNas,
+        'firstTime': True,
+        'is_admin': False  # Usuários não são administradores por padrão
+    }
+    
+    # Salvar os dados do usuário no Firebase Realtime Database
+    db.child('usuarios').child(remove_pontos(email)).set(data)
+
 
 def loginfb(email, password):
         user = auth.sign_in_with_email_and_password(email, password)
