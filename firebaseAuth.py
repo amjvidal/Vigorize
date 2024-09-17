@@ -45,6 +45,7 @@ def loginfb(email, password):
         # Verifica se o e-mail está verificado
         email_verified = user_info['users'][0]['emailVerified']
         if email_verified == False:
+            auth.send_email_verification(user['idToken'])
             auth.current_user = None
             return email_verified
         
@@ -64,7 +65,7 @@ def remove_pontos(texto):
     return texto.replace(".", "@")
 
 def emailDb(email):
-    return remove_pontos(email)
+    return remove_pontos(email).lower()
 
 def firstLogin(email):
     user_email = emailDb(email)

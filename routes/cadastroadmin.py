@@ -25,6 +25,7 @@ def register_admin():
 
     if request.method == 'POST':
         data = request.form
+        data_email = data["email"].lower()
 
         if len(data['senha']) < 6 or len(data['senha']) > 15:
             flash('A senha deve ter entre 6 e 15 caracteres', 'danger')
@@ -36,17 +37,17 @@ def register_admin():
 
         try:
             # Registrar o administrador
-            new_admin = auth.create_user_with_email_and_password(data['email'], data['senha'])
+            new_admin = auth.create_user_with_email_and_password(data_email, data['senha'])
             
             # Enviar e-mail de verificação
             auth.send_email_verification(new_admin['idToken'])
             
-            user_id = emailDb(data['email'])
+            user_id = emailDb(data_email)
             
             # Atualizar a informação de administrador no banco de dados
             db.child("usuarios").child(user_id).set({
                 'nome': data['nome'],
-                'email': data['email'],
+                'email': data_email,
                 'is_admin': True
             })
             

@@ -19,45 +19,91 @@ def admin_dashboard():
 
     if not user_data.get('is_admin', False):
         flash('Você não tem permissão para acessar esta página.', 'danger')
-        return redirect(url_for('perfil.pagina_perfil'))
+        return redirect(url_for('login.pagina_login'))
 
     
-    # all_users = db.child("usuarios").get().val()
-    
-    # for usuario in all_users:
+    all_users = db.child("usuarios").get().val()
+    users_not_admin = {}
+    for user_id, user_data in all_users.items():
+        if not user_data.get('is_admin', False):
+            user_data['id'] = user_id
+            users_not_admin[user_id] = user_data
         
-    return render_template('admin_dashboard.html', users=all_users)
+    return render_template('admin_dashboard.html', users=users_not_admin)
 
 @admin_routes.route('/admin/edit_user/<user_id>', methods=['GET', 'POST'])
 def edit_user(user_id):
+    user = auth.current_user
+    if user is None:
+        flash('Você precisa estar logado para acessar esta página.', 'danger')
+        return redirect(url_for('login.pagina_login'))
+    
+
     user_data = db.child("usuarios").child(user_id).get().val()
+    altura_user = db.child("usuarios").child(user_id).child("altura").get().val()
+    peso_user = db.child("usuarios").child(user_id).child("peso").get().val()
+    cintura_user = db.child("usuarios").child(user_id).child("cintura").get().val()
+    pescoco_user = db.child("usuarios").child(user_id).child("pescoco").get().val()
+    sexo_user = db.child("usuarios").child(user_id).child("sexo").get().val()
+    fisicos = ["Sedentário", "Ligeira", "Moderada", "Intensa", "Muito Intensa"]
+
+    inputs = [
+            {'id': 'altura', 'type': 'number', 'value': altura_user, 'name': 'altura', 'label': 'Altura(cm)', 'max': '250', 'min': '100'},
+            {'id': 'peso', 'type': 'number', 'value': peso_user, 'name': 'peso', 'label': 'Peso(kg)', 'max': '500', 'min': '30'},
+            {'id': 'cintura', 'type': 'number', 'value': cintura_user, 'name': 'cintura', 'label': 'Cintura(cm)', 'max': '180', 'min': '30'},
+            {'id': 'pescoco', 'type': 'number', 'value': pescoco_user, 'name': 'pescoco', 'label': 'Pescoço(cm)', 'max': '60', 'min': '20'}
+        ]
+
+    if sexo_user == 'Feminino':
+        quadril_user = db.child("usuarios").child(user_id).child("quadril").get().val()
+        inputs.append({'id': 'quadril', 'type': 'number', 'value': quadril_user, 'name': 'quadril', 'label': 'Quadril(cm)', 'max': '180', 'min': '30'})
 
     if request.method == 'POST':
         data = request.form
         try:
-            db.child("usuarios").child(user_id).update({
-                'altura': data['altura'],
-                'peso': data['peso'],
-                'cintura': data['cintura'],
-                'fisico': data['fisico'],
-                
-                
-            })
-            flash('Dados atualizados com sucesso!', 'success')
-            return redirect(url_for('admin.admin_dashboard'))
+            if data['altura'] == '':
+                data['altura'] = altura_user
+            if data['peso'] == '':
+                data['peso'] = peso_user
+            if data['cintura'] == '':
+                data['cintura'] = cintura_user
+            if data['pescoco'] == '':
+                data['pescoco'] = pescoco_user
+            if sexo_user == 'Feminino':
+                if data['quadril'] == '':
+                    data['quadril'] = quadril_user
+            
+            db.child("usuarios").child(user_id).update(
+                {'altura': data['altura'],
+                    'peso': data['peso'],
+                    'cintura': data['cintura'],
+                    'pescoco': data['pescoco'],
+                    'fisico': data['fisico']})
+            if sexo_user == 'Feminino':
+                db.child("usuarios").child(user_id).update({'quadril': data['quadril']})
+            flash('Perfil atualizado com sucesso!', 'success')
+
         except Exception as e:
             flash(f'Ocorreu um erro: {str(e)}', 'danger')
 
-    return render_template('edit_user.html', user=user_data, user_id=user_id)
+        return redirect(url_for('admin.admin_dashboard'))
+
+    return render_template('edit_user.html', user=user_data, user_id=user_id, inputs=inputs, fisicos=fisicos)
 
 @admin_routes.route('/admin/delete_user/<user_id>', methods=['POST'])
 def delete_user(user_id):
+    user = auth.current_user
+    if user is None:
+        flash('Você precisa estar logado para acessar esta página.', 'danger')
+        return redirect(url_for('login.pagina_login'))
+    
     try:
         user_data = db.child("usuarios").child(user_id).get().val()
         
         auth.delete_user_account(user_data['idToken'])
         db.child("usuarios").child(user_id).remove()
         flash('Usuário excluído com sucesso!', 'success')
+        
     except Exception as e:
         error_message = str(e)
         flash(error_message, 'danger')
@@ -67,11 +113,37 @@ def delete_user(user_id):
 @admin_routes.route('/admin/user_details/<user_id>', methods=['GET'])
 def user_details(user_id):
     user_data = db.child("usuarios").child(user_id).get().val()
+    email_user = db.child("usuarios").child(user_id).child("email").get().val()
+    nome_user = db.child("usuarios").child(user_id).child("nome").get().val()
+    altura_user = db.child("usuarios").child(user_id).child("altura").get().val()
+    peso_user = db.child("usuarios").child(user_id).child("peso").get().val()
+    cintura_user = db.child("usuarios").child(user_id).child("cintura").get().val()
+    pescoco_user = db.child("usuarios").child(user_id).child("pescoco").get().val()
+    sexo_user = db.child("usuarios").child(user_id).child("sexo").get().val()
+    fisico_user = db.child("usuarios").child(user_id).child("fisico").get().val()
+        
+    fisicos = ["Sedentário", "Ligeira", "Moderada", "Intensa", "Muito Intensa"]
+
+    datas = [
+            {'id': 'email', 'value': email_user, 'label': 'E-mail'},
+            {'id': 'nome', 'value': nome_user, 'label': 'Nome'},
+            {'id': 'altura', 'type': 'number', 'value': altura_user, 'name': 'altura', 'label': 'Altura(cm)', 'max': '250', 'min': '100'},
+            {'id': 'peso', 'type': 'number', 'value': peso_user, 'name': 'peso', 'label': 'Peso(kg)', 'max': '500', 'min': '30'},
+            {'id': 'cintura', 'type': 'number', 'value': cintura_user, 'name': 'cintura', 'label': 'Cintura(cm)', 'max': '180', 'min': '30'},
+            {'id': 'pescoco', 'type': 'number', 'value': pescoco_user, 'name': 'pescoco', 'label': 'Pescoço(cm)', 'max': '60', 'min': '20'},
+            {'id': 'fisico', 'type': 'select', 'value': fisico_user, 'name': 'fisico', 'label': 'Nível de atividade física',},
+            {'id': 'sexo', 'value': sexo_user, 'label': 'Sexo'} 
+            ]
+
+    if sexo_user == 'Feminino':
+        quadril_user = db.child("usuarios").child(user_id).child("quadril").get().val()
+        datas.append({'id': 'quadril', 'type': 'number', 'value': quadril_user, 'name': 'quadril', 'label': 'Quadril(cm)', 'max': '180', 'min': '30'})
+
     if user_data is None:
         flash('Usuário não encontrado.', 'danger')
         return redirect(url_for('admin.admin_dashboard'))
 
-    return render_template('user_details.html', user=user_data, user_id=user_id)
+    return render_template('user_details.html', user=user_data, user_id=user_id, datas=datas, fisicos=fisicos)
 def get_current_date_path():
     now = datetime.now()
     year_month = now.strftime('%Y-%m')
@@ -86,50 +158,108 @@ def get_user_data(user_id):
 
 @admin_routes.route('/admin/upload_image/<user_id>', methods=['GET', 'POST'])
 def upload_image(user_id):
+    user = auth.current_user
+    if user is None:
+        flash('Você precisa estar logado para acessar esta página.', 'danger')
+        return redirect(url_for('login.pagina_login'))
+
+    profile_picture_url = db.child("usuarios").child(user_id).get().val().get('profilePicture', None)
+
     if request.method == 'POST':
-        if 'image' not in request.files:
-            flash('Nenhuma imagem selecionada.', 'danger')
-            return redirect(request.url)
-        
-        file = request.files['image']
-        if file.filename == '':
-            flash('Nenhuma imagem selecionada.', 'danger')
-            return redirect(request.url)
+        action = request.form.get('action')
 
-        if file:
+        from firebaseAuth import profilePics_folder
+
+        if action == 'upload_image':
+
+            if not os.path.exists(profilePics_folder):
+                os.makedirs(profilePics_folder) 
+
+            if 'file' not in request.files:
+                flash('Nenhum arquivo selecionado.')
+                return redirect(url_for('admin.upload_image', user_id=user_id))
+            
+            file = request.files['file']
+
+            if file.filename == '':
+                flash('Nenhum arquivo selecionado.')
+                return redirect(url_for('admin.upload_image', user_id=user_id))
+            
+            if file:
+                try:
+                    # Salva a imagem no diretório local
+                    filename = secure_filename(file.filename)
+                    file_path = os.path.join(profilePics_folder, filename)
+                    file.save(file_path)
+
+                    # Salva a imagem no storage do Firebase
+                    storage.child(f"profile_pics/{user_id}").put(file_path)
+
+                    # URL da imagem
+                    blob = storage.child(f"profile_pics/{user_id}/{filename}")
+                    url = blob.get_url(None)
+                    download_url = img_url_firebase(url)
+
+                    # Salvar a URL no Firebase Realtime Database
+                    db.child("usuarios").child(user_id).update({
+                        'profilePicture': download_url
+                    })
+                    
+                    os.remove(file_path)
+                    flash('Foto de perfil atualizada com sucesso!', 'success')
+                    return redirect(url_for('admin.upload_image', user_id=user_id))
+                
+                except Exception as e:
+                    error_message = str(e)
+                    print(error_message)
+                    flash("Erro ao salvar a imagem", 'danger')
+                    return redirect(url_for('admin.upload_image', user_id=user_id))
+                
+        elif action == 'delete_image':
             try:
-                # Salva a imagem no diretório local
-                filename = secure_filename(file.filename)
-                file_path = os.path.join('static/uploads/', filename)
-                file.save(file_path)
+                # Referência ao caminho da foto de perfil no Firebase
+                user_ref = db.child("usuarios").child(user_id).get()
+                profile_pic_url = user_ref.val().get('profilePicture', None)
 
-                # Salva a imagem no storage do Firebase
-                storage.child(f"profile_pics/{user_id}/{filename}").put(file_path)
+                if profile_pic_url and "profile_pics" in profile_pic_url:
+                    
+                    file_name = profile_pic_url.split('%2F')[-1].split('?')[0]  # Extrai o nome do arquivo da URL
+                    file_name = file_name.replace('%40', '@')  # Corrigir codificação de '@'
+                    # Caminho correto no Firebase Storage
 
-                # Obtém a URL da imagem
-                blob = storage.child(f"profile_pics/{user_id}/{filename}")
-                url = blob.get_url(None)
+                    token = profile_pic_url.split('token=')[-1]
 
-                # Atualiza a URL no Firebase Realtime Database
-                db.child("usuarios").child(user_id).update({
-                    'profile_image': url
-                })
+                    blob_path = f"profile_pics/{file_name}"
 
-                # Remove o arquivo local
-                os.remove(file_path)
+                    # Remove a foto de perfil do Firebase Storage
+                    storage.child(blob_path).delete(file_name, token)
 
-                flash('Imagem de perfil atualizada com sucesso!', 'success')
-                return redirect(url_for('admin.user_details', user_id=user_id))
+                    # Remove a URL da foto de perfil do Firebase Realtime Database
+                    db.child("usuarios").child(user_id).update({
+                        'profilePicture': None
+                    })
+
+
+                    flash('Foto de perfil removida com sucesso!', 'success')
+                else:
+                    flash('Nenhuma foto de perfil encontrada para remover.', 'warning')
+
             except Exception as e:
                 error_message = str(e)
                 print(error_message)
-                flash("Erro ao salvar a imagem", 'danger')
-                return redirect(url_for('admin.user_details', user_id=user_id))
+                flash('Erro ao remover a foto de perfil.', 'danger')
 
-    return render_template('upload_image.html', user_id=user_id)
+    return render_template('upload_image.html', user_id=user_id, profile_picture_url=profile_picture_url)
+
+
 
 @admin_routes.route('/admin/toggle_user/<user_id>', methods=['POST'])
 def toggle_user(user_id):
+    user = auth.current_user
+    if user is None:
+        flash('Você precisa estar logado para acessar esta página.', 'danger')
+        return redirect(url_for('login.pagina_login'))
+    
     user_data = db.child("usuarios").child(user_id).get().val()
     if user_data is None:
         flash('Usuário não encontrado.', 'danger')
@@ -144,6 +274,11 @@ def toggle_user(user_id):
 
 @admin_routes.route('/admin/reset_password/<user_id>', methods=['POST'])
 def reset_password(user_id):
+    user = auth.current_user
+    if user is None:
+        flash('Você precisa estar logado para acessar esta página.', 'danger')
+        return redirect(url_for('login.pagina_login'))
+    
     try:
         user_data = db.child("usuarios").child(user_id).get().val()
         if user_data is None:

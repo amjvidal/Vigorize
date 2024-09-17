@@ -71,6 +71,8 @@ def pagina_perfil():
                          'cintura': data['cintura'],
                          'pescoco': data['pescoco'],
                          'fisico': data['fisico']})
+                    if sexo_user == 'Feminino':
+                        db.child("usuarios").child(user_id).update({'quadril': data['quadril']})
                     flash('Perfil atualizado com sucesso!', 'success')
 
                     return redirect(url_for('perfil.pagina_perfil'))
