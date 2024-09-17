@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Refeições</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/main.css">
-    <title>Vigorize</title>
     <style>
         .slide-in {
             transform: translateX(100%);
@@ -28,7 +30,6 @@
             margin-top: 10px;
             display: none;
         }
-
         input::placeholder {
             font-size: 12px;
             color: #576A5C;
@@ -81,10 +82,10 @@
             {% endif %}
             <a class="text-[#F8DCB3] text-xl" href="/perfil">Usuário</a>
             <a class="text-[#F8DCB3] text-xl" href="/tabelaNutricional">Tabela Nutricional</a>
-            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-16">
+            <img src="{{ url_for('static', filename='images/VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-16">
             <a class="text-[#F8DCB3] text-xl" href="/perfil">Planejar Refeições</a>
             <a class="text-[#F8DCB3] text-xl" href="/imc">Calcular IMC</a>
-            <img id="config-button" src="{{ url_for('static', filename='engrenagem.svg') }}" alt="Foto de Perfil Padrão" class="cursor-pointer w-8">
+            <img id="config-button" src="{{ url_for('static', filename='images/engrenagem.svg') }}" alt="Configurações" class="cursor-pointer w-8">
         </nav>
     </header>
     
@@ -151,6 +152,7 @@
                 </div>
             
         </div>
+    </main>
 
         <script>
             function filterItems() {
@@ -185,3 +187,4 @@
     </div>
 </body>
 </html>
+

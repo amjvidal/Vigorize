@@ -21,7 +21,7 @@
             {% if profile_picture_url %}
                 <img src="{{ profile_picture_url }}" alt="Foto de Perfil" class='w-16 h-16 rounded-full border-[2px] border-[#F8DCB3]'>
             {% else %}
-            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Foto de Perfil Padrão" class='w-16 h-16 rounded-full'>
+            <img src="/static/default_profile_picture.svg" alt="Foto de Perfil Padrão" class='w-16 h-16 rounded-full border-[#F8DCB3]'>
             {% endif %}
             <a class="text-[#F8DCB3] text-xl" href="/perfil">Usuário</a>
             <a class="text-[#F8DCB3] text-xl" href="/tabelaNutricional">Tabela Nutricional</a>
@@ -99,16 +99,16 @@
                         {% else %}
                         <div class="flex flex-col col-span-2">
                         {% endif %}
-                            <label class="text-white font-normal mb-2" for="fisico">Atividade Física</label>
-                            <select class="bg-[#F8DCB3] px-4 py-2 rounded-lg outline-none border-0 text-black font-semibold w-full"
-                            name="fisico" id="fisico" required>
-                                <option value="{{ atividade_user }}" selected>{{ atividade_user }}</option>
-                                {% for fisico in fisicos %}
-                                    {% if fisico != atividade_user %}
-                                        <option value="{{ fisico }}">{{ fisico }}</option>
-                                    {% endif %}
-                                {% endfor %}
-                            </select>
+                        <label class="text-white font-normal mb-2" for="fisico">Atividade Física</label>
+                        <select class="bg-[#F8DCB3] px-4 py-2 rounded-lg outline-none border-0 text-black font-semibold w-full"
+                        name="fisico" id="fisico" required>
+                            <option value="{{ atividade_user }}" selected>{{ atividade_user }}</option>
+                            {% for fisico in fisicos %}
+                                {% if fisico != atividade_user %}
+                                    <option value="{{ fisico }}">{{ fisico }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
                         </div>
                         <!-- Botão de salvar -->
                         <div class="col-span-2 text-center mt-4">

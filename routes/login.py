@@ -1,6 +1,6 @@
 import json
 from flask import Blueprint, render_template, request, redirect,url_for, flash
-from firebaseAuth import loginfb, auth, db, emailDb, firstLogin, set_persistence_local
+from firebaseAuth import loginfb, auth, db, emailDb, firstLogin
 
 
 login_routes = Blueprint('login', __name__)
@@ -28,8 +28,13 @@ def pagina_login():
             try:
                 email_verified = loginfb(data['email'], data['senha'])
                 if email_verified == False:
-                    flash('Email não verificado, por favor verifique seu email !', 'danger')
+                    flash('Email não verificado, foi enviado um email de verificação para o seu e-mail !', 'danger')
                     return redirect(url_for('login.pagina_login'))
+                
+                is_admin = db.child("usuarios").child(emailDb(data['email'])).get().val().get('is_admin', False)
+                if is_admin:
+                    return redirect(url_for('admin.admin_dashboard'))
+                
 
                 if firstLogin(data['email']):
                     flash('Primeiro acesso, por favor complete seu cadastro!', 'success')
@@ -38,6 +43,7 @@ def pagina_login():
             
             except Exception as e:
                 error_message = str(e)
+                print(error_message)
                 if "INVALID_LOGIN_CREDENTIALS" in error_message:
                     error_message = "Email ou senha inválidos !"
                 flash(error_message, 'danger')
@@ -50,6 +56,10 @@ def pagina_login():
         
     if user:
         flash('Você já está logado!', 'info')
+    
+        is_admin = db.child("usuarios").child(emailDb(user['email'])).get().val().get('is_admin', False)
+        if is_admin:
+            return redirect(url_for('admin.admin_dashboard'))
         return redirect(url_for('perfil.pagina_perfil'))
     
     return render_template('login.html', inputs=inputs)
