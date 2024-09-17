@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 import datetime
 admin_routes = Blueprint('admin', __name__)
+import requests
 
 @admin_routes.route('/', methods=['GET'])
 def admin_dashboard():
@@ -173,7 +174,7 @@ def upload_image(user_id):
         if action == 'upload_image':
 
             if not os.path.exists(profilePics_folder):
-                os.makedirs(profilePics_folder) 
+                os.makedirs(profilePics_folder)
 
             if 'file' not in request.files:
                 flash('Nenhum arquivo selecionado.')
@@ -222,36 +223,38 @@ def upload_image(user_id):
                 profile_pic_url = user_ref.val().get('profilePicture', None)
 
                 if profile_pic_url and "profile_pics" in profile_pic_url:
-                    
-                    file_name = profile_pic_url.split('%2F')[-1].split('?')[0]  # Extrai o nome do arquivo da URL
-                    file_name = file_name.replace('%40', '@')  # Corrigir codificação de '@'
-                    # Caminho correto no Firebase Storage
+                    # Extrair o URL do arquivo
+                    file_url = profile_pic_url.split('?')[0] 
+                    print(f"URL do arquivo extraído: {file_url}")
 
-                    token = profile_pic_url.split('token=')[-1]
+                    # Construir o URL para deletar o arquivo
+                    file_path = file_url.replace('https://firebasestorage.googleapis.com/v0/b/', '')
+                    api_url = f"https://firebasestorage.googleapis.com/v0/b/{file_path}?alt=media"
+                    print(f"URL da API para deletar: {api_url}")
 
-                    blob_path = f"profile_pics/{file_name}"
+                    # Fazer a requisição DELETE
+                    response = requests.delete(api_url)
+                    if response.status_code == 204:
+                        print("Imagem removida do Firebase Storage")
 
-                    # Remove a foto de perfil do Firebase Storage
-                    storage.child(blob_path).delete(file_name, token)
-
-                    # Remove a URL da foto de perfil do Firebase Realtime Database
-                    db.child("usuarios").child(user_id).update({
-                        'profilePicture': None
-                    })
-
-
-                    flash('Foto de perfil removida com sucesso!', 'success')
+                        # Remove a URL da foto de perfil do Firebase Realtime Database
+                        db.child("usuarios").child(user_id).update({
+                            'profilePicture': None
+                        })
+                        flash('Foto de perfil removida com sucesso!', 'success')
+                    else:
+                        print(f"Erro ao remover a imagem: {response.status_code} - {response.text}")
+                        flash('Erro ao remover a foto de perfil.', 'danger')
                 else:
                     flash('Nenhuma foto de perfil encontrada para remover.', 'warning')
 
             except Exception as e:
                 error_message = str(e)
-                print(error_message)
+                print(f"Erro ao remover a imagem: {error_message}")
                 flash('Erro ao remover a foto de perfil.', 'danger')
 
+        
     return render_template('upload_image.html', user_id=user_id, profile_picture_url=profile_picture_url)
-
-
 
 @admin_routes.route('/admin/toggle_user/<user_id>', methods=['POST'])
 def toggle_user(user_id):
