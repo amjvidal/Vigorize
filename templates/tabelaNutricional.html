@@ -77,7 +77,11 @@
             {% if profile_picture_url %}
                 <img src="{{ profile_picture_url }}" alt="Foto de Perfil" class='w-16 h-16 rounded-full border-[2px] border-[#F8DCB3]'>
             {% else %}
+<<<<<<< HEAD
                 <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Foto de Perfil Padrão" class='w-16 h-16 rounded-full'>
+=======
+                <img src="{{ url_for('static', filename='images/minha_imagem.png') }}" alt="Foto de Perfil Padrão" class='w-16 h-16 rounded-full'>
+>>>>>>> parent of 5d1deee (Tudo de admin funcionando menos o remover foto)
             {% endif %}
             <a class="text-[#F8DCB3] text-xl" href="/perfil">Usuário</a>
             <a class="text-[#F8DCB3] text-xl" href="/tabelaNutricional">Tabela Nutricional</a>
