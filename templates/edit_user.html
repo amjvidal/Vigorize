@@ -9,28 +9,28 @@
     <div class="container p-8 bg-white rounded-lg">
         <h1 class="text-2xl font-bold mb-4">Editar Usuário</h1>
         <form action="{{ url_for('admin.edit_user', user_id=user_id) }}" method="POST">
-            {% for input in inputs %}
-                <div class="mb-4">
-                    <label class="block text-gray-700" for="{{ input.name }}">{{ input.label }}</label>
-                    <input class="w-full p-2 border rounded-lg"
-                    type="{{ input.type }}"
-                    id="{{ input.id }}"
-                    name="{{ input.name }}"
-                    max="{{ input.max }}"
-                    min="{{ input.min }}"
-                    value="{{ input.value }}">
-                </div>
-            {% endfor %}
-            
             <div class="mb-4">
-                <label class="block text-gray-700" for="fisico">Atividade Física</label>
-                <select class="w-full p-2 border rounded-lg" name="fisico" id="fisico" required>
+                <label for="altura" class="block text-gray-700">Altura (cm)</label>
+                <input type="number" id="altura" name="altura" value="{{ user['altura'] }}" class="w-full p-2 border rounded-lg">
+            </div>
+            <div class="mb-4">
+                <label for="peso" class="block text-gray-700">Peso (kg)</label>
+                <input type="number" id="peso" name="peso" value="{{ user['peso'] }}" class="w-full p-2 border rounded-lg">
+            </div>
+            <div class="mb-4">
+                <label for="cintura" class="block text-gray-700">Cintura (cm)</label>
+                <input type="number" id="cintura" name="cintura" value="{{ user['cintura'] }}" class="w-full p-2 border rounded-lg">
+            </div>
+           
+            <div class="mb-4">
+                <label for="fisico" class="block text-gray-700">Atividade Física</label>
+                <select id="fisico" name="fisico" class="w-full p-2 border rounded-lg">
                     <option value="{{ user['fisico'] }}">{{ user['fisico'] }}</option>
-                    {% for fisico in fisicos %}
-                        {% if fisico != atividade_user %}
-                            <option value="{{ fisico }}">{{ fisico }}</option>
-                        {% endif %}
-                    {% endfor %}
+                    <option value="Sedentário">Sedentário</option>
+                    <option value="Ligeira">Ligeira</option>
+                    <option value="Moderada">Moderada</option>
+                    <option value="Intensa">Intensa</option>
+                    <option value="Muito Intensa">Muito Intensa</option>
                 </select>
             </div>
             
@@ -40,15 +40,5 @@
             </div>
         </form>
     </div>
-
-    {% with messages = get_flashed_messages(with_categories=True) %}
-            {% if messages %}
-                <script>
-                // Transforma mensagens de flash em um array para o JavaScript
-                    const messages = {{ messages | tojson }};
-                    alert(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
-                </script>
-            {% endif %}
-        {% endwith %}
 </body>
 </html>

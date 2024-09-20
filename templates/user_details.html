@@ -8,23 +8,30 @@
 <body class="bg-[#234035] min-h-screen">
     <div class="container mx-auto p-8">
         <h1 class="text-[#F8DCB3] text-5xl mb-8">Detalhes do Usuário</h1>
-
-        <div class="mt-6"></div>
-            <a href="{{ url_for('admin.admin_dashboard') }}" class="bg-gray-500 text-white px-4 py-2 rounded">Voltar</a>
-        </div>
         
-        <div class="bg-white p-6 rounded shadow-lg w-[80%] m-auto">
-            
-            {% for data in datas %}
-                <p><strong>{{ data.label }}:</strong></p>
-                <p>{{data.value }}</p>
-            {% endfor %}
+        <div class="bg-white p-6 rounded shadow-lg">
+            <p><strong>Nome:</strong> {{ user['nome'] }}</p>
+            <p><strong>Email:</strong> {{ user['email'] }}</p>
+            <p><strong>Altura:</strong> {{ user['altura'] }}</p>
+            <p><strong>Peso:</strong> {{ user['peso'] }}</p>
+            <p><strong>Cintura:</strong> {{ user['cintura'] }}</p>
+            <p><strong>Físico:</strong> {{ user['fisico'] }}</p>
+            <p><strong>pescoço:</strong> {{ user.get('pescoco', 'Não disponível') }}</p>
+
+
             
             {% if user['profile_image'] %}
                 <p><strong>Imagem de Perfil:</strong></p>
                 <img src="{{ user['profile_image'] }}" alt="Imagem de Perfil" class="w-32 h-32 object-cover">
             {% endif %}
         </div>
+<<<<<<< HEAD
+=======
+        
+        <div class="mt-6">
+            <a href="{{ url_for('admin.admin_dashboard') }}" class="bg-gray-500 text-white px-4 py-2 rounded">Voltar</a>
+        </div>
+>>>>>>> 69797a86eed429f83ae38169f26b981c500417f8
     </div>
 </body>
 </html>
