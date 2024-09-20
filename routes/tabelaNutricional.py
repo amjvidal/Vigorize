@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 import json
-from firebaseAuth import auth, db, emailDb
+from firebaseAuth import auth2, db, emailDb
 
 tabelaNutricao = Blueprint('tabelaNutricional', __name__)
 
@@ -9,7 +9,7 @@ with open("dados.json", encoding="utf-8") as alimentos:
 
 @tabelaNutricao.route('/', methods=['GET', 'POST'])
 def tabelaNutri():
-    user = auth.current_user
+    user = auth2.current_user
     
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')

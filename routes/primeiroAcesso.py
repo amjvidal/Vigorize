@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from firebaseAuth import loginfb, auth, db, emailDb, enviarDadosDb, storage, img_url_firebase
+from firebaseAuth import loginfb, auth2, db, emailDb, enviarDadosDb, storage, img_url_firebase
 from werkzeug.utils import secure_filename
 import os
 
@@ -14,7 +14,7 @@ primeiroAcesso_routes = Blueprint('primeiroAcesso',__name__)
 def primeiroAcesso():
     """ Retorna a página de primeiroAcesso """
     
-    user = auth.current_user
+    user = auth2.current_user
 
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')

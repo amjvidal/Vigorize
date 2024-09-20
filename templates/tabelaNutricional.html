@@ -70,15 +70,13 @@
         <div class="flex w-[100%] mt-[20px] justify-center ">
             <form method="post" class="w-[80%] mx-auto">
                 <input type="hidden" name="action" value="pesquisa">
-                
-                
                 <div class="flex items-center space-x-2">
                     
                     <input type="text" id="search-bar" placeholder="&nbsp;&nbsp;Pesquisar..." 
-                           class="flex-grow p-[4px] border border-gray-300 rounded-lg text-[#576A5C] text-xs" onkeyup="filterItems()" autocomplete="off">
+                           class="flex-grow p-[4px] border border-gray-300 rounded-lg text-[#576A5C] text-xs" onkeyup="filterItems()">
                     
                     
-                    <button type="submit" class="rounded-[100%] justify-center bg-[#097E4A] px-[8px] py-[4px]">
+                    <button type="submit" class="rounded-[100%] justify-center bg-[#576A5C] px-[8px] py-[4px]">
                         <h1 class="font-extrabold text-1xl text-[#f4d7b2]">&nbsp;+&nbsp;</h1>
                     </button>
                 </div>
@@ -101,7 +99,7 @@
                 <input type="hidden" name="action" value="delete_alimento">
                 {% for button in buttons %}
                     <span class="text-[#234035] ml-2 block text-lg" data-id="{{ loop.index }}">
-                    <button type="submit" name="delete_button" value="{{ button }}" class="text-[#234035] border-none rounded-full p-1 cursor-pointer">x</button>    
+                    <button type="submit" name="delete_button" value="{{ button }}" class="text-[#542020] border-none rounded-full p-1 cursor-pointer">x</button>    
                     {{ button }}  
                     </span>
                 {% endfor %}
@@ -110,17 +108,17 @@
 
         <div>
             <!-- Seção de Medidas -->
-            <h1 class="text-1xl text-green-700 font-bold">Medidas para cada 100g: </h1>
+            <h1 class="text-1xl text-[#576A5C] font-bold">Medidas para cada 100g: </h1>
 
                 <div class="flex items-center shadow-md rounded-[20px] bg-[#E4C89F] p-6">
                     <h3 class="text-1xl text-left  text-[#234035]">
-                        <div>
-                            <span class="block mr-1"><span class="inline-block mr-24">Calorias:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> {{ total_calorias }}</span><br>
-                            <span class="block mr-1"><span class="inline-block mr-24">Carboidrato:&nbsp;&nbsp;&nbsp;</span> {{ total_Carboidrato }}</span><br>
-                            <span class="block mr-1"><span class="inline-block mr-24">Umidade:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> {{ total_Umidade }}</span><br>
-                            <span class="block mr-1"><span class="inline-block mr-24">Gordura Total:</span> {{ total_gorduraTotal }}</span><br>
-                            <span class="block mr-1"><span class="inline-block mr-24">Sódio:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> {{ total_Sodio }}</span><br>
-                            <span class="block mr-1"><span class="inline-block mr-24">Proteína:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> {{ total_proteina }}</span>
+                        <div class="grid grid-cols-2 gap-4 ">
+                            <span class="text-center">Calorias:</span> <span class="text-center">{{ total_calorias }}</span>
+                            <span class="text-center">Carboidrato:</span> <span class="text-center">{{ total_Carboidrato }}</span>
+                            <span class="text-center">Umidade:</span> <span class="text-center">{{ total_Umidade }}</span>
+                            <span class="text-center">Gordura Total:</span> <span class="text-center">{{ total_gorduraTotal }}</span>
+                            <span class="text-center">Sódio:</span> <span class="text-center">{{ total_Sodio }}</span>
+                            <span class="text-center">Proteína:</span> <span class="text-center">{{ total_proteina }}</span>
                         </div>
                     </h3>
                 </div>
@@ -157,14 +155,6 @@
                 document.getElementById('config-panel').classList.remove('active');
             });
 
-            // JavaScript para controlar a visibilidade da aba
-            document.getElementById('config-button').addEventListener('click', function() {
-                document.getElementById('config-panel').classList.toggle('active');
-            });
-
-            document.getElementById('close-button').addEventListener('click', function() {
-                document.getElementById('config-panel').classList.remove('active');
-            });
             // Script do botão da foto do perfil
             function updateProfilePicturePreview() {
                 var fileInput = document.getElementById('profile-picture');

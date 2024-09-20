@@ -1,20 +1,20 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from firebaseAuth import auth, db, emailDb
+from firebaseAuth import auth2, db, emailDb
 import json
 
 cadastroadmin_routes = Blueprint('cadastroadmin', __name__)
 
 @cadastroadmin_routes.route('/', methods=['GET', 'POST'])
 def register_admin():
-    user = auth.current_user
-    if user is None:
-        flash('Você precisa estar logado para acessar esta página.', 'danger')
-        return redirect(url_for('login.pagina_login'))
+    # user = auth2.current_user
+    # if user is None:
+    #     flash('Você precisa estar logado para acessar esta página.', 'danger')
+    #     return redirect(url_for('login.pagina_login'))
     
-    is_admin = db.child("usuarios").child(emailDb(user['email'])).get().val().get('is_admin', False)
-    if not is_admin:
-        flash('Você não tem permissão para acessar esta página.', 'danger')
-        return redirect(url_for('perfil.pagina_perfil'))
+    # is_admin = db.child("usuarios").child(emailDb(user['email'])).get().val().get('is_admin', False)
+    # if not is_admin:
+    #     flash('Você não tem permissão para acessar esta página.', 'danger')
+    #     return redirect(url_for('perfil.pagina_perfil'))
     
     inputs = [
         {'id': 'nome', 'type': 'text', 'placeholder': 'Digite o nome do administrador', 'name': 'nome', 'block': 'block'},
@@ -37,10 +37,10 @@ def register_admin():
 
         try:
             # Registrar o administrador
-            new_admin = auth.create_user_with_email_and_password(data_email, data['senha'])
+            new_admin = auth2.create_user_with_email_and_password(data_email, data['senha'])
             
             # Enviar e-mail de verificação
-            auth.send_email_verification(new_admin['idToken'])
+            auth2.send_email_verification(new_admin['idToken'])
             
             user_id = emailDb(data_email)
             

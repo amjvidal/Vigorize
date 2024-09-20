@@ -1,6 +1,6 @@
 import json
 from flask import Blueprint, render_template, request, redirect,url_for, flash
-from firebaseAuth import loginfb, auth, db, emailDb, firstLogin
+from firebaseAuth import loginfb, auth2, db, emailDb, firstLogin
 
 
 login_routes = Blueprint('login', __name__)
@@ -14,7 +14,7 @@ login_routes = Blueprint('login', __name__)
 @login_routes.route('/', methods=['GET', 'POST'])
 def pagina_login():
 
-    user = auth.current_user
+    user = auth2.current_user
 
     inputs = [
         {'id': 'email', 'type': 'email', 'placeholder': 'Email', 'name': 'email'},
@@ -51,7 +51,7 @@ def pagina_login():
                 return redirect(url_for('login.pagina_login'))
         
         else:
-            auth.current_user = None
+            auth2.current_user = None
             flash('Logout realizado com sucesso!', 'success')
             return redirect(url_for('login.pagina_login'))
         

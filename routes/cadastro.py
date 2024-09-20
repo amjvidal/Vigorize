@@ -38,6 +38,8 @@ def cadastro():
                error_message= 'Email já cadastrado !'
             if "WEAK_PASSWORD" in error_message:
                error_message= 'Senha precisa ter no mínimo 6 caracteres !'
+            if "TOO_MANY_ATTEMPTS" in error_message:
+               error_message= 'Muitas tentativas, tente mais tarde !'
             
             flash(error_message, 'danger')
             return render_template('cadastro.html', inputs=inputs)

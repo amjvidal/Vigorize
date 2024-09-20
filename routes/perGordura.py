@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from firebaseAuth import recoverPassword, db, auth, emailDb
+from firebaseAuth import recoverPassword, db, auth2, emailDb
 import json
 
 perGordura_routes = Blueprint('perGordura', __name__)
@@ -10,7 +10,7 @@ perGordura_routes = Blueprint('perGordura', __name__)
 """
 @perGordura_routes.route('/', methods=['GET','POST'])
 def pagina_perGordura():
-    user=auth.current_user
+    user=auth2.current_user
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))

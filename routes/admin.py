@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from firebaseAuth import recoverPassword, db, auth, emailDb, storage, img_url_firebase, armazenar_dados_mensais
+from firebaseAuth import recoverPassword, db, auth2, emailDb, storage, img_url_firebase, armazenar_dados_mensais
 import os, json
+from firebase_admin import auth
 from werkzeug.utils import secure_filename
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 import datetime
@@ -9,7 +10,7 @@ import requests
 
 @admin_routes.route('/', methods=['GET'])
 def admin_dashboard():
-    user = auth.current_user
+    user = auth2.current_user
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
@@ -34,7 +35,7 @@ def admin_dashboard():
 
 @admin_routes.route('/admin/edit_user/<user_id>', methods=['GET', 'POST'])
 def edit_user(user_id):
-    user = auth.current_user
+    user = auth2.current_user
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
@@ -93,20 +94,21 @@ def edit_user(user_id):
 
 @admin_routes.route('/admin/delete_user/<user_id>', methods=['POST'])
 def delete_user(user_id):
-    user = auth.current_user
+    user = auth2.current_user
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
     
     try:
-        user_data = db.child("usuarios").child(user_id).get().val()
-        
-        auth.delete_user_account(user_data['idToken'])
+        localId = db.child("usuarios").child(user_id).child("localId").get().val()
+        auth.delete_user(localId)
         db.child("usuarios").child(user_id).remove()
+
         flash('Usuário excluído com sucesso!', 'success')
         
     except Exception as e:
         error_message = str(e)
+        print(error_message)
         flash(error_message, 'danger')
 
     return redirect(url_for('admin.admin_dashboard'))
@@ -159,7 +161,7 @@ def get_user_data(user_id):
 
 @admin_routes.route('/admin/upload_image/<user_id>', methods=['GET', 'POST'])
 def upload_image(user_id):
-    user = auth.current_user
+    user = auth2.current_user
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
@@ -258,7 +260,7 @@ def upload_image(user_id):
 
 @admin_routes.route('/admin/toggle_user/<user_id>', methods=['POST'])
 def toggle_user(user_id):
-    user = auth.current_user
+    user = auth2.current_user
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
@@ -277,7 +279,7 @@ def toggle_user(user_id):
 
 @admin_routes.route('/admin/reset_password/<user_id>', methods=['POST'])
 def reset_password(user_id):
-    user = auth.current_user
+    user = auth2.current_user
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
@@ -301,7 +303,7 @@ def reset_password(user_id):
 def logout():
     try:
         # Limpar a sessão do usuário
-        auth.current_user = None
+        auth2.current_user = None
         flash('Você saiu com sucesso.', 'success')
     except Exception as e:
         flash(f'Ocorreu um erro ao sair: {str(e)}', 'danger')
