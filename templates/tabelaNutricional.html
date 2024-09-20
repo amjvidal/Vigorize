@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Refeições</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/main.css">
-    <title>Vigorize</title>
     <style>
         .slide-in {
             transform: translateX(100%);
@@ -20,10 +22,7 @@
             border-radius: 10px;
             font-size: 16px;
             font-family: 'mulish';
-<<<<<<< HEAD
             font-family: 'mulish';
-=======
->>>>>>> 69797a86eed429f83ae38169f26b981c500417f8
             display: 'block';
         }
 
@@ -32,12 +31,10 @@
             margin-top: 10px;
             display: none;
         }
-
         input::placeholder {
             font-size: 12px;
             color: #576A5C;
         }
-<<<<<<< HEAD
         .search-container {
             display: block;
             width: 100%;
@@ -48,27 +45,17 @@
             background-color: #097E4A;
             padding: 8px;
         }
-=======
->>>>>>> 69797a86eed429f83ae38169f26b981c500417f8
 
         
 
         .Alimento {
             display: block;
             margin-right: 5px;
-<<<<<<< HEAD
-        }
-
-        body {
-        font-family: 'mulish';
-=======
->>>>>>> 69797a86eed429f83ae38169f26b981c500417f8
         }
 
         body {
         font-family: 'mulish';
         }
-
         .delete-icon {
             color: #234035;
             border: none;
@@ -95,12 +82,9 @@
 
     </style>
 </head>
-<<<<<<< HEAD
 <body class="bg-[#f4d7b2] h-screen flex flex-col">
 
     <!-- Cabeçalho -->
-=======
->>>>>>> 69797a86eed429f83ae38169f26b981c500417f8
 <body class="bg-[#f4d7b2] h-screen w-full  items-center justify-center">
     <header class="h-[80px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
         <nav class="flex justify-between items-center space-x-6 px-4 pt-2">
@@ -108,13 +92,10 @@
                 <img src="{{ profile_picture_url }}" alt="Foto de Perfil" class='w-16 h-16 rounded-full border-[2px] border-[#F8DCB3]'>
             {% else %}
 <<<<<<< HEAD
-<<<<<<< HEAD
                 <img src="/static/default_profile_picture.svg" alt="Foto de Perfil" class='w-16 h-16 rounded-full border-[2px] border-[#494c4e]'>
 =======
 <<<<<<< HEAD
 >>>>>>> 69797a8 (Revert "Tudo de)
-=======
->>>>>>> 69797a86eed429f83ae38169f26b981c500417f8
                 <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Foto de Perfil Padrão" class='w-16 h-16 rounded-full'>
 =======
                 <img src="{{ url_for('static', filename='images/minha_imagem.png') }}" alt="Foto de Perfil Padrão" class='w-16 h-16 rounded-full'>
@@ -122,38 +103,85 @@
             {% endif %}
             <a class="text-[#F8DCB3] text-xl" href="/perfil">Usuário</a>
             <a class="text-[#F8DCB3] text-xl" href="/tabelaNutricional">Tabela Nutricional</a>
-            <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-16">
+            <img src="{{ url_for('static', filename='images/VIGORIZE_bege.svg') }}" alt="Logo VIGORIZE" class=" w-16">
             <a class="text-[#F8DCB3] text-xl" href="/perfil">Planejar Refeições</a>
             <a class="text-[#F8DCB3] text-xl" href="/imc">Calcular IMC</a>
-            <img id="config-button" src="{{ url_for('static', filename='engrenagem.svg') }}" alt="Foto de Perfil Padrão" class="cursor-pointer w-8">
+            <img id="config-button" src="{{ url_for('static', filename='images/engrenagem.svg') }}" alt="Configurações" class="cursor-pointer w-8">
         </nav>
     </header>
-<<<<<<< HEAD
 
     <!-- Barra lateral -->
-=======
->>>>>>> 69797a86eed429f83ae38169f26b981c500417f8
     
     <aside id="config-panel" class="slide-in fixed top-[80px] right-0 h-[calc(100%-70px)] w-[440px] bg-[#234035] text-white shadow-lg z-20 flex flex-col justify-between overflow-y-auto">
-        <!-- ...conteúdo da aba de configuração... -->
+        <div class="p-4">
+            <!-- Conteúdo da aba de configuração -->
+            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" enctype="multipart/form-data" class="mb-8">
+                <input type="hidden" name="action" value="save_profile">
+                <input type="file" id="profile-picture" accept="image/*" name="file" required class="hidden" onchange="updateProfilePicturePreview()">
+                <img type="button" id="upload-button" class="border-[3px] border-[#F8DCB3] w-64 h-64 rounded-full block mx-auto cursor-pointer" src="{{ profile_picture_url }}" onclick="document.getElementById('profile-picture').click();">
+                <button type="submit" class="bg-[#ED8D00] hover:bg-[#f2a30a] font-bold rounded-full p-2 text-white block mx-auto mt-4">Salvar Foto</button>
+            </form>
+
+            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
+                <input type="hidden" name="action" value="recover_password">
+                <button class="bg-[#ED8D00] hover:bg-[#f2a30a] text-white font-bold py-2 px-6 rounded-full mt-6 block mx-auto">Recuperar Senha</button>
+            </form>
+        </div>
+
+        <div class="p-4 flex justify-center space-x-4 mb-4">
+            <form action="{{ url_for('login.pagina_login')}}" method="POST">
+                <input type="hidden" name="action" value="logout">
+                <button class="hover:bg-[#b01002fe] font-bold rounded-full py-2 px-8 bg-[#b01002d7] text-white">Logout</button>
+            </form>
+
+            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" onsubmit="return confirmDeletion()">
+                <input type="hidden" name="action" value="delete_account">
+                <button class="hover:bg-[#b01002fe] font-bold p-2 bg-[#b01002d7] text-white rounded-full">Excluir Conta</button>
+            </form>
+        </div>
     </aside>
-        <div class="h-[80px]"></div>
-        <div class="flex w-[100%] mt-[20px] justify-center ">
-            <form method="post" class="w-[80%] mx-auto">
-                <input type="hidden" name="action" value="pesquisa">
-                
-                
-                <div class="flex items-center space-x-2">
-                    
-                    <input type="text" id="search-bar" placeholder="&nbsp;&nbsp;Pesquisar..." 
-                           class="flex-grow p-[4px] border border-gray-300 rounded-lg" onkeyup="filterItems()" autocomplete="off">
-                    
-                    
-                    <button type="submit" class="rounded-[100%] justify-center bg-[#097E4A] px-[8px] py-[4px]">
-                        <h1 class="font-extrabold text-1xl text-[#f4d7b2]">&nbsp;+&nbsp;</h1>
-                    </button>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex flex-1 p-6">
+        <aside class="bg-green-900 text-white p-6 space-y-4 w-1/4 flex flex-col items-center">
+            <div class="text-center">
+                <p class="text-2xl font-bold">2351</p>
+                <p>kcal</p>
+            </div>
+            <div class="text-center">
+                <p class="text-xl">23g</p>
+                <p>Proteína</p>
+            </div>
+            <div class="text-center">
+                <p class="text-xl">14g</p>
+                <p>Gordura</p>
+            </div>
+            <div class="text-center">
+                <p class="text-xl bg-yellow-500 rounded-full py-1 px-3">100g</p>
+                <p>Sódio</p>
+            </div>
+            <div class="text-center">
+                <p class="text-xl">14g</p>
+                <p>Carboidrato</p>
+            </div>
+            <div class="text-center">
+                <p class="text-xl">14%</p>
+                <p>Umidade</p>
+            </div>
+        </aside>
+
+        <div class="w-3/4">
+            <h2 class="text-3xl font-bold mb-4">Refeições</h2>
+            <img src="{{ url_for('static', filename='images/minha_imagem.png') }}" alt="Imagem Exemplo" class="w-64 h-64 rounded-full mb-4">
+            <div class="bg-white p-4 rounded shadow-md">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold">Café da manhã dos campeões</h3>
+                        <p class="text-gray-600">2 Receitas</p>
+                        <p class="text-gray-600">315 Calorias</p>
+                    </div>
+                    <p class="text-lg font-bold">06h00</p>
                 </div>
-<<<<<<< HEAD
             </div>
 
             <div class="w-full max-w-md mt-4">
@@ -189,15 +217,12 @@
                         <h1 class="font-extrabold text-1xl text-[#f4d7b2]">&nbsp;+&nbsp;</h1>
                     </button>
                 </div>
-=======
->>>>>>> 69797a86eed429f83ae38169f26b981c500417f8
             
                 
                 <select id="item-select" name="item" size="4" 
                         class="w-full mt-2 p-[4px] border overflow-y-auto border-gray-300 rounded-lg ">
                     {% for item in items %}
                         <option value="{{ item.Nome }}">{{ item.Nome }}</option>
-<<<<<<< HEAD
                     {% endfor %}
                 </select>
             </form>
@@ -245,70 +270,56 @@
                     </h3>
                 </div>
             
-=======
-                    {% endfor %}
-                </select>
-            </form>
->>>>>>> 69797a86eed429f83ae38169f26b981c500417f8
         </div>
+    </main>
 
-    <div class="flex w-[100%] justify-center mt-[2%]">
+    <script>
+        const configButton = document.getElementById("config-button");
+        const configPanel = document.getElementById("config-panel");
 
-        <!-- Único contêiner para os elementos adicionados -->
-        <div class="p-[10px] w-[40%] me-[20%]   flex">
-            <form action="{{ url_for('tabelaNutricional.tabelaNutri') }}" method="POST">
-                <input type="hidden" name="action" value="delete_alimento">
-                {% for button in buttons %}
-                    <span class="inflated-button" data-id="{{ loop.index }}">
-                    <button type="submit" name="delete_button" value="{{ button }}" class="delete-icon">x</button>    
-                    {{ button }}  
-                    </span>
-                {% endfor %}
-            </form>
-        </div>
+        configButton.addEventListener("click", function() {
+            configPanel.classList.toggle("active");
+        });
 
-        <div>
-            <!-- Seção de Medidas -->
-            <h1 class="text-1xl text-green-700 font-bold">Medidas para cada 100g: </h1>
+        function confirmDeletion() {
+            return confirm("Tem certeza que deseja excluir sua conta?");
+        }
 
-                <div class="flex items-center shadow-md rounded-[20px] bg-[#E4C89F] p-6">
-                    <h3 class="text-1xl text-left  text-[#234035]">
-                        <div class="tabelaAlimento">
-                            <span class="Alimento"><span>Calorias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{ total_calorias }}</span><br>
-                            <span class="Alimento"><span>Carboidrato&nbsp;&nbsp;&nbsp;:</span> {{ total_Carboidrato }}</span><br>
-                            <span class="Alimento"><span>Umidade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{ total_Umidade }}</span><br>
-                            <span class="Alimento"><span>Gordura Total:</span> {{ total_gorduraTotal }}</span><br>
-                            <span class="Alimento"><span>Sódio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{ total_Sodio }}</span><br>
-                            <span class="Alimento"><span>Proteína&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{ total_proteina }}</span>
-                        </div>
-                    </h3>
-                </div>
-            
-        </div>
+        function updateProfilePicturePreview() {
+            const fileInput = document.getElementById('profile-picture');
+            const preview = document.getElementById('upload-button');
 
-        <script>
-            function filterItems() {
-                let input = document.getElementById('search-bar').value.toLowerCase();
-                let select = document.getElementById('item-select');
-                let options = select.options;
+            const file = fileInput.files[0];
+            const reader = new FileReader();
 
-                if (input.length > 0) {
-                    select.style.display = 'block';
+            reader.addEventListener("load", function () {
+                preview.src = reader.result;
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function filterItems() {
+            const searchBar = document.getElementById('search-bar');
+            const itemSelect = document.getElementById('item-select');
+            const filter = searchBar.value.toLowerCase();
+
+            let hasItems = false;
+
+            for (let i = 0; i < itemSelect.options.length; i++) {
+                const option = itemSelect.options[i];
+                const text = option.text.toLowerCase();
+
+                if (text.includes(filter)) {
+                    option.style.display = 'block';
+                    hasItems = true;
                 } else {
-                    select.style.display = 'none';
-                }
-
-                for (let i = 0; i < options.length; i++) {
-                    let option = options[i];
-                    if (option.value.toLowerCase().includes(input)) {
-                        option.style.display = '';
-                    } else {
-                        option.style.display = 'none';
-                    }
+                    option.style.display = 'none';
                 }
             }
 
-<<<<<<< HEAD
             itemSelect.style.display = hasItems ? 'block' : 'none';
         }
     </script>
@@ -334,8 +345,6 @@
                 }
             }
 
-=======
->>>>>>> 69797a86eed429f83ae38169f26b981c500417f8
             document.getElementById('config-button').addEventListener('click', function() {
                 document.getElementById('config-panel').classList.toggle('active');
             });

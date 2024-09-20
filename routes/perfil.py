@@ -15,6 +15,12 @@ def pagina_perfil():
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
+    
+    is_admin = db.child("usuarios").child(emailDb(user['email'])).get().val().get('is_admin', False)
+    if is_admin:
+        
+        flash('Você não tem permissão para acessar esta página.', 'danger')
+        return redirect(url_for('login.pagina_login'))
 
     try:
         user_id = emailDb(user['email'])
@@ -65,6 +71,8 @@ def pagina_perfil():
                          'cintura': data['cintura'],
                          'pescoco': data['pescoco'],
                          'fisico': data['fisico']})
+                    if sexo_user == 'Feminino':
+                        db.child("usuarios").child(user_id).update({'quadril': data['quadril']})
                     flash('Perfil atualizado com sucesso!', 'success')
 
                     return redirect(url_for('perfil.pagina_perfil'))
