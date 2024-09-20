@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/static/css/main.css ">
     <title>Vigorize</title>
 </head>
-<body class="bg-[#F3D3A0] min-h-screen flex flex-col items-center justify-center">
+<body class="bg-[#F8DCB3] min-h-screen flex flex-col items-center justify-center">
     <style>
         /* Estilo adicional para a transição da aba */
         .slide-in {
@@ -25,7 +25,7 @@
         }
     </script>
 </head>
-<body class="bg-[#F8DCB3] min-h-screen">
+<body class="bg-[#F3D3A0] min-h-screen">
     <header class="h-[80px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
         <nav class="flex justify-between items-center space-x-6 px-4 pt-2">
             {% if profile_picture_url %}
@@ -78,7 +78,7 @@
         </div>
     </aside>
 
-    <div class="w-full max-w-md bg-[#F8DCB3] shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-6">
+    <div class="w-full max-w-md bg-[#F3D3A0] shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-6">
         <h2 class="text-center text-2xl font-bold text-[#234035] mb-6">Calculadora de IMC</h2>
         
         <!-- Formulário para cálculo do IMC -->
@@ -121,7 +121,7 @@
             <script>
                 // Transforma mensagens de flash em um array para o JavaScript
                 const messages = {{ messages | tojson }};
-                showFlashMessages(messages);  // msg[1] é a mensagem, msg[0] é a categoria
+                alert(messages.map(msg => msg[1]));  // msg[1] é a mensagem, msg[0] é a categoria
             </script>
         {% endif %}
     {% endwith %}
