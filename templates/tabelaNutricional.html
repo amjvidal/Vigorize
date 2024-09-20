@@ -14,19 +14,25 @@
         .slide-in.active {
             transform: translateX(0);
         }
+
+        /* Estilos para a barra de pesquisa e o select */
         #search-bar, #item-select {
             width: 100%;
             padding: 4px;
             border-radius: 10px;
             font-size: 16px;
             font-family: 'mulish';
+            font-family: 'mulish';
+            display: 'block';
         }
+
+      
         #item-select {
             margin-top: 10px;
-            display: none; /* O select ficará oculto até a pesquisa começar */
+            display: none;
         }
         input::placeholder {
-            font-size: 12px; 
+            font-size: 12px;
             color: #576A5C;
         }
         .search-container {
@@ -39,29 +45,54 @@
             background-color: #097E4A;
             padding: 8px;
         }
+
+        
+
         .Alimento {
             display: block;
             margin-right: 5px;
-            padding: 5px;
+        }
+
+        body {
+        font-family: 'mulish';
         }
         .delete-icon {
-            color: white;
+            color: #234035;
             border: none;
             border-radius: 50%;
             padding: 5px;
             cursor: pointer;
         }
+
+        
+        
+        .Alimento span {
+            display: inline-block;
+            margin-right: 100px; 
+        }
+
+        
+        .inflated-button {
+            color: #234035; /* Cor do texto */
+            margin-left: 10px;
+            display: block;
+            font-size: large;
+            
+        }
+
     </style>
 </head>
 <body class="bg-[#f4d7b2] h-screen flex flex-col">
 
     <!-- Cabeçalho -->
+<body class="bg-[#f4d7b2] h-screen w-full  items-center justify-center">
     <header class="h-[80px] bg-[#234035] w-full mx-auto fixed top-0 left-0 right-0 z-10">
         <nav class="flex justify-between items-center space-x-6 px-4 pt-2">
             {% if profile_picture_url %}
                 <img src="{{ profile_picture_url }}" alt="Foto de Perfil" class='w-16 h-16 rounded-full border-[2px] border-[#F8DCB3]'>
             {% else %}
                 <img src="/static/default_profile_picture.svg" alt="Foto de Perfil" class='w-16 h-16 rounded-full border-[2px] border-[#494c4e]'>
+                <img src="{{ url_for('static', filename='VIGORIZE_bege.svg') }}" alt="Foto de Perfil Padrão" class='w-16 h-16 rounded-full'>
             {% endif %}
             <a class="text-[#F8DCB3] text-xl" href="/perfil">Usuário</a>
             <a class="text-[#F8DCB3] text-xl" href="/tabelaNutricional">Tabela Nutricional</a>
@@ -73,6 +104,7 @@
     </header>
 
     <!-- Barra lateral -->
+    
     <aside id="config-panel" class="slide-in fixed top-[80px] right-0 h-[calc(100%-70px)] w-[440px] bg-[#234035] text-white shadow-lg z-20 flex flex-col justify-between overflow-y-auto">
         <div class="p-4">
             <!-- Conteúdo da aba de configuração -->
@@ -160,6 +192,34 @@
                         </button>
                     </form>
                 </div>
+        <!-- ...conteúdo da aba de configuração... -->
+    </aside>
+        <div class="h-[80px]"></div>
+        <div class="flex w-[100%] mt-[20px] justify-center ">
+            <form method="post" class="w-[80%] mx-auto">
+                <input type="hidden" name="action" value="pesquisa">
+                
+                
+                <div class="flex items-center space-x-2">
+                    
+                    <input type="text" id="search-bar" placeholder="&nbsp;&nbsp;Pesquisar..." 
+                           class="flex-grow p-[4px] border border-gray-300 rounded-lg" onkeyup="filterItems()" autocomplete="off">
+                    
+                    
+                    <button type="submit" class="rounded-[100%] justify-center bg-[#097E4A] px-[8px] py-[4px]">
+                        <h1 class="font-extrabold text-1xl text-[#f4d7b2]">&nbsp;+&nbsp;</h1>
+                    </button>
+                </div>
+            
+                
+                <select id="item-select" name="item" size="4" 
+                        class="w-full mt-2 p-[4px] border overflow-y-auto border-gray-300 rounded-lg ">
+                    {% for item in items %}
+                        <option value="{{ item.Nome }}">{{ item.Nome }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
 
                 <form action="{{ url_for('tabelaNutricional.tabelaNutri') }}" method="POST">
                     <input type="hidden" name="action" value="delete_alimento">
@@ -171,6 +231,38 @@
                     {% endfor %}
                 </form>
             </div>
+    <div class="flex w-[100%] justify-center mt-[2%]">
+
+        <!-- Único contêiner para os elementos adicionados -->
+        <div class="p-[10px] w-[40%] me-[20%]   flex">
+            <form action="{{ url_for('tabelaNutricional.tabelaNutri') }}" method="POST">
+                <input type="hidden" name="action" value="delete_alimento">
+                {% for button in buttons %}
+                    <span class="inflated-button" data-id="{{ loop.index }}">
+                    <button type="submit" name="delete_button" value="{{ button }}" class="delete-icon">x</button>    
+                    {{ button }}  
+                    </span>
+                {% endfor %}
+            </form>
+        </div>
+
+        <div>
+            <!-- Seção de Medidas -->
+            <h1 class="text-1xl text-green-700 font-bold">Medidas para cada 100g: </h1>
+
+                <div class="flex items-center shadow-md rounded-[20px] bg-[#E4C89F] p-6">
+                    <h3 class="text-1xl text-left  text-[#234035]">
+                        <div class="tabelaAlimento">
+                            <span class="Alimento"><span>Calorias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{ total_calorias }}</span><br>
+                            <span class="Alimento"><span>Carboidrato&nbsp;&nbsp;&nbsp;:</span> {{ total_Carboidrato }}</span><br>
+                            <span class="Alimento"><span>Umidade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{ total_Umidade }}</span><br>
+                            <span class="Alimento"><span>Gordura Total:</span> {{ total_gorduraTotal }}</span><br>
+                            <span class="Alimento"><span>Sódio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{ total_Sodio }}</span><br>
+                            <span class="Alimento"><span>Proteína&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{ total_proteina }}</span>
+                        </div>
+                    </h3>
+                </div>
+            
         </div>
     </main>
 
@@ -224,5 +316,37 @@
             itemSelect.style.display = hasItems ? 'block' : 'none';
         }
     </script>
+        <script>
+            function filterItems() {
+                let input = document.getElementById('search-bar').value.toLowerCase();
+                let select = document.getElementById('item-select');
+                let options = select.options;
+
+                if (input.length > 0) {
+                    select.style.display = 'block';
+                } else {
+                    select.style.display = 'none';
+                }
+
+                for (let i = 0; i < options.length; i++) {
+                    let option = options[i];
+                    if (option.value.toLowerCase().includes(input)) {
+                        option.style.display = '';
+                    } else {
+                        option.style.display = 'none';
+                    }
+                }
+            }
+
+            document.getElementById('config-button').addEventListener('click', function() {
+                document.getElementById('config-panel').classList.toggle('active');
+            });
+
+            document.getElementById('close-button').addEventListener('click', function() {
+                document.getElementById('config-panel').classList.remove('active');
+            });
+        </script>
+    </div>
 </body>
 </html>
+
