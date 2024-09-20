@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from firebaseAuth import recoverPassword, db, auth, emailDb, storage, img_url_firebase, armazenar_dados_mensais
+from firebaseAuth import recoverPassword, db, auth2, emailDb, storage, img_url_firebase, armazenar_dados_mensais
 import os, json
 from werkzeug.utils import secure_filename
 from flask import Blueprint, render_template, request, flash, redirect, url_for
@@ -10,10 +10,17 @@ perfil_routes = Blueprint('perfil', __name__)
 
 @perfil_routes.route('/', methods=['GET', 'POST'])
 def pagina_perfil():
-    user = auth.current_user
+    user = auth2.current_user
+    print(user['idToken'])
 
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
+        return redirect(url_for('login.pagina_login'))
+    
+    is_admin = db.child("usuarios").child(emailDb(user['email'])).get().val().get('is_admin', False)
+    if is_admin:
+        
+        flash('Você não tem permissão para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
 
     try:
@@ -65,6 +72,8 @@ def pagina_perfil():
                          'cintura': data['cintura'],
                          'pescoco': data['pescoco'],
                          'fisico': data['fisico']})
+                    if sexo_user == 'Feminino':
+                        db.child("usuarios").child(user_id).update({'quadril': data['quadril']})
                     flash('Perfil atualizado com sucesso!', 'success')
 
                     return redirect(url_for('perfil.pagina_perfil'))
@@ -85,9 +94,9 @@ def pagina_perfil():
                 
             elif action == 'delete_account':
                 try:
-                    auth.delete_user_account(user['idToken'])  # Exclui o usuário da autenticação
+                    auth2.delete_user_account(user['idToken'])  # Exclui o usuário da autenticação
                     db.child("usuarios").child(user_id).remove()  # Exclui o perfil do usuário
-                    auth.current_user = None
+                    auth2.current_user = None
                     flash('Perfil excluído com sucesso!', 'success')
                     return redirect(url_for('login.pagina_login'))
                 except Exception as e:

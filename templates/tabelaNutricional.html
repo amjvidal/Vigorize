@@ -12,63 +12,6 @@
         .slide-in.active {
             transform: translateX(0);
         }
-
-        /* Estilos para a barra de pesquisa e o select */
-        #search-bar, #item-select {
-            width: 100%;
-            padding: 4px;
-            border-radius: 10px;
-            font-size: 16px;
-            font-family: 'mulish';
-            display: 'block';
-        }
-
-      
-        #item-select {
-            margin-top: 10px;
-            display: none;
-        }
-
-        input::placeholder {
-            font-size: 12px;
-            color: #576A5C;
-        }
-
-        
-
-        .Alimento {
-            display: block;
-            margin-right: 5px;
-        }
-
-        body {
-        font-family: 'mulish';
-        }
-
-        .delete-icon {
-            color: #234035;
-            border: none;
-            border-radius: 50%;
-            padding: 5px;
-            cursor: pointer;
-        }
-
-        
-        
-        .Alimento span {
-            display: inline-block;
-            margin-right: 100px; 
-        }
-
-        
-        .inflated-button {
-            color: #234035; /* Cor do texto */
-            margin-left: 10px;
-            display: block;
-            font-size: large;
-            
-        }
-
     </style>
 </head>
 <body class="bg-[#f4d7b2] h-screen w-full  items-center justify-center">
@@ -88,22 +31,52 @@
         </nav>
     </header>
     
-    <aside id="config-panel" class="slide-in fixed top-[80px] right-0 h-[calc(100%-70px)] w-[440px] bg-[#234035] text-white shadow-lg z-20 flex flex-col justify-between overflow-y-auto">
-        <!-- ...conteúdo da aba de configuração... -->
+    <aside id="config-panel" class="slide-in fixed top-[80px] right-0 h-[calc(100vh-80px)] w-[440px] bg-[#234035] text-white shadow-lg z-20 flex flex-col justify-between overflow-y-auto">
+        <div class="p-4">
+            <!-- Conteúdo da aba de configuração aqui -->
+            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" enctype="multipart/form-data" class="mb-8">
+                <input type="hidden" name="action" value="save_profile">
+                
+                <!-- Input de arquivo escondido -->
+                <input type="file" id="profile-picture" accept="image/*" name="file" required class="hidden" onchange="updateProfilePicturePreview()">
+                
+                <!-- Botão personalizado -->
+                <img type="button" id="upload-button" class="border-[3px] border-[#F8DCB3] w-64 h-64 rounded-full block mx-auto cursor-pointer" src="{{ profile_picture_url }}" onclick="document.getElementById('profile-picture').click();">
+                
+                <!-- Submit button -->
+                <button type="submit" class="bg-[#ED8D00] hover:bg-[#f2a30a] font-bold rounded-full p-2 text-white block mx-auto mt-4">Salvar Foto</button>
+            </form>
+    
+            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST">
+                <input type="hidden" name="action" value="recover_password">
+                <button class="bg-[#ED8D00] hover:bg-[#f2a30a] text-white font-bold py-2 px-6 rounded-full mt-6 block mx-auto">Recuperar Senha</button>
+            </form>
+        </div>
+    
+        <!-- Botões no final da página -->
+        <div class="p-4 flex justify-center space-x-4 mb-4">
+            <form action="{{ url_for('login.pagina_login')}}" method="POST">
+                <input type="hidden" name="action" value="logout">
+                <button class="hover:bg-[#b01002fe] font-bold rounded-full py-2 px-8 bg-[#b01002d7] text-white">Logout</button>
+            </form>
+    
+            <form action="{{ url_for('perfil.pagina_perfil')}}" method="POST" onsubmit="return confirmDeletion()">
+                <input type="hidden" name="action" value="delete_account">
+                <button class="hover:bg-[#b01002fe] font-bold p-2 bg-[#b01002d7] text-white rounded-full">Excluir Conta</button>
+            </form>
+        </div>
     </aside>
         <div class="h-[80px]"></div>
         <div class="flex w-[100%] mt-[20px] justify-center ">
             <form method="post" class="w-[80%] mx-auto">
                 <input type="hidden" name="action" value="pesquisa">
-                
-                
                 <div class="flex items-center space-x-2">
                     
                     <input type="text" id="search-bar" placeholder="&nbsp;&nbsp;Pesquisar..." 
-                           class="flex-grow p-[4px] border border-gray-300 rounded-lg" onkeyup="filterItems()" autocomplete="off">
+                           class="flex-grow p-[4px] border border-gray-300 rounded-lg text-[#576A5C] text-xs" onkeyup="filterItems()">
                     
                     
-                    <button type="submit" class="rounded-[100%] justify-center bg-[#097E4A] px-[8px] py-[4px]">
+                    <button type="submit" class="rounded-[100%] justify-center bg-[#576A5C] px-[8px] py-[4px]">
                         <h1 class="font-extrabold text-1xl text-[#f4d7b2]">&nbsp;+&nbsp;</h1>
                     </button>
                 </div>
@@ -125,8 +98,8 @@
             <form action="{{ url_for('tabelaNutricional.tabelaNutri') }}" method="POST">
                 <input type="hidden" name="action" value="delete_alimento">
                 {% for button in buttons %}
-                    <span class="inflated-button" data-id="{{ loop.index }}">
-                    <button type="submit" name="delete_button" value="{{ button }}" class="delete-icon">x</button>    
+                    <span class="text-[#234035] ml-2 block text-lg" data-id="{{ loop.index }}">
+                    <button type="submit" name="delete_button" value="{{ button }}" class="text-[#542020] border-none rounded-full p-1 cursor-pointer">x</button>    
                     {{ button }}  
                     </span>
                 {% endfor %}
@@ -135,17 +108,17 @@
 
         <div>
             <!-- Seção de Medidas -->
-            <h1 class="text-1xl text-green-700 font-bold">Medidas para cada 100g: </h1>
+            <h1 class="text-1xl text-[#576A5C] font-bold">Medidas para cada 100g: </h1>
 
                 <div class="flex items-center shadow-md rounded-[20px] bg-[#E4C89F] p-6">
                     <h3 class="text-1xl text-left  text-[#234035]">
-                        <div class="tabelaAlimento">
-                            <span class="Alimento"><span>Calorias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{ total_calorias }}</span><br>
-                            <span class="Alimento"><span>Carboidrato&nbsp;&nbsp;&nbsp;:</span> {{ total_Carboidrato }}</span><br>
-                            <span class="Alimento"><span>Umidade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{ total_Umidade }}</span><br>
-                            <span class="Alimento"><span>Gordura Total:</span> {{ total_gorduraTotal }}</span><br>
-                            <span class="Alimento"><span>Sódio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{ total_Sodio }}</span><br>
-                            <span class="Alimento"><span>Proteína&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span> {{ total_proteina }}</span>
+                        <div class="grid grid-cols-2 gap-4 ">
+                            <span class="text-center">Calorias:</span> <span class="text-center">{{ total_calorias }}</span>
+                            <span class="text-center">Carboidrato:</span> <span class="text-center">{{ total_Carboidrato }}</span>
+                            <span class="text-center">Umidade:</span> <span class="text-center">{{ total_Umidade }}</span>
+                            <span class="text-center">Gordura Total:</span> <span class="text-center">{{ total_gorduraTotal }}</span>
+                            <span class="text-center">Sódio:</span> <span class="text-center">{{ total_Sodio }}</span>
+                            <span class="text-center">Proteína:</span> <span class="text-center">{{ total_proteina }}</span>
                         </div>
                     </h3>
                 </div>
@@ -181,6 +154,25 @@
             document.getElementById('close-button').addEventListener('click', function() {
                 document.getElementById('config-panel').classList.remove('active');
             });
+
+            // Script do botão da foto do perfil
+            function updateProfilePicturePreview() {
+                var fileInput = document.getElementById('profile-picture');
+                var uploadButton = document.getElementById('upload-button');
+
+                if (fileInput.files && fileInput.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        uploadButton.src = e.target.result;
+                    }
+
+                    reader.readAsDataURL(fileInput.files[0]);
+                }
+            }
+            function confirmDeletion() {
+                return confirm("Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.");
+            }
         </script>
     </div>
 </body>

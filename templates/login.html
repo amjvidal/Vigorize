@@ -28,7 +28,7 @@
             <form action="{{ url_for('login.pagina_login')}}" method="POST" class="w-3/4 space-y-4 ml-[200px]">
                 <input type="hidden" name="action" value="login">
                 <!-- Inputs de login -->
-                <div class="space-y-4 flex  flex-col items-center">
+                <div class="space-y-4 flex flex-col items-center">
                     {% for input in inputs %}
                         <input 
                             class="bg-[#F8DCB3] mt-[-20px] p-4 w-[450px] rounded-[28px]  placeholder:text-[#234035] font-bold text-lg"
@@ -49,6 +49,8 @@
                 <div class="flex justify-center">
                     <button class=" w-[250px] h-[60px] bg-[#ED8D00] text-2xl text-[#234035] font-bold rounded-[210px]" id="btnLogin">Fazer Login</button>
                 </div>
+
+                
             </form>
         </div>
     </div>
@@ -64,5 +66,4 @@
     {% endwith %}
 
 </body>
-
 </html>
