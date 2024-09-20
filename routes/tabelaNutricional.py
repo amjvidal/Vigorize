@@ -42,9 +42,6 @@ def tabelaNutri():
                     eliminaAtributo(item_to_delete,session['inflated_buttons'])
                     enviaData(user_id, session['inflated_buttons'])
                     
-
-                
-
         total_calorias = round(somaAtributo('Caloria'),2)
         total_Carboidrato = round(somaAtributo('Carboidrato'),2)
         total_Umidade = round(somaAtributo('Umidade'),2)

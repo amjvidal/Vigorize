@@ -90,20 +90,19 @@ def edit_user(user_id):
 
     return render_template('edit_user.html', user=user_data, user_id=user_id, inputs=inputs, fisicos=fisicos)
 
+
 @admin_routes.route('/admin/delete_user/<user_id>', methods=['POST'])
 def delete_user(user_id):
     user = auth.current_user
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
-    
     try:
         user_data = db.child("usuarios").child(user_id).get().val()
-        
         auth.delete_user_account(user_data['idToken'])
         db.child("usuarios").child(user_id).remove()
         flash('Usuário excluído com sucesso!', 'success')
-        
+
     except Exception as e:
         error_message = str(e)
         flash(error_message, 'danger')
@@ -144,6 +143,7 @@ def user_details(user_id):
         return redirect(url_for('admin.admin_dashboard'))
 
     return render_template('user_details.html', user=user_data, user_id=user_id, datas=datas, fisicos=fisicos)
+
 def get_current_date_path():
     now = datetime.now()
     year_month = now.strftime('%Y-%m')
@@ -260,20 +260,52 @@ def toggle_user(user_id):
         flash('Você precisa estar logado para acessar esta página.', 'danger')
         return redirect(url_for('login.pagina_login'))
     
-    user_data = db.child("usuarios").child(user_id).get().val()
-    if user_data is None:
-        flash('Usuário não encontrado.', 'danger')
-        return redirect(url_for('admin.admin_dashboard'))
+    if request.method == 'POST':
+        if 'image' not in request.files:
+            flash('Nenhuma imagem selecionada.', 'danger')
+            return redirect(request.url)
+        
+        file = request.files['image']
+        if file.filename == '':
+            flash('Nenhuma imagem selecionada.', 'danger')
+            return redirect(request.url)
 
-    is_blocked = user_data.get('is_blocked', False)
-    db.child("usuarios").child(user_id).update({'is_blocked': not is_blocked})
+        if file:
+            try:
+                # Salva a imagem no diretório local
+                filename = secure_filename(file.filename)
+                file_path = os.path.join('static/uploads/', filename)
+                file.save(file_path)
 
-    status = 'bloqueado' if not is_blocked else 'desbloqueado'
-    flash(f'Usuário {status} com sucesso!', 'success')
-    return redirect(url_for('admin.user_details', user_id=user_id))
+                # Salva a imagem no storage do Firebase
+                storage.child(f"profile_pics/{user_id}/{filename}").put(file_path)
+
+                # Obtém a URL da imagem
+                blob = storage.child(f"profile_pics/{user_id}/{filename}")
+                url = blob.get_url(None)
+
+                # Atualiza a URL no Firebase Realtime Database
+                db.child("usuarios").child(user_id).update({
+                    'profile_image': url
+                })
+
+                # Remove o arquivo local
+                os.remove(file_path)
+
+                flash('Imagem de perfil atualizada com sucesso!', 'success')
+                return redirect(url_for('admin.user_details', user_id=user_id))
+            except Exception as e:
+                error_message = str(e)
+                print(error_message)
+                flash("Erro ao salvar a imagem", 'danger')
+                return redirect(url_for('admin.user_details', user_id=user_id))
+
+    return render_template('upload_image.html', user_id=user_id)
+
 
 @admin_routes.route('/admin/reset_password/<user_id>', methods=['POST'])
 def reset_password(user_id):
+
     user = auth.current_user
     if user is None:
         flash('Você precisa estar logado para acessar esta página.', 'danger')
