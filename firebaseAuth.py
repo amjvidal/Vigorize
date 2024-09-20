@@ -15,7 +15,11 @@ config = {
     'measurementId': "G-N2ETEHJM8N"}
 
 cred = credentials.Certificate("vigorize-3d6cf-firebase-adminsdk-ixlbs-e3264553cc.json")
-firebase_admin.initialize_app(cred)
+
+try:
+    firebase_admin.initialize_app(cred)
+except:
+    pass
 
 profilePics_folder = 'profile_pics'
 firebase = pyrebase.initialize_app(config)
