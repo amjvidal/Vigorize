@@ -6,15 +6,15 @@ cadastroadmin_routes = Blueprint('cadastroadmin', __name__)
 
 @cadastroadmin_routes.route('/', methods=['GET', 'POST'])
 def register_admin():
-    # user = auth2.current_user
-    # if user is None:
-    #     flash('Você precisa estar logado para acessar esta página.', 'danger')
-    #     return redirect(url_for('login.pagina_login'))
+    user = auth2.current_user
+    if user is None:
+        flash('Você precisa estar logado para acessar esta página.', 'danger')
+        return redirect(url_for('login.pagina_login'))
     
-    # is_admin = db.child("usuarios").child(emailDb(user['email'])).get().val().get('is_admin', False)
-    # if not is_admin:
-    #     flash('Você não tem permissão para acessar esta página.', 'danger')
-    #     return redirect(url_for('perfil.pagina_perfil'))
+    is_admin = db.child("usuarios").child(emailDb(user['email'])).get().val().get('is_admin', False)
+    if not is_admin:
+        flash('Você não tem permissão para acessar esta página.', 'danger')
+        return redirect(url_for('perfil.pagina_perfil'))
     
     inputs = [
         {'id': 'nome', 'type': 'text', 'placeholder': 'Digite o nome do administrador', 'name': 'nome', 'block': 'block'},

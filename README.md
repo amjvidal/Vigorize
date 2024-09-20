@@ -34,6 +34,10 @@ Dependências e Bibliotecas:
 
     2) pip install pyrebase4
 
+    3) pip install firebase_admin
+
     (caso dê erro, atualizar as dependências que estão desatualizadas, elas aparecem no erro)
 
     FireBase - Banco de Dados
+
+    

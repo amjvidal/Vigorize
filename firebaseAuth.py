@@ -14,9 +14,9 @@ config = {
     'appId': "1:385997478942:web:dc73f225e95938034fe20f",
     'measurementId': "G-N2ETEHJM8N"}
 
-cred = credentials.Certificate("vigorize-3d6cf-firebase-adminsdk-ixlbs-e3264553cc.json")
 
 try:
+    cred = credentials.Certificate("vigorize-3d6cf-firebase-adminsdk-ixlbs-e3264553cc.json")
     firebase_admin.initialize_app(cred)
 except:
     pass
