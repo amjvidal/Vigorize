@@ -35,6 +35,7 @@ def pagina_login():
                 is_admin = db.child("usuarios").child(emailDb(data['email'])).get().val().get('is_admin', False)
                 if is_admin:
                     return redirect(url_for('admin.admin_dashboard'))
+                
 
                 if firstLogin(data['email']):
                     flash('Primeiro acesso, por favor complete seu cadastro!', 'success')
@@ -60,11 +61,6 @@ def pagina_login():
         is_admin = db.child("usuarios").child(emailDb(user['email'])).get().val().get('is_admin', False)
         if is_admin:
             return redirect(url_for('admin.admin_dashboard'))
-        
-        is_admin = db.child("usuarios").child(emailDb(user['email'])).get().val().get('is_admin', False)
-        if is_admin:
-            return redirect(url_for('admin.admin_dashboard'))
-        
         return redirect(url_for('perfil.pagina_perfil'))
     
     return render_template('login.html', inputs=inputs)
