@@ -1,6 +1,6 @@
 # Vigorize
 
-Componentes:
+Colaboradores:
 
     Antonio Mário Jesus Vidal Leite
 
@@ -26,7 +26,7 @@ Dependências e Bibliotecas:
 
     Para iniciar o Tailwind: npx tailwindcss -i ./static/src/input.css -o ./static/css/main.css --watch
 
-    Pyrebase e Pyrebase4 - Python
+    Pyrebase, Pyrebase4, FirebaseAdmin - Python
 
     Para instalar o Pyrebase:
 
